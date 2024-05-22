@@ -1,0 +1,13 @@
+.nav-link{
+    color:rgb(34, 34, 147);
+    margin: 2px;
+}
+.nav-link:hover{
+    color:rgb(150, 150, 192);
+    /* border-radius: 3px; */
+    padding: 8px;
+}
+
+.color-text{
+    background-color:rgb(239, 239, 231);
+}

@@ -1,0 +1,81 @@
+.container-sale {
+    display: flex;
+    margin-top: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.main-sale {
+    background-color: white;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    border:rgb(215, 209, 209) 0.1rem solid;
+    width: 590px;
+
+}
+
+.main-sale-register input {
+    border-radius: 6px;
+    width: 35rem;
+    height: 2.5rem;
+    float: center;
+    margin: 1px 19px;
+}
+
+.main-sale-register button {
+    width: 35rem;
+    height: 2.5rem;
+    float: center;
+    margin: 1px 20px
+}
+
+.main-sale-register label {
+    color: red;
+    font-size: 12px;
+    float: center;
+    margin: 1px 20px;
+}
+
+.main-sale-register a {
+    color: blue;
+    font-size: 12px;
+    float: center;
+    margin: 3px 20px;
+    text-decoration: none;
+}
+
+.main-sale-register img {
+    display: flex;
+    margin: auto;
+    width: 200px;
+    height: 200px;
+}
+
+.main-sale strong{
+ padding: 1px 10px 1px 10px;
+}
+
+@media screen and (max-width:768px) {
+    .main-sale {
+        width: 410px;
+        height: 1 auto
+    }
+
+    .main-sale-register input {
+        width: 23rem;
+        height: 2rem;
+    }
+
+    .main-sale-register button {
+        width: 23rem;
+        height: 2.5rem;
+    }
+
+    .main-sale-register img {
+        width: 192px;
+        height: 192px;
+    }
+}
+

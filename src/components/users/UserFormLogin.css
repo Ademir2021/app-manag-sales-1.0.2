@@ -1,0 +1,44 @@
+.container-user-login {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+     border: white solid 1px;
+    width: 100%;
+    height: center;
+}
+
+.main-user-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: rgb(228, 216, 216) solid 1px;
+    background-color: white;
+    padding: 8px 8px 8px 8px;
+    border-radius: 1rem;
+    width: 360px;
+}
+
+.main-user input {
+    margin: 7px;
+    width: 18rem;
+    height: 2.5rem;
+}
+
+.main-user button {
+    align-items: center;
+    width: 18rem;
+    height: 2.5rem;
+    margin: 2px;
+}
+
+.main-user label {
+    color: red;
+    font-size: 12px;
+}
+
+.main-user a {
+    color: blue;
+    font-size: 12px;
+    text-decoration: none;
+    padding-top: 12px;
+}
