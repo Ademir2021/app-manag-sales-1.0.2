@@ -23,7 +23,7 @@ export function PersonUpdate() {
         bairro_pers: "", fk_cep: 0, name_city: "", uf: "",
         num_cep: "", fk_name_filial: 1, fk_id_user: 0
     })
-    const isLoggedParams:number = isLogged[0].id
+    const isLoggedParams: number = isLogged[0].id
     const [dropdown, setDropdown] = useState<string>("");
     const modalRef = useRef<any>(null);
     const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
@@ -58,7 +58,7 @@ export function PersonUpdate() {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
-            await api.get(`/persons/${isLoggedParams}`, { headers })
+            await api.post('persons_user', isLogged, { headers })
                 .then(response => {
                     setTokenMessage("Token Válido !")
                     const res: TPersonRegister[] = response.data
@@ -99,7 +99,16 @@ export function PersonUpdate() {
             person.phone_pers = person.phone_pers.replace(/[()-]/g, '')
             if (person.fk_cep === undefined) {
                 alert('Digite um Cep válido')
-            } else { postRegister(person, 'persons') }
+            } else {
+                // postRegister(person, 'persons')
+                await api.post<any[]>('person', person)
+                    .then(response => {
+                        const res = response.data
+                        const msg = JSON.stringify(res)
+                        alert(msg)
+                    })
+                    .catch(error => alert(error));
+            }
         } else { alert("Digite um novo usuário") }
     }
 
@@ -111,7 +120,14 @@ export function PersonUpdate() {
             person.phone_pers = person.phone_pers.replace(/[()-]/g, '')
             if (person.fk_cep === undefined) {
                 alert('Digite um Cep válido')
-            } else { putUpdate(person.id_person, person, 'persons') }
+            } else {
+                // putUpdate(person.id_person, person, 'person_update')
+                await api.put<any[]>('person_update', person)
+                    .then(response => {
+                        alert(response.data)
+                    })
+                    .catch(error => alert(error));
+            }
             getPersons()
         }
     }

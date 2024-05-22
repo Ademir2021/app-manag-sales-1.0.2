@@ -98,7 +98,7 @@ export function PersonsList() {
                         name_city={setCity(person.fk_cep)?.name_city}
                         uf={setCity(person.fk_cep)?.uf}
                         cpf={person.cpf_pers}
-                        id_user={person.id_person}
+                        id_user={person.fk_id_user}
                         filial={person.fk_name_filial}
                         update={null}
                     />

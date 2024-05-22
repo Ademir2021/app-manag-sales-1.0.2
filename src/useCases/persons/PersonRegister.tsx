@@ -34,7 +34,14 @@ export function FormPerson() {
             if (person.fk_cep === undefined) {
                 alert("Digite um Cep válido")
             } else {
-                postRegister(person, 'persons')
+                // postRegister(person, 'person')
+                await api.post<any[]>('person', person)
+                    .then(response => {
+                        const res = response.data
+                        const msg = JSON.stringify(res)
+                        alert(msg)
+                    })
+                    .catch(error => alert(error));
             }
         }
     }
