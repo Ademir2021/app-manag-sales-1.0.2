@@ -16,7 +16,7 @@ export function ProductsList() {
 
         try {
 
-            await api.get<TProductRegister[]>('products_home')
+            await api.post<TProductRegister[]>('products_list')
                 .then(response => {
                     setProducts(response.data)
                 })

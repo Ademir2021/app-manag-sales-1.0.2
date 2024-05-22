@@ -29,9 +29,10 @@ export function UserRegister() {
   const [message, setMessage] = useState<any>("")
 
   async function handleUser() {
-    await api.post<TUserRegister>('/users', user)
+    await api.post<TUserRegister>('/user', user)
       .then(response => {
-        setMessage(response.data)
+        const res:any = response.data
+        setMessage(res[0].msg)
       }).catch(error => console.log(error))
   }
 

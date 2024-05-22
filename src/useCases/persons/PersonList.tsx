@@ -13,7 +13,7 @@ export function PersonsList() {
     const [persons, setPersons] = useState<TPersonRegister[]>([])
     const [ceps, setCeps] = useState<TCeps[]>([])
     const [cities, setCities] = useState<TCities[]>([])
-    const isLoggedParams: number = isLogged[0].id
+
     const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
 
     useEffect(() => {
@@ -25,7 +25,7 @@ export function PersonsList() {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 }
-                await api.get<TPersonRegister[]>(`/persons/${isLoggedParams}`, { headers })
+                await api.post<TPersonRegister[]>('persons_user', isLogged, {headers})
                     .then(response => {
                         setTokenMessage("Token Válido !")
                         setPersons(response.data)
@@ -39,7 +39,7 @@ export function PersonsList() {
         }
         getPerson()
 
-    }, [persons, isLoggedParams])
+    }, [persons, isLogged])
 
 
     useEffect(() => {

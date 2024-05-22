@@ -15,7 +15,7 @@ export function UsersList() {
 
   useEffect(() => {
     const getUSers = async () => {
-      // await HandleEnsureAuth()
+      await HandleEnsureAuth()
       const res: any | undefined = localStorage.getItem('token')
       const token = JSON.parse(res)
       try {
@@ -23,7 +23,7 @@ export function UsersList() {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         }
-        await api.get<PropsUsers[]>(`/users/${isLoggedParams}`, { headers })
+        await api.post<PropsUsers[]>('users_list', isLogged, { headers })
           .then(response => {
             setTokenMessage("Token Válido !")
             setUsers(response.data)

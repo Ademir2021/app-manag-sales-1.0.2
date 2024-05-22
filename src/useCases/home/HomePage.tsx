@@ -40,7 +40,7 @@ export function HomePage() {
 
         async function getProducts() {
             try {
-                await api.get<TProductRegister[]>('products_home')
+                await api.post<TProductRegister[]>('products_list')
                     .then(response => {
                         const resultProducts: TProductRegister[] = []
                         const items: TProductRegister[] = response.data

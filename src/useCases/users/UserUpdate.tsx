@@ -24,7 +24,7 @@ export function UserUpdate() {
     const [message, setMessage] = useState<any>("")
     const [dropdown, setDropdown] = useState<string>("");
     const { user: isLogged }: any = useContext(AuthContext);
-    const isLoggedParams = isLogged[0].id
+    const isLoggedParams:number = isLogged[0].id
     const modalRef = useRef<any>(null);
     const [, setUsers] = useState<TUpdateUser[]>([])
     const [user, setUser] = useState<TUpdateUser>({
@@ -39,16 +39,19 @@ export function UserUpdate() {
     }
 
     async function registerUser(): Promise<void> {
-        await api.post<TUpdateUser[]>('/users', user)
+        await api.post<TUpdateUser[]>('/user', user)
             .then(response => {
-                alert(response.data)
+                const res:any = response.data
+                setMessage(res[0].msg)
             }).catch(error => console.log(error))
     }
 
     async function updateUser() {
-        await api.put<TUpdateUser>(`/users/${user.id}`, user)
+        await api.put<TUpdateUser>('user_update', user)
             .then(response => {
-                alert(response.data)
+                const res:any = response.data
+                alert(JSON.stringify(res[0].msg))
+                setAlert(res[0].msg)
             })
             .catch(error => alert(error))
     }
@@ -60,7 +63,7 @@ export function UserUpdate() {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
-           await api.get(`/users/${isLoggedParams}`, { headers })
+           await api.post('users_list', isLogged, { headers })
                 .then(response => {
                     setTokenMessage("Token Válido !")
                     const res: TUpdateUser[] = response.data
