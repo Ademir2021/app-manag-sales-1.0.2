@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { InvoiceSalesForm } from '../../components/sales/InvoiceSalesForm';
 import { BackHome } from "../../components/utils/backHome/BackHome";
 import { TCeps, TCities, TPersonRegister } from "../persons/type/TypePerson";
@@ -7,8 +7,12 @@ import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
 import saleJSON from "./sale.json"
 import { TItens } from "../products/type/TypeProducts";
 import api from "../../services/api/api";
+import { AuthContext } from '../../context/auth'
 
 export function InvoiceSales() {
+
+    const { user: isLogged }: any = useContext(AuthContext);
+
     const [ceps, setCeps] = useState<TCeps[]>([])
     const [cities, setCities] = useState<TCities[]>([])
     const [msg, setMsg] = useState<string>('')
@@ -42,7 +46,7 @@ export function InvoiceSales() {
                     'Authorization': `Bearer ${token}`
                 }
 
-                await api.get<TPersonRegister[]>(`/person_users/${user[0].id}`, { headers })
+                await api.post<TPersonRegister[]>('persons_user', isLogged, { headers })
                     .then(response => {
                         setPersons(response.data)
                     })
