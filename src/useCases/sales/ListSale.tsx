@@ -48,7 +48,7 @@ export function ListSales() {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       }
-      await api.get<TSaleList[]>(`/sales/${isLoggedParams}`, { headers })
+      await api.post<TSaleList[]>('sale_user',isLogged, { headers })
         .then(response => {
           setTokenMessage("Token Válido !")
           const res: TSaleList[] = response.data
@@ -60,6 +60,8 @@ export function ListSales() {
             }
           }
           setSales(data_sale)
+          if (!res[0].id_sale)
+          alert("Cliente sem Nota")
         })
     } catch (err) {
       // console.log("error occurred !!" + err)
