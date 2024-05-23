@@ -8,7 +8,7 @@ import { currencyFormat } from '../../components/utils/currentFormat/CurrentForm
 import api from "../../services/api/api";
 
 export function PagSeguro() {
-    
+    const [sendSale, setSendSale] = useState<boolean>(false)
     const [sendPaid, setSendPaid] = useState(false);
     const [messagesSucess, setMessagesSucess] = useState<string>('');
     const [sale, setSale] = useState<any>(sale_JSON);
@@ -156,7 +156,7 @@ export function PagSeguro() {
 
     useEffect(() => {
         async function registerSale() {
-            await api.post('sales', sale)
+            await api.post('sale_register', sale)
                 .then(response => {
                     const res = response.data
                     setNumNote(res)
@@ -164,8 +164,11 @@ export function PagSeguro() {
                 .catch(error => setError((JSON.stringify(error))));
         };
         if (valueQrCode !== 0 || barCodeBoleto !== "")
-            registerSale()
-    }, [valueQrCode, barCodeBoleto, sale])
+            if (sendSale === false) {
+                registerSale()
+                setSendSale(true)
+            }
+    }, [valueQrCode, barCodeBoleto])
 
     useEffect(() => {
         function clearSaleStorage() {

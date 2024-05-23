@@ -126,7 +126,7 @@ export function PagSeguroCard() {
     }, [pagSeguroCard, encrypted, paid])
 
     async function registerSale() {
-        await api.post('sales', sale)
+        await api.post('sale_register', sale)
             .then(response => {
                 const res = response.data
                 setNumNote(res)

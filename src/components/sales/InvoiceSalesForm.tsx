@@ -41,7 +41,7 @@ export function InvoiceSalesForm({
           <dd><b>Nome</b> {children.person.name_pers}</dd>
           <dd><b>Telefone</b> {children.person.phone_pers}</dd>
           <dd><b>CPF</b> {children.person.cpf_pers}</dd>
-          <dd><b>Endereço</b> {children.person.address_pers}</dd>
+          <dd><b>Endereço</b> {children.person.address.address_pers}</dd>
           <dd><b>Bairro</b> {children.person.address.bairro_pers}</dd>
           <dd><b>Cidade</b> {children.person.address.name_city}</dd>
           <dd><b>Estado</b> {children.person.address.uf}</dd>

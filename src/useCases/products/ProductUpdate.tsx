@@ -68,7 +68,7 @@ export function ProductUpdate() {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 }
-             await api.get<TProductRegister[]>(`/products/${isLoggedParams}`, { headers })
+             await api.post<TProductRegister[]>('products_list', { headers })
                     .then(response => {
                         setTokenMessage("Token Válido !")
                         setProducts(response.data)
@@ -120,13 +120,13 @@ export function ProductUpdate() {
     async function handleSubmit(e: any) {
         e.preventDefault();
         if (ProductValFields(product)) {
-            postRegister(product, 'products');
+            postRegister(product, 'product');
         }
     };
     async function handleUpdate(e: Event) {
         e.preventDefault();
         if (ProductValFields(product)) {
-            putUpdate(product.id_product, product, 'products')
+            putUpdate(product, 'product_update')
         }
     };
     async function handleDelete(e: Event) {

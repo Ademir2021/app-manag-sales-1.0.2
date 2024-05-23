@@ -33,7 +33,7 @@ export function FormProduct() {
         e.preventDefault();
         console.log(product)
         if (ProductValFields(product)) {
-            postRegister(product, 'products')
+            postRegister(product, 'product')
         }
     };
 
