@@ -1,13 +1,24 @@
-.nav-link{
-    color:rgb(34, 34, 147);
+.nav-link {
+    color: black;
     margin: 2px;
 }
-.nav-link:hover{
-    color:rgb(150, 150, 192);
-    /* border-radius: 3px; */
-    padding: 8px;
+
+.nav-link:hover {
+    color: rgb(34, 34, 147);
+    padding: 1px;
 }
 
-.color-text{
-    background-color:rgb(239, 239, 231);
+#nav-nav {
+    background: white;
+}
+
+#button-1 {
+    background: none;
+    border: 1px solid white;
+}
+
+#nav-calendar {
+    color: black;
+    font-size: 12px;
+    margin: 16px
 }

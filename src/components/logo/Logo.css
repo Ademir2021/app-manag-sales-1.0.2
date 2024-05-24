@@ -1,10 +1,9 @@
 .logo{
     width: 150px;
     height: 45px;
-    background-color:whitesmoke;
+    background-color:white;
     cursor:pointer;
 }
 .logo:hover{
-     background-color:rgb(237,237.237);
-    
+     background-color:none;
 }
