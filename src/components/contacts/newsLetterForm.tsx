@@ -1,16 +1,20 @@
+import './Contact.css'
+
 type PropsNewsLetterForm = {
     children: React.ChangeEventHandler<HTMLInputElement> | undefined | any;
     handleSubmit: React.FormEventHandler<HTMLButtonElement> | undefined | any
     handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined | any;
 }
 
+
 export function NewsLetterForm(
     { children, handleSubmit, handleChange }: PropsNewsLetterForm) {
 
     return (
-        <form style={{ backgroundColor: "", padding: '12px', borderRadius: '6px', border: '0px solid gray' }}>
-            <strong>Receba boletins de notícias !</strong><br />
-            <input style={{ fontSize: '16px', width: '80%', height: '46px', borderRadius: '12px 0px 0px 12px' }}
+        <form id='form-newsLetter' >
+            <h2>Receba boletins de notícias !</h2>
+            <input 
+                id='input-newsLetter'
                 type="email"
                 name="email"
                 value={children.email || ''}
@@ -18,7 +22,8 @@ export function NewsLetterForm(
                 required
                 onChange={handleChange}
             />
-            <button style={{ width: '20%', height: '48px', borderRadius: '0px 12px 12px 0px' }}
+            <button 
+                id='button-newsLetter'
                 type="submit"
                 onClick={handleSubmit}
             >Enviar</button>

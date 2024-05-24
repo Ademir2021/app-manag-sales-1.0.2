@@ -5,58 +5,33 @@ import './cookies.css'
 export function FooterHome() {
     return (
         <>
-            <footer>
+            <hr></hr>
+            <footer className='text-center'>
                 <p id="cookies"></p>
                 <p>
-                    <div><strong>SIGA-NOS</strong></div>
+                    <div><dd>SIGA-NOS</dd></div>
                     <a target="_blank" href="https://www.facebook.com/centroinfostore"><img className="social-icons" src="img/social/facebook.png"></img></a>
-                    {/* <a target="_blank" href="https://www.instagram.com/ademir_devel"><img className="social-icons" src="img//social//instagram.png"></img></a> */}
+                    <a target="_blank" ><img className="social-icons" src="img//social//instagram.png"></img></a>
                     {/* <a target="_blank" href="https://linkedin.com/in/ademir-dev"><img className="social-icons" src="img//social//linkedin.png"></img></a> */}
                     <a target="_blank" href="https://github.com/Ademir2021"><img className="social-icons" src="img//social//github.png"></img></a>
                     {/* <a target="_blank" href="https://twitter.com/AdemirDeveloper"><img className="social-icons" src="img//social//twitter.png"></img></a> */}
                 </p>
-                <strong>Seguimentos</strong>
-                <p>Antenas Internet Sistemas Gerenciais e Informática</p>
-                <strong>CANAIS DE ACESSO</strong>
-                <div className=''>
-                    <div className='container-footer'>
-                        <div className='main-footer'>
-                            <ul>
-                                <li><a href='contact'>Rma</a></li>
-                                <li><a href='invoice_sales'>Faturamento</a></li>
-                                <li><a href='pagsegurocard'>Pague com Cartão</a></li>
-                                <li><a href='pagseguro'>Pague com PIX</a></li>
-                                <li><a href='pagseguro'>Pague com Boleto</a></li>
-                                <li><a href='pe'>Carrinho</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div className='container-footer'>
-                        <div className='main-footer'>
-                            <ul>
-                                <li><a href='form_person'>Clientes</a></li>
-                                <li><a href='sale'>Compras</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div className='container-footer'>
-                        <div className='main-footer'>
-                            <ul>
-                                <li><a href={"contact"}>Fale conosco</a></li>
-                                <li><a href='contacts_list'>Posts</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <p><a href="#"><img src="img//btn-top.png" className="btn-top" alt="Topo"></img></a></p>
-                <ul><li><a href='contact'>Consulte nossas Formas de Entregas</a></li></ul>
+        
+                <p>Antenas - Internet - Sistemas Gerenciais e Informática</p>
+
+                <dd>CANAIS DE ACESSO</dd>
+                <a href='contact'>Garantia dos produtos - </a>
+                <a href='invoice_sales'>Checkout de compras - </a>
+                <a href='pagsegurocard'>Pague com Cartão PIX ou Boleto - </a>
+                <a href='pe'>Carrinho de compras - </a>
+                <a href='form_person'>Cadastro de Clientes - </a>
+                <a href='sale'>Conferir Checkout - </a>
+                <a href={"contact"}>Fale conosco - </a>
+                <a href='contacts_list'>Postagens</a>
+
+                <p><a href="#"><img src="img/btn-top.png" className="btn-top" alt="Topo"></img></a></p>
+                <a href='contact'>Consulte nossas formas de entrega</a>
                 <NewsLetter />
-                <hr></hr>
-                <a href={'invoice_sales'}>
-                    <b>Pague com</b>
-                    <img src='/img/band_cartao_creditos.png' className='footer-payment' />
-                </a>
-                <p></p>
                 {/* Google Maps */}
                 <div className="maps">
                     <p>
@@ -72,15 +47,18 @@ export function FooterHome() {
                     <div>Powered by <a href={Globais.URL} title="Powered By." target="_self">{Globais.title}</a> Contato {Globais.phone}</div>
                     <br />
                     <p>
-                        <strong>Política de cookies: </strong>
-                        Os <b>cookies </b>
-                        <a href={'cookies'} title="Politica de cookies">cookies</a>...
+                        <span>Política de cookies: </span>
+                        Os <b>cookies... </b>
+                        <a href={'cookies'} title="Politica de cookies">cookies</a>
                     </p>
                     <p className='text-center'><span>CENTRO INFORMÁTICA | <b>CNPJ: </b>{Globais.CNPJ}</span></p>
-                    <div className='text-center'>
-                        <a href='##'>
-                            <img className="site-ssl" src='img/ssl_cert.png' alt="Certificado SSL"></img></a>
-                    </div>
+
+                    <p> <a href={'invoice_sales'}>
+                        <img src='/img/band_cartao_creditos.png' className='footer-payment'></img>
+                    </a></p>
+                    <p> <a href='##'>
+                        <img className="site-ssl" src='img/ssl_cert.png' alt="Certificado SSL"></img></a></p>
+
                 </div>
             </footer>
         </>
