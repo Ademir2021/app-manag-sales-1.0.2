@@ -20,7 +20,7 @@ function ControlledCarousel() {
           onSelect={handleSelect}>
           <Carousel.Item interval={200}>
             <div id="carousel-item1">
-              <img src='img\carousel\banner_midiabox_b7.png' className='carousel-img-banner' alt='' />
+              <img src='img\carousel\Banner1.png' className='carousel-img-banner' alt='' />
               <div id='carousel-item1-div'>
                 <h2>Realize suas compras aqui</h2>
                 <dd>Produtos com até 10% de desconto</dd>
@@ -31,7 +31,7 @@ function ControlledCarousel() {
 
           <Carousel.Item interval={400}>
             <div id="carousel-item2">
-              <img src='img\carousel\banner_parabol_century.png' className='carousel-img-banner' alt='' />
+              <img src='img\carousel\banner2.png' className='carousel-img-banner' alt='' />
               <div id='carousel-item2-div'>
                 <h5>Como prefere receber a sua COMPRA</h5>
                 <dd>Retire na loja ou despachamos até sua localidade</dd>
@@ -42,7 +42,7 @@ function ControlledCarousel() {
 
           <Carousel.Item interval={400}>
             <div id='carousel-item3'>
-              <img src='img\carousel\banner_amplimax_4g.png' className='carousel-img-banner' alt='' />
+              <img src='img\carousel\banner3.png' className='carousel-img-banner' alt='' />
               <div id='carousel-item3-div'>
                 <h2><>Acesso rápido e seguro</></h2>
                 <dd>WEB-Token + confiança para suas compras</dd>
@@ -50,7 +50,6 @@ function ControlledCarousel() {
               </div>
             </div>
           </Carousel.Item>
-
           {/* <Carousel.Caption>
           </Carousel.Caption> */}
         </Carousel>

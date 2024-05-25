@@ -5,14 +5,18 @@
 }
 
 #input-newsLetter{
+    border: solid gray 1px;
     font-Size:16px;
-    width: 56%;
+    width: 80%;
     height: 46px;
     border-radius: 12px 0px 0px 12px;
 }
 
 #button-newsLetter{
-    width: 18%;
-    height:46px;
+    background-color: rgb(200, 193, 193);
+    border: solid gray 2px;
+    width: 20%;
+    height:48px;
     border-radius: 0px 12px 12px 0px;
+    color: black;
 }

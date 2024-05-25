@@ -13,7 +13,7 @@ export function NewsLetterForm(
     return (
         <form id='form-newsLetter' >
             <h2>Receba boletins de notícias !</h2>
-            <input 
+            <input
                 id='input-newsLetter'
                 type="email"
                 name="email"
@@ -22,7 +22,7 @@ export function NewsLetterForm(
                 required
                 onChange={handleChange}
             />
-            <button 
+            <button
                 id='button-newsLetter'
                 type="submit"
                 onClick={handleSubmit}
