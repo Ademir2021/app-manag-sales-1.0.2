@@ -3,7 +3,6 @@ import { FormatDate } from "../../components/utils/formatDate"
 import { PersonFormUpdate } from "../../components/persons/PersonFormUpdate"
 import { PersonList } from "../../components/persons/PersonList"
 import { TPersonRegister, TCeps, TCities } from './type/TypePerson'
-import { postRegister, putUpdate } from "../../services/handleService"
 import { PersonsValFields } from "../../components/utils/crypt/Crypt"
 import { BackHome } from "../../components/utils/backHome/BackHome"
 import { HandleEnsureAuth } from "../../services/HandleEnsureAuth"
@@ -58,7 +57,7 @@ export function PersonUpdate() {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
-            await api.post('persons_user', isLogged, { headers })
+            await api.post<TPersonRegister[]>('persons_user', isLogged, { headers })
                 .then(response => {
                     setTokenMessage("Token Válido !")
                     const res: TPersonRegister[] = response.data
@@ -100,7 +99,6 @@ export function PersonUpdate() {
             if (person.fk_cep === undefined) {
                 alert('Digite um Cep válido')
             } else {
-                // postRegister(person, 'persons')
                 await api.post<any[]>('person', person)
                     .then(response => {
                         const res = response.data

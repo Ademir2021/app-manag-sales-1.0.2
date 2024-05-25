@@ -17,7 +17,7 @@ export function PersonsList() {
     const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
 
     useEffect(() => {
-        const getPerson = async () => {
+        async function getPerson() {
             const res: any | undefined = localStorage.getItem('token')
             const token: string = JSON.parse(res)
             try {
@@ -25,10 +25,11 @@ export function PersonsList() {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 }
-                await api.post<TPersonRegister[]>('persons_user', isLogged, {headers})
+                await api.post<TPersonRegister[]>('persons_user', isLogged, { headers })
                     .then(response => {
                         setTokenMessage("Token Válido !")
-                        setPersons(response.data)
+                        const res: TPersonRegister[] = response.data
+                        setPersons(res)
                     })
             }
             catch (err) {
@@ -36,11 +37,9 @@ export function PersonsList() {
                 setTokenMessage(" Erro: 401 - Token Expirado ! ")
                 await HandleEnsureAuth()
             }
-        }
+        };
         getPerson()
-
-    }, [persons, isLogged])
-
+    }, [persons])
 
     useEffect(() => {
         async function getCeps() {
