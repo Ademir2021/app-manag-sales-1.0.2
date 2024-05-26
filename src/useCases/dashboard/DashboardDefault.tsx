@@ -1,17 +1,37 @@
 import { Dashboard } from "./Dashboard"
 import { FooterHome } from "../../components/home/FooterHome"
+import { useContext } from 'react';
+import { AuthContext } from "../../context/auth";
+import { HeaderDashboard } from '../../components/dashboard/HeaderDashboard';
+import { Globais } from "../../components/globais/Globais";
 
-export function DashboardDefault(){
-    return(
+export function DashboardDefault() {
+
+    const {user, logout }: any = useContext(AuthContext);
+    
+    const handleLogout = async () => {
+        await logout()
+        window.location.replace("/");
+    }
+
+    return (
         <>
-        <Dashboard/>
-             <h2 className='text-center p-2'>Minha conta</h2>
-            <div className="text-center">
-                <button className="btn btn-primary">
-                    <a href="\sale" 
-                        style={{color:'white'}}>
-                            ACESSO A TELA DE COMPRAS</a></button></div>
-            <FooterHome/>
+        <div className="container">
+            <Dashboard />
+            <>{Globais.calendar}</>
+            <h2>Minha conta</h2>
+            <HeaderDashboard
+                name={user[0].name}
+                username={user[0].username}
+                handleLogout={handleLogout}
+            />
+            <div className=" text-center p-2">
+                <button
+                onClick={() => { window.location.replace("sale") }}
+                className="btn btn-primary">Checkout</button>
+            </div>
+            <FooterHome />
+        </div>
         </>
     )
 }

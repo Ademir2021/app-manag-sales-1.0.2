@@ -19,33 +19,34 @@ if (H <= 12 || H >= 6) {
 
 const setMonth = () => {
     if (month === 1)
-        return "Janeiro"
+        return "jan"
     else if (month === 2)
-        return "Fevereiro"
+        return "fev"
     else if (month === 3)
-        return "Março"
+        return "mar"
     else if (month === 4)
-        return "Abril"
+        return "abr"
     else if (month === 5)
-        return "Maio"
+        return "maio"
     else if (month === 6)
-        return "Junho"
+        return "jun"
     else if (month === 7)
-        return "Julho"
+        return "jul"
     else if (month === 8)
-        return "Agosto"
+        return "ago"
     else if (month === 9)
-        return "Setembro"
+        return "set"
     else if (month === 10)
-        return "Outubro"
+        return "out"
     else if (month === 11)
-        return "Novembro"
+        return "nov"
     else if (month === 12)
-        return "Dezembro"
+        return "dez"
 }
 
 export class Globais {
-    static calendar = saudacao + ' - ' + day + ' de ' + setMonth() + ' de ' + year + ' ás ' + H + ':' + M + ':' + S
+
+    static calendar = saudacao + ' ' + day + ' ' + setMonth() + ' ' + year + ' ' + H + ':' + M + ':' + S
     static checksUserLogged = undefined;
     static privilAdmin = '2'
     static rights_reserved = '2007 | ' + year + ', All rights reserved Centro Informática';
