@@ -48,7 +48,6 @@ export function ListItensStore({
 
     return (
         <>
-            <hr></hr>
             <div id='itensStoreCar'>
                 <a
                     href='sale'><img
@@ -56,13 +55,13 @@ export function ListItensStore({
                         src="img/car_sale.png"
                         alt="Carrinho de Compras" />
                 </a>
-            </div>
             {itens.length !== 0 ? <MessagesCar
                 messages={messages}
                 counter_={counter_}
                 subtotal={subtotal} /> : null}
             {itens.length === 0 ?
                 <Waiting waiting={"O seu Carrinho de compras está vazio"} /> : null}
+                </div>
             {itens.length === 0 ? <div id='itensStoreCartogoback'><button
                 className='btn btn-primary'
                 onClick={() => { window.location.replace("/") }}>Voltar as Compras</button></div> : null}
