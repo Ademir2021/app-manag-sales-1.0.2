@@ -40,7 +40,7 @@ export function UsersList() {
   return (
     <>
      <Dashboard />
-        <div className="text-center"><a href="list_sale">{tokenMessage}</a></div>
+        <div className="text-center"><a href="users_list">{tokenMessage}</a></div>
       {users.length === 0 ? <p>Carregando...</p> : (
         users.map((user) => (
           <ListUSers
