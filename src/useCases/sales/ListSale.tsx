@@ -1,14 +1,14 @@
 import { useState, useContext } from "react";
 import { FormatDate } from "../../components/utils/formatDate";
 import { SalesList } from "../../components/sales/SaleList";
-import api from '../../services/api/api'
-import { BackHome } from "../../components/utils/backHome/BackHome";
+import { currencyFormat } from "../../components/utils/currentFormat/CurrentFormat";
+import { Dashboard } from "../dashboard/Dashboard";
 import { InputSearch } from "../../components/inputSearch/InputSearch";
 import { Waiting } from "../../components/utils/waiting/Waiting";
 import { Globais } from "../../components/globais/Globais";
 import { AuthContext } from '../../context/auth'
 import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
-import { currencyFormat } from "../../components/utils/currentFormat/CurrentFormat";
+import api from '../../services/api/api'
 
 type TSaleList = {
   id_sale: number;
@@ -72,8 +72,8 @@ export function ListSales() {
 
   return (
     <>
-      <BackHome />
-      <>{tokenMessage}</>
+      <Dashboard />
+        <div className="text-center"><a href="list_sale">{tokenMessage}</a></div>
       <InputSearch
         int={created_int}
         end={created_end}

@@ -2,14 +2,15 @@ import { useState, useEffect, useRef, useContext } from "react"
 import { FormatDate } from "../../components/utils/formatDate"
 import { PersonFormUpdate } from "../../components/persons/PersonFormUpdate"
 import { PersonList } from "../../components/persons/PersonList"
+import { Dashboard } from "../dashboard/Dashboard"
 import { TPersonRegister, TCeps, TCities } from './type/TypePerson'
 import { PersonsValFields } from "../../components/utils/crypt/Crypt"
-import { BackHome } from "../../components/utils/backHome/BackHome"
 import { HandleEnsureAuth } from "../../services/HandleEnsureAuth"
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api"
 
 import "../../App.css"
+
 
 export function PersonUpdate() {
     const { user: isLogged }: any = useContext(AuthContext)
@@ -222,8 +223,8 @@ export function PersonUpdate() {
             >
                 {person}
             </PersonFormUpdate>
-            <>{tokenMessage}</>
-            <BackHome />
+            <Dashboard />
+            <div className="text-center"><a href="person_update">{tokenMessage}</a></div>
             {persons.length === 0 ? <p>Carregando...</p> : (
                 persons.map((person: TPersonRegister) => (
                     <PersonList

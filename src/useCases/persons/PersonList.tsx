@@ -1,11 +1,11 @@
 import { useState, useEffect, useContext } from "react";
 import { FormatDate } from "../../components/utils/formatDate";
 import { PersonList } from "../../components/persons/PersonList";
+import { Dashboard } from "../dashboard/Dashboard";
 import { TPersonRegister, TCeps, TCities } from './type/TypePerson'
-import { BackHome } from "../../components/utils/backHome/BackHome"
 import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
-import api from "../../services/api/api";
 import { AuthContext } from '../../context/auth'
+import api from "../../services/api/api";
 
 export function PersonsList() {
 
@@ -79,8 +79,8 @@ export function PersonsList() {
 
     return (
         <>
-            <BackHome />
-            <>{tokenMessage}</>
+                <Dashboard />
+            <div className="text-center"><a href="person_list">{tokenMessage}</a></div>
             {persons.length === 0 ? <p>Carregando...</p> : (
                 persons.map((person: TPersonRegister) => (
                     <PersonList

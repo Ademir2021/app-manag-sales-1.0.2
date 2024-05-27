@@ -12,6 +12,7 @@ import { AuthContext } from '../../context/auth'
 import { currencyFormat } from '../../components/utils/currentFormat/CurrentFormat';
 
 import "../../App.css"
+import { Dashboard } from "../dashboard/Dashboard";
 
 export function ProductUpdate() {
 
@@ -159,8 +160,8 @@ export function ProductUpdate() {
 
     return (
         <>
-        <>{tokenMessage}</>
-            <BackHome />
+            <Dashboard />
+       <div className="text-center"><a href="product_update">{tokenMessage}</a></div>
             < ProductFormUpdate
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { FormatDate } from "../../components/utils/formatDate";
 import { ProductList } from "../../components/products/ProductList";
-import { TBrand, TProductRegister, TSector } from "./type/TypeProducts";
-import { BackHome } from "../../components/utils/backHome/BackHome"
-import api from "../../services/api/api";
 import { currencyFormat } from "../../components/utils/currentFormat/CurrentFormat";
+import { Dashboard } from "../dashboard/Dashboard";
+import { TBrand, TProductRegister, TSector } from "./type/TypeProducts";
+import api from "../../services/api/api";
 
 export function ProductsList() {
 
@@ -68,7 +68,8 @@ export function ProductsList() {
 
     return (
         <>
-            <BackHome />
+                <Dashboard />
+                <h1 className="text-center">Lista de Produtos</h1>
             {products.length === 0 ? <p>Carregando...</p> : (
                 products.map((product: TProductRegister) => (
                     <ProductList

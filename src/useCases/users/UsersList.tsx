@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react"
 import { ListUSers, PropsUsers } from "../../components/users/UserList"
 import { FormatDate } from "../../components/utils/formatDate";
-import { BackHome } from "../../components/utils/backHome/BackHome"
+import { Dashboard } from "../dashboard/Dashboard";
 import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
-import api from '../../services/api/api'
 import { AuthContext } from '../../context/auth'
+import api from '../../services/api/api'
 
 export function UsersList() {
   
@@ -39,8 +39,8 @@ export function UsersList() {
 
   return (
     <>
-      <BackHome />
-      <>{tokenMessage}</>
+     <Dashboard />
+        <div className="text-center"><a href="list_sale">{tokenMessage}</a></div>
       {users.length === 0 ? <p>Carregando...</p> : (
         users.map((user) => (
           <ListUSers
