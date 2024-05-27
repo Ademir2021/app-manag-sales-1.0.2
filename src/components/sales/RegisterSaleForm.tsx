@@ -1,4 +1,3 @@
-import { Globais } from '../globais/Globais';
 import { currencyFormat } from '../utils/currentFormat/CurrentFormat';
 
 import '../global-module.css'
@@ -43,9 +42,8 @@ export function RegisterSaleForm({
   return (
     <>
       <div className="container-sale">
-        <strong>Checkout - {Globais.company}</strong>
         <div className="main-sale">
-          <form className='main-sale-register' >
+          <div className='main-sale-register' >
             <div className='text-center'>
             </div>
             <label>{alert}</label>
@@ -94,23 +92,16 @@ export function RegisterSaleForm({
               onChange={handleChange}
               required
             />
-            <strong
-              style={{
-                display: 'flex', flexDirection: 'column', alignItems: 'center',
-              }}>{totalItens}</strong>
+            <div className='text-center p-2'>{totalItens}</div>
             <button className='btn btn-primary' onClick={handleSaveUpdate}>{statusBtnSaveUpdate}</button>
             <button className='btn btn-primary' onClick={handleSubmit}>{statusBtnSaleSubmit}</button>
             <button className='btn btn-danger' onClick={handleDelete}>Deletar Item</button>
             <button className='btn btn-primary' onClick={handleSearchItem}>Buscar Item / Importar Carrinho</button>
-            <div className='text-center'>
-              <a>{Globais.phone}</a>
-              <a>{Globais.CNPJ}</a>
-              <a href='/dashboardefault'><b>{'< Sair />'}</b></a>
-            </div>
-          </form>
+            <div className='p-1'></div>
+          </div>
         </div>
       </div>
-      <>{loadItens}</>
+      <div className='text-center p-1'>{loadItens}</div>
     </>
   );
 }

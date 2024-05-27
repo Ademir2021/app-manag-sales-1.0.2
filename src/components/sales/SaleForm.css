@@ -13,7 +13,6 @@
     border-radius: 0.5rem;
     border:rgb(215, 209, 209) 0.1rem solid;
     width: 590px;
-
 }
 
 .main-sale-register input {
@@ -53,9 +52,6 @@
     height: 200px;
 }
 
-.main-sale strong{
- padding: 1px 10px 1px 10px;
-}
 
 @media screen and (max-width:768px) {
     .main-sale {

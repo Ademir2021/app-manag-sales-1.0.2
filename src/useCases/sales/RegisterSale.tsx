@@ -4,6 +4,7 @@ import { Itens } from "../../components/sales/Itens";
 import { TProductRegister, TItens } from "../products/type/TypeProducts";
 import { currencyFormat } from "../../components/utils/currentFormat/CurrentFormat";
 import api from "../../services/api/api";
+import { Dashboard } from "../dashboard/Dashboard";
 
 export function RegisterSale() {
 
@@ -224,6 +225,7 @@ export function RegisterSale() {
 
     return (
         <>
+        <Dashboard/>
             <RegisterSaleForm
                 handleChange={handleChange}
                 handleSaveUpdate={handleSaveUpdate}
