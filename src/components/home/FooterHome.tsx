@@ -17,7 +17,7 @@ export function FooterHome() {
                     {/* <a target="_blank" href="https://twitter.com/AdemirDeveloper"><img className="social-icons" src="img//social//twitter.png"></img></a> */}
                 </p>
         
-                <p>Antenas - Internet - Sistemas Gerenciais e Informática</p>
+                <p>Loja on-line | Fácil de comprar - Rapidez e segurança em suas compras</p>
 
                 <dd>CANAIS DE ACESSO</dd>
                 <a href='contact'>Garantia dos produtos - </a>
