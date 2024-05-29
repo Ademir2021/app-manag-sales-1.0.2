@@ -35,7 +35,6 @@ export function FooterHome() {
                 {/* Google Maps */}
                 <div className="maps">
                     <p>
-                        {/* <strong>Localização Geográfica</strong> */}
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8920.78111493576!2d-52.01010715806461!3d-24.032808720407672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa0eeb219df7154b0!2sCENTRO%20INFORMATICA!5e0!3m2!1sen!2sbr!4v1631551065418!5m2!1sen!2sbr" className="maps" loading="lazy"></iframe><br />
                         {/* fim */}
                     </p>
