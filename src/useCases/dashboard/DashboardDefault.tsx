@@ -18,8 +18,8 @@ export function DashboardDefault() {
         <>
         <div className="container">
             <Dashboard />
-            <>{Globais.calendar}</>
             <h2>Minha conta</h2>
+            <>{Globais.calendar}</>
             <HeaderDashboard
                 name={user[0].name}
                 username={user[0].username}
