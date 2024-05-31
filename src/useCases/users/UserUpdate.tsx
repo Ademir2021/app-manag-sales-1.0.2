@@ -8,6 +8,7 @@ import { HandleEnsureAuth } from '../../services/HandleEnsureAuth';
 import api from '../../services/api/api'
 
 import '../../App.css'
+import { Dashboard } from '../dashboard/Dashboard';
 
 type TUpdateUser = {
     id: number;
@@ -150,9 +151,9 @@ export function UserUpdate() {
     }
 
     return (
-        <>  <br />
-        <>{tokenMessage}</>
-            <BackHome />
+        <>
+        <Dashboard />
+         <div className="text-center"><a href="user_update">{tokenMessage}</a></div>
             <ButtonOnClick
                 onClickHandle={toggleDropdown}
                 text={"Sua conta - Criar/Atualizar/Alterar senha."} />
