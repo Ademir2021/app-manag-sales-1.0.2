@@ -16,34 +16,19 @@
 }
 
 #carousel-item1 {
-    /* background-image: url("/public/img/carousel/carousel_web.png"); */
-    background-color: white;
-    color: black;
+    background-image: url("/public/img/carousel/banner1.png");
+    color: white;
+    padding: 16px;
 }
 
 #carousel-item2 {
-    /* background-image: url("/public/img/carousel/carousel_web.png"); */
-    background-color: white;
-    color: black;
+    background-image: url("/public/img/carousel/banner2.png");
+    color:white;
+    padding: 16px;
 }
 
 #carousel-item3 {
-    /* background-image: url("/public/img/carousel/carousel_web.png"); */
-    background-color: white;
-    color: black;
-}
-
-#carousel-item1-div {
-    padding: 12px;
-    margin: 12px;
-}
-
-#carousel-item2-div {
-    padding: 12px;
-    margin: 12px;
-}
-
-#carousel-item3-div {
-    padding: 12px;
-    margin: 12px;
+    background-image: url("/public/img/carousel/banner3.png");
+    color: white;
+    padding: 16px;
 }

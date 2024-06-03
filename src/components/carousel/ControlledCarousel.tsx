@@ -18,37 +18,35 @@ function ControlledCarousel() {
           variant='dark'
           activeIndex={index}
           onSelect={handleSelect}>
-          <Carousel.Item interval={200}>
-            <div id="carousel-item1">
-              <img src='img\carousel\Banner1.png' className='carousel-img-banner' alt='' />
-              <div id='carousel-item1-div'>
-                <h2>Realize suas compras aqui</h2>
-                <dd>Produtos com até 10% de desconto</dd>
-                <button className='btn btn-primary' onClick={() => { window.location.replace('form_person') }}>Cadastre-se</button>
-              </div>
-            </div>
+          <Carousel.Item interval={800}>
+            <a href='form_person'>
+            <form id="carousel-item1">
+              <h2>Realize suas compras aqui</h2>
+              <dd>Produtos com até 10% de desconto</dd><br></br>
+              <button className='btn btn-primary' onSubmit={() => { window.location.replace('form_person') }}>Cadastre-se</button>
+            </form>
+            </a>
           </Carousel.Item>
 
-          <Carousel.Item interval={400}>
+          <Carousel.Item interval={800}>
+      <a href='contact'>
             <div id="carousel-item2">
-              <img src='img\carousel\banner2.png' className='carousel-img-banner' alt='' />
-              <div id='carousel-item2-div'>
-                <h5>Como prefere receber a sua COMPRA</h5>
-                <dd>Retire na loja ou despachamos até sua localidade</dd>
-                <button className='btn btn-primary' onClick={() => { window.location.replace('contact') }}>Fale conosco</button>
+              <h5>Como prefere receber a sua COMPRA</h5>
+              <dd>Retire na loja ou despachamos até sua localidade</dd><br></br>
+              <button className='btn btn-primary' onClick={() => { window.location.replace('contact') }}>Fale conosco</button>
               </div>
-            </div>
+           </a> 
           </Carousel.Item>
 
-          <Carousel.Item interval={400}>
+          <Carousel.Item interval={800}>
+            <a href='register'>
             <div id='carousel-item3'>
-              <img src='img\carousel\banner3.png' className='carousel-img-banner' alt='' />
-              <div id='carousel-item3-div'>
-                <h2><>Acesso rápido e seguro</></h2>
-                <dd>WEB-Token + confiança para suas compras</dd>
-                <button className='btn btn-primary' onClick={() => { window.location.replace('register') }}>Criar conta</button>
-              </div>
+              <h2><>Acesso rápido e seguro</></h2>
+              <dd>WEB-Token + confiança para suas compras</dd><br></br>
+              <button className='btn btn-primary' onClick={() => { window.location.replace('register') }}>Criar conta</button>
             </div>
+            </a>
+        
           </Carousel.Item>
           {/* <Carousel.Caption>
           </Carousel.Caption> */}
