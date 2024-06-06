@@ -71,10 +71,9 @@ export const AuthProvider = ({ children }: any | undefined) => {
                             }
                         })
                 })
-
         } catch (err) {
             console.log("error occurred !!: " + err);
-            setMessage("Email ou Senha inválidos !");
+            setMessage("Nome de Usuário ou senha inválido(a)");
             setTimeout(() => {
                 setMessage('');
             }, 3000);
