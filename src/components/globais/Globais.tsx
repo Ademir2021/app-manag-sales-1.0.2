@@ -63,4 +63,4 @@ export class Globais {
     static API_URL = 'https://api-centroinfo-614cdab7bd81.herokuapp.com'
     static URL_NOTE = 'https://api-centroinfo-614cdab7bd81.herokuapp.com/note'
     static URL_CENTROINFO = 'https://www.centroinfo.com.br'
-}//teste
+}
