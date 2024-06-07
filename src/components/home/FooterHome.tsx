@@ -10,10 +10,10 @@ export function FooterHome() {
                 <p id="cookies"></p>
                 <p>
                     <div><dd>SIGA-NOS</dd></div>
-                    <a target="_blank" href="https://www.facebook.com/centroinfostore"><img className="social-icons" src="img/social/facebook.png" alt='Icon Facebook'></img></a>
-                    <a target="_blank" ><img className="social-icons" src="img//social//instagram.png" alt='Icon Intagram'></img></a>
+                    <a target="_blank" href="https://www.facebook.com/centroinfostore"><img className="social-icons" src="img/social/facebook.ico" alt='Icon Facebook'></img></a>
+                    <a target="_blank" ><img className="social-icons" src="img//social//instagram.ico" alt='Icon Intagram'></img></a>
                     {/* <a target="_blank" href="https://linkedin.com/in/ademir-dev"><img className="social-icons" src="img//social//linkedin.png"></img></a> */}
-                    <a target="_blank" href="https://github.com/Ademir2021"><img className="social-icons" src="img//social//github.png" alt='Icon Github'></img></a>
+                    <a target="_blank" href="https://github.com/Ademir2021"><img className="social-icons" src="img//social//github.ico" alt='Icon Github'></img></a>
                     {/* <a target="_blank" href="https://twitter.com/AdemirDeveloper"><img className="social-icons" src="img//social//twitter.png"></img></a> */}
                 </p>
         
