@@ -1,4 +1,4 @@
-#home-container-cards{
+#home-container-cards {
     display: inline-block;
     vertical-align: top;
     max-width: 900%;
@@ -6,6 +6,14 @@
     padding: 0 8px;
     width: 50%;
     min-width: 212px;
+}
+
+@media screen and (max-width:768px) {
+    #home-container-cards {
+        padding: 0 1px;
+        width: 100%;
+        min-width: 380px;
+    }
 }
 
 #home-main-cards {
@@ -17,25 +25,26 @@
     margin-right: auto;
     margin-left: auto;
     /* border: 1px rgb(196, 206, 196) solid; */
-    background-color:white;
+    background-color: white;
     border-radius: 8px;
     margin-top: 8px;
     margin-bottom: 1px;
     padding: 16px 1px 1px 16px;
 
     background-color: rgba(18, 18, 43, 0.63);
-    color:white;
+    color: white;
     font-size: 16px;
 }
-#home-main-cards:hover{
-     border: 3px gray solid;
+
+#home-main-cards:hover {
+    border: 3px gray solid;
 }
 
-#home-cards-text{
-    color:white
+#home-cards-text {
+    color: white
 }
 
-#home-cards-btn{
+#home-cards-btn {
     width: 90%;
     margin: 12px;
 }

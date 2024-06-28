@@ -72,7 +72,7 @@ export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields 
                                 <h1>Repositório no gitHub</h1>
                                 <button
                                     className='btn btn-primary'
-                                    onClick={() => (window.location.replace("https://github.com/Ademir2021"))}
+                                    onClick={() => (window.location.assign("https://github.com/Ademir2021"))}
                                 >Baixar projetos com o GitHub</button>
                             </li>
                             <br />
@@ -80,7 +80,7 @@ export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields 
                                 <h1>Caso de Uso</h1>
                                 <button
                                     className='btn btn-primary'
-                                    onClick={() => (window.location.replace("/store"))}
+                                    onClick={() => (window.location.assign("/store"))}
                                 >loja on-line</button>
                             </li>
                         </ul>
