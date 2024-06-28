@@ -2,14 +2,14 @@ import { useState, useEffect, SetStateAction } from 'react';
 import { NavBar } from "../../components/navbar/Navbar";
 import { TProductRegister, TItem, TItens, TBrand, TSector } from '../products/type/TypeProducts';
 import api from '../../services/api/api'
-import { ListItens } from '../../components/home/ListItens';
-import { Header } from '../../components/home/Header';
+import { ListItens } from '../../components/storeHome/ListItens';
+import { Header } from '../../components/storeHome/Header';
 import { FooterHomePage } from './FooterHome';
-import { SearchItens } from '../../components/home/SearchItens';
+import { SearchItens } from '../../components/storeHome/SearchItens';
 import { currencyFormat } from '../../components/utils/currentFormat/CurrentFormat';
 import ControlledCarousel from '../../components/carousel/ControlledCarousel';
 
-export function HomePage() {
+export function StoreHome() {
     const [id, setId] = useState<number>(1);
     let [amount, setAmount] = useState<number>(1)
     const [counter, setCounter] = useState<number>(0)

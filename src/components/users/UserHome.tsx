@@ -1,5 +1,5 @@
 export function UserHome(){
     return(
-        <a href='/'><b>Home</b></a>
+        <a href='/store'><b>Home</b></a>
     )
 }

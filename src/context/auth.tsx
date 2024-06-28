@@ -87,7 +87,7 @@ export const AuthProvider = ({ children }: any | undefined) => {
         localStorage.removeItem('xxx')
         setUser(null)
         localStorage.setItem("uri", JSON.stringify("dashboardefault"));
-        navigate("/")
+        navigate("/store")
     }
 
     return (

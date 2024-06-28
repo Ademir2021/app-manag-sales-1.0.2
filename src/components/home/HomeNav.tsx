@@ -6,9 +6,10 @@ import { Logo } from "../logo/Logo";
 import "../assets/dist/css/bootstrap.min.css"
 import "./Navbar.css"
 
-export function NavBar() {
 
-    const privilAdmin = Globais.privilAdmin;
+export function HomeNav() {
+    
+        const privilAdmin = Globais.privilAdmin;
     const privilegeShopping = Globais.checksUserLogged;
 
     return (
@@ -20,7 +21,7 @@ export function NavBar() {
                 <div className="container-fluid" >
                     <a
                         className="navbar-brand"
-                        href="/dashboardefault">{<Logo />}
+                        href="/">{<Logo />}
                     </a>
                     <button
                         className="navbar-toggler"
@@ -40,7 +41,7 @@ export function NavBar() {
                             <p
                                 className="offcanvas-title"
                                 id="offcanvasNavbar2Label" >
-                                <a href={'/contact'}>Fale conosco </a>
+                                <a href={'##'}>Link</a>
                             </p>
                             <button
                                 type="button"
@@ -56,12 +57,12 @@ export function NavBar() {
                                     {checksUserLogged() === privilegeShopping ?
                                         <a className="nav-link"
                                             aria-current="page"
-                                            href="/dashboardefault">
+                                            href="##">
                                             <b>Painel</b></a> :
                                         <a
                                             className="nav-link"
                                             aria-current="page"
-                                            href="/store"><b>Home</b>
+                                            href="/"><b>Home</b>
                                         </a>}
                                 </li>
 
@@ -69,18 +70,18 @@ export function NavBar() {
                                     {checksUserLogged() === privilegeShopping ?
                                         <a className="nav-link"
                                             aria-current="page"
-                                            href="/pe">Carrinho</a> :
+                                            href="##">Link1 Login</a> :
                                         <a className="nav-link"
                                             aria-current="page"
-                                            href="/pe">Carrinho</a>}
+                                            href="##">Link1 Logout</a>}
                                 </li>
 
                                 <li className="nav-item">
                                     {checksUserLogged() === privilegeShopping ?
                                         <a className="nav-link"
-                                            href='/register'>Criar conta</a> :
+                                            href='##'>Link2 Login</a> :
                                         <a className="nav-link"
-                                            href='/user_update'>Sua conta</a>}
+                                            href='##'>Link2 Logout</a>}
                                 </li>
 
                                 <li className="nav-item">
@@ -147,8 +148,6 @@ export function NavBar() {
                     </div>
                 </div>
             </nav>
-            <hr></hr>
-            {/* <span id="nav-calendar">{Globais.calendar}</span> */}
-        </>
+            </>
     )
 }

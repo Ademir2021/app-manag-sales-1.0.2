@@ -1,0 +1,30 @@
+#home-form {
+    background-color: gray;
+    padding: 18px;
+    color: black;
+    border: 6px solid white;
+    border-radius: 16px;
+}
+
+@media screen and (max-width:768px) {
+    #home-form {
+        border: 6px solid white;
+        border-radius: 10px;
+    }
+}
+
+#home-form-input input {
+    display: flex;
+    margin-inline: 12px;
+    height: 36px;
+    width: 230px;
+    border-radius: 8px;
+}
+
+#home-form-label label {
+    margin-top: 16px;
+}
+
+#home-form-button {
+    margin: 12px;
+}

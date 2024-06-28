@@ -1,0 +1,64 @@
+#home-main_ {
+    padding: 0px;
+    margin: 0px;
+}
+
+#home-header {
+    color: white;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding: 38px;
+    background-color: rgb(26, 25, 25);
+    /* background-image: url("/public/img/carousel/banner3.png"); */
+}
+
+@media screen and (max-width:768px) {
+    #home-header{
+        padding: 12px;
+    }
+}
+
+#home-main {
+    display: flex;
+    padding: 0px;
+    width: 100%;
+}
+
+@media screen and (max-width:768px) {
+    #home-main {
+        display: inline;
+    }
+}
+
+#home-div1 {
+    padding: 12px;
+    color: black;
+    font-size: 18px;
+    border: 0px solid blue;
+}
+
+#home-div2 {
+    padding: 12px;
+    color:white
+}
+
+#home-cards {
+    background-color: rgb(26, 25, 25);
+    padding: 12px;
+}
+
+#home-cards-title {
+    color: white;
+    font-size: 43px;
+    padding: 16px;
+}
+@media screen and (max-width:768px) {
+    #home-cards-title {
+        font-size: 22px;
+    }
+}
+
+#home-cards-content {
+    color: white;
+    font-size: 18px;
+    padding: 12px;
+}

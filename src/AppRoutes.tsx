@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import  { useContext } from 'react'
-import { HomePage } from "./useCases/home/HomePage";
+import { Home } from "./useCases/home/Home";
+import { StoreHome } from "./useCases/storeHome/StoreHome";
 import { UserLogin } from './useCases/users/UserLogin';
 import { DashboardDefault } from "./useCases/dashboard/DashboardDefault";
 import { ItenStore } from "./useCases/dashboard/iItenStore";
@@ -24,9 +25,11 @@ import { Logout } from "./components/utils/logout/Logout";
 import { BackHome } from './components/utils/backHome/BackHome';
 import { Ceps } from "./useCases/ceps/Ceps";
 import { ContactsList } from "./useCases/contacts/ContactsList";
-import { CookieWarnings } from "./useCases/home/CookieWarnings";
+import { CookieWarnings } from "./useCases/storeHome/CookieWarnings";
+
 
 export function AppRoutes() {
+
     const Private = ({ children }: any) => {
         const { authenticated, loading }: any = useContext(AuthContext)
         if (loading) {
@@ -46,7 +49,8 @@ export function AppRoutes() {
         <Router>
             <AuthProvider>
                 <Routes>
-                    <Route path="/" Component={HomePage} />
+                    <Route path="/" Component={Home} />
+                    <Route path="/store" Component={StoreHome} />
                     <Route path="/login" Component={UserLogin} />
                     <Route path="/logout" Component={Logout} />
                     <Route path="/register" Component={UserRegister} />

@@ -64,7 +64,7 @@ export function ListItensStore({
                 </div>
             {itens.length === 0 ? <div id='itensStoreCartogoback'><button
                 className='btn btn-primary'
-                onClick={() => { window.location.replace("/") }}>Voltar as Compras</button></div> : null}
+                onClick={() => { window.location.replace("/store") }}>Voltar as Compras</button></div> : null}
             <div className="container-global">
                 <div className="main-global">
                     <div style={{ fontSize: '14px' }}>

@@ -1,4 +1,4 @@
-import { CookiesWarnings } from "../../components/home/CookieWarning";
+import { CookiesWarnings } from "../../components/storeHome/CookieWarning";
 import { NavBar } from "../../components/navbar/Navbar";
 import { FooterHomePage } from "./FooterHome"
 

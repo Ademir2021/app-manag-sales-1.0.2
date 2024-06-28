@@ -9,7 +9,7 @@ export const BackHome = () => {
             window.location.replace(link);
     
         } else {
-            link = '/'
+            link = '/store'
             window.location.replace(link);
         }
         return link
