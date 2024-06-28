@@ -54,14 +54,14 @@ export function Home() {
     function handleSubmit(e: Event) {
         e.preventDefault()
         if (contactValFields(contacts)) {
-            //postRegister(contacts, "contact")
+            postRegister(contacts, "contact")
             contactClearFields();
         }
     };
 
     return (
         <>
-            {/* <HomeNav /> */}
+            <HomeNav />
             <HomeMain
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}

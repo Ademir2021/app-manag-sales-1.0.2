@@ -6,10 +6,9 @@ import { Logo } from "../logo/Logo";
 import "../assets/dist/css/bootstrap.min.css"
 import "./Navbar.css"
 
-
 export function HomeNav() {
-    
-        const privilAdmin = Globais.privilAdmin;
+
+    const privilAdmin = Globais.privilAdmin;
     const privilegeShopping = Globais.checksUserLogged;
 
     return (
@@ -58,69 +57,17 @@ export function HomeNav() {
                                         <a className="nav-link"
                                             aria-current="page"
                                             href="##">
-                                            <b>Painel</b></a> :
+                                            <b>Área do Cliente</b></a> :
                                         <a
                                             className="nav-link"
                                             aria-current="page"
                                             href="/"><b>Home</b>
                                         </a>}
                                 </li>
-
-                                <li className="nav-item">
-                                    {checksUserLogged() === privilegeShopping ?
-                                        <a className="nav-link"
-                                            aria-current="page"
-                                            href="##">Link1 Login</a> :
-                                        <a className="nav-link"
-                                            aria-current="page"
-                                            href="##">Link1 Logout</a>}
-                                </li>
-
-                                <li className="nav-item">
-                                    {checksUserLogged() === privilegeShopping ?
-                                        <a className="nav-link"
-                                            href='##'>Link2 Login</a> :
-                                        <a className="nav-link"
-                                            href='##'>Link2 Logout</a>}
-                                </li>
-
-                                <li className="nav-item">
-                                    {checksUserLogged() === privilegeShopping ?
-                                        <a className="nav-link" href='/login'>Entrar</a> :
-                                        <a className="nav-link"
-                                            href='/logout'>Sair</a>}
-                                </li>
-                                <li className="nav-item">
-                                    {checksUserLogged() === privilegeShopping ?
-                                        <a className="nav-link" href="/sale">Compras</a> :
-                                        <a className="nav-link"
-                                            href="/sale">Suas compras</a>}
-                                </li>
-
                                 <li className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle"
-                                        href="##"
-                                        role="button"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false">Cadastros</a>
                                     <ul className="dropdown-menu">
-                                        <li><a className="dropdown-item nav-link"
-                                            href="/form_person">Clientes</a></li>
-                                        <li>{checkAdminPrivilege() === privilAdmin ?
-                                            <a className="dropdown-item nav-link"
-                                                href="/form_product">Produtos</a> :
-                                            <></>}
-                                        </li>
                                         <li>
                                             <hr className="dropdown-divider" />
-                                        </li>
-                                        <li>
-                                            <a className="dropdown-item nav-link"
-                                                href="/person_update">Atualizar - Clientes</a></li>
-                                        <li>{checkAdminPrivilege() === privilAdmin ?
-                                            <a className="dropdown-item nav-link"
-                                                href="/product_update">Atualizar - Produtos</a> :
-                                            <></>}
                                         </li>
                                     </ul>
                                 </li>
@@ -131,16 +78,7 @@ export function HomeNav() {
                                         aria-expanded="false">Consultar</a>
                                     <ul className="dropdown-menu" id="nav-">
                                         <li><a className="dropdown-item nav-link"
-                                            href="/person_list">Clientes</a></li>
-                                        <li><a className="dropdown-item nav-link"
-                                            href="/product_list">Produtos</a></li>
-                                        <li>
-                                            <hr className="dropdown-divider" />
-                                        </li>
-                                        <li><a className="dropdown-item nav-link"
-                                            href="/list_sale">Emitir notas</a></li>
-                                        <li><a className="dropdown-item nav-link"
-                                            href="/users_list">Usuários</a></li>
+                                            href="/">Link</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -148,6 +86,6 @@ export function HomeNav() {
                     </div>
                 </div>
             </nav>
-            </>
+        </>
     )
 }
