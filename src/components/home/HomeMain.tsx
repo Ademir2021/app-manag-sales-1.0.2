@@ -20,11 +20,7 @@ export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields 
         <>
             <div id='home-main_'>
                 <header id='home-header' className='text-center'>
-                    {/* <h1>CENTRO INFORMÁTICA</h1> */}
-                    {/* <dd>Projetos e programação de sistemas computacionais</dd> */}
-
-                    {/* <p>Transformando suas idéias em realidade! Solicite agora mesmo um orçamento personalizado para o seu projeto de software</p> */}
-                    <button id='home-header-btn' className='btn btn-primary'><b>Desenvolvendo o seu Software</b></button>
+                    <button id='home-header-btn' className='btn btn-primary'>Desenvolvendo o seu Software</button>
                 </header>
                 <main id="home-main">
                     <div id='home-div1'>
