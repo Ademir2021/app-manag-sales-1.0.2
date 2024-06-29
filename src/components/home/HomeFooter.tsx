@@ -5,7 +5,7 @@ import './cookies.css'
 export function HomeFooter() {
     return (
         <>
-            <div className='text-center' id='home-footer'>
+            <footer className='text-center' id='home-footer'>
                 <p id="cookies"></p>
                 <p>
                     <div><dd>SIGA-NOS</dd></div>
@@ -16,7 +16,7 @@ export function HomeFooter() {
                     {/* <a target="_blank" href="https://twitter.com/AdemirDeveloper"><img className="social-icons" src="img//social//twitter.png"></img></a> */}
                 </p>
                 <p>Engenharia de Software</p>
-                <p><a href="#"><img src="img/btn-top.png" className="btn-top" alt="Topo"></img></a></p>
+                {/* <p><a href="#"><img src="img/btn-top.png" className="btn-top" alt="Topo"></img></a></p> */}
                 <div className='text-footer'>
                     <div>{Globais.rights_reserved}</div>
                     <div>{Globais.address}</div>
@@ -31,7 +31,7 @@ export function HomeFooter() {
                     <p> <a href='##'>
                         <img className="site-ssl" src='img/ssl_cert.png' alt="Certificado SSL"></img></a></p>
                 </div>
-            </div>
+            </footer>
         </>
     )
 }

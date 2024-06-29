@@ -4,10 +4,7 @@
 }
 
 #home-header {
-    color: white;
-    /* font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
     padding: 38px;
-    background-color: rgb(26, 25, 25);
     /* background-image: url("/public/img/carousel/banner3.png"); */
 }
 
@@ -38,23 +35,22 @@
 
 #home-div1 {
     padding: 18px;
-    color: blue;
     font-size: 18px;
     /* border: 2px solid black; */
 }
 
 #home-div2 {
     padding: 12px;
-    color:white
+    /* color:white */
 }
 
 #home-cards {
-    background-color: rgb(26, 25, 25);
+    /* background-color: rgb(26, 25, 25); */
     padding: 12px;
 }
 
 #home-cards-title {
-    color: white;
+    /* color: white; */
     font-size: 43px;
     padding: 16px;
 }
@@ -65,7 +61,7 @@
 }
 
 #home-cards-content {
-    color: white;
+    /* color: white; */
     font-size: 18px;
     padding: 12px;
 }

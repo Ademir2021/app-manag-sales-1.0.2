@@ -1,11 +1,10 @@
 import "./HomeCards.css"
 
 type PropsHomeCards = {
+    id:number;
     item: String
     descric: string
     content:String
-    link:String;
-    contract:any
     onClick:any
 }
 
@@ -15,11 +14,10 @@ export function HomeCards(props: PropsHomeCards) {
             <div id='home-container-cards'>
                 <div id='home-main-cards'>
                     <>
-                        <h2>{props.item}</h2>
-                        <b>{props.descric}</b>
-                        <p>{props.content}</p>
-                        <p>Baixar: {props.link}</p>
-                        <p>Contratar: {props.contract}</p>
+                        <h1><b>{props.id} - {props.item}</b></h1>
+                        <p><b>- {props.descric}</b></p>
+                        <p><b>- </b>{props.content}</p>
+                
                         <button
                         className="btn btn-danger p-2"
                         id="home-cards-btn"
