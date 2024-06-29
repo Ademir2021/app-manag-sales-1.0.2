@@ -5,7 +5,7 @@
 
 #home-header {
     color: white;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    /* font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
     padding: 38px;
     background-color: rgb(26, 25, 25);
     /* background-image: url("/public/img/carousel/banner3.png"); */
@@ -14,7 +14,14 @@
 @media screen and (max-width:768px) {
     #home-header{
         padding: 12px;
+        font-size:small;
     }
+}
+
+#home-header-btn{
+    border-radius: 22px;
+    padding: 12px;
+    /* border:1px solid blue; */
 }
 
 #home-main {
@@ -30,10 +37,10 @@
 }
 
 #home-div1 {
-    padding: 12px;
-    color: black;
+    padding: 18px;
+    color: blue;
     font-size: 18px;
-    border: 0px solid blue;
+    /* border: 2px solid black; */
 }
 
 #home-div2 {

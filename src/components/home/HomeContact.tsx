@@ -16,7 +16,7 @@ export function HomeContact({children,handleChange,handleSubmit,msg,msgFields}:P
             <form id="home-form">
                 <div id='home-form-input'>
                     <div id='home-form-label'>
-                        <h4>{msg}</h4>
+                        <b>{msg}</b>
                         <dd>{msgFields}</dd>
                         <label>*Nome</label>
                         <input
@@ -44,11 +44,11 @@ export function HomeContact({children,handleChange,handleSubmit,msg,msgFields}:P
                         ></input>
                         <button
                             id='home-form-button'
-                            className='btn btn-danger'
+                            className='btn btn-primary'
                             type="submit"
                             onClick={handleSubmit}
-                        >Enviar solicitação</button>
-                        <div>Em breve estaremos em contato</div>
+                        >Enviar contato</button>
+                        {/* <div>Em breve estaremos em contato</div> */}
                     </div>
                 </div>
             </form>

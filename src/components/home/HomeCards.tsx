@@ -21,10 +21,10 @@ export function HomeCards(props: PropsHomeCards) {
                         <p>Baixar: {props.link}</p>
                         <p>Contratar: {props.contract}</p>
                         <button
-                        className="btn btn-danger"
+                        className="btn btn-danger p-2"
                         id="home-cards-btn"
                         onClick={props.onClick}
-                        >{'< Contratar />'}</button>
+                        >Contratar</button>
                     </>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 #home-form {
     background-color: gray;
     padding: 18px;
-    color: black;
+    color: rgb(2, 2, 104);
     border: 6px solid white;
     border-radius: 16px;
 }
@@ -27,4 +27,5 @@
 
 #home-form-button {
     margin: 12px;
+    color:whitesmoke;
 }
