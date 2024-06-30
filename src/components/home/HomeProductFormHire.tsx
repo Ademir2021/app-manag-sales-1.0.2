@@ -1,31 +1,26 @@
-import { Logo } from '../logo/Logo'
+import { HomeNav } from './HomeNav'
 import './HomeProductFormHire.css'
 
 export function HomeProductFormHire() {
     return (
         <>
+            <HomeNav />
             <div id='home-pfh-container'>
-                <div id='home-pfh-logo'>  <Logo /></div>
                 <div id='home-pfh-main'>
                     <div id='home-pfh-content'>
+                        <h1>Formulário de adesão</h1>
                         <p><b>Centro Informática </b> - CNPJ 18 069 383 0001 10</p>
                         <hr></hr>
-                       <p><b>Inclua os dados de sua empresa  e envie o Formulário para que fique registrado !</b></p>
-                       <p>Para que vc conclua a solicitação é muito importante que seja preenchido todos os campos com devidos dados solicitados :</p>
-                       <p>Dados da Empresa.</p>                       
-                       <p>Dados de Endereço da Empresa.</p>
-                       <p>Regime tributário.</p>
-                       <p>Contato do responsável.</p>
-                       <p>Caso a empresa emita NFe deve possui o cerificado digital !</p>
-                       <hr></hr>
-                    </div>                          
+                        <p><b>Informe os dados da sua empresa !</b></p>
+                    </div>
 
                     <div id='home-pfh-form'>
                         <form>
-                            <h1>Formulário de adesão</h1>
                             <div id='home-pfh-label'>
                                 <div id='home-pfh-input'>
-                                    <label>Empresa</label>
+                                    <label>Nome fantasia</label>
+                                    <input></input>
+                                    <label>Razão social</label>
                                     <input></input>
                                     <label>CNPJ</label>
                                     <input></input>

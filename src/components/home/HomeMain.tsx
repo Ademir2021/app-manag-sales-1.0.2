@@ -13,10 +13,6 @@ export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields 
         { id: 5, item: "ERP", descric: "Sistema Integrado de Vendas", content: 'Permite ao cliente a automação de seus processo na empresa como: Vendas/Financeiros/Caixa/Estoque/Notas e muito mais...' }
     ]
 
-    function contrack() {
-        return alert("Por favor para contratar este Módulo por favor entre em contato: \nFone: (44) 98852-1033\nEmail: centroserra@gmail.com\nFormulário: Preencha o Formulário.")
-    }
-
     return (
         <>
             <div id='home-main-container'>
@@ -59,7 +55,7 @@ export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields 
                             item={card.item}
                             descric={card.descric}
                             content={card.content}
-                            onClick={contrack}
+                            onClick={()=>(window.location.assign("/hire"))}
                         />
                     )))}
                     <div id='home-div2'>
