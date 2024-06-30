@@ -1,6 +1,7 @@
 import { HomeCards } from './HomeCards'
 import { HomeContact, PropsHomeContact } from './HomeContact'
 import './HomeMain.css'
+import reportWebVitals from '../../reportWebVitals';
 
 export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields }: PropsHomeContact) {
 
@@ -18,23 +19,23 @@ export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields 
 
     return (
         <>
-            <div id='home-main_'>
+            <div id='home-main-container'>
                 <header id='home-header' className='text-center'>
                     <button id='home-header-btn' className='btn btn-primary'>Desenvolvendo o seu Software</button>
                 </header>
                 <main id="home-main">
                     <div id='home-div1'>
                         <h1>Faça a sua escolha para o seu <b>Projeto de Software</b> !</h1>
-                        <p><b>- </b>Transformando suas idéias em realidade! Solicite agora mesmo um orçamento personalizado para o seu projeto de software</p>
+                        <p><b>- </b>Transformando suas idéias em realidade! Solicite agora mesmo um orçamento personalizado para o seu projeto de software.</p>
                         <p><b>- </b>Junte-se a uma empresa líder que prioriza qualidade e satisfação do cliente. Com um histórico comprovado de clientes em todo o Brasil, oferecemos :</p>
                         <div>
                             <dd><b>+ </b>Integração NFe com o seu sistema.</dd>
                             <dd><b>+ </b>Emissor de NFCe das vendas.</dd>
-                            <dd><b>+ </b>Checkout de pagamentos para cartão\PIX e boleto.</dd>
+                            <dd><b>+ </b>Checkout de pagamentos, Cartão\PIX e Boleto.</dd>
                             <dd><b>+ </b>Sistema de Gestão Integrada ERP.</dd>
                             <dd><b>+ </b>Desenvolvimento WEB</dd>
                             <dd><b>+ </b>API REST.</dd>
-                            <dd><b>+ </b>Integração com soluções para auth e web-token.</dd>
+                            <dd><b>+ </b>Soluções para Authenticação e reportWebVitalseb-token.</dd>
                         </div>
                     </div>
                     <HomeContact

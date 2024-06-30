@@ -75,10 +75,10 @@ export function HomeNav() {
                                     <a className="nav-link dropdown-toggle"
                                         role="button"
                                         data-bs-toggle="dropdown"
-                                        aria-expanded="false">Consultar</a>
+                                        aria-expanded="false"><b>Produtos</b></a>
                                     <ul className="dropdown-menu" id="nav-">
                                         <li><a className="dropdown-item nav-link"
-                                            href="/">Link</a></li>
+                                            href="/hire">Contratar</a></li>
                                     </ul>
                                 </li>
                             </ul>

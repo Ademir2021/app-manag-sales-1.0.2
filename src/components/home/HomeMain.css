@@ -1,24 +1,8 @@
-#home-main_ {
+#home-main-container {
+    background-color: black;
+    color:white;
     padding: 0px;
     margin: 0px;
-}
-
-#home-header {
-    padding: 38px;
-    background-image: url("/public/img/carousel/banner2.png");
-}
-
-@media screen and (max-width:768px) {
-    #home-header{
-        padding: 12px;
-        font-size:small;
-    }
-}
-
-#home-header-btn{
-    border-radius: 0px;
-    padding: 12px;
-    /* border:1px solid blue; */
 }
 
 #home-main {
@@ -26,6 +10,23 @@
     padding: 0px;
     width: 100%;
 }
+
+#home-header {
+    padding: 58px;
+    background-image: url("/public/img/carousel/banner2.png");
+}
+
+@media screen and (max-width:768px) {
+    #home-header{
+        padding: 18px;
+    }
+}
+
+#home-header-btn{
+    border-radius: 0px;
+    padding: 12px;
+}
+
 
 @media screen and (max-width:768px) {
     #home-main {
@@ -36,21 +37,17 @@
 #home-div1 {
     padding: 18px;
     font-size: 18px;
-    /* border: 2px solid black; */
 }
 
 #home-div2 {
     padding: 12px;
-    /* color:white */
 }
 
 #home-cards {
-    /* background-color: rgb(26, 25, 25); */
     padding: 12px;
 }
 
 #home-cards-title {
-    /* color: white; */
     font-size: 43px;
     padding: 16px;
 }
@@ -61,7 +58,6 @@
 }
 
 #home-cards-content {
-    /* color: white; */
     font-size: 18px;
     padding: 12px;
 }

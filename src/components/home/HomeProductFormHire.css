@@ -1,0 +1,62 @@
+#home-pfh-container {
+    background-color: white;
+    color: white;
+    padding: 1%;
+    margin: 0px;
+}
+
+#home-pfh-main {
+    display: flex;
+    padding: 1px;
+    width: 100%;
+}
+
+@media screen and (max-width:768px) {
+    #home-pfh-main {
+        display: inline;
+    }
+}
+
+#home-pfh-content {
+    background-color: black;
+    border: 0px solid gray;
+    color: white;
+    padding: 28px;
+    width: 100%;
+    /* margin: 12px; */
+}
+
+#home-pfh-form {
+    /* background-color: grey; */
+    border: 1px solid gray;
+    color:black;
+    padding: 28px;
+    width: 100%;
+    margin:1px
+}
+
+#home-pfh-input input {
+    display: flex;
+    margin-inline: 12px;
+    height: 36px;
+    width: 80%;
+    border-radius: 8px;
+}
+
+#home-pfh-label label {
+    margin-top: 16px;
+}
+
+#home-pfh-button {
+    margin: 12px;
+    color: whitesmoke;
+}
+
+#home-pfh-logo{
+    background-color: white;
+    padding: 8px;
+    margin: 0px;
+    width: 100%;
+    border-radius: 3px;
+    /* border:solid 1px gray; */
+}
