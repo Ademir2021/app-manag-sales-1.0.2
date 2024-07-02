@@ -51,3 +51,10 @@
     margin: 12px;
     color: whitesmoke;
 }
+
+#home-pfh-send-msg{
+    font-size: large;
+    margin-top: 12px;
+    margin-inline: 12px;
+    color: green;
+}
