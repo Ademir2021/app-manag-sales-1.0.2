@@ -51,7 +51,7 @@ export function HomeNav() {
                             <p
                                 className="offcanvas-title"
                                 id="offcanvasNavbar2Label" >
-                                <a href={'##'}>Link</a>
+                                <a href={'contact'}>Fale conosco</a>
                             </p>
                             <button
                                 type="button"
@@ -67,12 +67,12 @@ export function HomeNav() {
                                     {checksUserLogged() === privilegeShopping ?
                                         <a className="nav-link"
                                             aria-current="page"
-                                            href="##">
-                                            <b>Área do Cliente</b></a> :
+                                            href="contact">
+                                            <b>Suporte</b></a> :
                                         <a
                                             className="nav-link"
                                             aria-current="page"
-                                            href="/"><b>Home</b>
+                                            href="contact"><b>Suporte</b>
                                         </a>}
                                 </li>
                                 
@@ -90,7 +90,7 @@ export function HomeNav() {
                                         <a
                                             className="nav-link"
                                             aria-current="page"
-                                            href="/"><b>Home</b>
+                                            href="user_update"><b>Sua conta</b>
                                         </a>}
                                 </li>
 
@@ -108,7 +108,7 @@ export function HomeNav() {
                                         <a
                                             className="nav-link"
                                             aria-current="page"
-                                            href="/"><b>Home</b>
+                                            href="logout"><b>Sair</b>
                                         </a>}
                                 </li>
 
