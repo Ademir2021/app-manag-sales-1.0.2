@@ -22,3 +22,8 @@
     font-size: 12px;
     margin: 16px
 }
+
+#nav-btn-login{
+    border-radius: 18px;
+    color:black;
+}

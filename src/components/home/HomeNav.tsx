@@ -4,12 +4,23 @@ import { Globais } from "../globais/Globais";
 import { Logo } from "../logo/Logo";
 
 import "../assets/dist/css/bootstrap.min.css"
-import "./Navbar.css"
+import "./HomeNav.css"
+import { Button } from '../Button/Button';
 
 export function HomeNav() {
 
     const privilAdmin = Globais.privilAdmin;
     const privilegeShopping = Globais.checksUserLogged;
+
+    const isHome = true
+    function HomeLogin(){
+        localStorage.setItem("hl", JSON.stringify(isHome));
+        window.location.assign('/login')
+    };
+    function HomeRegister(){
+        localStorage.setItem("hl", JSON.stringify(isHome));
+        window.location.assign('/register')
+    };
 
     return (
         <>
@@ -64,6 +75,43 @@ export function HomeNav() {
                                             href="/"><b>Home</b>
                                         </a>}
                                 </li>
+                                
+                                <li className="nav-item">
+                                    {checksUserLogged() === privilegeShopping ?
+                                        <a className="nav-link"
+                                            aria-current="page"
+                                            >
+                                                <button
+                                                className="btn"
+                                                type='submit'
+                                                onClick={HomeRegister}
+                                                >
+                                            <b>Inscreva-se</b></button></a> :
+                                        <a
+                                            className="nav-link"
+                                            aria-current="page"
+                                            href="/"><b>Home</b>
+                                        </a>}
+                                </li>
+
+                                <li className="nav-item">
+                                    {checksUserLogged() === privilegeShopping ?
+                                        <a className="nav-link"
+                                            aria-current="page"
+                                            href="##">
+                                            <button
+                                            className="btn btn-primary"
+                                            id="nav-btn-login"
+                                            type="submit"
+                                            onClick={HomeLogin}
+                                            ><b>Entrar</b></button></a> :
+                                        <a
+                                            className="nav-link"
+                                            aria-current="page"
+                                            href="/"><b>Home</b>
+                                        </a>}
+                                </li>
+
                                 <li className="nav-item dropdown">
                                     <ul className="dropdown-menu">
                                         <li>

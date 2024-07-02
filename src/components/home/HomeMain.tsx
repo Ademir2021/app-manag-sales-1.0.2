@@ -26,12 +26,12 @@ export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields 
                         <p><b>- </b>Junte-se a uma empresa líder que prioriza qualidade e satisfação do cliente. Com um histórico comprovado de clientes em todo o Brasil, oferecemos :</p>
                         <div>
                             <dd><b>+ </b>Integração NFe com o seu sistema.</dd>
-                            <dd><b>+ </b>Emissor de NFCe das vendas.</dd>
-                            <dd><b>+ </b>Checkout de pagamentos, Cartão\PIX e Boleto.</dd>
+                            <dd><b>+ </b>Emissor de NFCe das vendas de varejo.</dd>
+                            <dd><b>+ </b>Checkout Cartão\Pix e Boleto.</dd>
                             <dd><b>+ </b>Sistema de Gestão Integrada ERP.</dd>
-                            <dd><b>+ </b>Desenvolvimento WEB</dd>
-                            <dd><b>+ </b>API REST.</dd>
-                            <dd><b>+ </b>Soluções para Authenticação e reportWebVitalseb-token.</dd>
+                            <dd><b>+ </b>Desenvolvimento Web.</dd>
+                            <dd><b>+ </b>API Rest.</dd>
+                            <dd><b>+ </b>Soluções para Authenticação e WebToken.</dd>
                         </div>
                     </div>
                     <HomeContact
