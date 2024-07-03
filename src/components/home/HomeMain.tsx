@@ -55,31 +55,64 @@ export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields 
                             item={card.item}
                             descric={card.descric}
                             content={card.content}
-                            onClick={()=>(window.location.assign("/hire"))}
+                            onClick={() => (window.location.assign("/hire"))}
                         />
                     )))}
                     <div id='home-div2'>
                         <hr></hr>
-                        <div>
-                            <div>
-                                <h1>Repositório no GitHub</h1>
-                                <button
-                                    className='btn btn-primary'
-                                    onClick={() => (window.location.assign("https://github.com/Ademir2021"))}
-                                >Baixar projetos com o GitHub</button>
+                        
+                            <div id='demo-repo-main'>
+                                <div>
+                                    <button
+                                        className='btn btn-primary'
+                                        id='home-repo-btn'
+                                        onClick={() => (window.location.assign("https://github.com/Ademir2021"))}
+                                    ><b>{'#'} </b>Descarregar demo dos módulos [.git, .zip]</button>
+                                    <p
+                                        id='home-repo-btn-content'
+                                    >Descarregue demo de nossos módulos no gitHub do desenvolvedor,  utilize o git clone ou zip ! em caso de  dúvidas entre em contato através de nossos canais de atendimento.</p>
+                                </div>
+                                <div>
+                                    <img
+                                        src='img/code_NFe.png'
+                                        id='home-repo-img'
+                                        alt='Exemplo de código node'
+                                    ></img>
+                                    <p
+                                        id='home-repo-img-content'
+                                    >Saiba mais sobre nosso padrão de qualidade em codificação !</p>
+                                </div>
                             </div>
-                            <br />
-                            <div>
-                                <h1>Caso de uso</h1>
-                                <button
-                                    className='btn btn-primary'
-                                    onClick={() => (window.location.assign("/store"))}
-                                >loja on-line</button>
+
+                            <hr></hr>
+
+                            <div id='home-store-main'>
+                                <div>
+                                    <button
+                                        className='btn btn-primary'
+                                        id='home-store-btn'
+                                        onClick={() => (window.location.assign("/store"))}
+                                    >@ Acessar nossa loja on-line</button>
+                                    <p
+                                        id='home-store-btn-content'
+                                    >Faça suas compras em nossa loja on-line, tudo que é comprado em uma loja fisica vc adquire aqui com uma nova experiência, tudo de forma segura e garantida.</p>
+                                </div>
+                                <div>
+                                    <div>
+                                        <img
+                                            src='img/site-store.png'
+                                            id='home-store-img'
+                                            alt='Site de compras'
+                                        ></img>
+                                        <p
+                                            id='home-store-img-content'
+                                        >Site oficial, sua loja fisica em um formato on-line.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div>    
         </>
     )
 }
