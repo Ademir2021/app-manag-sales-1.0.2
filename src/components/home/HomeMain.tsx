@@ -1,7 +1,7 @@
 import { HomeCards } from './HomeCards'
 import { HomeContact, PropsHomeContact } from './HomeContact'
 import './HomeMain.css'
-import reportWebVitals from '../../reportWebVitals';
+
 
 export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields }: PropsHomeContact) {
 
@@ -17,7 +17,7 @@ export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields 
         <>
             <div id='home-main-container'>
                 <header id='home-header' className='text-center'>
-                    <button id='home-header-btn' className='btn btn-primary'>Desenvolvendo o seu Software</button>
+                  <a href='#cards'><button id='home-header-btn' className='btn btn-primary'>Desenvolvendo o seu Software</button></a>
                 </header>
                 <main id="home-main">
                     <div id='home-div1'>
@@ -41,13 +41,17 @@ export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields 
                         msg={msg}
                         msgFields={msgFields}
                     />
+
+                    <a id='cards'></a>
+
                 </main>
-                <div id='home-cards'>
-                    <button className='btn btn-primary p-2'><b>+ </b>Soluções para sua empresa</button>
+                    <div id='home-cards'>
+                    <a href='#cards-in'><button className='btn btn-primary p-2'><b>+ </b>Soluções para sua empresa</button></a>
                     <div id='home-cards-title'
                     >Aqui temos a solução que você precisa !</div>
                     <div id='home-cards-content'
                     >Aqui o cliente encontra produtos de Software na medida de suas necessidades. Utilizamos métodologias ágeis de desenvolvovimento, com isto garantimos entregas rápidas e continua.</div>
+                    <a id='cards-in'></a>
                     {(cards.map((card: any) => (
                         <HomeCards
                             key={card.id}
