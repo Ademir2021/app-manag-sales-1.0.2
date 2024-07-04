@@ -84,6 +84,7 @@ export function InvoiceSalesForm({
             <dd><b>Telefone</b> {children.person.phone_pers}</dd>
             <dd><b>CPF</b> {children.person.cpf_pers}</dd>
             <dd><b>Endereço</b> {children.person.address.address_pers}</dd>
+            <dd><b>Número</b> {children.person.address.num_address}</dd>
             <dd><b>Bairro</b> {children.person.address.bairro_pers}</dd>
             <dd><b>Cidade</b> {children.person.address.name_city}</dd>
             <dd><b>Estado</b> {children.person.address.uf}</dd>

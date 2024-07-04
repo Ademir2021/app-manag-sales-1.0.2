@@ -85,6 +85,14 @@ export function PersonFormUpdate({
                             placeholder="Seu endereço"
                             onChange={handleChange}
                         />
+                        <dd>Número</dd>
+                        <input className=""
+                        type="text"
+                        name="num_address"
+                        value={children.num_address || ''}
+                        placeholder="Número do endereço"
+                        onChange={handleChange}
+                        />
                         <dd>Bairro</dd>
                         <input
                             type="text"

@@ -107,7 +107,7 @@ export function PagSeguro() {
         pagSeguroBoleto.charges[0].payment_method.boleto.holder.address.city = sale.person.address.name_city
         pagSeguroBoleto.charges[0].payment_method.boleto.holder.address.postal_code = sale.person.address.num_cep.replace(/[..-]/g, '')
         pagSeguroBoleto.charges[0].payment_method.boleto.holder.address.street = sale.person.address.address_pers
-        pagSeguroBoleto.charges[0].payment_method.boleto.holder.address.number = "1241"
+        pagSeguroBoleto.charges[0].payment_method.boleto.holder.address.number = sale.person.address.num_address
         pagSeguroBoleto.charges[0].payment_method.boleto.holder.address.locality = sale.person.address.bairro_pers
         pagSeguroBoleto.notification_urls[0] = "https://meusite.com/notificacoes"
         setMessagesSucess('Aguardando pagamento do boleto')

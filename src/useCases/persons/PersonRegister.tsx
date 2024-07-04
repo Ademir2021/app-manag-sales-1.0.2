@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { PersonForm } from '../../components/persons/PersonForm';
-import { postRegister } from "../../services/handleService";
 import { PersonsValFields } from '../../components/utils/crypt/Crypt';
 import { Dashboard } from "../dashboard/Dashboard";
 import { TPersonRegister, TCeps } from "./type/PersonCeps";
@@ -10,7 +9,7 @@ export function FormPerson() {
 
     const [person, setPerson] = useState<TPersonRegister>({
         name_pers: "", cpf_pers: "", phone_pers: "", address_pers: "",
-        bairro_pers: "", fk_cep: 0, name_city: "", uf: "",
+        num_address:"", bairro_pers: "", fk_cep: 0, name_city: "", uf: "",
         num_cep: "", fk_name_filial: 1, fk_id_user: 0
     })
 
@@ -34,7 +33,6 @@ export function FormPerson() {
             if (person.fk_cep === undefined) {
                 alert("Digite um Cep válido")
             } else {
-                // postRegister(person, 'person')
                 await api.post<any[]>('person', person)
                     .then(response => {
                         const res = response.data

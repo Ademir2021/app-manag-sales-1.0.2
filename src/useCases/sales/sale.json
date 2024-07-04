@@ -11,6 +11,7 @@
         "phone_pers": "",
         "address": {
             "address_pers": "",
+            "num_address":"",
             "bairro_pers": "",
             "fk_cep": 0,
             "name_city": "",

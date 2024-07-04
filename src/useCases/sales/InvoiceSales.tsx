@@ -73,9 +73,10 @@ export function InvoiceSales() {
                     sale.person.name_pers = persons[i].name_pers;
                     sale.person.cpf_pers = persons[i].cpf_pers;
                     sale.person.phone_pers = persons[i].phone_pers;
+                    sale.person.address.address_pers = persons[i].address_pers;
+                    sale.person.address.num_address = persons[i].num_address;
                     sale.person.address.bairro_pers = persons[i].bairro_pers;
                     sale.person.address.fk_cep = persons[i].fk_cep;
-                    sale.person.address.address_pers = persons[i].address_pers;
                     const resSum: any | undefined = localStorage.getItem('s');
                     if (resSum) {
                         const sum: number = JSON.parse(resSum);

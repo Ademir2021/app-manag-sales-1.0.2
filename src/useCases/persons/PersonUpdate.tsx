@@ -19,7 +19,7 @@ export function PersonUpdate() {
     const [cities, setCities] = useState<TCities[]>([])
     const [person, setPerson] = useState<TPersonRegister>({
         created_at: '', updated_at: '', name_pers: '',
-        cpf_pers: "", phone_pers: "", address_pers: "",
+        num_address:"", cpf_pers: "", phone_pers: "", address_pers: "",
         bairro_pers: "", fk_cep: 0, name_city: "", uf: "",
         num_cep: "", fk_name_filial: 1, fk_id_user: 0
     })
@@ -34,6 +34,7 @@ export function PersonUpdate() {
         person.cpf_pers = _person.cpf_pers
         person.phone_pers = _person.phone_pers
         person.address_pers = _person.address_pers
+        person.num_address = _person.num_address
         person.bairro_pers = _person.bairro_pers
         person.num_cep = _person.num_cep
         person.fk_cep = setNumCep(person.num_cep);
@@ -69,6 +70,7 @@ export function PersonUpdate() {
                             person.cpf_pers = res[i].cpf_pers
                             person.phone_pers = res[i].phone_pers
                             person.address_pers = res[i].address_pers
+                            person.num_address = res[i].num_address
                             person.bairro_pers = res[i].bairro_pers
                             person.fk_name_filial = res[i].fk_name_filial
                             person.fk_id_user = res[0].fk_id_user
@@ -135,7 +137,7 @@ export function PersonUpdate() {
         e.preventDefault();
         setPerson({
             id_person: 0, created_at: '', name_pers: '', cpf_pers: "",
-            phone_pers: "", address_pers: "", bairro_pers: "", fk_cep: 0,
+            phone_pers: "", address_pers: "", num_address:'', bairro_pers: "", fk_cep: 0,
             name_city: "", uf: "", num_cep: "", fk_name_filial: 1, fk_id_user: 0
         })
         person.fk_id_user = isLogged[0].id
@@ -236,6 +238,7 @@ export function PersonUpdate() {
                         name={person.name_pers}
                         phone={person.phone_pers}
                         address={person.address_pers}
+                        num_address={person.num_address}
                         bairro={person.bairro_pers}
                         num_cep={person.num_cep = setCep(person.fk_cep)?.num_cep}
                         name_city={person.name_city = setCity(person.fk_cep)?.name_city}

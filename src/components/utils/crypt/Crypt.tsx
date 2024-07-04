@@ -25,6 +25,7 @@ export function PersonsValFields(person: any) {
   if (person.cpf_pers === "") { msg += "Digite seu CPF !\n" };
   if (person.phone_pers === "") { msg += "Digite um  telefone !\n" };
   if (person.address_pers === "") { msg += "Digite seu endereço !\n" };
+  if (person.num_address === "") { msg += "Digite o número de seu endereço !\n" };
   if (person.fk_name_filial === 0) { msg += "Informe o num loja !\n" };
   if (msg !== '') {
       alert(msg)

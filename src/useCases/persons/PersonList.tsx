@@ -92,6 +92,7 @@ export function PersonsList() {
                         name={person.name_pers}
                         phone={person.phone_pers}
                         address={person.address_pers}
+                        num_address={person.num_address}
                         bairro={person.bairro_pers}
                         num_cep={person.num_cep = setCep(person.fk_cep)?.num_cep}
                         name_city={setCity(person.fk_cep)?.name_city}

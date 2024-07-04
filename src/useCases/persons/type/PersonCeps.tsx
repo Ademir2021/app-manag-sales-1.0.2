@@ -6,6 +6,7 @@ export type TPersonRegister = {
     cpf_pers: string
     phone_pers: string
     address_pers: string
+    num_address:string
     bairro_pers: string
     fk_cep: number | undefined | any
     num_cep: string | undefined | any
