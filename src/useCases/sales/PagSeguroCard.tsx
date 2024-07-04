@@ -71,6 +71,7 @@ export function PagSeguroCard() {
         obj.shipping.address.postal_code = sale.person.address.num_cep.replace(/[..-]/g, '')
         obj.charges[0].reference_id = sale.user.user_id
         obj.charges[0].description = "Compras Online"
+        obj.charges[0].payment_method.installments = parseInt(sale.installments)
         obj.charges[0].payment_method.holder.tax_id = sale.person.cpf_pers
         obj.charges[0].amount.value = sale.paySale.toFixed(2).replace(/[.]/g, '')
         obj.charges[0].payment_method.card.encrypted = encrypted

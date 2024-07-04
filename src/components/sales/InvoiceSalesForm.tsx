@@ -3,6 +3,7 @@ import { LogoIn } from '../utils/logoIn/LogoIn';
 import { Globais } from '../globais/Globais';
 
 import '../global-module.css'
+import './InvoiceSalesForm.css'
 
 type TInvoiceSalesForm = {
   children: string | number | readonly string[] | undefined | any;
@@ -14,6 +15,7 @@ type TInvoiceSalesForm = {
   message: string;
   backHomeInvoice: any;
   token: string
+  installments: any;
 }
 
 export function InvoiceSalesForm({
@@ -25,7 +27,8 @@ export function InvoiceSalesForm({
   alert,
   message,
   backHomeInvoice,
-  token
+  token,
+  installments
 }: TInvoiceSalesForm) {
 
   return (
@@ -41,6 +44,13 @@ export function InvoiceSalesForm({
             <dd><b>Total da nota</b> {currencyFormat(children.tNote)}</dd>
             <p><b>Valor a pagar</b> {currencyFormat(children.paySale)}</p>
             <dd>{message}</dd>
+            <dd><b>Parcelar com cartão</b></dd>
+            <select onChange={e => installments(e.target.value)} id='installments'>
+              <option>Credito a vista</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+            </select>
             <input
               type='number'
               name="disc_sale"
@@ -65,11 +75,10 @@ export function InvoiceSalesForm({
           </div>
         </div>
       </div>
-
       <div className="container-global" >
         <div className="main-global">
           <div className='main-global-form'>
-             {/* <label>{alert}</label> */}
+            {/* <label>{alert}</label> */}
             <span><b>Confira seus dados</b></span>
             <dd><b>Nome</b> {children.person.name_pers}</dd>
             <dd><b>Telefone</b> {children.person.phone_pers}</dd>
@@ -82,7 +91,6 @@ export function InvoiceSalesForm({
             <br></br>
             <dd><b>Dados da Filial</b></dd>
             <dd>{Globais.company + ': ' + Globais.CNPJ}</dd>
-            
           </div>
         </div>
       </div>

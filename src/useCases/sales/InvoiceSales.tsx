@@ -25,6 +25,8 @@ export function InvoiceSales() {
     const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
     const [typePay, setTypePay] = useState("")
 
+    const [installments, setInstallments] = useState<number | string>('Credito a vista')
+
     const handleChange = (e: any) => {
         const name = e.target.name;
         const value = e.target.value;
@@ -79,14 +81,18 @@ export function InvoiceSales() {
                         const sum: number = JSON.parse(resSum);
                         sale.tItens = sum;
                         setSum(sum);
-                    }
+                    };
+
                     sale.tNote = sale.tItens - sale.disc_sale;
-                    sale.paySale = sale.tNote
+                    calcInstallments()
+
                     const resItens: any | undefined = localStorage.getItem('i');
                     if (resItens) {
-                        const itens:TItens[] = JSON.parse(resItens);
+                        const itens: TItens[] = JSON.parse(resItens);
                         setItens(itens);
                     }
+                    setInstallments(installments)
+                    sale.installments = installments
                 }
             }
             setTimeout(() => {
@@ -97,6 +103,17 @@ export function InvoiceSales() {
         }
         getSale()
     }, [persons, userLoggedUsername, userLoggedId, sale, tokenMessage, typePay]);
+
+    function calcInstallments() {
+        if (installments === 'Credito a vista')
+            sale.paySale = sale.tNote
+        else if (installments == 2)
+            sale.paySale = sale.tNote + sale.tNote * 3 / 100
+        else if (installments == 3)
+            sale.paySale = sale.tNote + sale.tNote * 6 / 100
+        else if (installments == 4)
+            sale.paySale = sale.tNote + sale.tNote * 9 / 100
+    }
 
     useEffect(() => {
         async function getCeps() {
@@ -154,7 +171,7 @@ export function InvoiceSales() {
                 if (totalNote === 0) {
                     setMsg("Nenhum item no momento !")
                 } else {
-                    if (payment === sale.tNote) {
+                    if (payment >= sale.tNote) {
                         setMsg("Valor á pagar " + currencyFormat(payment))
                         prepareSales();
                         setTimeout(() => {
@@ -173,7 +190,7 @@ export function InvoiceSales() {
     };
 
     function prepareSales() {
-        if (sale.itens.length === 0 ) {
+        if (sale.itens.length === 0) {
             for (let i = 0; itens.length > i; i++) {
                 sale.itens.push(itens[i])
             }
@@ -206,9 +223,11 @@ export function InvoiceSales() {
                 backHomeInvoice={<BackHome />}
                 handleChange={handleChange}
                 handleSubmitCard={handleSubmitCard}
-                handleSubmit={handleSubmit}
+                handleSubmit={installments === "Credito a vista" ? handleSubmit :
+                    () => (setMsg('Pagar parcelado somente com cartão de crédito!!'))}
                 alert=""
                 message={msg}
+                installments={setInstallments}
             >
                 {sale}
             </InvoiceSalesForm>
