@@ -22,7 +22,6 @@ type TSaleList = {
 export function ListSales() {
 
   const { user: isLogged }: any = useContext(AuthContext);
-  const isLoggedParams: number = isLogged[0].id
   const [sales, setSales] = useState<TSaleList[]>([]);
   const [created_int, setInt] = useState<Date | any>('')
   const [created_end, setEnd] = useState<Date | any>('')
@@ -91,7 +90,7 @@ export function ListSales() {
             total_prod={currencyFormat(sale.val_rec)}
             disc_sale={currencyFormat(sale.disc_sale)}
             total_note={currencyFormat(sale.total_sale)}
-            issueNote={<a href={Globais.URL_NOTE + '/' + sale.id_sale}>Emitir a nota</a>}
+            issueNote={<a href={Globais.URL_NOTE + '/' + sale.id_sale}>Imprimir</a>}
           />
         )))}
     </>

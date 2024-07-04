@@ -1,5 +1,3 @@
-import '../global-module.css'
-
 type Props = {
     id: number;
     create: Date | any;
@@ -11,19 +9,37 @@ type Props = {
 }
 
 export function SalesList(props: Props) {
+
+    const NFeStatus:JSX.Element = <img src="img/NFe/status/autorizada.ico" alt="img NFe autorizada"></img>
+
     return (
-        <div className='container-global'>
-            <div className='main-global'>
-                <ul className='main-global-form'>
-                    <li><b>Venda</b> {props.id}</li>
-                    <li><b>Emissão</b> {props.create}</li>
-                    <li><b>Cliente</b> {props.name}</li>
-                    <li><b>Total produtos </b>{props.total_prod}</li>
-                    <li><b>Desconto</b> {props.disc_sale}</li>
-                    <li><b>Total nota</b> {props.total_note}</li>
-                    <li>{props.issueNote}</li>
-                </ul>
-            </div>
-        </div>
+        <table className='table bg-light mt-1 container'>
+        <thead>
+            <tr>
+                <th className='text-center'>NOTA</th>
+                <th className="text-center">NFe</th>
+                <th className="text-center">STATUS</th>
+                <th className='text-center'>EMISSÃO</th>
+                <th className='text-center'>CLIENTE</th>
+                <th className='text-center'>T.PROD</th>
+                <th className='text-center'>DESC.</th>
+                <th className="text-center">T.NOTA</th>
+                <th className="text-center">IMPRIMIR</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr key={props.id}>
+                <th className='text-center'>{props.id}</th>
+                <th className="text-center">{props.id}</th>
+                <th className="text-center">{NFeStatus}</th>
+                <td className='text-center'>{props.create}</td>
+                <td className='text-center'>{props.name}</td>
+                <td className='text-center'>{props.total_prod}</td>
+                <td className='text-center'>{props.disc_sale}</td>
+                <td className='text-center'>{props.total_note}</td>
+                <td className='text-center'>{props.issueNote}</td>
+            </tr>
+        </tbody>
+    </table>
     )
 }
