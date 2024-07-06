@@ -64,7 +64,7 @@ export function ProductForm({
         <ul>
             <li className='m-1'>Marca {listBrand}</li>
             <li className='m-1'>Setor {listSector}</li>
-            <li className='m-1'>Unidade de medida {listUn}</li>
+            <li className='m-1'>Unidade medida {listUn}</li>
         </ul>
 
         <input

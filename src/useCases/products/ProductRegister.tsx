@@ -60,7 +60,8 @@ export function FormProduct() {
             const unMed: TUnMed[] = [
                 { id: 1, un_med: 'UN' },
                 { id: 2, un_med: 'PC' },
-                { id: 3, un_med: 'PCT' }
+                { id: 3, un_med: 'PCT' },
+                { id: 4, un_med: 'KIT' }
             ];
             setUnMed(unMed)
         }
@@ -84,7 +85,7 @@ export function FormProduct() {
     async function handleSubmit(e: Event) {
         e.preventDefault();
         if (ProductValFields()) {
-            // postRegister(product, 'product')
+            postRegister(product, 'product')
             if(alert_ !== "")
             setAlert_('')
         }
@@ -92,7 +93,7 @@ export function FormProduct() {
 
     return (
         <>
-            <p>{JSON.stringify(product)}</p>
+            {/* <p>{JSON.stringify(product)}</p> */}
             <Dashboard />
             <ProductForm
                 handleSubmit={handleSubmit}
