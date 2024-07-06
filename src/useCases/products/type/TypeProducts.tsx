@@ -10,6 +10,7 @@ export type TProductRegister = {
     fk_sector: number | any;
     bar_code: string;
     image?: | string;
+    classe?:string;
 };
 
 export type TItem = {

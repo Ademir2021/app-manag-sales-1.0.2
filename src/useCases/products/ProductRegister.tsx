@@ -17,7 +17,7 @@ export function FormProduct() {
         id_product: 0, descric_product: '',
         val_max_product: 0, val_min_product: 0,
         fk_brand: 1, fk_sector: 1,
-        bar_code: '', image: ''
+        bar_code: '', image: '',classe:'Sem classe'
     });
 
     product.fk_brand = parseInt(selectedIdBrand);
@@ -31,9 +31,9 @@ export function FormProduct() {
 
     async function handleSubmit(e: Event) {
         e.preventDefault();
-        console.log(product)
+        // console.log(product)
         if (ProductValFields(product)) {
-            postRegister(product, 'product')
+            // postRegister(product, 'product')
         }
     };
 
@@ -60,6 +60,7 @@ export function FormProduct() {
 
     return (
         <>
+        <p>{JSON.stringify(product)}</p>
             <Dashboard />
             <ProductForm
                 handleSubmit={handleSubmit}
