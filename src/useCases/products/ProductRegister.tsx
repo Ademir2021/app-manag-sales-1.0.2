@@ -1,27 +1,32 @@
 import { useState, useEffect } from "react";
 import { ProductForm } from '../../components/products/ProductForm';
-import { ProductValFields } from "../../components/utils/ValFields/ValFields";
 import { Dashboard } from "../dashboard/Dashboard";
 import { postRegister } from "../../services/handleService";
-import { TProductRegister, TBrand, TSector } from "./type/TypeProducts"
+import { TProductRegister, TBrand, TSector, TUnMed } from "./type/TypeProducts"
 import api from "../../services/api/api";
 
 export function FormProduct() {
 
+    const [alert_, setAlert_] = useState<string>("")
+
     const [brands, setBrand] = useState<TBrand[]>([]);
     const [sectors, setSector] = useState<TSector[]>([]);
+    const [unMed, setUnMed] = useState<TUnMed[]>([])
+
     const [selectedIdBrand, setSelectedIdBrand] = useState<any>(1);
     const [selectedIdSector, setSelectedIdSector] = useState<any>(1);
+    const [selectedIdUnMed, setSelectedIdUn] = useState<any>(1);
 
     const [product, setProduct] = useState<TProductRegister>({
         id_product: 0, descric_product: '',
         val_max_product: 0, val_min_product: 0,
-        fk_brand: 1, fk_sector: 1,
-        bar_code: '', image: '',classe:'Sem classe'
+        fk_brand: 1, fk_sector: 1, fk_un_med: 1,
+        bar_code: '', image: '', classe: 'Sem classe'
     });
 
     product.fk_brand = parseInt(selectedIdBrand);
     product.fk_sector = parseInt(selectedIdSector);
+    product.fk_un_med = parseInt(selectedIdUnMed)
 
     const handleChange = (e: any) => {
         const name = e.target.name;
@@ -29,13 +34,6 @@ export function FormProduct() {
         setProduct(values => ({ ...values, [name]: value }))
     };
 
-    async function handleSubmit(e: Event) {
-        e.preventDefault();
-        // console.log(product)
-        if (ProductValFields(product)) {
-            // postRegister(product, 'product')
-        }
-    };
 
     useEffect(() => {
         async function getBrands() {
@@ -48,7 +46,6 @@ export function FormProduct() {
     }, [brands])
 
     useEffect(() => {
-
         async function getSectors() {
             try {
                 await api.get<TSector[]>('/sectors')
@@ -58,14 +55,49 @@ export function FormProduct() {
         getSectors()
     }, [sectors])
 
+    useEffect(() => {
+     async function getUnMed() {
+            const unMed: TUnMed[] = [
+                { id: 1, un_med: 'UN' },
+                { id: 2, un_med: 'PC' },
+                { id: 3, un_med: 'PCT' }
+            ];
+            setUnMed(unMed)
+        }
+        getUnMed()
+    }, [unMed]);
+
+    function ProductValFields() {
+        let content = "Campo obrigatório: "
+        let msg = ""
+        if (product.descric_product === "") { msg += content + "produto, " };
+        if (product.val_max_product === 0) { msg += content + "valor max, " };
+        if (product.val_min_product === 0) { msg += content + "valor min, " };
+        if (product.bar_code === "") { msg += content + "código de barras, " };
+        if (msg !== "") {
+            setAlert_(msg)
+            return false;
+        };
+        return true;
+    };
+
+    async function handleSubmit(e: Event) {
+        e.preventDefault();
+        if (ProductValFields()) {
+            // postRegister(product, 'product')
+            if(alert_ !== "")
+            setAlert_('')
+        }
+    };
+
     return (
         <>
-        <p>{JSON.stringify(product)}</p>
+            <p>{JSON.stringify(product)}</p>
             <Dashboard />
             <ProductForm
                 handleSubmit={handleSubmit}
                 handleChange={handleChange}
-                alert=""
+                alert={alert_}
                 message=""
                 listBrand={<select
                     onChange={e => setSelectedIdBrand(e.target.value)}
@@ -87,6 +119,17 @@ export function FormProduct() {
                             value={sector.id_sector}
                         >
                             {sector.name_sector}
+                        </option>))}</select>}
+
+                listUn={<select
+                    onChange={e => setSelectedIdUn(e.target.value)}
+                >
+                    {unMed.map((un: TUnMed) => (
+                        <option
+                            key={un.id}
+                            value={un.id}
+                        >
+                            {un.un_med}
                         </option>))}</select>}
             >
                 {product}

@@ -190,7 +190,7 @@ export function StoreHome() {
             }
         }
     }
-
+    
     return (
         <>
             <Header

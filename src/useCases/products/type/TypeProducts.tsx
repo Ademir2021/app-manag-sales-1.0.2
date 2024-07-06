@@ -2,15 +2,16 @@ export type TProductRegister = {
     id_product: number;
     created_at?: Date | any;
     updated_at?: Date | any | null;
-    descric_product: string | number;
+    descric_product: string | number
     amount?: number | undefined | any;
     val_max_product: number;
     val_min_product: number;
     fk_brand: number | any;
     fk_sector: number | any;
+    fk_un_med?:number | any;
     bar_code: string;
     image?: | string;
-    classe?:string;
+    classe?:string; //testes
 };
 
 export type TItem = {
@@ -36,4 +37,9 @@ export type TBrand = {
 export type TSector = {
     id_sector: number;
     name_sector: string;
+};
+
+export type TUnMed = {
+    id: number;
+    un_med: string;
 };
