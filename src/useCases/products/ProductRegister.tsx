@@ -2,31 +2,34 @@ import { useState, useEffect } from "react";
 import { ProductForm } from '../../components/products/ProductForm';
 import { Dashboard } from "../dashboard/Dashboard";
 import { postRegister } from "../../services/handleService";
-import { TProductRegister, TBrand, TSector, TUnMed, TClasse, TGrupoFiscal } from "./type/TypeProducts"
+import { TProductRegister, TBrand, TSector, TUnMed, TClasse, TGrupoFiscal, TTipoProd , TNcm} from "./type/TypeProducts"
+import ncmJSON from './Tabela_NCM_Vigente_20240707.json'
 import api from "../../services/api/api";
 
 export function FormProduct() {
 
+    const [ncms_] = useState<any>(ncmJSON)
     const [alert_, setAlert_] = useState<string>("")
-
     const [brands, setBrand] = useState<TBrand[]>([]);
     const [sectors, setSector] = useState<TSector[]>([]);
     const [unMeds, setUnMeds] = useState<TUnMed[]>([])
     const [classes, setClasses] = useState<TClasse[]>([])
     const [gruposFiscais, setGruposFiscais] = useState<TGrupoFiscal[]>([])
-
+    const [tiposProds, setTiposProds] = useState<TTipoProd[]>([])
+    const [ncms, setNcms] = useState<TNcm[]>([])
     const [selectedIdBrand, setSelectedIdBrand] = useState<any>(1);
     const [selectedIdSector, setSelectedIdSector] = useState<any>(1);
     const [selectedIdUnMed, setSelectedIdUn] = useState<any>(1);
     const [selectedIdClasse, setSelectedIdClasse] = useState<any>(1);
     const [selectedIdGrupoFiscal, setSelectedIdGrupoFiscal] = useState<any>(1)
-
+    const [selectedIdTipoProd, setSelectdIdTipoProd] = useState<any>(1)
+    const [selectedIdNcm, setSelectdIdNcm] = useState<any>('0000.0')
     const [product, setProduct] = useState<TProductRegister>({
         id_product: 0, descric_product: '',
-        val_max_product: 0, val_min_product: 0,
+        val_max_product: 0.00, val_min_product: 0.00,
         fk_brand: 1, fk_sector: 1, fk_un_med: 1,
         bar_code: '', image: '', fk_classe: 1,
-        fk_grupo_fiscal: 1
+        fk_grupo_fiscal: 1, fk_tipo_prod: 1,ncm:''
     });
 
     product.fk_brand = parseInt(selectedIdBrand);
@@ -34,6 +37,8 @@ export function FormProduct() {
     product.fk_un_med = parseInt(selectedIdUnMed)
     product.fk_classe = parseInt(selectedIdClasse)
     product.fk_grupo_fiscal = parseInt(selectedIdGrupoFiscal)
+    product.fk_tipo_prod = parseInt(selectedIdTipoProd)
+    product.ncm = selectedIdNcm
 
     const handleChange = (e: any) => {
         const name = e.target.name;
@@ -90,14 +95,43 @@ export function FormProduct() {
     useEffect(() => {
         async function getGruposFiscais() {
             const gruposFiscais: TGrupoFiscal[] = [
-                { id: 1, name_grupo_fiscal: 'Mercadorias Tributadas normalmente', tabela: 1 },
-                { id: 2, name_grupo_fiscal: 'Mercadorias Trib. por Substituição Tributaria', tabela: 2 },
-                { id: 3, name_grupo_fiscal: 'Serviços Tributado pelo ISS', tabela: 3 }
+                { id: 1, name_grupo_fiscal: 'Mercadorias Tributadas normalmente', fk_tabela_trib: 1 },
+                { id: 2, name_grupo_fiscal: 'Mercadorias Trib. por Substituição Tributaria', fk_tabela_trib: 2 },
+                { id: 3, name_grupo_fiscal: 'Serviços Tributado pelo ISS', fk_tabela_trib: 3 }
             ];
             setGruposFiscais(gruposFiscais)
         };
         getGruposFiscais()
     }, [gruposFiscais]);
+
+    useEffect(() => {
+        async function getTiposProds() {
+            const tiposProds: TTipoProd[] = [
+                { id: 1, name_tipo_prod: '00 - Mercadoria para Revenda' },
+                { id: 2, name_tipo_prod: '01 - Materia Prima' },
+                { id: 3, name_tipo_prod: '02 - Embalagem' },
+                { id: 4, name_tipo_prod: '03 - Produto em Processo' },
+                { id: 5, name_tipo_prod: '04 - Produto Acabado' },
+                { id: 6, name_tipo_prod: '05 - SubProduto' },
+                { id: 7, name_tipo_prod: '06 - Produto Intermediario' },
+                { id: 8, name_tipo_prod: '07 - Material de Uso e Consumo' },
+                { id: 9, name_tipo_prod: '08 - Ativo Imobilizado' },
+                { id: 10, name_tipo_prod: '09 - Servicos' },
+                { id: 11, name_tipo_prod: '10 - Outros Insumos' },
+                { id: 12, name_tipo_prod: '99 - Outras' }
+            ];
+            setTiposProds(tiposProds)
+        };
+        getTiposProds()
+    }, [tiposProds])
+
+    useEffect(()=>{
+        async function getNcms(){
+            const resp =  await ncms_.Nomenclaturas;
+            setNcms(resp)
+        };
+        getNcms()
+    })
 
     function ProductValFields() {
         let content = "Campo obrigatório: "
@@ -124,7 +158,7 @@ export function FormProduct() {
 
     return (
         <>
-            <p>{JSON.stringify(product)}</p>
+            {/* <p>{JSON.stringify(product)}</p> */}
             <Dashboard />
             <ProductForm
                 handleSubmit={handleSubmit}
@@ -183,6 +217,30 @@ export function FormProduct() {
                     >
                         {grupoFiscal.name_grupo_fiscal}
                     </option>))}</select>}
+
+                listTipoProd={<select
+                    onChange={e => setSelectdIdTipoProd(e.target.value)}
+                >{tiposProds.map((tipoProd: TTipoProd) => (
+                    <option
+                        key={tipoProd.id}
+                        value={tipoProd.id}
+                    >
+                        {tipoProd.name_tipo_prod}
+                    </option>
+                ))}</select>}
+
+                listNcm={<select
+                    onChange={e => setSelectdIdNcm(e.target.value)}
+                >{ncms.map((ncm:TNcm)=>(
+                    <option
+                    key={ncm.Codigo}
+                    value={ncm.Codigo}
+                    >
+                        {ncm.Descricao.substring(0, 28).replace(/[()-<i>]/g, '')}
+                    </option>
+                ))}
+
+                </select>}
             >
                 {product}
             </ProductForm>

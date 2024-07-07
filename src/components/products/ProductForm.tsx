@@ -6,15 +6,17 @@ import './ProductForm.css'
 
 type IProdctForm = {
     children: React.ChangeEventHandler<HTMLInputElement> | undefined | any;
-    handleChange: React.ChangeEventHandler<HTMLInputElement> | any
-    handleSubmit: any
+    handleChange: React.ChangeEventHandler<HTMLInputElement> | any;
+    handleSubmit: any;
     alert: string;
-    message: string
+    message: string;
     listBrand: any;
     listSector: any;
-    listUn:any
-    listClasse:any
+    listUn:any;
+    listClasse:any;
     listGrupoFiscal:any;
+    listTipoProd:any
+    listNcm:any;
 }
 
 export function ProductForm({
@@ -27,7 +29,9 @@ export function ProductForm({
     listSector,
     listUn,
     listClasse,
-    listGrupoFiscal
+    listGrupoFiscal,
+    listTipoProd,
+    listNcm
 }: IProdctForm) {
 
     const [menu, setMenu] = useState("geral")
@@ -90,21 +94,16 @@ export function ProductForm({
     const fiscal = <div>
          <li className='' id='fiscal-classe-select'>Classe {listClasse}</li>
          <li className='' id='fiscal-classe-select'>Grupo Fiscal {listGrupoFiscal}</li>
-        <input
-            type="text"
-            name="ncm"
-            placeholder='NCM'
-            value={children.ncm || ""}
-            onChange={handleChange}
-        />
+         <li className='' id='fiscal-classe-select'>Tipo de Produto {listTipoProd}</li>
+         <li className='' id='fiscal-classe-select'>NCM do Produto{listNcm}</li>
 
-        <input
+        {/* <input
             type="text"
             name="teste"
             placeholder='TESTE'
             value={children.teste || ""}
             onChange={handleChange}
-        />
+        /> */}
     </div>
 
     return (

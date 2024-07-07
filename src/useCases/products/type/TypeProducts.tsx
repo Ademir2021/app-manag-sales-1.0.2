@@ -8,11 +8,13 @@ export type TProductRegister = {
     val_min_product: number;
     fk_brand: number | any;
     fk_sector: number | any;
-    fk_un_med?:number | any;
+    fk_un_med?: number | any;
     bar_code: string;
     image?: | string;
-    fk_classe?:number;
-    fk_grupo_fiscal?:number
+    fk_classe?: number;
+    fk_grupo_fiscal?: number
+    fk_tipo_prod?:number
+    ncm?:string
 };
 
 export type TItem = {
@@ -45,13 +47,23 @@ export type TUnMed = {
     un_med: string;
 };
 
-export type TClasse ={
-    id:number;
-    nome_classe:string;
+export type TClasse = {
+    id: number;
+    nome_classe: string;
 };
 
-export type TGrupoFiscal ={
-    id:number;
-    name_grupo_fiscal:string;
-    tabela:number;
+export type TGrupoFiscal = {
+    id: number;
+    name_grupo_fiscal: string;
+    fk_tabela_trib: number;
+};
+
+export type TTipoProd = {
+    id: number;
+    name_tipo_prod: string;
+};
+
+export type TNcm = {
+    Codigo:string;
+    Descricao:string
 }
