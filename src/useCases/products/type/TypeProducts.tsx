@@ -11,7 +11,8 @@ export type TProductRegister = {
     fk_un_med?:number | any;
     bar_code: string;
     image?: | string;
-    classe?:string; //testes
+    fk_classe?:number;
+    fk_grupo_fiscal?:number
 };
 
 export type TItem = {
@@ -43,3 +44,14 @@ export type TUnMed = {
     id: number;
     un_med: string;
 };
+
+export type TClasse ={
+    id:number;
+    nome_classe:string;
+};
+
+export type TGrupoFiscal ={
+    id:number;
+    name_grupo_fiscal:string;
+    tabela:number;
+}

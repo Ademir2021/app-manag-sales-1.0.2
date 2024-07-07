@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { ProductForm } from '../../components/products/ProductForm';
 import { Dashboard } from "../dashboard/Dashboard";
 import { postRegister } from "../../services/handleService";
-import { TProductRegister, TBrand, TSector, TUnMed } from "./type/TypeProducts"
+import { TProductRegister, TBrand, TSector, TUnMed, TClasse, TGrupoFiscal } from "./type/TypeProducts"
 import api from "../../services/api/api";
 
 export function FormProduct() {
@@ -11,29 +11,35 @@ export function FormProduct() {
 
     const [brands, setBrand] = useState<TBrand[]>([]);
     const [sectors, setSector] = useState<TSector[]>([]);
-    const [unMed, setUnMed] = useState<TUnMed[]>([])
+    const [unMeds, setUnMeds] = useState<TUnMed[]>([])
+    const [classes, setClasses] = useState<TClasse[]>([])
+    const [gruposFiscais, setGruposFiscais] = useState<TGrupoFiscal[]>([])
 
     const [selectedIdBrand, setSelectedIdBrand] = useState<any>(1);
     const [selectedIdSector, setSelectedIdSector] = useState<any>(1);
     const [selectedIdUnMed, setSelectedIdUn] = useState<any>(1);
+    const [selectedIdClasse, setSelectedIdClasse] = useState<any>(1);
+    const [selectedIdGrupoFiscal, setSelectedIdGrupoFiscal] = useState<any>(1)
 
     const [product, setProduct] = useState<TProductRegister>({
         id_product: 0, descric_product: '',
         val_max_product: 0, val_min_product: 0,
         fk_brand: 1, fk_sector: 1, fk_un_med: 1,
-        bar_code: '', image: '', classe: 'Sem classe'
+        bar_code: '', image: '', fk_classe: 1,
+        fk_grupo_fiscal: 1
     });
 
     product.fk_brand = parseInt(selectedIdBrand);
     product.fk_sector = parseInt(selectedIdSector);
     product.fk_un_med = parseInt(selectedIdUnMed)
+    product.fk_classe = parseInt(selectedIdClasse)
+    product.fk_grupo_fiscal = parseInt(selectedIdGrupoFiscal)
 
     const handleChange = (e: any) => {
         const name = e.target.name;
         const value = e.target.value;
         setProduct(values => ({ ...values, [name]: value }))
     };
-
 
     useEffect(() => {
         async function getBrands() {
@@ -56,17 +62,42 @@ export function FormProduct() {
     }, [sectors])
 
     useEffect(() => {
-     async function getUnMed() {
-            const unMed: TUnMed[] = [
+        async function getUnMeds() {
+            const unMeds: TUnMed[] = [
                 { id: 1, un_med: 'UN' },
                 { id: 2, un_med: 'PC' },
                 { id: 3, un_med: 'PCT' },
                 { id: 4, un_med: 'KIT' }
             ];
-            setUnMed(unMed)
-        }
-        getUnMed()
-    }, [unMed]);
+            setUnMeds(unMeds)
+        };
+        getUnMeds()
+    }, [unMeds]);
+
+    useEffect(() => {
+        async function getClasses() {
+            const classes: TClasse[] = [
+                { id: 1, nome_classe: 'Sem Classe' },
+                { id: 2, nome_classe: 'Informatica' },
+                { id: 3, nome_classe: 'Celulares' },
+                { id: 4, nome_classe: 'Telecom' }
+            ];
+            setClasses(classes)
+        };
+        getClasses()
+    }, [classes]);
+
+    useEffect(() => {
+        async function getGruposFiscais() {
+            const gruposFiscais: TGrupoFiscal[] = [
+                { id: 1, name_grupo_fiscal: 'Mercadorias Tributadas normalmente', tabela: 1 },
+                { id: 2, name_grupo_fiscal: 'Mercadorias Trib. por Substituição Tributaria', tabela: 2 },
+                { id: 3, name_grupo_fiscal: 'Serviços Tributado pelo ISS', tabela: 3 }
+            ];
+            setGruposFiscais(gruposFiscais)
+        };
+        getGruposFiscais()
+    }, [gruposFiscais]);
 
     function ProductValFields() {
         let content = "Campo obrigatório: "
@@ -86,14 +117,14 @@ export function FormProduct() {
         e.preventDefault();
         if (ProductValFields()) {
             postRegister(product, 'product')
-            if(alert_ !== "")
-            setAlert_('')
+            if (alert_ !== "")
+                setAlert_('')
         }
     };
 
     return (
         <>
-            {/* <p>{JSON.stringify(product)}</p> */}
+            <p>{JSON.stringify(product)}</p>
             <Dashboard />
             <ProductForm
                 handleSubmit={handleSubmit}
@@ -125,13 +156,33 @@ export function FormProduct() {
                 listUn={<select
                     onChange={e => setSelectedIdUn(e.target.value)}
                 >
-                    {unMed.map((un: TUnMed) => (
+                    {unMeds.map((un: TUnMed) => (
                         <option
                             key={un.id}
                             value={un.id}
                         >
                             {un.un_med}
                         </option>))}</select>}
+
+                listClasse={<select
+                    onChange={e => setSelectedIdClasse(e.target.value)}
+                >{classes.map((classe: TClasse) => (
+                    <option
+                        key={classe.id}
+                        value={classe.id}
+                    >
+                        {classe.nome_classe}
+                    </option>))}</select>}
+
+                listGrupoFiscal={<select
+                    onChange={e => setSelectedIdGrupoFiscal(e.target.value)}
+                >{gruposFiscais.map((grupoFiscal: TGrupoFiscal) => (
+                    <option
+                        key={grupoFiscal.id}
+                        value={grupoFiscal.id}
+                    >
+                        {grupoFiscal.name_grupo_fiscal}
+                    </option>))}</select>}
             >
                 {product}
             </ProductForm>
