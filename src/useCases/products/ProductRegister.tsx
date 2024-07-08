@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { ProductForm } from '../../components/products/ProductForm';
 import { Dashboard } from "../dashboard/Dashboard";
 import { postRegister } from "../../services/handleService";
-import { TProductRegister, TBrand, TSector, TUnMed, TClasse, TGrupoFiscal, TTipoProd, TNcm } from "./type/TypeProducts"
+import { TProductRegister, TBrand, TSector, TUnMed, TClasseProd, TGrupoFiscal, TTipoProd, TNcm } from "./type/TypeProducts"
 import ncmJSON from './Tabela_NCM_Vigente_20240707.json'
 import api from "../../services/api/api";
 
@@ -12,7 +12,7 @@ export function FormProduct() {
     const [brands, setBrand] = useState<TBrand[]>([]);
     const [sectors, setSector] = useState<TSector[]>([]);
     const [unMeds, setUnMeds] = useState<TUnMed[]>([])
-    const [classes, setClasses] = useState<TClasse[]>([])
+    const [classesProds, setClassesProds] = useState<TClasseProd[]>([])
     const [gruposFiscais, setGruposFiscais] = useState<TGrupoFiscal[]>([])
     const [tiposProds, setTiposProds] = useState<TTipoProd[]>([])
     const [ncms_] = useState<any>(ncmJSON)
@@ -20,7 +20,7 @@ export function FormProduct() {
     const [selectedIdBrand, setSelectedIdBrand] = useState<any>(1);
     const [selectedIdSector, setSelectedIdSector] = useState<any>(1);
     const [selectedIdUnMed, setSelectedIdUn] = useState<any>(1);
-    const [selectedIdClasse, setSelectedIdClasse] = useState<any>(1);
+    const [selectedIdClasseProd, setSelectedIdClasseProd] = useState<any>(1);
     const [selectedIdGrupoFiscal, setSelectedIdGrupoFiscal] = useState<any>(1)
     const [selectedIdTipoProd, setSelectdIdTipoProd] = useState<any>(1)
     const [selectedIdNcm, setSelectdIdNcm] = useState<any>('0000.0')
@@ -35,7 +35,7 @@ export function FormProduct() {
     product.fk_brand = parseInt(selectedIdBrand);
     product.fk_sector = parseInt(selectedIdSector);
     product.fk_un_med = parseInt(selectedIdUnMed)
-    product.fk_classe = parseInt(selectedIdClasse)
+    product.fk_classe = parseInt(selectedIdClasseProd)
     product.fk_grupo_fiscal = parseInt(selectedIdGrupoFiscal)
     product.fk_tipo_prod = parseInt(selectedIdTipoProd)
     product.ncm = selectedIdNcm.replace(/[().]/g, '')
@@ -69,10 +69,10 @@ export function FormProduct() {
     useEffect(() => {
         async function getUnMeds() {
             const unMeds: TUnMed[] = [
-                { id: 1, un_med: 'UN' },
-                { id: 2, un_med: 'PC' },
-                { id: 3, un_med: 'PCT' },
-                { id: 4, un_med: 'KIT' }
+                { id_un: 1, un_med: 'UN' },
+                { id_un: 2, un_med: 'PC' },
+                { id_un: 3, un_med: 'PCT' },
+                { id_un: 4, un_med: 'KIT' }
             ];
             setUnMeds(unMeds)
         };
@@ -80,24 +80,24 @@ export function FormProduct() {
     }, [unMeds]);
 
     useEffect(() => {
-        async function getClasses() {
-            const classes: TClasse[] = [
-                { id: 1, nome_classe: 'Sem Classe' },
-                { id: 2, nome_classe: 'Informatica' },
-                { id: 3, nome_classe: 'Celulares' },
-                { id: 4, nome_classe: 'Telecom' }
+        async function getClassesProds() {
+            const classesProds: TClasseProd[] = [
+                { id_classe: 1, name_classe: 'Sem Classe' },
+                { id_classe: 2, name_classe: 'Informatica' },
+                { id_classe: 3, name_classe: 'Celulares' },
+                { id_classe: 4, name_classe: 'Telecom' }
             ];
-            setClasses(classes)
+            setClassesProds(classesProds)
         };
-        getClasses()
-    }, [classes]);
+        getClassesProds()
+    }, [classesProds]);
 
     useEffect(() => {
         async function getGruposFiscais() {
             const gruposFiscais: TGrupoFiscal[] = [
-                { id: 1, name_grupo_fiscal: 'Mercadorias Tributadas normalmente', fk_tabela_trib: 1 },
-                { id: 2, name_grupo_fiscal: 'Mercadorias Trib. por Substituição Tributaria', fk_tabela_trib: 2 },
-                { id: 3, name_grupo_fiscal: 'Serviços Tributado pelo ISS', fk_tabela_trib: 3 }
+                { id_grupo_fiscal: 1, name_grupo_fiscal: 'Mercadorias Tributadas normalmente', fk_tabela_trib: 1 },
+                { id_grupo_fiscal: 2, name_grupo_fiscal: 'Mercadorias Trib. por Substituicoo Tributaria', fk_tabela_trib: 2 },
+                { id_grupo_fiscal: 3, name_grupo_fiscal: 'Servicos Tributado pelo ISS', fk_tabela_trib: 3 }
             ];
             setGruposFiscais(gruposFiscais)
         };
@@ -107,18 +107,18 @@ export function FormProduct() {
     useEffect(() => {
         async function getTiposProds() {
             const tiposProds: TTipoProd[] = [
-                { id: 1, name_tipo_prod: '00 - Mercadoria para Revenda' },
-                { id: 2, name_tipo_prod: '01 - Materia Prima' },
-                { id: 3, name_tipo_prod: '02 - Embalagem' },
-                { id: 4, name_tipo_prod: '03 - Produto em Processo' },
-                { id: 5, name_tipo_prod: '04 - Produto Acabado' },
-                { id: 6, name_tipo_prod: '05 - SubProduto' },
-                { id: 7, name_tipo_prod: '06 - Produto Intermediario' },
-                { id: 8, name_tipo_prod: '07 - Material de Uso e Consumo' },
-                { id: 9, name_tipo_prod: '08 - Ativo Imobilizado' },
-                { id: 10, name_tipo_prod: '09 - Servicos' },
-                { id: 11, name_tipo_prod: '10 - Outros Insumos' },
-                { id: 12, name_tipo_prod: '99 - Outras' }
+                { id_tipo: 1, name_tipo: '00 - Mercadoria para Revenda' },
+                { id_tipo: 2, name_tipo: '01 - Materia Prima' },
+                { id_tipo: 3, name_tipo: '02 - Embalagem' },
+                { id_tipo: 4, name_tipo: '03 - Produto em Processo' },
+                { id_tipo: 5, name_tipo: '04 - Produto Acabado' },
+                { id_tipo: 6, name_tipo: '05 - SubProduto' },
+                { id_tipo: 7, name_tipo: '06 - Produto Intermediario' },
+                { id_tipo: 8, name_tipo: '07 - Material de Uso e Consumo' },
+                { id_tipo: 9, name_tipo: '08 - Ativo Imobilizado' },
+                { id_tipo: 10, name_tipo: '09 - Servicos' },
+                { id_tipo: 11, name_tipo: '10 - Outros Insumos' },
+                { id_tipo: 12, name_tipo: '99 - Outras' }
             ];
             setTiposProds(tiposProds)
         };
@@ -158,7 +158,7 @@ export function FormProduct() {
 
     return (
         <>
-            {/* <p>{JSON.stringify(product.ncm)}</p> */}
+            {/* <label>{JSON.stringify(product)}</label> */}
             <Dashboard />
             <ProductForm
                 handleSubmit={handleSubmit}
@@ -192,28 +192,28 @@ export function FormProduct() {
                 >
                     {unMeds.map((un: TUnMed) => (
                         <option
-                            key={un.id}
-                            value={un.id}
+                            key={un.id_un}
+                            value={un.id_un}
                         >
                             {un.un_med}
                         </option>))}</select>}
 
                 listClasse={<select
-                    onChange={e => setSelectedIdClasse(e.target.value)}
-                >{classes.map((classe: TClasse) => (
+                    onChange={e => setSelectedIdClasseProd(e.target.value)}
+                >{classesProds.map((classe: TClasseProd) => (
                     <option
-                        key={classe.id}
-                        value={classe.id}
+                        key={classe.id_classe}
+                        value={classe.id_classe}
                     >
-                        {classe.nome_classe}
+                        {classe.name_classe}
                     </option>))}</select>}
 
                 listGrupoFiscal={<select
                     onChange={e => setSelectedIdGrupoFiscal(e.target.value)}
                 >{gruposFiscais.map((grupoFiscal: TGrupoFiscal) => (
                     <option
-                        key={grupoFiscal.id}
-                        value={grupoFiscal.id}
+                        key={grupoFiscal.id_grupo_fiscal}
+                        value={grupoFiscal.id_grupo_fiscal}
                     >
                         {grupoFiscal.name_grupo_fiscal}
                     </option>))}</select>}
@@ -222,10 +222,10 @@ export function FormProduct() {
                     onChange={e => setSelectdIdTipoProd(e.target.value)}
                 >{tiposProds.map((tipoProd: TTipoProd) => (
                     <option
-                        key={tipoProd.id}
-                        value={tipoProd.id}
+                        key={tipoProd.id_tipo}
+                        value={tipoProd.id_tipo}
                     >
-                        {tipoProd.name_tipo_prod}
+                        {tipoProd.name_tipo}
                     </option>
                 ))}</select>}
 

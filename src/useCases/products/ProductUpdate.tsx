@@ -223,8 +223,13 @@ export function ProductUpdate() {
                         val_min={currencyFormat(product.val_min_product)}
                         brand={nameBrands(product.fk_brand)}
                         sector={nameSector(product.fk_sector)}
+                        un_med="Unidade de Medida"
                         bar_code={product.bar_code}
                         image={product.image}
+                        classe="Classe"
+                        grupo_fiscal={'Grupo Fiscal'}
+                        tipo_prod="Tipo de Produto"
+                        ncm={product.ncm}
                         update={<button onClick={() =>
                             listUpdate(product)}>Atualizar</button>}
                     />

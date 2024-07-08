@@ -11,9 +11,9 @@ export type TProductRegister = {
     fk_un_med?: number | any;
     bar_code: string;
     image?: | string;
-    fk_classe?: number;
-    fk_grupo_fiscal?: number
-    fk_tipo_prod?:number
+    fk_classe?: number | any;
+    fk_grupo_fiscal?: number | any
+    fk_tipo_prod?:number | any
     ncm?:string
 };
 
@@ -43,24 +43,24 @@ export type TSector = {
 };
 
 export type TUnMed = {
-    id: number;
+    id_un: number;
     un_med: string;
 };
 
-export type TClasse = {
-    id: number;
-    nome_classe: string;
+export type TClasseProd = {
+    id_classe: number;
+    name_classe: string;
 };
 
 export type TGrupoFiscal = {
-    id: number;
+    id_grupo_fiscal: number;
     name_grupo_fiscal: string;
     fk_tabela_trib: number;
 };
 
 export type TTipoProd = {
-    id: number;
-    name_tipo_prod: string;
+    id_tipo: number;
+    name_tipo: string;
 };
 
 export type TNcm = {

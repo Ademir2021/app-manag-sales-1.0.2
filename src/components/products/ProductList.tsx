@@ -10,9 +10,14 @@ type Props = {
     val_min: string | number;
     brand: string | undefined;
     sector: string | undefined;
+    un_med:string |undefined;
     bar_code: string;
     update: any,
     image?: string
+    classe: string | undefined;
+    grupo_fiscal: string | undefined 
+    tipo_prod: string | undefined
+    ncm:string | undefined
 }
 
 export function ProductList(props: Props) {
@@ -28,8 +33,13 @@ export function ProductList(props: Props) {
                     <li><b>Valor mínimo</b> {props.val_min}</li>
                     <li><b>Marca</b> {props.brand}</li>
                     <li><b>Setor</b> {props.sector}</li>
+                    <li><b>Un Medida</b> {props.un_med}</li>
                     <li><b>Barras</b> {props.bar_code}</li>
                     <li><b>Imagem</b> {props.image}</li>
+                    <li><b>Classe</b> {props.classe}</li>
+                    <li><b>Grupo Fiscal</b> {props.grupo_fiscal}</li>
+                    <li><b>Tipo Produto</b> {props.tipo_prod}</li>
+                    <li><b>NCM</b> {props.ncm}</li>
                     <>{props.update}</>
                 </ul>
             </div>
