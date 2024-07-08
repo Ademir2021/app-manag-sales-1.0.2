@@ -17,6 +17,7 @@ type IProdctForm = {
     listGrupoFiscal:any;
     listTipoProd:any
     listNcm:any;
+    msgNcm:string |undefined;
 }
 
 export function ProductForm({
@@ -31,7 +32,8 @@ export function ProductForm({
     listClasse,
     listGrupoFiscal,
     listTipoProd,
-    listNcm
+    listNcm,
+    msgNcm
 }: IProdctForm) {
 
     const [menu, setMenu] = useState("geral")
@@ -95,15 +97,8 @@ export function ProductForm({
          <li className='' id='fiscal-classe-select'>Classe {listClasse}</li>
          <li className='' id='fiscal-classe-select'>Grupo Fiscal {listGrupoFiscal}</li>
          <li className='' id='fiscal-classe-select'>Tipo de Produto {listTipoProd}</li>
-         <li className='' id='fiscal-classe-select'>NCM do Produto{listNcm}</li>
-
-        {/* <input
-            type="text"
-            name="teste"
-            placeholder='TESTE'
-            value={children.teste || ""}
-            onChange={handleChange}
-        /> */}
+         <li className='' id='fiscal-classe-select'>Pesquise o NCM do Produto {listNcm}</li>
+         <span className='m-5'>{msgNcm}</span>
     </div>
 
     return (

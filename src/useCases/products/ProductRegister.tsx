@@ -2,13 +2,12 @@ import { useState, useEffect } from "react";
 import { ProductForm } from '../../components/products/ProductForm';
 import { Dashboard } from "../dashboard/Dashboard";
 import { postRegister } from "../../services/handleService";
-import { TProductRegister, TBrand, TSector, TUnMed, TClasse, TGrupoFiscal, TTipoProd , TNcm} from "./type/TypeProducts"
+import { TProductRegister, TBrand, TSector, TUnMed, TClasse, TGrupoFiscal, TTipoProd, TNcm } from "./type/TypeProducts"
 import ncmJSON from './Tabela_NCM_Vigente_20240707.json'
 import api from "../../services/api/api";
 
 export function FormProduct() {
 
-    const [ncms_] = useState<any>(ncmJSON)
     const [alert_, setAlert_] = useState<string>("")
     const [brands, setBrand] = useState<TBrand[]>([]);
     const [sectors, setSector] = useState<TSector[]>([]);
@@ -16,6 +15,7 @@ export function FormProduct() {
     const [classes, setClasses] = useState<TClasse[]>([])
     const [gruposFiscais, setGruposFiscais] = useState<TGrupoFiscal[]>([])
     const [tiposProds, setTiposProds] = useState<TTipoProd[]>([])
+    const [ncms_] = useState<any>(ncmJSON)
     const [ncms, setNcms] = useState<TNcm[]>([])
     const [selectedIdBrand, setSelectedIdBrand] = useState<any>(1);
     const [selectedIdSector, setSelectedIdSector] = useState<any>(1);
@@ -29,7 +29,7 @@ export function FormProduct() {
         val_max_product: 0.00, val_min_product: 0.00,
         fk_brand: 1, fk_sector: 1, fk_un_med: 1,
         bar_code: '', image: '', fk_classe: 1,
-        fk_grupo_fiscal: 1, fk_tipo_prod: 1,ncm:''
+        fk_grupo_fiscal: 1, fk_tipo_prod: 1, ncm: ''
     });
 
     product.fk_brand = parseInt(selectedIdBrand);
@@ -38,7 +38,7 @@ export function FormProduct() {
     product.fk_classe = parseInt(selectedIdClasse)
     product.fk_grupo_fiscal = parseInt(selectedIdGrupoFiscal)
     product.fk_tipo_prod = parseInt(selectedIdTipoProd)
-    product.ncm = selectedIdNcm
+    product.ncm = selectedIdNcm.replace(/[().]/g, '')
 
     const handleChange = (e: any) => {
         const name = e.target.name;
@@ -125,13 +125,13 @@ export function FormProduct() {
         getTiposProds()
     }, [tiposProds])
 
-    useEffect(()=>{
-        async function getNcms(){
-            const resp =  await ncms_.Nomenclaturas;
+    useEffect(() => {
+        async function getNcms() {
+            const resp = await ncms_.Nomenclaturas;
             setNcms(resp)
         };
         getNcms()
-    })
+    },[ncms])
 
     function ProductValFields() {
         let content = "Campo obrigatório: "
@@ -158,7 +158,7 @@ export function FormProduct() {
 
     return (
         <>
-            {/* <p>{JSON.stringify(product)}</p> */}
+            {/* <p>{JSON.stringify(product.ncm)}</p> */}
             <Dashboard />
             <ProductForm
                 handleSubmit={handleSubmit}
@@ -229,18 +229,25 @@ export function FormProduct() {
                     </option>
                 ))}</select>}
 
-                listNcm={<select
-                    onChange={e => setSelectdIdNcm(e.target.value)}
-                >{ncms.map((ncm:TNcm)=>(
-                    <option
-                    key={ncm.Codigo}
-                    value={ncm.Codigo}
-                    >
-                        {ncm.Descricao.substring(0, 28).replace(/[()-<i>]/g, '')}
-                    </option>
-                ))}
-
-                </select>}
+                listNcm={<><datalist
+                    id="data-itens"><select
+                    >{ncms.map((ncm: TNcm) => (
+                        <option
+                            key={ncm.Codigo}
+                            value={ncm.Codigo}
+                        >
+                            {ncm.Descricao.replace(/[()-<i>]/g, '')}
+                        </option>
+                    ))};
+                    </select></datalist>
+                    <input
+                        placeholder="Pequisar o NCM do produto"
+                        type="search"
+                        list="data-itens"
+                        onChange={e => setSelectdIdNcm(e.target.value)}
+                    />
+                </>}
+                msgNcm={product.ncm === "00000" ? product.ncm : "NCM Localizado: " + product.ncm}
             >
                 {product}
             </ProductForm>
