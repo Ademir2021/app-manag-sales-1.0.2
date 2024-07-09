@@ -6,13 +6,13 @@ import api from "../../services/api/api";
 
 class HandleProducts {
 
-    public static products: TProductRegister[]  = []
-    public static sectors: TSector[] = []
-    public static brands: TBrand[] = []
-    public static unMeds: TUnMed[] = []
-    public static classesProds: TClasseProd[] = []
-    public static gruposFiscais: TGrupoFiscal[] = []
-    public static tiposProds: TTipoProd[] = []
+    private static products: TProductRegister[]  = []
+    private static sectors: TSector[] = []
+    private static brands: TBrand[] = []
+    private static unMeds: TUnMed[] = []
+    private static classesProds: TClasseProd[] = []
+    private static gruposFiscais: TGrupoFiscal[] = []
+    private static tiposProds: TTipoProd[] = []
 
     async getProducts() {
         try {

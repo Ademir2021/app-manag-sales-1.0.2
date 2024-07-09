@@ -222,7 +222,8 @@ export function ProductUpdate() {
     async function handleUpdate(e: Event) {
         e.preventDefault();
         if (ProductValFields()) {
-            putUpdate(product, 'product_update')
+           const resp:any = await putUpdate(product, 'product_update')
+           setAlert_(resp)
         }
     };
     async function handleDelete(e: Event) {
