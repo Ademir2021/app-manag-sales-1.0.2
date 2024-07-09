@@ -1,26 +1,22 @@
 import { useState, useEffect, useRef, useContext } from "react"
 import { FormatDate } from "../../components/utils/formatDate";
-import { TProductRegister, TBrand, TSector, TUnMed, TClasseProd, TGrupoFiscal, TTipoProd } from "./type/TypeProducts";
+import { TProductRegister, TSector, TBrand } from "./type/TypeProducts";
 import { postRegister, putUpdate } from "../../services/handleService";
 import { ProductFormUpdate } from "../../components/products/ProductFormUpdate";
 import { ProductList } from "../../components/products/ProductList";
 import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
-import api from '../../services/api/api';
 import { AuthContext } from '../../context/auth'
 import { currencyFormat } from '../../components/utils/currentFormat/CurrentFormat';
-
-import "../../App.css"
 import { Dashboard } from "../dashboard/Dashboard";
 import { HandleProducts } from "./HandleProduct";
+import api from '../../services/api/api';
+import "../../App.css"
 
 export function ProductUpdate() {
-    const [brands, setBrand] = useState<TBrand[]>([]);
-    const [sectors, setSector] = useState<TSector[]>([]);
-    const [unMeds, setUnMeds] = useState<TUnMed[]>([]);
-    const [classesProds, setClassesProds] = useState<TClasseProd[]>([]);
-    const [gruposFiscais, setGruposFiscais] = useState<TGrupoFiscal[]>([])
-    const [tiposProds, setTiposProds] = useState<TTipoProd[]>([])
     const { user: isLogged }: any = useContext(AuthContext);
+    const handleProducts: HandleProducts = new HandleProducts()
+    const [brands, setBrands] = useState<TBrand[]>([]);
+    const [sectors, setSectors] = useState<TSector[]>([]);
     const [selectedIdBrand, setSelectedIdBrand] = useState<any>(1);
     const [selectedIdSector, setSelectedIdSector] = useState<any>(1);
     const [products, setProducts] = useState<TProductRegister[]>([])
@@ -47,7 +43,27 @@ export function ProductUpdate() {
         const name = e.target.name;
         const value = e.target.value;
         setProduct(values => ({ ...values, [name]: value }))
-    }
+    };
+
+    useEffect(() => {
+        async function getBrands() {
+            try {
+                await api.get<TBrand[]>('/brands')
+                    .then(response => { setBrands(response.data) });
+            } catch (err) { alert("error occurred !!" + err) }
+        };
+        getBrands();
+    }, [brands]);
+
+    useEffect(() => {
+        async function getSectors() {
+            try {
+                await api.get<TSector[]>('/sectors')
+                    .then(response => { setSectors(response.data) });
+            } catch (err) { alert("error occurred !!" + err) }
+        };
+        getSectors();
+    }, [sectors]);
 
     const [dropdown, setDropdown] = useState<string>("");
     const modalRef = useRef<any>(null);
@@ -89,65 +105,6 @@ export function ProductUpdate() {
         getProducts();
     }, [products, isLoggedParams]);
 
-    useEffect(() => {
-        async function getBrands() {
-            try {
-                await api.get<TBrand[]>('/brands')
-                    .then(response => { setBrand(response.data) });
-            } catch (err) { alert("error occurred !!" + err) }
-        }
-        getBrands();
-    }, [brands]);
-
-    useEffect(() => {
-        async function getSectors() {
-            try {
-                await api.get<TSector[]>('/sectors')
-                    .then(response => { setSector(response.data) });
-            } catch (err) { alert("error occurred !!" + err) }
-        }
-        getSectors();
-    }, [sectors]);
-
-    useEffect(() => {
-        async function getUnMeds() {
-            try {
-                await api.get<TUnMed[]>('/un_med')
-                    .then(response => { setUnMeds(response.data) });
-            } catch (err) { alert("error occurred !!" + err) }
-        };
-        getUnMeds()
-    }, [unMeds]);
-
-    useEffect(() => {
-        async function getClasssesProds() {
-            try {
-                await api.get<TClasseProd[]>('/classes_prods')
-                    .then(response => { setClassesProds(response.data) });
-            } catch (err) { alert("error occurred !!" + err) }
-        };
-        getClasssesProds()
-    }, [classesProds]);
-
-    useEffect(() => {
-        async function getGruposFiscais() {
-            try {
-                await api.get<TGrupoFiscal[]>('/grupos_fiscais')
-                    .then(response => { setGruposFiscais(response.data) });
-            } catch (err) { alert("error occurred !!" + err) }
-        };
-        getGruposFiscais()
-    }, [gruposFiscais]);
-
-    useEffect(() => {
-        async function getTiposProds() {
-            try {
-                await api.get<TTipoProd[]>('/tipos_prods')
-                    .then(response => { setTiposProds(response.data) });
-            } catch (err) { alert("error occurred !!" + err) }
-        };
-        getTiposProds()
-    }, [tiposProds]);
 
     function toggleDropdown(): void {
         setDropdown("modal-show");
@@ -200,8 +157,6 @@ export function ProductUpdate() {
         alert("Digite um novo produto !!")
     };
 
-    const handleProducts: HandleProducts = new HandleProducts()
-
     return (
         <>
             <Dashboard />
@@ -230,7 +185,7 @@ export function ProductUpdate() {
                 listSector={<select
                     onChange={e => setSelectedIdSector(e.target.value)}
                 >
-                    {sectors.map((sector) => (
+                    {sectors.map((sector: TSector) => (
                         <option
                             key={sector.id_sector}
                             value={sector.id_sector}
@@ -252,14 +207,14 @@ export function ProductUpdate() {
                         name={product.descric_product}
                         val_max={currencyFormat(product.val_max_product)}
                         val_min={currencyFormat(product.val_min_product)}
-                        brand={handleProducts.nameBrands(product.fk_brand, brands)}
-                        sector={handleProducts.nameSector(product.fk_sector, sectors)}
-                        un_med={handleProducts.nameUnMeds(product.fk_un_med, unMeds)}
+                        brand={handleProducts.nameBrands(product.fk_brand)}
+                        sector={handleProducts.nameSector(product.fk_sector)}
+                        un_med={handleProducts.nameUnMeds(product.fk_un_med)}
                         bar_code={product.bar_code}
                         image={product.image}
-                        classe={handleProducts.nameClasseProd(product.fk_classe, classesProds)}
-                        grupo_fiscal={handleProducts.nameGruposFiscais(product.fk_grupo_fiscal, gruposFiscais)}
-                        tipo_prod={handleProducts.nameTiposProds(product.fk_tipo_prod, tiposProds)}
+                        classe={handleProducts.nameClasseProd(product.fk_classe)}
+                        grupo_fiscal={handleProducts.nameGruposFiscais(product.fk_grupo_fiscal)}
+                        tipo_prod={handleProducts.nameTiposProds(product.fk_tipo_prod)}
                         ncm={product.ncm}
                         update={<button onClick={() =>
                             listUpdate(product)}>Atualizar</button>}

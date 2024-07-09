@@ -7,10 +7,9 @@ import ncmJSON from './Tabela_NCM_Vigente_20240707.json'
 import api from "../../services/api/api";
 
 export function FormProduct() {
-
     const [alert_, setAlert_] = useState<string>("")
-    const [brands, setBrand] = useState<TBrand[]>([]);
-    const [sectors, setSector] = useState<TSector[]>([]);
+    const [brands, setBrands] = useState<TBrand[]>([]);
+    const [sectors, setSectors] = useState<TSector[]>([]);
     const [unMeds, setUnMeds] = useState<TUnMed[]>([])
     const [classesProds, setClassesProds] = useState<TClasseProd[]>([])
     const [gruposFiscais, setGruposFiscais] = useState<TGrupoFiscal[]>([])
@@ -50,41 +49,41 @@ export function FormProduct() {
         async function getBrands() {
             try {
                 await api.get<TBrand[]>('/brands')
-                    .then(response => { setBrand(response.data) });
+                    .then(response => { setBrands(response.data) });
             } catch (err) { alert("error occurred !!" + err) }
-        }
-        getBrands()
-    }, [brands])
+        };
+        getBrands();
+    }, [brands]);
 
     useEffect(() => {
         async function getSectors() {
             try {
                 await api.get<TSector[]>('/sectors')
-                    .then(response => { setSector(response.data) });
+                    .then(response => { setSectors(response.data) });
             } catch (err) { alert("error occurred !!" + err) }
-        }
-        getSectors()
-    }, [sectors])
+        };
+        getSectors();
+    }, [sectors]);
 
     useEffect(() => {
-            async function getUnMeds() {
-                try {
-                    await api.get<TUnMed[]>('/un_med')
-                        .then(response => { setUnMeds(response.data) });
-                } catch (err) { alert("error occurred !!" + err) }
-            };
-        getUnMeds()
+        async function getUnMeds() {
+            try {
+                await api.get<TUnMed[]>('/un_med')
+                    .then(response => { setUnMeds(response.data) });
+            } catch (err) { alert("error occurred !!" + err) }
+        };
+        getUnMeds();
     }, [unMeds]);
 
     useEffect(() => {
-        async function getClassesProds() {
+        async function getClasssesProds() {
             try {
                 await api.get<TClasseProd[]>('/classes_prods')
                     .then(response => { setClassesProds(response.data) });
             } catch (err) { alert("error occurred !!" + err) }
         };
-        getClassesProds()
-    }, [classesProds]);
+        getClasssesProds()
+    }, [classesProds])
 
     useEffect(() => {
         async function getGruposFiscais() {
@@ -93,7 +92,7 @@ export function FormProduct() {
                     .then(response => { setGruposFiscais(response.data) });
             } catch (err) { alert("error occurred !!" + err) }
         };
-        getGruposFiscais()
+        getGruposFiscais();
     }, [gruposFiscais]);
 
     useEffect(() => {
@@ -103,16 +102,16 @@ export function FormProduct() {
                     .then(response => { setTiposProds(response.data) });
             } catch (err) { alert("error occurred !!" + err) }
         };
-        getTiposProds()
-    }, [tiposProds])
+        getTiposProds();
+    }, [tiposProds]);
 
     useEffect(() => {
         async function getNcms() {
-            const resp = await ncms_.Nomenclaturas;
-            setNcms(resp)
+            const ncms = await ncms_.Nomenclaturas;
+            setNcms(ncms)
         };
-        getNcms()
-    },[ncms])
+        getNcms();
+    }, [ncms]);
 
     function ProductValFields() {
         let content = "Campo obrigatório: "
@@ -160,7 +159,7 @@ export function FormProduct() {
                 listSector={<select
                     onChange={e => setSelectedIdSector(e.target.value)}
                 >
-                    {sectors.map((sector) => (
+                    {sectors.map((sector: TSector) => (
                         <option
                             key={sector.id_sector}
                             value={sector.id_sector}
