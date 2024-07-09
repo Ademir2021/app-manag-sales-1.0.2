@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useContext } from "react"
+import ncmJSON from './Tabela_NCM_Vigente_20240707.json'
 import { FormatDate } from "../../components/utils/formatDate";
-import { TProductRegister, TSector, TBrand } from "./type/TypeProducts";
+import { TProductRegister, TSector, TBrand, TClasseProd, TGrupoFiscal, TTipoProd, TUnMed, TNcm } from "./type/TypeProducts";
 import { postRegister, putUpdate } from "../../services/handleService";
 import { ProductFormUpdate } from "../../components/products/ProductFormUpdate";
 import { ProductList } from "../../components/products/ProductList";
@@ -14,9 +15,22 @@ import "../../App.css"
 
 export function ProductUpdate() {
     const { user: isLogged }: any = useContext(AuthContext);
+    const [alert_, setAlert_] = useState<string>("")
     const handleProducts: HandleProducts = new HandleProducts()
     const [brands, setBrands] = useState<TBrand[]>([]);
     const [sectors, setSectors] = useState<TSector[]>([]);
+    const [unMeds, setUnMeds] = useState<TUnMed[]>([])
+    const [classesProds, setClassesProds] = useState<TClasseProd[]>([])
+    const [gruposFiscais, setGruposFiscais] = useState<TGrupoFiscal[]>([])
+    const [tiposProds, setTiposProds] = useState<TTipoProd[]>([])
+    const [ncms_] = useState<any>(ncmJSON)
+    const [ncms, setNcms] = useState<TNcm[]>([])
+    const [selectedIdUnMed, setSelectedIdUn] = useState<any>(1);
+    const [selectedIdClasseProd, setSelectedIdClasseProd] = useState<any>(1);
+    const [selectedIdGrupoFiscal, setSelectedIdGrupoFiscal] = useState<any>(1)
+    const [selectedIdTipoProd, setSelectdIdTipoProd] = useState<any>(1)
+    const [selectedIdNcm, setSelectdIdNcm] = useState<any>('0000.0')
+
     const [selectedIdBrand, setSelectedIdBrand] = useState<any>(1);
     const [selectedIdSector, setSelectedIdSector] = useState<any>(1);
     const [products, setProducts] = useState<TProductRegister[]>([])
@@ -36,7 +50,21 @@ export function ProductUpdate() {
     if (selectedIdSector !== 1) {
         product.fk_sector = parseInt(selectedIdSector);
     }
-
+    if (selectedIdUnMed !== 1) {
+        product.fk_un_med = parseInt(selectedIdUnMed)
+    }
+    if (selectedIdClasseProd !== 1) {
+        product.fk_classe = parseInt(selectedIdClasseProd)
+    }
+    if (selectedIdGrupoFiscal !== 1) {
+        product.fk_grupo_fiscal = parseInt(selectedIdGrupoFiscal)
+    }
+    if (selectedIdTipoProd !== 1) {
+        product.fk_tipo_prod = parseInt(selectedIdTipoProd)
+    }
+    if (selectedIdNcm !== '0000.0') {
+        product.ncm = selectedIdNcm
+    }
     const isLoggedParams: number = isLogged[0].id
 
     const handleChange = (e: any) => {
@@ -65,6 +93,54 @@ export function ProductUpdate() {
         getSectors();
     }, [sectors]);
 
+    useEffect(() => {
+        async function getUnMeds() {
+            try {
+                await api.get<TUnMed[]>('/un_med')
+                    .then(response => { setUnMeds(response.data) });
+            } catch (err) { alert("error occurred !!" + err) }
+        };
+        getUnMeds();
+    }, [unMeds]);
+
+    useEffect(() => {
+        async function getClasssesProds() {
+            try {
+                await api.get<TClasseProd[]>('/classes_prods')
+                    .then(response => { setClassesProds(response.data) });
+            } catch (err) { alert("error occurred !!" + err) }
+        };
+        getClasssesProds()
+    }, [classesProds])
+
+    useEffect(() => {
+        async function getGruposFiscais() {
+            try {
+                await api.get<TGrupoFiscal[]>('/grupos_fiscais')
+                    .then(response => { setGruposFiscais(response.data) });
+            } catch (err) { alert("error occurred !!" + err) }
+        };
+        getGruposFiscais();
+    }, [gruposFiscais]);
+
+    useEffect(() => {
+        async function getTiposProds() {
+            try {
+                await api.get<TTipoProd[]>('/tipos_prods')
+                    .then(response => { setTiposProds(response.data) });
+            } catch (err) { alert("error occurred !!" + err) }
+        };
+        getTiposProds();
+    }, [tiposProds]);
+
+    useEffect(() => {
+        async function getNcms() {
+            const ncms = await ncms_.Nomenclaturas;
+            setNcms(ncms)
+        };
+        getNcms();
+    }, [ncms]);
+
     const [dropdown, setDropdown] = useState<string>("");
     const modalRef = useRef<any>(null);
 
@@ -75,8 +151,12 @@ export function ProductUpdate() {
         product.val_min_product = product_.val_min_product
         product.fk_brand = product_.fk_brand
         product.fk_sector = product_.fk_sector
+        product.fk_un_med = product_.fk_un_med
         product.bar_code = product_.bar_code
         product.image = product_.image
+        product.fk_classe = product_.fk_classe
+        product.fk_grupo_fiscal = product_.fk_grupo_fiscal
+        product.fk_tipo_prod = product_.fk_tipo_prod
         product.ncm = product_.ncm
         toggleDropdown()
     }
@@ -127,7 +207,7 @@ export function ProductUpdate() {
         if (product.val_min_product === 0) { msg += content + "valor min, " };
         if (product.bar_code === "") { msg += content + "código de barras, " };
         if (msg !== "") {
-            alert(msg)
+            setAlert_(msg)
             return false;
         };
         return true;
@@ -169,7 +249,7 @@ export function ProductUpdate() {
                 modalRef={modalRef}
                 className={dropdown}
                 close={closeDropdown}
-                alert=""
+                alert={alert_}
                 message=""
                 listBrand={<select
                     onChange={e => setSelectedIdBrand(e.target.value)}
@@ -192,6 +272,69 @@ export function ProductUpdate() {
                         >
                             {sector.name_sector}
                         </option>))}</select>}
+
+                listUn={<select
+                    onChange={e => setSelectedIdUn(e.target.value)}
+                >
+                    {unMeds.map((un: TUnMed) => (
+                        <option
+                            key={un.id_un}
+                            value={un.id_un}
+                        >
+                            {un.un_med}
+                        </option>))}</select>}
+
+                listClasse={<select
+                    onChange={e => setSelectedIdClasseProd(e.target.value)}
+                >{classesProds.map((classe: TClasseProd) => (
+                    <option
+                        key={classe.id_classe}
+                        value={classe.id_classe}
+                    >
+                        {classe.name_classe}
+                    </option>))}</select>}
+
+                listGrupoFiscal={<select
+                    onChange={e => setSelectedIdGrupoFiscal(e.target.value)}
+                >{gruposFiscais.map((grupoFiscal: TGrupoFiscal) => (
+                    <option
+                        key={grupoFiscal.id_grupo_fiscal}
+                        value={grupoFiscal.id_grupo_fiscal}
+                    >
+                        {grupoFiscal.name_grupo_fiscal}
+                    </option>))}</select>}
+
+                listTipoProd={<select
+                    onChange={e => setSelectdIdTipoProd(e.target.value)}
+                >{tiposProds.map((tipoProd: TTipoProd) => (
+                    <option
+                        key={tipoProd.id_tipo}
+                        value={tipoProd.id_tipo}
+                    >
+                        {tipoProd.name_tipo}
+                    </option>
+                ))}</select>}
+
+                listNcm={<><datalist
+                    id="data-itens"><select
+                    >{ncms.map((ncm: TNcm) => (
+                        <option
+                            key={ncm.Codigo}
+                            value={ncm.Codigo}
+                        >
+                            {ncm.Descricao.replace(/[()-<i>]/g, '')}
+                        </option>
+                    ))};
+                    </select></datalist>
+                    <input
+                        placeholder="Pequisar o NCM do produto"
+                        type="search"
+                        list="data-itens"
+                        onChange={e => setSelectdIdNcm(e.target.value)}
+                    />
+                </>}
+                msgNcm={product.ncm === "00000" ? product.ncm : "NCM Localizado: " + product.ncm}
+
             >
                 {product}
             </ProductFormUpdate>
@@ -216,8 +359,9 @@ export function ProductUpdate() {
                         grupo_fiscal={handleProducts.nameGruposFiscais(product.fk_grupo_fiscal)}
                         tipo_prod={handleProducts.nameTiposProds(product.fk_tipo_prod)}
                         ncm={product.ncm}
-                        update={<button onClick={() =>
-                            listUpdate(product)}>Atualizar</button>}
+                        update={<button className="btn  btn-danger"
+                            onClick={() =>
+                                listUpdate(product)}>Atualizar</button>}
                     />
                 )))}
         </>
