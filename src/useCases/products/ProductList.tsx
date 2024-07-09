@@ -4,6 +4,9 @@ import { ProductList } from "../../components/products/ProductList";
 import { currencyFormat } from "../../components/utils/currentFormat/CurrentFormat";
 import { Dashboard } from "../dashboard/Dashboard";
 import { TBrand, TProductRegister, TSector, TUnMed, TClasseProd, TGrupoFiscal, TTipoProd } from "./type/TypeProducts";
+
+import { HandleProducts } from "./HandleProduct";
+
 import api from "../../services/api/api";
 
 export function ProductsList() {
@@ -16,16 +19,15 @@ export function ProductsList() {
     const [gruposFiscais, setGruposFiscais] = useState<TGrupoFiscal[]>([])
     const [tiposProds,setTiposProds] = useState<TTipoProd[]>([])
 
-    async function getProducts() {
-        try {
-            await api.post<TProductRegister[]>('products_list')
-                .then(response => {
-                    setProducts(response.data)
-                })
-        } catch (err) { console.log("error occurred !!" + err) }
-
-    };
-    if (products.length === 0) { getProducts() }
+    useEffect(()=>{
+        async function getProducts() {
+            try {
+                await api.post<TProductRegister[]>('products_list')
+                    .then(response => { setProducts(response.data)})
+            } catch (err) { console.log("error occurred !!" + err) }
+        };
+        getProducts();
+    },[products]);
 
     useEffect(() => {
         async function getBrands() {
@@ -75,7 +77,7 @@ export function ProductsList() {
             } catch (err) { alert("error occurred !!" + err) }
         };
         getGruposFiscais()
-    }, [classesProds]);
+    }, [gruposFiscais]);
 
     useEffect(() => {
         async function getTiposProds() {
@@ -87,59 +89,7 @@ export function ProductsList() {
         getTiposProds()
     }, [tiposProds]);
 
-    function nameBrands(idBrand: number) {
-        for (let i = 0; i < brands.length; i++) {
-            if (brands[i].id_brand === idBrand) {
-                const brand: string = brands[i].name_brand;
-                return brand;
-            }
-        }
-    };
-
-    function nameSector(idSector: number) {
-        for (let i = 0; i < sectors.length; i++) {
-            if (sectors[i].id_sector === idSector) {
-                const sector: string = sectors[i].name_sector;
-                return sector;
-            }
-        }
-    };
-
-    function nameUnMeds(idUnMed: number) {
-        for (let i = 0; i < unMeds.length; i++) {
-            if (unMeds[i].id_un === idUnMed) {
-                const unMed: string = unMeds[i].un_med;
-                return unMed;
-            }
-        }
-    };
-
-    function nameClasseProd(idClasseProd: number) {
-        for (let i = 0; i < classesProds.length; i++) {
-            if (classesProds[i].id_classe === idClasseProd) {
-                const nameClasse: string = classesProds[i].name_classe;
-                return nameClasse;
-            }
-        }
-    };
-
-    function nameGruposFiscais(idGrupoFiscal: number) {
-        for (let i = 0; i < gruposFiscais.length; i++) {
-            if (gruposFiscais[i].id_grupo_fiscal === idGrupoFiscal) {
-                const nameGrupoFiscal: string = gruposFiscais[i].name_grupo_fiscal;
-                return nameGrupoFiscal;
-            }
-        }
-    };
-
-    function nameTiposProds(idTipoProd: number) {
-        for (let i = 0; i < tiposProds.length; i++) {
-            if (tiposProds[i].id_tipo === idTipoProd) {
-                const nameTipoProd: string = tiposProds[i].name_tipo;
-                return nameTipoProd;
-            }
-        }
-    };
+    const handleProducts:HandleProducts = new HandleProducts()
 
     return (
         <>
@@ -157,14 +107,14 @@ export function ProductsList() {
                         name={product.descric_product}
                         val_max={currencyFormat(product.val_max_product)}
                         val_min={currencyFormat(product.val_min_product)}
-                        brand={nameBrands(product.fk_brand)}
-                        sector={nameSector(product.fk_sector)}
-                        un_med={nameUnMeds(product.fk_un_med)}
+                        brand={handleProducts.nameBrands(product.fk_brand, brands)}
+                        sector={handleProducts.nameSector(product.fk_sector, sectors)}
+                        un_med={handleProducts.nameUnMeds(product.fk_un_med, unMeds)}
                         bar_code={product.bar_code}
                         image={product.image}
-                        classe={nameClasseProd(product.fk_classe)}
-                        grupo_fiscal={nameGruposFiscais(product.fk_grupo_fiscal)}
-                        tipo_prod={nameTiposProds(product.fk_tipo_prod)}
+                        classe={handleProducts.nameClasseProd(product.fk_classe, classesProds)}
+                        grupo_fiscal={handleProducts.nameGruposFiscais(product.fk_grupo_fiscal, gruposFiscais)}
+                        tipo_prod={handleProducts.nameTiposProds(product.fk_tipo_prod, tiposProds)}
                         ncm={product.ncm}
                         update={null}
                     />

@@ -23,7 +23,7 @@ type Props = {
 export function ProductList(props: Props) {
     return (
         <div className="container-global" >
-            <div className="main-global">
+            <div className="main-globalXX p-6">
                 <ul className="main-global-form">
                     <li><b>ID</b> {props.id}</li>
                     <li><b>Cadastro</b> {props.created_at}</li>

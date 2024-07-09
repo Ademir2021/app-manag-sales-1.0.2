@@ -67,60 +67,41 @@ export function FormProduct() {
     }, [sectors])
 
     useEffect(() => {
-        async function getUnMeds() {
-            const unMeds: TUnMed[] = [
-                { id_un: 1, un_med: 'UN' },
-                { id_un: 2, un_med: 'PC' },
-                { id_un: 3, un_med: 'PCT' },
-                { id_un: 4, un_med: 'KIT' }
-            ];
-            setUnMeds(unMeds)
-        };
+            async function getUnMeds() {
+                try {
+                    await api.get<TUnMed[]>('/un_med')
+                        .then(response => { setUnMeds(response.data) });
+                } catch (err) { alert("error occurred !!" + err) }
+            };
         getUnMeds()
     }, [unMeds]);
 
     useEffect(() => {
         async function getClassesProds() {
-            const classesProds: TClasseProd[] = [
-                { id_classe: 1, name_classe: 'Sem Classe' },
-                { id_classe: 2, name_classe: 'Informatica' },
-                { id_classe: 3, name_classe: 'Celulares' },
-                { id_classe: 4, name_classe: 'Telecom' }
-            ];
-            setClassesProds(classesProds)
+            try {
+                await api.get<TClasseProd[]>('/classes_prods')
+                    .then(response => { setClassesProds(response.data) });
+            } catch (err) { alert("error occurred !!" + err) }
         };
         getClassesProds()
     }, [classesProds]);
 
     useEffect(() => {
         async function getGruposFiscais() {
-            const gruposFiscais: TGrupoFiscal[] = [
-                { id_grupo_fiscal: 1, name_grupo_fiscal: 'Mercadorias Tributadas normalmente', fk_tabela_trib: 1 },
-                { id_grupo_fiscal: 2, name_grupo_fiscal: 'Mercadorias Trib. por Substituicoo Tributaria', fk_tabela_trib: 2 },
-                { id_grupo_fiscal: 3, name_grupo_fiscal: 'Servicos Tributado pelo ISS', fk_tabela_trib: 3 }
-            ];
-            setGruposFiscais(gruposFiscais)
+            try {
+                await api.get<TGrupoFiscal[]>('/grupos_fiscais')
+                    .then(response => { setGruposFiscais(response.data) });
+            } catch (err) { alert("error occurred !!" + err) }
         };
         getGruposFiscais()
     }, [gruposFiscais]);
 
     useEffect(() => {
         async function getTiposProds() {
-            const tiposProds: TTipoProd[] = [
-                { id_tipo: 1, name_tipo: '00 - Mercadoria para Revenda' },
-                { id_tipo: 2, name_tipo: '01 - Materia Prima' },
-                { id_tipo: 3, name_tipo: '02 - Embalagem' },
-                { id_tipo: 4, name_tipo: '03 - Produto em Processo' },
-                { id_tipo: 5, name_tipo: '04 - Produto Acabado' },
-                { id_tipo: 6, name_tipo: '05 - SubProduto' },
-                { id_tipo: 7, name_tipo: '06 - Produto Intermediario' },
-                { id_tipo: 8, name_tipo: '07 - Material de Uso e Consumo' },
-                { id_tipo: 9, name_tipo: '08 - Ativo Imobilizado' },
-                { id_tipo: 10, name_tipo: '09 - Servicos' },
-                { id_tipo: 11, name_tipo: '10 - Outros Insumos' },
-                { id_tipo: 12, name_tipo: '99 - Outras' }
-            ];
-            setTiposProds(tiposProds)
+            try {
+                await api.get<TTipoProd[]>('/tipos_prods')
+                    .then(response => { setTiposProds(response.data) });
+            } catch (err) { alert("error occurred !!" + err) }
         };
         getTiposProds()
     }, [tiposProds])

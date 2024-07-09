@@ -8,13 +8,13 @@ export type TProductRegister = {
     val_min_product: number;
     fk_brand: number | any;
     fk_sector: number | any;
-    fk_un_med?: number | any;
+    fk_un_med: number | any;
     bar_code: string;
     image?: | string;
-    fk_classe?: number | any;
-    fk_grupo_fiscal?: number | any
-    fk_tipo_prod?:number | any
-    ncm?:string
+    fk_classe: number | any;
+    fk_grupo_fiscal: number | any
+    fk_tipo_prod:number | any
+    ncm:string
 };
 
 export type TItem = {
