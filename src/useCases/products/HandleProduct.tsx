@@ -1,25 +1,16 @@
-import { useEffect } from "react";
-import { TProductRegister, TBrand, TSector, TUnMed, TClasseProd, TGrupoFiscal, TTipoProd } from "./type/TypeProducts";
+import { TBrand, TSector, TUnMed, TClasseProd, TGrupoFiscal, TTipoProd } from "./type/TypeProducts";
 
 import api from "../../services/api/api";
 
 
 class HandleProducts {
 
-    private static products: TProductRegister[]  = []
     private static sectors: TSector[] = []
     private static brands: TBrand[] = []
     private static unMeds: TUnMed[] = []
     private static classesProds: TClasseProd[] = []
     private static gruposFiscais: TGrupoFiscal[] = []
     private static tiposProds: TTipoProd[] = []
-
-    async getProducts() {
-        try {
-            await api.post<TProductRegister[]>('products_list')
-                .then(response => { HandleProducts.products = response.data })
-        } catch (err) { console.log("error occurred !!" + err) }
-    };
 
     async getSectors() {
         try {

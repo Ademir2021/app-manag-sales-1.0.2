@@ -90,6 +90,7 @@ export function ProductForm({
             value={children.image || ""}
             onChange={handleChange}
         />
+        <button onClick={handleSubmit}>Registrar</button>
     </>
 
     const fiscal = <div>
@@ -112,7 +113,6 @@ export function ProductForm({
                         <label>{message}</label>
                         {menu === 'fiscal' ? fiscal : null}
                         {menu === "geral" ? geral : null}
-                        {menu === 'geral' ? <button onClick={handleSubmit}>Registrar</button> : null}
                     </form>
                 </fieldset>
             </div>

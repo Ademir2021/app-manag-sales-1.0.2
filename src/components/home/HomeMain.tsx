@@ -42,7 +42,7 @@ export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields 
                         msgFields={msgFields}
                     />
 
-                    <a id='cards'></a>
+                    <div id='cards'></div>
 
                 </main>
                     <div id='home-cards'>
@@ -51,7 +51,7 @@ export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields 
                     >Aqui temos a solução que você precisa !</div>
                     <div id='home-cards-content'
                     >Aqui o cliente encontra produtos de Software na medida de suas necessidades. Utilizamos métodologias ágeis de desenvolvovimento, com isto garantimos entregas rápidas e continua.</div>
-                    <a id='cards-in'></a>
+                    <div id='cards-in'></div>
                     {(cards.map((card: any) => (
                         <HomeCards
                             key={card.id}

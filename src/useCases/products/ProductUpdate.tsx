@@ -139,7 +139,7 @@ export function ProductUpdate() {
             setNcms(ncms)
         };
         getNcms();
-    }, [ncms]);
+    }, [ncms_]);
 
     const [dropdown, setDropdown] = useState<string>("");
     const modalRef = useRef<any>(null);

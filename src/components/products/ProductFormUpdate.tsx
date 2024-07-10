@@ -140,7 +140,6 @@ export function ProductFormUpdate({
                         <label>{message}</label>
                         {menu === 'fiscal' ? fiscal : null}
                         {menu === "geral" ? geral : null}
-                        {menu === 'geral' ? <button onClick={handleSubmit}>Registrar</button> : null}
                     </form>
                 </div>
             </div>
