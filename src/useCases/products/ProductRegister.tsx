@@ -3,7 +3,7 @@ import { ProductForm } from '../../components/products/ProductForm';
 import { Dashboard } from "../dashboard/Dashboard";
 import { postRegister } from "../../services/handleService";
 import { TProductRegister, TBrand, TSector, TUnMed, TClasseProd, TGrupoFiscal, TTipoProd, TNcm } from "./type/TypeProducts"
-import ncmJSON from './Tabela_NCM_Vigente_20240707.json'
+import ncmJSON from './NCM.json'
 import api from "../../services/api/api";
 
 export function FormProduct() {
@@ -216,7 +216,7 @@ export function FormProduct() {
                             key={ncm.Codigo}
                             value={ncm.Codigo}
                         >
-                            {ncm.Descricao.replace(/[()-<i>]/g, '')}
+                            {ncm.Descricao}
                         </option>
                     ))};
                     </select></datalist>

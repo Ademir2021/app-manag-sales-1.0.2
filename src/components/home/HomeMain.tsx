@@ -10,7 +10,7 @@ export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields 
         { id: 2, item: "NFCe", descric: "Emissor de Nota fiscal consumidor eletrônica (NFCe)", content: 'Permite ao cliente de forma simples a emissão e a manutenção da NFCe das vendas' },
         { id: 3, item: "CHECKOUT DE VENDAS", descric: "Integração com Cartão, PIX e Boleto", content: 'Permite a integração de seus  sistemas e a realização de  vendas on-line, e que o cliente possa efetuar seus pagamentos de forma segura.' },
         { id: 4, item: "API REST", descric: "Integração de seu sistema com outras tecnologias", content: 'Permite o sistema do cliente possa se integrar a outros sistemas ou a micros-serviços para troca de dados' },
-        { id: 5, item: "ERP", descric: "Sistema Integrado de Vendas", content: 'Permite ao cliente a automação de seus processo na empresa como: Vendas/Financeiros/Caixa/Estoque/Notas e muito mais...' }
+        { id: 5, item: "ERP", descric: "Sistema Integrado de Vendas", content: 'Permite ao cliente a automação de seus processos na empresa como: Vendas/Financeiro/Caixa/Estoque/Notas e muito mais ...' }
     ]
 
     return (

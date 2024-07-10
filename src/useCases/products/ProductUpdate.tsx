@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useContext } from "react"
-import ncmJSON from './Tabela_NCM_Vigente_20240707.json'
+import ncmJSON from './NCM.json'
 import { FormatDate } from "../../components/utils/formatDate";
 import { TProductRegister, TSector, TBrand, TClasseProd, TGrupoFiscal, TTipoProd, TUnMed, TNcm } from "./type/TypeProducts";
 import { postRegister, putUpdate } from "../../services/handleService";
@@ -43,7 +43,7 @@ export function ProductUpdate() {
     });
     const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
 
-    /** Atualiza a marca somente se selecionar */
+    // Atualiza  somente se selecionar
     if (selectedIdBrand !== 1) {
         product.fk_brand = parseInt(selectedIdBrand);
     }
@@ -177,7 +177,7 @@ export function ProductUpdate() {
                     })
 
             } catch (err) {
-                // console.log("error occurred !!" + err)
+                console.log("error occurred !!" + err)
                 setTokenMessage(" Erro: 401 - Token Expirado ! ")
                 await HandleEnsureAuth()
             }
@@ -323,7 +323,7 @@ export function ProductUpdate() {
                             key={ncm.Codigo}
                             value={ncm.Codigo}
                         >
-                            {ncm.Descricao.replace(/[()-<i>]/g, '')}
+                            {ncm.Descricao}
                         </option>
                     ))};
                     </select></datalist>
