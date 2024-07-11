@@ -31,8 +31,8 @@ export function ProductUpdate() {
     const [flagRegister, setFlagRegister] = useState<boolean>(false)
     const [alert_, setAlert_] = useState<string>("")
     const handleProducts: HandleProducts = new HandleProducts()
-    const [brands, setBrands] = useState<TBrand[]>([]);
     const [sectors, setSectors] = useState<TSector[]>([]);
+    const [brands, setBrands] = useState<TBrand[]>([]);
     const [unMeds, setUnMeds] = useState<TUnMed[]>([])
     const [classesProds, setClassesProds] = useState<TClasseProd[]>([])
     const [gruposFiscais, setGruposFiscais] = useState<TGrupoFiscal[]>([])
@@ -44,7 +44,6 @@ export function ProductUpdate() {
     const [selectedIdGrupoFiscal, setSelectedIdGrupoFiscal] = useState<any>(1)
     const [selectedIdTipoProd, setSelectdIdTipoProd] = useState<any>(1)
     const [selectedIdNcm, setSelectdIdNcm] = useState<any>('0000.0')
-
     const [selectedIdBrand, setSelectedIdBrand] = useState<any>(1);
     const [selectedIdSector, setSelectedIdSector] = useState<any>(1);
     const [products, setProducts] = useState<TProductRegister[]>([])
@@ -198,7 +197,6 @@ export function ProductUpdate() {
             setAlert_(resp)
         }
     };
-
 
     async function handleDelete(e: Event) {
         e.preventDefault();
