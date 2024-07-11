@@ -6,6 +6,7 @@ import { TPersonRegister, TCeps, TCities } from './type/TypePerson'
 import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api";
+import { HandleProducts } from "../products/HandleProduct";
 
 export function PersonsList() {
 
@@ -79,7 +80,7 @@ export function PersonsList() {
 
     return (
         <>
-                <Dashboard />
+            <Dashboard />
             <div className="text-center"><a href="person_list">{tokenMessage}</a></div>
             {persons.length === 0 ? <p>Carregando...</p> : (
                 persons.map((person: TPersonRegister) => (

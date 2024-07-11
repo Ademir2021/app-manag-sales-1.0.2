@@ -13,8 +13,22 @@ import { HandleProducts } from "./HandleProduct";
 import api from '../../services/api/api';
 import "../../App.css"
 
+type TResp = {
+    req: string;
+    res: []
+}
+const resp: TResp[] = [
+    { req: 'sectors', res: [] },
+    { req: 'brands', res: [] },
+    { req: 'un_med', res: [] },
+    { req: 'classes_prods', res: [] },
+    { req: 'grupos_fiscais', res: [] },
+    { req: 'tipos_prods', res: [] }
+]
+
 export function ProductUpdate() {
     const { user: isLogged }: any = useContext(AuthContext);
+    const [flagRegister, setFlagRegister] = useState<boolean>(false)
     const [alert_, setAlert_] = useState<string>("")
     const handleProducts: HandleProducts = new HandleProducts()
     const [brands, setBrands] = useState<TBrand[]>([]);
@@ -74,64 +88,22 @@ export function ProductUpdate() {
     };
 
     useEffect(() => {
-        async function getBrands() {
-            try {
-                await api.get<TBrand[]>('/brands')
-                    .then(response => { setBrands(response.data) });
-            } catch (err) { alert("error occurred !!" + err) }
-        };
-        getBrands();
-    }, [brands]);
-
-    useEffect(() => {
-        async function getSectors() {
-            try {
-                await api.get<TSector[]>('/sectors')
-                    .then(response => { setSectors(response.data) });
-            } catch (err) { alert("error occurred !!" + err) }
-        };
-        getSectors();
-    }, [sectors]);
-
-    useEffect(() => {
-        async function getUnMeds() {
-            try {
-                await api.get<TUnMed[]>('/un_med')
-                    .then(response => { setUnMeds(response.data) });
-            } catch (err) { alert("error occurred !!" + err) }
-        };
-        getUnMeds();
-    }, [unMeds]);
-
-    useEffect(() => {
-        async function getClasssesProds() {
-            try {
-                await api.get<TClasseProd[]>('/classes_prods')
-                    .then(response => { setClassesProds(response.data) });
-            } catch (err) { alert("error occurred !!" + err) }
-        };
-        getClasssesProds()
-    }, [classesProds])
-
-    useEffect(() => {
-        async function getGruposFiscais() {
-            try {
-                await api.get<TGrupoFiscal[]>('/grupos_fiscais')
-                    .then(response => { setGruposFiscais(response.data) });
-            } catch (err) { alert("error occurred !!" + err) }
-        };
-        getGruposFiscais();
-    }, [gruposFiscais]);
-
-    useEffect(() => {
-        async function getTiposProds() {
-            try {
-                await api.get<TTipoProd[]>('/tipos_prods')
-                    .then(response => { setTiposProds(response.data) });
-            } catch (err) { alert("error occurred !!" + err) }
-        };
-        getTiposProds();
-    }, [tiposProds]);
+        async function getAttribute() {
+            for (let i = 0; resp.length > i; i++) {
+                try {
+                    await api.get<[]>(resp[i].req)
+                        .then(response => { resp[i].res = response.data });
+                } catch (err) { alert("error occurred !!" + err) }
+            }
+            setSectors(resp[0].res)
+            setBrands(resp[1].res)
+            setUnMeds(resp[2].res)
+            setClassesProds(resp[3].res)
+            setGruposFiscais(resp[4].res)
+            setTiposProds(resp[5].res)
+        }
+        getAttribute();
+    });
 
     useEffect(() => {
         async function getNcms() {
@@ -222,12 +194,15 @@ export function ProductUpdate() {
     async function handleUpdate(e: Event) {
         e.preventDefault();
         if (ProductValFields()) {
-           const resp:any = await putUpdate(product, 'product_update')
-           setAlert_(resp)
+            const resp: any = await putUpdate(product, 'product_update')
+            setAlert_(resp)
         }
     };
+
+
     async function handleDelete(e: Event) {
         e.preventDefault();
+        setFlagRegister(true)
         setProduct({
             id_product: 0, descric_product: '',
             val_max_product: 0.00, val_min_product: 0.00,
@@ -238,6 +213,10 @@ export function ProductUpdate() {
         alert("Digite um novo produto !!")
     };
 
+    useEffect(() => {
+        handleProducts.getAttributes()
+    })
+
     return (
         <>
             <Dashboard />
@@ -247,6 +226,7 @@ export function ProductUpdate() {
                 handleSubmit={handleSubmit}
                 handleUpdate={handleUpdate}
                 handleDelete={handleDelete}
+                flagRegister={flagRegister}
                 modalRef={modalRef}
                 className={dropdown}
                 close={closeDropdown}

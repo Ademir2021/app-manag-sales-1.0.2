@@ -20,10 +20,13 @@ export function ProductsList() {
         };
         getProducts();
     },[products]);
+
+    useEffect(() => {
+        handleProducts.getAttributes()
+    })
     
     return (
         <>
-            {/* <p>{JSON.stringify(tiposProds)}</p> */}
             <Dashboard />
             <h1 className="text-center">Lista de Produtos</h1>
             {products.length === 0 ? <p>Carregando...</p> : (

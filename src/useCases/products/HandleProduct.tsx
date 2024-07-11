@@ -1,10 +1,20 @@
 import { TBrand, TSector, TUnMed, TClasseProd, TGrupoFiscal, TTipoProd } from "./type/TypeProducts";
-
 import api from "../../services/api/api";
 
+type TResp = {
+    req: string;
+    res: []
+}
+const resp: TResp[] = [
+    { req: 'sectors', res: [] },
+    { req: 'brands', res: [] },
+    { req: 'un_med', res: [] },
+    { req: 'classes_prods', res: [] },
+    { req: 'grupos_fiscais', res: [] },
+    { req: 'tipos_prods', res: [] }
+]
 
 class HandleProducts {
-
     private static sectors: TSector[] = []
     private static brands: TBrand[] = []
     private static unMeds: TUnMed[] = []
@@ -12,32 +22,30 @@ class HandleProducts {
     private static gruposFiscais: TGrupoFiscal[] = []
     private static tiposProds: TTipoProd[] = []
 
-    async getSectors() {
-        try {
-            await api.get<TSector[]>('/sectors')
-                .then(response => { HandleProducts.sectors = response.data });
-        } catch (err) { alert("error occurred !!" + err) }
+    public async getAttributes() {
+        for (let i = 0; resp.length > i; i++) {
+            try {
+                await api.get<[]>(resp[i].req)
+                    .then(response => { resp[i].res = response.data })
+            } catch (err) { alert("error occurred !!" + err) }
+            HandleProducts.sectors = resp[0].res
+            HandleProducts.brands = resp[1].res
+            HandleProducts.unMeds = resp[2].res
+            HandleProducts.classesProds = resp[3].res
+            HandleProducts.gruposFiscais = resp[4].res
+            HandleProducts.tiposProds = resp[5].res
+        }
     };
-    nameSector(idSector: number,) {
-        if (HandleProducts.sectors[0] === undefined)
-         this.getSectors()
+
+    public nameSector(idSector: number,) {
         for (let i = 0; i < HandleProducts.sectors.length; i++) {
             if (HandleProducts.sectors[i].id_sector === idSector) {
-                const sector: string =  HandleProducts.sectors[i].name_sector;
+                const sector: string = HandleProducts.sectors[i].name_sector;
                 return sector;
             }
         }
     };
-
-    async getBrands() {
-        try {
-            await api.get<TBrand[]>('/brands')
-                .then(response => { HandleProducts.brands = response.data });
-        } catch (err) { alert("error occurred !!" + err) }
-    };
     nameBrands(idBrand: number) {
-        if (HandleProducts.brands[0] === undefined)
-            this.getBrands()
         for (let i = 0; i < HandleProducts.brands.length; i++) {
             if (HandleProducts.brands[i].id_brand === idBrand) {
                 const brand: string = HandleProducts.brands[i].name_brand;
@@ -45,16 +53,7 @@ class HandleProducts {
             }
         }
     };
-
-    async getUnMeds() {
-        try {
-            await api.get<TUnMed[]>('/un_med')
-                .then(response => { HandleProducts.unMeds = response.data });
-        } catch (err) { alert("error occurred !!" + err) }
-    };
     nameUnMeds(idUnMed: number) {
-        if (HandleProducts.unMeds[0] === undefined)
-            this.getUnMeds()
         for (let i = 0; i < HandleProducts.unMeds.length; i++) {
             if (HandleProducts.unMeds[i].id_un === idUnMed) {
                 const unMed: string = HandleProducts.unMeds[i].un_med;
@@ -62,16 +61,7 @@ class HandleProducts {
             }
         }
     };
-
-    async getClasssesProds() {
-        try {
-            await api.get<TClasseProd[]>('/classes_prods')
-                .then(response => { HandleProducts.classesProds = response.data });
-        } catch (err) { alert("error occurred !!" + err) }
-    };
     nameClasseProd(idClasseProd: number) {
-        if (HandleProducts.classesProds[0] === undefined)
-            this.getClasssesProds()
         for (let i = 0; i < HandleProducts.classesProds.length; i++) {
             if (HandleProducts.classesProds[i].id_classe === idClasseProd) {
                 const nameClasse: string = HandleProducts.classesProds[i].name_classe;
@@ -79,16 +69,7 @@ class HandleProducts {
             }
         }
     };
-
-    async getGruposFiscais() {
-        try {
-            await api.get<TGrupoFiscal[]>('/grupos_fiscais')
-                .then(response => { HandleProducts.gruposFiscais = response.data });
-        } catch (err) { alert("error occurred !!" + err) }
-    };
     nameGruposFiscais(idGrupoFiscal: number) {
-        if (HandleProducts.gruposFiscais[0] === undefined)
-            this.getGruposFiscais()
         for (let i = 0; i < HandleProducts.gruposFiscais.length; i++) {
             if (HandleProducts.gruposFiscais[i].id_grupo_fiscal === idGrupoFiscal) {
                 const nameGrupoFiscal: string = HandleProducts.gruposFiscais[i].name_grupo_fiscal;
@@ -96,16 +77,7 @@ class HandleProducts {
             }
         }
     };
-
-    async getTiposProds() {
-        try {
-            await api.get<TTipoProd[]>('/tipos_prods')
-                .then(response => { HandleProducts.tiposProds = response.data });
-        } catch (err) { alert("error occurred !!" + err) }
-    };
     nameTiposProds(idTipoProd: number) {
-        if(HandleProducts.tiposProds[0] === undefined)
-            this.getTiposProds()
         for (let i = 0; i < HandleProducts.tiposProds.length; i++) {
             if (HandleProducts.tiposProds[i].id_tipo === idTipoProd) {
                 const nameTipoProd: string = HandleProducts.tiposProds[i].name_tipo;

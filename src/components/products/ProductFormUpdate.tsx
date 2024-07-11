@@ -22,6 +22,7 @@ type PropsProductFormUpdate = {
     listTipoProd: any
     listNcm: any;
     msgNcm: string | undefined;
+    flagRegister:boolean
 }
 
 export function ProductFormUpdate({
@@ -42,7 +43,8 @@ export function ProductFormUpdate({
     listGrupoFiscal,
     listTipoProd,
     listNcm,
-    msgNcm
+    msgNcm,
+    flagRegister,
 }: PropsProductFormUpdate) {
     const [menu, setMenu] = useState("geral")
     const nav = <>
@@ -112,9 +114,9 @@ export function ProductFormUpdate({
             onChange={handleChange}
             placeholder='Imagem'
         />
-        <button onClick={handleUpdate}>Atualizar</button>
-        <button onClick={handleSubmit}>Registrar</button>
-        <button onClick={handleDelete}>Novo</button>
+        {flagRegister === false ? <button onClick={handleUpdate}>Atualizar</button> : null}
+        {flagRegister !== false ? <button onClick={handleSubmit}>Registrar</button> : null}
+        {flagRegister === false ? <button onClick={handleDelete}>Novo</button> : null}
         <button onClick={close}>Sair</button>
 
     </>

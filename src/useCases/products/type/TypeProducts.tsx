@@ -29,7 +29,6 @@ export type TItens = {
     valor: number;
     tItem: number;
     image?: string;
-
 };
 
 export type TBrand = {

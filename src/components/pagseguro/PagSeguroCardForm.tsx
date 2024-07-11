@@ -3,6 +3,8 @@ import { LogoIn } from "../utils/logoIn/LogoIn";
 import { currencyFormat } from "../utils/currentFormat/CurrentFormat";
 import { Globais } from "../globais/Globais";
 
+import './PagSeguroCardForm.css'
+
 type PropsPagSeguroCardForm = {
     children: any | string | number | readonly string[] | undefined
     handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
@@ -31,7 +33,6 @@ export function PagSeguroCardForm({
                 <div className="main-global">
                     <LogoIn />
                     <form className="main-global-form">
-                        <hr></hr>
                         <input
                             type="hidden"
                             name="public_key"
@@ -94,13 +95,13 @@ export function PagSeguroCardForm({
                         <>{URLNoteSubmit ? <button onClick={() => { window.location.replace(Globais.URL_NOTE + '/' + URLNoteSubmit) }}>Emitir Nota</button> : null}</>
                         <>{URLNoteSubmit ? <button onClick={() => { window.location.replace('dashboardefault') }}>Sair</button> : null}</>
                     </form>
+                    <div id="cards-accepted">
+                <span className="p-2">Cartões aceitos </span>
+                <hr></hr>
+                <img src="img/card_pag_bank.png" alt="Cartões aceitos"></img>
+                </div>
                 </div>
             </div>
-            <div className="container-global">
-                <span>Cartões aceitos</span>
-                <img src="img/card_pag_bank.png" alt="Cartões aceitos"></img>
-            </div>
-            <br></br>
         </>
     )
 }
