@@ -13,20 +13,8 @@ import { HandleProducts } from "./HandleProduct";
 import api from '../../services/api/api';
 import "../../App.css"
 
-type TResp = {
-    req: string;
-    res: []
-}
 
 export function ProductUpdate() {
-    const resp: TResp[] = [
-        { req: 'sectors', res: [] },
-        { req: 'brands', res: [] },
-        { req: 'un_med', res: [] },
-        { req: 'classes_prods', res: [] },
-        { req: 'grupos_fiscais', res: [] },
-        { req: 'tipos_prods', res: [] }
-    ]
     const { user: isLogged }: any = useContext(AuthContext);
     const [flagRegister, setFlagRegister] = useState<boolean>(false)
     const [alert_, setAlert_] = useState<string>("")
