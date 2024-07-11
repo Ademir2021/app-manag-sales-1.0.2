@@ -263,9 +263,7 @@ export function ProductUpdate() {
             fk_grupo_fiscal: 1, fk_tipo_prod: 1, ncm: ''
         })
     };
-
-    handleProducts.getAttributes()
-
+    
     return (
         <>
             <Dashboard />
@@ -380,14 +378,14 @@ export function ProductUpdate() {
                         name={product.descric_product}
                         val_max={currencyFormat(product.val_max_product)}
                         val_min={currencyFormat(product.val_min_product)}
-                        brand={handleProducts.nameBrands(product.fk_brand)}
-                        sector={handleProducts.nameSector(product.fk_sector)}
-                        un_med={handleProducts.nameUnMeds(product.fk_un_med)}
+                        brand={handleProducts.nameBrands(product.fk_brand, brands)}
+                        sector={handleProducts.nameSector(product.fk_sector, sectors)}
+                        un_med={handleProducts.nameUnMeds(product.fk_un_med, unMeds)}
                         bar_code={product.bar_code}
                         image={product.image}
-                        classe={handleProducts.nameClasseProd(product.fk_classe)}
-                        grupo_fiscal={handleProducts.nameGruposFiscais(product.fk_grupo_fiscal)}
-                        tipo_prod={handleProducts.nameTiposProds(product.fk_tipo_prod)}
+                        classe={handleProducts.nameClasseProd(product.fk_classe, classesProds)}
+                        grupo_fiscal={handleProducts.nameGruposFiscais(product.fk_grupo_fiscal, gruposFiscais)}
+                        tipo_prod={handleProducts.nameTiposProds(product.fk_tipo_prod, tiposProds)}
                         ncm={product.ncm}
                         update={<button className="btn  btn-danger"
                             onClick={() =>

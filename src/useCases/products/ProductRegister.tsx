@@ -6,20 +6,7 @@ import { TProductRegister, TBrand, TSector, TUnMed, TClasseProd, TGrupoFiscal, T
 import ncmJSON from './NCM.json'
 import api from "../../services/api/api";
 
-type TResp = {
-    req: string;
-    res: []
-}
-
 export function FormProduct() {
-    const resp: TResp[] = [
-        { req: 'sectors', res: [] },
-        { req: 'brands', res: [] },
-        { req: 'un_med', res: [] },
-        { req: 'classes_prods', res: [] },
-        { req: 'grupos_fiscais', res: [] },
-        { req: 'tipos_prods', res: [] }
-    ]
     const [alert_, setAlert_] = useState<string>("")
     const [brands, setBrands] = useState<TBrand[]>([]);
     const [sectors, setSectors] = useState<TSector[]>([]);
@@ -59,23 +46,76 @@ export function FormProduct() {
     };
 
     useEffect(() => {
-        async function getAttribute() {
-            for (let i = 0; resp.length > i; i++) {
-                try {
-                    await api.get<[]>(resp[i].req)
-                        .then(response => { resp[i].res = response.data });
-                } catch (err) { alert("error occurred !!" + err) }
-            }
-            setSectors(resp[0].res)
-            setBrands(resp[1].res)
-            setUnMeds(resp[2].res)
-            setClassesProds(resp[3].res)
-            setGruposFiscais(resp[4].res)
-            setTiposProds(resp[5].res)
-        }
-        getAttribute();
-    },[sectors,brands,unMeds,classesProds,gruposFiscais,tiposProds]);
+        const getBrands = async () => {
+            try {
+                await api.get<TBrand[]>('brands')
+                    .then(response => {
+                        setBrands(response.data)
+                    })
+            } catch (err) { console.log("err: " + err) }
+        };
+        getBrands()
+    }, [brands])
 
+    useEffect(() => {
+        const getSectors = async () => {
+            try {
+                await api.get<TSector[]>('sectors')
+                    .then(response => {
+                        setSectors(response.data)
+                    })
+            } catch (err) { console.log('err:' + err) }
+        }
+        getSectors()
+    }, [sectors])
+
+    useEffect(() => {
+        const getUnMeds = async () => {
+            try {
+                await api.get<TUnMed[]>('un_med')
+                    .then(response => {
+                        setUnMeds(response.data)
+                    })
+            } catch (err) { console.log('err:' + err) }
+        }
+        getUnMeds()
+    }, [unMeds])
+
+    useEffect(() => {
+        const getClassesProds = async () => {
+            try {
+                await api.get<TClasseProd[]>('classes_prods')
+                    .then(response => {
+                        setClassesProds(response.data)
+                    })
+            } catch (err) { console.log('err:' + err) }
+        }
+        getClassesProds()
+    }, [classesProds])
+
+    useEffect(() => {
+        const getGruposFiscais = async () => {
+            try {
+                await api.get<TGrupoFiscal[]>('grupos_fiscais')
+                    .then(response => {
+                        setGruposFiscais(response.data)
+                    })
+            } catch (err) { console.log('err:' + err) }
+        }
+        getGruposFiscais()
+    }, [gruposFiscais])
+
+    useEffect(() => {
+        const getTiposProds = async () => {
+            try {
+                await api.get<TTipoProd[]>('tipos_prods')
+                    .then(response => {
+                        setTiposProds(response.data)
+                    })
+            } catch (err) { console.log('err:' + err) }
+        }
+        getTiposProds()
+    }, [tiposProds])
 
     useEffect(() => {
         async function getNcms() {

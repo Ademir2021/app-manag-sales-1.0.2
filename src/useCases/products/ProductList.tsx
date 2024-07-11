@@ -1,15 +1,21 @@
 import { useState, useEffect } from "react";
+import { TProductRegister, TBrand, TSector, TUnMed, TClasseProd, TGrupoFiscal, TTipoProd, TNcm } from "./type/TypeProducts"
 import { FormatDate } from "../../components/utils/formatDate";
 import { ProductList } from "../../components/products/ProductList";
 import { currencyFormat } from "../../components/utils/currentFormat/CurrentFormat";
 import { Dashboard } from "../dashboard/Dashboard";
-import { TProductRegister } from "./type/TypeProducts";
 import { HandleProducts } from "./HandleProduct";
 import api from "../../services/api/api";
 
 export function ProductsList() {
     const handleProducts:HandleProducts = new HandleProducts();
     const [products, setproducts] = useState<TProductRegister[]>([]);
+    const [brands, setBrands] = useState<TBrand[]>([]);
+    const [sectors, setSectors] = useState<TSector[]>([]);
+    const [unMeds, setUnMeds] = useState<TUnMed[]>([])
+    const [classesProds, setClassesProds] = useState<TClasseProd[]>([])
+    const [gruposFiscais, setGruposFiscais] = useState<TGrupoFiscal[]>([])
+    const [tiposProds, setTiposProds] = useState<TTipoProd[]>([])
 
     useEffect(()=>{
         async function getProducts() {
@@ -22,8 +28,76 @@ export function ProductsList() {
     },[products]);
 
     useEffect(() => {
-        handleProducts.getAttributes()
-    })
+        const getBrands = async () => {
+            try {
+                await api.get<TBrand[]>('brands')
+                    .then(response => {
+                        setBrands(response.data)
+                    })
+            } catch (err) { console.log("err: " + err) }
+        };
+        getBrands()
+    }, [brands])
+
+    useEffect(() => {
+        const getSectors = async () => {
+            try {
+                await api.get<TSector[]>('sectors')
+                    .then(response => {
+                        setSectors(response.data)
+                    })
+            } catch (err) { console.log('err:' + err) }
+        }
+        getSectors()
+    }, [sectors])
+
+    useEffect(() => {
+        const getUnMeds = async () => {
+            try {
+                await api.get<TUnMed[]>('un_med')
+                    .then(response => {
+                        setUnMeds(response.data)
+                    })
+            } catch (err) { console.log('err:' + err) }
+        }
+        getUnMeds()
+    }, [unMeds])
+
+    useEffect(() => {
+        const getClassesProds = async () => {
+            try {
+                await api.get<TClasseProd[]>('classes_prods')
+                    .then(response => {
+                        setClassesProds(response.data)
+                    })
+            } catch (err) { console.log('err:' + err) }
+        }
+        getClassesProds()
+    }, [classesProds])
+
+    useEffect(() => {
+        const getGruposFiscais = async () => {
+            try {
+                await api.get<TGrupoFiscal[]>('grupos_fiscais')
+                    .then(response => {
+                        setGruposFiscais(response.data)
+                    })
+            } catch (err) { console.log('err:' + err) }
+        }
+        getGruposFiscais()
+    }, [gruposFiscais])
+
+    useEffect(() => {
+        const getTiposProds = async () => {
+            try {
+                await api.get<TTipoProd[]>('tipos_prods')
+                    .then(response => {
+                        setTiposProds(response.data)
+                    })
+            } catch (err) { console.log('err:' + err) }
+        }
+        getTiposProds()
+    }, [tiposProds])
     
     return (
         <>
@@ -40,14 +114,14 @@ export function ProductsList() {
                         name={product.descric_product}
                         val_max={currencyFormat(product.val_max_product)}
                         val_min={currencyFormat(product.val_min_product)}
-                        brand={handleProducts.nameBrands(product.fk_brand)}
-                        sector={handleProducts.nameSector(product.fk_sector)}
-                        un_med={handleProducts.nameUnMeds(product.fk_un_med)}
+                        brand={handleProducts.nameBrands(product.fk_brand,brands)}
+                        sector={handleProducts.nameSector(product.fk_sector, sectors)}
+                        un_med={handleProducts.nameUnMeds(product.fk_un_med, unMeds)}
                         bar_code={product.bar_code}
                         image={product.image}
-                        classe={handleProducts.nameClasseProd(product.fk_classe)}
-                        grupo_fiscal={handleProducts.nameGruposFiscais(product.fk_grupo_fiscal)}
-                        tipo_prod={handleProducts.nameTiposProds(product.fk_tipo_prod)}
+                        classe={handleProducts.nameClasseProd(product.fk_classe, classesProds)}
+                        grupo_fiscal={handleProducts.nameGruposFiscais(product.fk_grupo_fiscal, gruposFiscais)}
+                        tipo_prod={handleProducts.nameTiposProds(product.fk_tipo_prod, tiposProds)}
                         ncm={product.ncm}
                         update={null}
                     />
