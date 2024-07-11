@@ -17,16 +17,16 @@ type TResp = {
     req: string;
     res: []
 }
-const resp: TResp[] = [
-    { req: 'sectors', res: [] },
-    { req: 'brands', res: [] },
-    { req: 'un_med', res: [] },
-    { req: 'classes_prods', res: [] },
-    { req: 'grupos_fiscais', res: [] },
-    { req: 'tipos_prods', res: [] }
-]
 
 export function ProductUpdate() {
+    const resp: TResp[] = [
+        { req: 'sectors', res: [] },
+        { req: 'brands', res: [] },
+        { req: 'un_med', res: [] },
+        { req: 'classes_prods', res: [] },
+        { req: 'grupos_fiscais', res: [] },
+        { req: 'tipos_prods', res: [] }
+    ]
     const { user: isLogged }: any = useContext(AuthContext);
     const [flagRegister, setFlagRegister] = useState<boolean>(false)
     const [alert_, setAlert_] = useState<string>("")
@@ -87,22 +87,76 @@ export function ProductUpdate() {
     };
 
     useEffect(() => {
-        async function getAttribute() {
-            for (let i = 0; resp.length > i; i++) {
-                try {
-                    await api.get<[]>(resp[i].req)
-                        .then(response => { resp[i].res = response.data });
-                } catch (err) { alert("error occurred !!" + err) }
-            }
-            setSectors(resp[0].res)
-            setBrands(resp[1].res)
-            setUnMeds(resp[2].res)
-            setClassesProds(resp[3].res)
-            setGruposFiscais(resp[4].res)
-            setTiposProds(resp[5].res)
+        const getBrands = async () => {
+            try {
+                await api.get<TBrand[]>('brands')
+                    .then(response => {
+                        setBrands(response.data)
+                    })
+            } catch (err) { console.log("err: " + err) }
+        };
+        getBrands()
+    }, [brands])
+
+    useEffect(() => {
+        const getSectors = async () => {
+            try {
+                await api.get<TSector[]>('sectors')
+                    .then(response => {
+                        setSectors(response.data)
+                    })
+            } catch (err) { console.log('err:' + err) }
         }
-        getAttribute();
-    });
+        getSectors()
+    }, [sectors])
+
+    useEffect(() => {
+        const getUnMeds = async () => {
+            try {
+                await api.get<TUnMed[]>('un_med')
+                    .then(response => {
+                        setUnMeds(response.data)
+                    })
+            } catch (err) { console.log('err:' + err) }
+        }
+        getUnMeds()
+    }, [unMeds])
+
+    useEffect(() => {
+        const getClassesProds = async () => {
+            try {
+                await api.get<TClasseProd[]>('classes_prods')
+                    .then(response => {
+                        setClassesProds(response.data)
+                    })
+            } catch (err) { console.log('err:' + err) }
+        }
+        getClassesProds()
+    }, [classesProds])
+
+    useEffect(() => {
+        const getGruposFiscais = async () => {
+            try {
+                await api.get<TGrupoFiscal[]>('grupos_fiscais')
+                    .then(response => {
+                        setGruposFiscais(response.data)
+                    })
+            } catch (err) { console.log('err:' + err) }
+        }
+        getGruposFiscais()
+    }, [gruposFiscais])
+
+    useEffect(() => {
+        const getTiposProds = async () => {
+            try {
+                await api.get<TTipoProd[]>('tipos_prods')
+                    .then(response => {
+                        setTiposProds(response.data)
+                    })
+            } catch (err) { console.log('err:' + err) }
+        }
+        getTiposProds()
+    }, [tiposProds])
 
     useEffect(() => {
         async function getNcms() {
@@ -110,7 +164,7 @@ export function ProductUpdate() {
             setNcms(ncms)
         };
         getNcms();
-    }, [ncms_]);
+    }, [ncms]);
 
     const [dropdown, setDropdown] = useState<string>("");
     const modalRef = useRef<any>(null);
@@ -208,12 +262,9 @@ export function ProductUpdate() {
             bar_code: '', image: '', fk_classe: 1,
             fk_grupo_fiscal: 1, fk_tipo_prod: 1, ncm: ''
         })
-        alert("Digite um novo produto !!")
     };
 
-    useEffect(() => {
-        handleProducts.getAttributes()
-    })
+    handleProducts.getAttributes()
 
     return (
         <>

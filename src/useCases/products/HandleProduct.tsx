@@ -27,7 +27,7 @@ class HandleProducts {
             try {
                 await api.get<[]>(resp[i].req)
                     .then(response => { resp[i].res = response.data })
-            } catch (err) { alert("error occurred !!" + err) }
+            } catch (err) { console.log("error occurred !!" + err) }
             HandleProducts.sectors = resp[0].res
             HandleProducts.brands = resp[1].res
             HandleProducts.unMeds = resp[2].res

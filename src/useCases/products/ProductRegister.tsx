@@ -10,16 +10,16 @@ type TResp = {
     req: string;
     res: []
 }
-const resp: TResp[] = [
-    { req: 'sectors', res: [] },
-    { req: 'brands', res: [] },
-    { req: 'un_med', res: [] },
-    { req: 'classes_prods', res: [] },
-    { req: 'grupos_fiscais', res: [] },
-    { req: 'tipos_prods', res: [] }
-]
 
 export function FormProduct() {
+    const resp: TResp[] = [
+        { req: 'sectors', res: [] },
+        { req: 'brands', res: [] },
+        { req: 'un_med', res: [] },
+        { req: 'classes_prods', res: [] },
+        { req: 'grupos_fiscais', res: [] },
+        { req: 'tipos_prods', res: [] }
+    ]
     const [alert_, setAlert_] = useState<string>("")
     const [brands, setBrands] = useState<TBrand[]>([]);
     const [sectors, setSectors] = useState<TSector[]>([]);
@@ -74,7 +74,7 @@ export function FormProduct() {
             setTiposProds(resp[5].res)
         }
         getAttribute();
-    });
+    },[sectors,brands,unMeds,classesProds,gruposFiscais,tiposProds]);
 
 
     useEffect(() => {
@@ -83,7 +83,7 @@ export function FormProduct() {
             setNcms(ncms)
         };
         getNcms();
-    }, [ncms_]);
+    }, [ncms]);
 
     function ProductValFields() {
         let content = "Campo obrigatório: "
