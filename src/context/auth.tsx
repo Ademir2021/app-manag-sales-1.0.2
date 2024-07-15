@@ -25,12 +25,14 @@ export const AuthProvider = ({ children }: any | undefined) => {
     })
 
     useEffect(() => {
-        const recoverUser = localStorage.getItem('u')
-        if (recoverUser) {
-            setUser(JSON.parse(recoverUser))
-        }
-        setLoading(false)
-    }, [user]);
+        const getRecoverUser = () => {
+            const recoverUser = localStorage.getItem('u')
+            if (recoverUser)
+                setUser(JSON.parse(recoverUser))
+            setLoading(false)
+        };
+        getRecoverUser()
+    }, [!user, userLogin]);
 
     const login = async (email: string, password: string) => {
         userLogin.username = email
@@ -58,7 +60,7 @@ export const AuthProvider = ({ children }: any | undefined) => {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${resToken}`
                     }
-                    const thisUserExists = {"username":userLogin.username,"password":""}
+                    const thisUserExists = { "username": userLogin.username, "password": "" }
                     api.post('login', thisUserExists, { headers })
                         .then(response => {
                             const res = response.data

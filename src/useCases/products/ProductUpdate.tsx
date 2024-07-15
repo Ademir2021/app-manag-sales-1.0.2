@@ -13,7 +13,6 @@ import { HandleProducts } from "./HandleProduct";
 import api from '../../services/api/api';
 import "../../App.css"
 
-
 export function ProductUpdate() {
     const { user: isLogged }: any = useContext(AuthContext);
     const [flagRegister, setFlagRegister] = useState<boolean>(false)
@@ -152,7 +151,7 @@ export function ProductUpdate() {
             setNcms(ncms)
         };
         getNcms();
-    }, [ncms]);
+    }, [ncms_]);
 
     const [dropdown, setDropdown] = useState<string>("");
     const modalRef = useRef<any>(null);

@@ -123,7 +123,7 @@ export function FormProduct() {
             setNcms(ncms)
         };
         getNcms();
-    }, [ncms]);
+    }, [ncms_]);
 
     function ProductValFields() {
         let content = "Campo obrigatório: "
