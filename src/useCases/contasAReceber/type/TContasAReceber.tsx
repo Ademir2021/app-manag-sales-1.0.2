@@ -11,44 +11,29 @@ export type TContaAreceber = {
     parcela: number
     valor: number //numeric 13 ,3
     venc_original: Date | string
-    cod_anterior?: number 
-    dias_multa?: number
-    dias_protesto?: number
+    cod_anterior: number 
+    dias_multa: number
+    dias_protesto: number
     multa: number //numeric 8, 4
     juros: number //numeric 8, 4
-    desconto?: number //numeric 13, 3
-    data_desconto?: Date
-    comissao_vendedor?:number //numeric 13, 3
-    comissao_representante?: number //numeric 13, 3
-    portador?: number
-    conta_bancaria?:TContaBancaria
-    emissao?:Date |  string
-    vencimento?:Date | string
-    pagamento?:Date | string
-    saldo?:number //numeric 13,3
-    descontos?:number //numeric 13, 3
-    multas?: number //numeric 13, 3
-    situacao?:string //char
-    cancelada?:string //char
-    estorno?:string //char
-    parceiro?:string //char
-    filial_parceiro?: number
-    nome_parceiro?:string
-    nome_operador?:string
-    tipos_descontos_antecipacao?:number
-    dias_para_juros?: number
-    titulos_descontados?:string //char
-    titulos_protestados?:string //char
-    titulos_registrados?:string //char
-    data_inc?: Date //TimeStamp
-    camara?:number
-    cheque_devolvido?:string //char
-    forma_reg_inadiplencia?:string //char
+    desconto: number //numeric 13, 3
+    data_desconto: Date | string
+    comissao_vendedor:number //numeric 13, 3
+    comissao_representante: number //numeric 13, 3
+    portador: number
+    emissao:Date |  string | any
+    vencimento:Date | string | any
+    pagamento:Date | string  | any
+    saldo:number //numeric 13,3
+    descontos:number //numeric 13, 3
 
+    conta_bancaria?:TContaBancaria
+    cartao?:TCartao
+    titulo?:TTitulo
 }
 
 type TContaBancaria = {
-    id_banco:number
+    id_banco?:number
     carteira?:number 
     aceite?: string //char
     banco?:number
@@ -77,4 +62,25 @@ type TCartao = {
     sinal?:string //char
     conciliado?:string //char
     a_vista?:string //char
+}
+
+type TTitulo = {
+    id_titulo?:number
+    multas?: number //numeric 13, 3
+    situacao?:string //char
+    cancelada?:string //char
+    estorno?:string //char
+    parceiro?:string //char
+    filial_parceiro?: number
+    nome_parceiro?:string
+    nome_operador?:string
+    tipos_descontos_antecipacao?:number
+    dias_para_juros?: number
+    titulos_descontados?:string //char
+    titulos_protestados?:string //char
+    titulos_registrados?:string //char
+    data_inc?: Date //TimeStamp
+    camara?:number
+    cheque_devolvido?:string //char
+    forma_reg_inadiplencia?:string //char
 }
