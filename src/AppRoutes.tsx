@@ -27,6 +27,7 @@ import { BackHome } from './components/utils/backHome/BackHome';
 import { Ceps } from "./useCases/ceps/Ceps";
 import { ContactsList } from "./useCases/contacts/ContactsList";
 import { CookieWarnings } from "./useCases/storeHome/CookieWarnings";
+import { ContasAReceber } from "./useCases/contasAReceber/ContasAReceber";
 
 
 export function AppRoutes() {
@@ -75,6 +76,8 @@ export function AppRoutes() {
                     <Route path="/person_update" element={<Private><PersonUpdate /></Private>} />
                     <Route path="/ceps" element={<Private><Ceps /></Private>} />
                     <Route path="/contacts_list" element={<Private><ContactsList /></Private>} />
+                    <Route path="/cookies" Component={CookieWarnings} />
+                    <Route path="/contas_receber" element={<Private><ContasAReceber /></Private>} />
                     <Route path="*" element={<><BackHome /><strong>Error 404: <label>Endereço URL inválido</label></strong><br /></>} />
                 </Routes>
             </AuthProvider>
