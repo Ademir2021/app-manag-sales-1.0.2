@@ -6,9 +6,8 @@ type TProps = {
     contasAReceber: TContaAreceber[]
     receberValor: any
     handleChange: React.ChangeEventHandler<HTMLInputElement>
-    handleClick?:any
 }
-function ContasAreceberForm({ contasAReceber, receberValor, handleChange , handleClick}: TProps) {
+function ContasAreceberForm({ contasAReceber, receberValor, handleChange}: TProps) {
 
     const list = contasAReceber.map((conta: TContaAreceber) => (
         <tr key={conta.id_conta}>
@@ -30,14 +29,13 @@ function ContasAreceberForm({ contasAReceber, receberValor, handleChange , handl
     return (
         <>
             <div>
-                <dd>Infomre o Valor a Pagar</dd>
+                <dd>Titulos a receber</dd>
                 <input
                     type="text"
                     name="valor"
                     placeholder="Informe o valor recebido"
                     onChange={handleChange}
                 />
-                {/* <button onClick={handleClick}>Confirma</button> */}
             </div>
             <table className='table bg-light mt-1'>
                 <thead>
