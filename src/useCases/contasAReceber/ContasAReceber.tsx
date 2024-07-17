@@ -7,11 +7,13 @@ import JSONContasAReceber from './ContasAReceber.json'
 type TValsRecebidos = {
     id_val: number
     id_conta: number
+    id_venda: number
     valor: number
     data_recebimento: Date | string
 }
 
 function ContasAReceber() {
+    const [flagPay, setFlagPay] = useState<boolean>(true)
     const [valor, setValor] = useState<number>(0)
     const handleContasAReceber = new HandleContasAReceber()
     const [JSONContasAReceber_] = useState<any>(JSONContasAReceber)
@@ -47,14 +49,16 @@ function ContasAReceber() {
         let valRecebido: any = {}
         valRecebido.id_val = 1
         valRecebido.id_conta = conta.id_conta
-        valRecebido.data_recebimento = new Date().getTime()
+        valRecebido.id_venda = conta.venda
+        valRecebido.data_recebimento = new Date()
         valRecebido.valor = valor
+
         valsRecebidos.push(valRecebido)
 
     }
 
     function verificaQuitacaoTitulo(conta: TContaAreceber) {
-        let total:number = 0
+        let total: number = 0
         for (let i = 0; valsRecebidos.length > i; i++) {
             if (valsRecebidos[i].id_conta === conta.id_conta) {
                 total += valsRecebidos[i].valor
@@ -64,11 +68,17 @@ function ContasAReceber() {
     }
 
     function handleReceberValor(conta: TContaAreceber) {
+        valsPagos(conta)
         for (let i = 0; contasAReceber.length > i; i++) {
-            if (contasAReceber[i].id_conta === conta.id_conta)
-                valsPagos(conta)
-            console.log(verificaQuitacaoTitulo(conta))
-            contasAReceber[i].saldo = contasAReceber[i].valor + contasAReceber[i].juros + contasAReceber[i].multa - valor
+            if (contasAReceber[i].id_conta === conta.id_conta) {
+                const verificaquitacao = verificaQuitacaoTitulo(conta)
+                const resp = contasAReceber[i].valor + contasAReceber[i].juros + contasAReceber[i].multa
+                if (verificaquitacao < resp) {
+                    contasAReceber[i].saldo = contasAReceber[i].valor + contasAReceber[i].juros + contasAReceber[i].multa - verificaquitacao
+                } else {
+                    alert('Titulo já foi quitado')
+                }
+            }
         }
         setValor(0)
     }
