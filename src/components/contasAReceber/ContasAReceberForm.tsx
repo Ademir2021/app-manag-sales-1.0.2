@@ -6,21 +6,23 @@ type TProps = {
     contasAReceber: TContaAreceber[]
     receberValor: any
     handleChange: React.ChangeEventHandler<HTMLInputElement>
+    // children: React.ChangeEventHandler<HTMLInputElement> | undefined | any;
 }
-function ContasAreceberForm({ contasAReceber, receberValor, handleChange}: TProps) {
+function ContasAreceberForm({ contasAReceber, receberValor, handleChange }: TProps) {
 
     const list = contasAReceber.map((conta: TContaAreceber) => (
         <tr key={conta.id_conta}>
             <th id="center">{conta.id_conta}</th>
             <td id="center">{conta.emissao}</td>
-            <td id="center">{conta.valor}</td>
+            <td id="center">{conta.valor.toFixed(3)}</td>
             <td id="center">{conta.vencimento}</td>
-            <td id="center">{conta.juros}</td>
-            <td id="center">{conta.multa}</td>
-            <td id="center">{conta.desconto}</td>
-            <td id="center">{conta.saldo}</td>
+            <td id="center">{conta.juros.toFixed(3)}</td>
+            <td id="center">{conta.multa.toFixed(3)}</td>
+            <td id="center">{conta.desconto.toFixed(3)}</td>
+            <td id="center">{conta.saldo.toFixed(3)}</td>
             <td id="center">{conta.pagamento}</td>
             <td id="center"><button
+                type="button"
                 className="btn btn-primary"
                 onClick={() => receberValor(conta)}
             >Receber</button></td>
@@ -28,15 +30,16 @@ function ContasAreceberForm({ contasAReceber, receberValor, handleChange}: TProp
     ))
     return (
         <>
-            <div>
+            <form>
                 <dd>Titulos a receber</dd>
                 <input
-                    type="text"
-                    name="valor"
+                    type="number"
+            
                     placeholder="Informe o valor recebido"
+    
                     onChange={handleChange}
-                />
-            </div>
+                ></input>
+            </form>
             <table className='table bg-light mt-1'>
                 <thead>
                     <tr>

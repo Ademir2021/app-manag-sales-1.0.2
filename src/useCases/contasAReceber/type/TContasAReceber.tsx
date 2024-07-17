@@ -1,35 +1,18 @@
 export type TContaAreceber = {
     id_conta: number
     filial: number
-    legado: number
     tipo: string
     venda: number
-    fatura: number
-    fat_legada: number
-    recebimento: number
-    ordem_servico: number
     parcela: number
     valor: number //numeric 13 ,3
-    venc_original: Date | string
-    cod_anterior: number 
-    dias_multa: number
-    dias_protesto: number
     multa: number //numeric 8, 4
     juros: number //numeric 8, 4
     desconto: number //numeric 13, 3
-    data_desconto: Date | string
-    comissao_vendedor:number //numeric 13, 3
-    comissao_representante: number //numeric 13, 3
-    portador: number
     emissao:Date |  string | any
     vencimento:Date | string | any
-    pagamento:Date | string  | any
     saldo:number //numeric 13,3
     descontos:number //numeric 13, 3
-
-    conta_bancaria?:TContaBancaria
-    cartao?:TCartao
-    titulo?:TTitulo
+    pagamento:Date | string  | any
 }
 
 type TContaBancaria = {
@@ -83,4 +66,20 @@ type TTitulo = {
     camara?:number
     cheque_devolvido?:string //char
     forma_reg_inadiplencia?:string //char
+}
+
+type TOthers = {
+    legado: number
+    fatura: number
+    fat_legada: number
+    recebimento: number
+    ordem_servico: number
+    venc_original: Date | string
+    cod_anterior: number 
+    dias_multa: number
+    dias_protesto: number
+    data_desconto: Date | string
+    comissao_vendedor:number //numeric 13, 3
+    comissao_representante: number //numeric 13, 3
+    portador: number
 }
