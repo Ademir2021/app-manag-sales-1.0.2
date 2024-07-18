@@ -13,6 +13,16 @@ export type TContaAreceber = {
     saldo:number //numeric 13,3
     descontos:number //numeric 13, 3
     pagamento:Date | string  | any
+    recebimento: number
+}
+
+export type TValsRecebidos = {
+    id_val: number
+    id_conta: number
+    id_venda: number
+    id_user: number
+    valor: number
+    data_recebimento: Date | string
 }
 
 type TContaBancaria = {
@@ -72,7 +82,7 @@ type TOthers = {
     legado: number
     fatura: number
     fat_legada: number
-    recebimento: number
+   
     ordem_servico: number
     venc_original: Date | string
     cod_anterior: number 

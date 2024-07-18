@@ -1,22 +1,12 @@
 import { useEffect, useState, useContext } from "react"
 import { ContasAreceberForm } from "../../components/contasAReceber/ContasAReceberForm"
-import { TContaAreceber } from "./type/TContasAReceber"
+import { TContaAreceber, TValsRecebidos } from "./type/TContasAReceber"
 import { HandleContasAReceber } from "./HandleContasAReceber"
 import JSONContasAReceber from './ContasAReceber.json'
 import { AuthContext } from '../../context/auth'
 
-type TValsRecebidos = {
-    id_val: number
-    id_conta: number
-    id_venda: number
-    id_user: number
-    valor: number
-    data_recebimento: Date | string
-}
-
 function ContasAReceber() {
-    const { user: isLogged }: any = useContext(AuthContext);
-    // const [flagPay, setFlagPay] = useState<boolean>(false)
+
     const [msg, setMsg] = useState('')
     const [valor, setValor] = useState(0)
     const handleContasAReceber = new HandleContasAReceber()
@@ -24,9 +14,7 @@ function ContasAReceber() {
     const [contasAReceber, setContasAReceber] = useState<TContaAreceber[]>([])
     const [valsRecebidos, setValsRecebidos] = useState<TValsRecebidos[]>([])
 
-    const handleChange = (e: any) => {
-       setValor(parseFloat(e.target.value))
-    }
+    const { user: isLogged }: any = useContext(AuthContext);
 
     useEffect(() => {
         setTimeout(() => {
@@ -45,15 +33,18 @@ function ContasAReceber() {
     useEffect(() => {
         function calcContasAReceber() {
             for (let i = 0; contasAReceber.length > i; i++) {
-                const venc_original = new Date(contasAReceber[i].vencimento);
+                const venc_original = new Date(contasAReceber[i].vencimento).getTime();
                 const diaPagamento = new Date().getTime()
-                const difference = handleContasAReceber.dateDifference(venc_original, diaPagamento);
-                const diasCalcJuros: number | any = (difference.diffInDays - 1).toFixed(0)
-                const juros: number = contasAReceber[i].valor !== 0.00 ? contasAReceber[i].valor * diasCalcJuros * (3 / 100) : 0.00
-                contasAReceber[i].juros = juros
-                const multa: number = diasCalcJuros > 5 ? contasAReceber[i].valor * (3 / 100) : 0.00
-                contasAReceber[i].multa = multa
-                contasAReceber[i].saldo = contasAReceber[i].valor + contasAReceber[i].juros + contasAReceber[i].multa
+                if (venc_original < diaPagamento) {
+                    const difference = handleContasAReceber.dateDifference(venc_original, diaPagamento);
+                    console.log(venc_original)
+                    const diasCalcJuros: number | any = (difference.diffInDays - 1).toFixed(0)
+                    const juros: number = contasAReceber[i].valor !== 0.00 ? contasAReceber[i].valor * diasCalcJuros * (3 / 100) : 0.00
+                    contasAReceber[i].juros = juros
+                    const multa: number = diasCalcJuros > 5 ? contasAReceber[i].valor * (3 / 100) : 0.00
+                    contasAReceber[i].multa = multa
+                    contasAReceber[i].saldo = contasAReceber[i].valor + contasAReceber[i].juros + contasAReceber[i].multa
+                }
             }
             setContasAReceber(contasAReceber)
         }
@@ -61,7 +52,7 @@ function ContasAReceber() {
     }, [contasAReceber, valor])
 
     function valsPagos(conta: TContaAreceber) {
-        let valRecebido:TValsRecebidos = {
+        let valRecebido: TValsRecebidos = {
             id_val: 0,
             id_conta: 0,
             id_venda: 0,
@@ -94,9 +85,11 @@ function ContasAReceber() {
         const verificaquitacao = verificaQuitacaoTitulo(conta)
         for (let i = 0; contasAReceber.length > i; i++) {
             if (contasAReceber[i].id_conta === conta.id_conta) {
+                contasAReceber[i].recebimento = verificaquitacao
                 const saldo: number = contasAReceber[i].valor + contasAReceber[i].juros + contasAReceber[i].multa
                 if (saldo >= verificaquitacao) {
                     contasAReceber[i].saldo = saldo - verificaquitacao
+                    contasAReceber[i].pagamento = handleContasAReceber.newData()
                 } else {
                     setMsg('Saldo a pagar é de: R$' + contasAReceber[i].saldo + ' do titulo: ' + contasAReceber[i].id_conta)
                     valsRecebidos.pop()
@@ -109,14 +102,16 @@ function ContasAReceber() {
 
     return (
         <>
+            {JSON.stringify('ss')}
             <ContasAreceberForm
                 contasAReceber={contasAReceber}
+                valoresRecebidos={valsRecebidos}
                 receberValor={valor > 0 ? receberValor : () => { setMsg('Informe um novo valor') }}
-                handleChange={handleChange}
-                
-                />
-                <p>{JSON.stringify(valsRecebidos)}</p>
-                <span>{msg}</span>
+                handleChange={(e: any) => {
+                    setValor(parseFloat(e.target.value))
+                }}
+            />
+            <span>{msg}</span>
         </>
     )
 }

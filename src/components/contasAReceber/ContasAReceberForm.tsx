@@ -1,47 +1,33 @@
-import { TContaAreceber } from "../../useCases/contasAReceber/type/TContasAReceber"
+import { TContaAreceber, TValsRecebidos } from "../../useCases/contasAReceber/type/TContasAReceber"
 
 import './ContasAReceber.css'
 
 type TProps = {
     contasAReceber: TContaAreceber[]
+    valoresRecebidos:TValsRecebidos[]
     receberValor: any
     handleChange: React.ChangeEventHandler<HTMLInputElement>
-    // children: React.ChangeEventHandler<HTMLInputElement> | undefined | any;
 }
-function ContasAreceberForm({ contasAReceber, receberValor, handleChange }: TProps) {
 
-    const list = contasAReceber.map((conta: TContaAreceber) => (
-        <tr key={conta.id_conta}>
-            <th id="center">{conta.id_conta}</th>
-            <td id="center">{conta.venda}</td>
-            <td id="center">{conta.emissao}</td>
-            <td id="center">{conta.valor.toFixed(3)}</td>
-            <td id="center">{conta.vencimento}</td>
-            <td id="center">{conta.juros.toFixed(3)}</td>
-            <td id="center">{conta.multa.toFixed(3)}</td>
-            <td id="center">{conta.desconto.toFixed(3)}</td>
-            <td id="center">{conta.saldo.toFixed(3)}</td>
-            <td id="center">{conta.pagamento}</td>
-            <td id="center"><button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => receberValor(conta)}
-            >Receber</button></td>
-        </tr>
-    ))
-    return (
+function ContasAreceberForm({ contasAReceber, receberValor, handleChange, valoresRecebidos }: TProps) {
+
+    const headerContasReceber =
+        <div id="header-contas-receber">
+            Receber Valores dos Titulos
+        </div>
+
+    const inputReceberValor =
+        <input
+            min={0}
+            max={999}
+            type="number"
+            id="input-valor"
+            placeholder="Informe o valor recebido"
+            onChange={handleChange}
+        />
+
+    const listaContasReceber =
         <>
-            <div>
-                <dd className="text-center p-1">Titulos a receber</dd>
-                <input
-                    min={0}
-                    max={999}
-                    type="number"
-                    id="input-valor"
-                    placeholder="Informe o valor recebido"
-                    onChange={handleChange}
-                ></input>
-            </div>
             <table className='table bg-light mt-1'>
                 <thead>
                     <tr>
@@ -55,14 +41,70 @@ function ContasAreceberForm({ contasAReceber, receberValor, handleChange }: TPro
                         <th id="center">Desconto</th>
                         <th id="center">Saldo</th>
                         <th id="center">Pagamento</th>
+                        <th id="center">Recebimento</th>
                         <th id="center">Receber</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {list}
+                    {contasAReceber.map((conta: TContaAreceber) => (
+                        <tr key={conta.id_conta}>
+                            <th id="center">{conta.id_conta}</th>
+                            <td id="center">{conta.venda}</td>
+                            <td id="center">{conta.emissao}</td>
+                            <td id="center">{conta.valor.toFixed(3)}</td>
+                            <td id="center">{conta.vencimento}</td>
+                            <td id="center">{conta.juros.toFixed(3)}</td>
+                            <td id="center">{conta.multa.toFixed(3)}</td>
+                            <td id="center">{conta.desconto.toFixed(3)}</td>
+                            <td id="center">{conta.saldo.toFixed(3)}</td>
+                            <td id="center">{conta.pagamento}</td>
+                            <td id="center">{conta.recebimento}</td>
+                            <td id="center"><button
+                                type="button"
+                                className="btn btn-primary"
+                                onClick={() => receberValor(conta)}
+                            >Receber</button></td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </>
+
+        const listaValoresRecebidos = 
+        <>
+        <table className='table bg-light mt-1'>
+            <thead>
+                <tr>
+                    <th id="center">Id</th>
+                    <th id="center">Conta</th>
+                    <th id="center">Venda</th>
+                    <th id="center">User</th>
+                    <th id="center">Valor</th>
+                    <th id="center">Data Recebimento</th>
+                </tr>
+            </thead>
+                    <tbody>{valoresRecebidos.map((valRec:TValsRecebidos)=>(
+                        <tr key={valRec.id_conta}>
+                            <th id="center">{valRec.id_conta}</th>
+                            <th id="center">{valRec.id_val}</th>
+                            <th id="center">{valRec.id_venda}</th>
+                            <th id="center">{valRec.id_user}</th>
+                            <th id="center">{valRec.valor}</th>
+                            <th id="center">{valRec.data_recebimento.toLocaleString()}</th>
+
+                        </tr>
+                    ))}</tbody>
+        </table>
+        </>
+
+    return (
+        <div
+            id="contas-receber">
+            {headerContasReceber}
+            {inputReceberValor}
+            {listaContasReceber}
+            {listaValoresRecebidos}
+        </div>
     )
 }
 

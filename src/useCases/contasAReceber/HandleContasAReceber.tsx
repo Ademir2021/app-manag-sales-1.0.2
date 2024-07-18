@@ -17,6 +17,13 @@ class HandleContasAReceber {
             diffInMonths,
             diffInYears
         };
+    };
+    newData() {
+        const data = new Date();
+        const day = data.getUTCDate();
+        const year = data.getFullYear();
+        const month = data.getMonth() + 1;
+        return year + '-' + month + '-' + day
     }
 
 }
