@@ -1,6 +1,9 @@
+import { HandleContasAReceber } from "../../useCases/contasAReceber/HandleContasAReceber"
 import { TContaAreceber, TValsRecebidos } from "../../useCases/contasAReceber/type/TContasAReceber"
 
 import './ContasAReceber.css'
+import { FormatDate } from '../utils/formatDate/index';
+
 
 type TProps = {
     contasAReceber: TContaAreceber[]
@@ -10,6 +13,8 @@ type TProps = {
 }
 
 function ContasAreceberForm({ contasAReceber, receberValor, handleChange, valoresRecebidos }: TProps) {
+
+   const handleContasAReceber = new  HandleContasAReceber()
 
     const headerContasReceber =
         <div id="header-contas-receber">
@@ -50,9 +55,9 @@ function ContasAreceberForm({ contasAReceber, receberValor, handleChange, valore
                         <tr key={conta.id_conta}>
                             <th id="center">{conta.id_conta}</th>
                             <td id="center">{conta.venda}</td>
-                            <td id="center">{conta.emissao}</td>
+                            <td id="center">{handleContasAReceber.formatDate(conta.emissao)}</td>
                             <td id="center">{conta.valor.toFixed(3)}</td>
-                            <td id="center">{conta.vencimento}</td>
+                            <td id="center">{handleContasAReceber.formatDate((conta.vencimento))}</td>
                             <td id="center">{conta.juros.toFixed(3)}</td>
                             <td id="center">{conta.multa.toFixed(3)}</td>
                             <td id="center">{conta.desconto.toFixed(3)}</td>

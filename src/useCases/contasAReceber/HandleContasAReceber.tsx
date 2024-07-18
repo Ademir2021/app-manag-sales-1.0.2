@@ -1,3 +1,6 @@
+import { format, parseISO } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
+
 class HandleContasAReceber {
 
     dateDifference(date1: number | Date | any, date2: number | Date | any) {
@@ -23,9 +26,18 @@ class HandleContasAReceber {
         const day = data.getUTCDate();
         const year = data.getFullYear();
         const month = data.getMonth() + 1;
-        return year + '-' + month + '-' + day
-    }
+        const H = data.getHours();
+        const M = data.getMinutes();
+        const S = data.getSeconds();
+        return day + '-' + month + '-' + year + ' ' +
+            H + ':' + M + ':' + S
+    };
+    formatDate(date: string) {
+        return format(parseISO(date), "dd ' ' MMM ' ' yyyy ' ' HH:mm'h'", {
+            locale: ptBR
+        })
 
+    }
 }
 
 export { HandleContasAReceber }
