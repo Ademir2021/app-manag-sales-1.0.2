@@ -10,6 +10,7 @@ type TInvoiceSalesForm = {
   handleChange: any;
   handleSubmitCard: any;
   handleSubmit: any;
+  handleSubmitCred:any
   loadItens?: any;
   alert: string
   message: string;
@@ -22,6 +23,7 @@ export function InvoiceSalesForm({
   handleChange,
   handleSubmitCard,
   handleSubmit,
+  handleSubmitCred,
   children,
   loadItens,
   alert,
@@ -70,6 +72,7 @@ export function InvoiceSalesForm({
             />
             <button className='btn btn-primary' onClick={handleSubmitCard}>Pagar com Cartão</button>
             <button className='btn btn-primary' onClick={handleSubmit}>Pagar com PIX ou BOLETO</button>
+            <button className='btn btn-primary' onClick={handleSubmitCred}>Pagar com Crediário Loja</button>
             <a href='/person_update'>{"[ Atualização de Cadastro ]"}</a><a href='invoice_sales'>{token}</a>
             <span className='load-list-itens' >{loadItens}</span>
           </div>

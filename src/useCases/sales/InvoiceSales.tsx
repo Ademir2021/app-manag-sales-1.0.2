@@ -93,7 +93,8 @@ export function InvoiceSales() {
                         setItens(itens);
                     }
                     setInstallments(installments)
-                    sale.installments = installments
+                    installments !== 'Credito a vista' ? sale.installments = installments :
+                        setInstallments('1')
                 }
             }
             setTimeout(() => {
@@ -217,6 +218,10 @@ export function InvoiceSales() {
         payment()
     }
 
+    function handleSubmitCred() {
+        setTypePay('pagcredloja')
+    }
+
     return (
         <>
             <InvoiceSalesForm
@@ -224,6 +229,7 @@ export function InvoiceSales() {
                 backHomeInvoice={<BackHome />}
                 handleChange={handleChange}
                 handleSubmitCard={handleSubmitCard}
+                handleSubmitCred={handleSubmitCred}
                 handleSubmit={installments === "Credito a vista" ? handleSubmit :
                     () => (setMsg('Pagar parcelado somente com cartão de crédito!!'))}
                 alert=""
