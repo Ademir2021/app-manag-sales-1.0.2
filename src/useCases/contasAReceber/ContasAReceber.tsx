@@ -4,6 +4,7 @@ import { TContaAreceber, TValsRecebidos } from "./type/TContasAReceber"
 import { HandleContasAReceber } from "./HandleContasAReceber"
 import JSONContasAReceber from './ContasAReceber.json'
 import { AuthContext } from '../../context/auth'
+import { NavBar } from "../../components/navbar/Navbar"
 
 function ContasAReceber() {
 
@@ -49,9 +50,10 @@ function ContasAReceber() {
             setContasAReceber(contasAReceber)
         }
         calcContasAReceber();
-    }, [contasAReceber, valor])
+    }, [contasAReceber])
 
     function valsPagos(conta: TContaAreceber) {
+        let id = 1
         let valRecebido: TValsRecebidos = {
             id_val: 0,
             id_conta: 0,
@@ -60,7 +62,7 @@ function ContasAReceber() {
             valor: 0,
             data_recebimento: ""
         }
-        valRecebido.id_val = 1
+        valRecebido.id_val = id++
         valRecebido.id_conta = conta.id_conta
         valRecebido.id_venda = conta.venda
         valRecebido.id_user = isLogged[0].id
@@ -102,7 +104,9 @@ function ContasAReceber() {
 
     return (
         <>
-            {JSON.stringify('ss')}
+            {/* {JSON.stringify('XX')} */}
+            <NavBar/>
+            <div className="text-center">{msg}</div>
             <ContasAreceberForm
                 contasAReceber={contasAReceber}
                 valoresRecebidos={valsRecebidos}
@@ -111,7 +115,6 @@ function ContasAReceber() {
                     setValor(parseFloat(e.target.value))
                 }}
             />
-            <span>{msg}</span>
         </>
     )
 }

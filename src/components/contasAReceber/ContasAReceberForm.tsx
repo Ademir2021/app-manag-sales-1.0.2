@@ -18,7 +18,7 @@ function ContasAreceberForm({ contasAReceber, receberValor, handleChange, valore
 
     const headerContasReceber =
         <div id="header-contas-receber">
-            Receber Valores dos Titulos
+            Receber valores dos Titulos
         </div>
 
     const inputReceberValor =
@@ -89,9 +89,9 @@ function ContasAreceberForm({ contasAReceber, receberValor, handleChange, valore
                 </tr>
             </thead>
                     <tbody>{valoresRecebidos.map((valRec:TValsRecebidos)=>(
-                        <tr key={valRec.id_conta}>
-                            <th id="center">{valRec.id_conta}</th>
+                        <tr key={valRec.id_val}>
                             <th id="center">{valRec.id_val}</th>
+                            <th id="center">{valRec.id_conta}</th>
                             <th id="center">{valRec.id_venda}</th>
                             <th id="center">{valRec.id_user}</th>
                             <th id="center">{valRec.valor}</th>
