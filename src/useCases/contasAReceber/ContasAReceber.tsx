@@ -1,18 +1,21 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { ContasAreceberForm } from "../../components/contasAReceber/ContasAReceberForm"
 import { TContaAreceber } from "./type/TContasAReceber"
 import { HandleContasAReceber } from "./HandleContasAReceber"
 import JSONContasAReceber from './ContasAReceber.json'
+import { AuthContext } from '../../context/auth'
 
 type TValsRecebidos = {
     id_val: number
     id_conta: number
     id_venda: number
+    id_user: number
     valor: number
     data_recebimento: Date | string
 }
 
 function ContasAReceber() {
+    const { user: isLogged }: any = useContext(AuthContext);
     // const [flagPay, setFlagPay] = useState<boolean>(false)
     const [msg, setMsg] = useState('')
     const [valor, setValor] = useState(0)
@@ -22,13 +25,13 @@ function ContasAReceber() {
     const [valsRecebidos, setValsRecebidos] = useState<TValsRecebidos[]>([])
 
     const handleChange = (e: any) => {
-        setValor(parseFloat(e.target.value))
-    };
+       setValor(parseFloat(e.target.value))
+    }
 
     useEffect(() => {
         setTimeout(() => {
             setMsg('')
-        }, 2000);
+        }, 9000);
     }, [msg])
 
     useEffect(() => {
@@ -58,10 +61,18 @@ function ContasAReceber() {
     }, [contasAReceber, valor])
 
     function valsPagos(conta: TContaAreceber) {
-        let valRecebido: any = {}
+        let valRecebido:TValsRecebidos = {
+            id_val: 0,
+            id_conta: 0,
+            id_venda: 0,
+            id_user: 0,
+            valor: 0,
+            data_recebimento: ""
+        }
         valRecebido.id_val = 1
         valRecebido.id_conta = conta.id_conta
         valRecebido.id_venda = conta.venda
+        valRecebido.id_user = isLogged[0].id
         valRecebido.data_recebimento = new Date()
         valRecebido.valor = valor
         valsRecebidos.push(valRecebido)
@@ -87,7 +98,7 @@ function ContasAReceber() {
                 if (saldo >= verificaquitacao) {
                     contasAReceber[i].saldo = saldo - verificaquitacao
                 } else {
-                    setMsg('Titulo quitado: ' + contasAReceber[i].id_conta)
+                    setMsg('Saldo a pagar é de: R$' + contasAReceber[i].saldo + ' do titulo: ' + contasAReceber[i].id_conta)
                     valsRecebidos.pop()
                     contasAReceber[i].saldo = 0
                 }
@@ -98,14 +109,14 @@ function ContasAReceber() {
 
     return (
         <>
-            <p>{JSON.stringify(valsRecebidos)}</p>
-            <span>{msg}</span>
             <ContasAreceberForm
                 contasAReceber={contasAReceber}
                 receberValor={valor > 0 ? receberValor : () => { setMsg('Informe um novo valor') }}
                 handleChange={handleChange}
-
-            />
+                
+                />
+                <p>{JSON.stringify(valsRecebidos)}</p>
+                <span>{msg}</span>
         </>
     )
 }

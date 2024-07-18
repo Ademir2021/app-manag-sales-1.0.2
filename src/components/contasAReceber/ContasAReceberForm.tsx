@@ -13,6 +13,7 @@ function ContasAreceberForm({ contasAReceber, receberValor, handleChange }: TPro
     const list = contasAReceber.map((conta: TContaAreceber) => (
         <tr key={conta.id_conta}>
             <th id="center">{conta.id_conta}</th>
+            <td id="center">{conta.venda}</td>
             <td id="center">{conta.emissao}</td>
             <td id="center">{conta.valor.toFixed(3)}</td>
             <td id="center">{conta.vencimento}</td>
@@ -30,20 +31,22 @@ function ContasAreceberForm({ contasAReceber, receberValor, handleChange }: TPro
     ))
     return (
         <>
-            <form>
-                <dd>Titulos a receber</dd>
+            <div>
+                <dd className="text-center p-1">Titulos a receber</dd>
                 <input
+                    min={0}
+                    max={999}
                     type="number"
-            
+                    id="input-valor"
                     placeholder="Informe o valor recebido"
-    
                     onChange={handleChange}
                 ></input>
-            </form>
+            </div>
             <table className='table bg-light mt-1'>
                 <thead>
                     <tr>
-                        <th id="center">IdConta</th>
+                        <th id="center">ID</th>
+                        <th id="center">Origem</th>
                         <th id="center">Emissão</th>
                         <th id="center">Valor</th>
                         <th id="center">Vencimento</th>
@@ -52,7 +55,7 @@ function ContasAreceberForm({ contasAReceber, receberValor, handleChange }: TPro
                         <th id="center">Desconto</th>
                         <th id="center">Saldo</th>
                         <th id="center">Pagamento</th>
-                        <th id="center">Pagar</th>
+                        <th id="center">Receber</th>
                     </tr>
                 </thead>
                 <tbody>
