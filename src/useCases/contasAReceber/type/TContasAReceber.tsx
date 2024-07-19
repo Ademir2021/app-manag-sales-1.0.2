@@ -1,5 +1,5 @@
 export type TContaAreceber = {
-    id_conta: number
+    id_conta: number 
     filial: number
     tipo: string
     venda: number

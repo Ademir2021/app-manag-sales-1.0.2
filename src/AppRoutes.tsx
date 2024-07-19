@@ -28,6 +28,7 @@ import { Ceps } from "./useCases/ceps/Ceps";
 import { ContactsList } from "./useCases/contacts/ContactsList";
 import { CookieWarnings } from "./useCases/storeHome/CookieWarnings";
 import { ContasAReceber } from "./useCases/contasAReceber/ContasAReceber";
+import { PagCredLoja } from "./useCases/sales/PagCredLoja";
 
 
 export function AppRoutes() {
@@ -78,6 +79,7 @@ export function AppRoutes() {
                     <Route path="/contacts_list" element={<Private><ContactsList /></Private>} />
                     <Route path="/cookies" Component={CookieWarnings} />
                     <Route path="/contas_receber" element={<Private><ContasAReceber /></Private>} />
+                    <Route path="/pagcredloja" element={<Private><PagCredLoja /></Private>} />
                     <Route path="*" element={<><BackHome /><strong>Error 404: <label>Endereço URL inválido</label></strong><br /></>} />
                 </Routes>
             </AuthProvider>
