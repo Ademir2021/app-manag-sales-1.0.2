@@ -95,6 +95,8 @@ export function InvoiceSales() {
                     setInstallments(installments)
                     installments !== 'Credito a vista' ? sale.installments = installments :
                         setInstallments('1')
+
+                        sale.duplicatas = []
                 }
             }
             setTimeout(() => {

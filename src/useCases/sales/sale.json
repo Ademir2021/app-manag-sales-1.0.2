@@ -24,5 +24,6 @@
     "tItens": 0,
     "tNote": 0,
     "paySale": 0,
-    "itens": []
+    "itens": [],
+    "duplicatas":[]
 }
