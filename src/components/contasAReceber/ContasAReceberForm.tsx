@@ -54,7 +54,7 @@ function ContasAreceberForm({ contasAReceber, receberValor, handleChange, valore
                     {contasAReceber.map((conta: TContaAreceber) => (
                         <tr key={conta.id_conta}>
                             <th id="center">{conta.id_conta}</th>
-                            <td id="center">{conta.venda}</td>
+                            <td id="center">{conta.fk_venda}</td>
                             <td id="center">{handleContasAReceber.formatDate(conta.emissao)}</td>
                             <td id="center">{conta.valor.toFixed(3)}</td>
                             <td id="center">{handleContasAReceber.formatDate((conta.vencimento))}</td>

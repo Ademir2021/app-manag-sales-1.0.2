@@ -64,7 +64,7 @@ function ContasAReceber() {
         }
         valRecebido.id_val = id++
         valRecebido.id_conta = conta.id_conta
-        valRecebido.id_venda = conta.venda
+        valRecebido.id_venda = conta.fk_venda
         valRecebido.id_user = isLogged[0].id
         valRecebido.data_recebimento = new Date()
         valRecebido.valor = valor

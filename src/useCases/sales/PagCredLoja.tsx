@@ -7,7 +7,8 @@ import { PagCredLojaForm } from "../../components/sales/PagCredLojaForm"
 
 export function PagCredLoja() {
 
-    const [sale, setSale] = useState<any>(sale_JSON);
+    const [sale, setSale] = useState(sale_JSON);
+
 
     useEffect(() => {
         const getSale = () => {
@@ -16,6 +17,7 @@ export function PagCredLoja() {
                 const sales = JSON.parse(sale_store_res)
                 setSale(sales)
                 handleInstallments(sales)
+              
             }
         };
         getSale()
@@ -33,7 +35,7 @@ export function PagCredLoja() {
             new Date()
         ).add(
             'days', days
-        );
+        )
         return prazo
     }
 
@@ -44,9 +46,10 @@ export function PagCredLoja() {
         for (let i = 1; installments >= i; i++) {
             let contaReceber: TContaAreceber = {
                 id_conta: 0,
-                filial: 0,
+                fk_filial: 0,
                 tipo: "",
-                venda: 0,
+                fk_venda: 0,
+                fk_user:0,
                 parcela: "",
                 valor: 0,
                 multa: 0,
@@ -59,9 +62,10 @@ export function PagCredLoja() {
                 recebimento: null
             };
             contaReceber.id_conta = 1
-            contaReceber.filial = sales.filial
+            contaReceber.fk_filial = sales.filial
             contaReceber.tipo = 'cred'
-            contaReceber.venda = 0
+            contaReceber.fk_venda = 0
+            contaReceber.fk_user = sales.user.id
             contaReceber.parcela = i + '-' + installments
             contaReceber.valor = valParc.toFixed(3)
             contaReceber.multa = 0
@@ -77,16 +81,17 @@ export function PagCredLoja() {
     }
 
     const handleSubmit = () => {
-        // alert("ok")
-    
+        //
     }
 
     return (
         <>
-        <>{JSON.stringify(sale.duplicatas)}</>
+        {/* <p>{JSON.stringify(sale.duplicatas)}</p> */}
             <PagCredLojaForm
+            handleSubmit={handleSubmit}
             duplicatas={sale.duplicatas}
-            handleSubmit={handleSubmit}/>
+            />
+            
         </>
     )
 }
