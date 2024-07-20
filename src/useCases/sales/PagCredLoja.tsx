@@ -9,18 +9,17 @@ export function PagCredLoja() {
 
     const [sale, setSale] = useState<any>(sale_JSON);
 
-    // useEffect(() => {
+    useEffect(() => {
         const getSale = () => {
             const sale_store_res = localStorage.getItem('sl');
-            if (sale_store_res !== null) {
+            if (sale_store_res) {
                 const sales = JSON.parse(sale_store_res)
                 setSale(sales)
                 handleInstallments(sales)
             }
         };
-    //     getSale()
-
-    // },[])
+        getSale()
+    },[])
 
     const setPrazo = (i: number) => {
         let days = 0
@@ -79,7 +78,7 @@ export function PagCredLoja() {
 
     const handleSubmit = () => {
         // alert("ok")
-        getSale()
+    
     }
 
     return (
