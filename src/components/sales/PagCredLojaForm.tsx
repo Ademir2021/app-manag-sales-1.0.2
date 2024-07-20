@@ -5,10 +5,11 @@ import { FormatDate } from '../utils/formatDate/index';
 type TProps={
     duplicatas:TContaAreceber []
     handleSubmit:any
+    toGoBackInvoiceSale:any
 }
 
 
-export function PagCredLojaForm({handleSubmit, duplicatas}:TProps){
+export function PagCredLojaForm({handleSubmit, duplicatas, toGoBackInvoiceSale}:TProps){
 
     const handleContasAReceber = new  HandleContasAReceber()
 
@@ -39,12 +40,17 @@ export function PagCredLojaForm({handleSubmit, duplicatas}:TProps){
     </>
     return(
         <>
-        <h1>Finalize sua compra</h1>
+        <div className="container">
+        <h1 className="text-center">Finalizar compra</h1>
         <button className="btn btn-primary m-3"
                 onClick={handleSubmit}
             >Finalizar compra</button>
-            <dd className="p-3">Forma de pagamento</dd>
+             <button className="btn btn-primary m-3"
+                onClick={toGoBackInvoiceSale}
+            >Modificar forma de pagamneto</button>
+            <dd className="p-3 mb-3">Forma de pagamento</dd>
             {listDuplicatas}
+        </div>
         </>
     )
 }

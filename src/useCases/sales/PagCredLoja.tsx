@@ -4,6 +4,7 @@ import sale_JSON from "./sale.json"
 import { TContaAreceber, TValsRecebidos } from "../contasAReceber/type/TContasAReceber"
 // import { HandleContasAReceber } from "../contasAReceber/HandleContasAReceber"
 import { PagCredLojaForm } from "../../components/sales/PagCredLojaForm"
+import { NavBar } from "../../components/navbar/Navbar";
 
 export function PagCredLoja() {
 
@@ -26,10 +27,12 @@ export function PagCredLoja() {
     const setPrazo = (i: number) => {
         let days = 0
         if (i === 1)
-            days = 30
+            days = 4
         else if (i === 2)
-            days = 60
+            days = 30
         else if (i === 3)
+            days = 60
+        else if (i === 4)
             days = 90
         let prazo = moment(
             new Date()
@@ -61,12 +64,12 @@ export function PagCredLoja() {
                 pagamento: null,
                 recebimento: null
             };
-            contaReceber.id_conta = 1
+            contaReceber.id_conta = i
             contaReceber.fk_filial = sales.filial
             contaReceber.tipo = 'cred'
             contaReceber.fk_venda = 0
             contaReceber.fk_user = sales.user.id
-            contaReceber.parcela = i + '-' + installments
+            contaReceber.parcela = i + '/' + installments
             contaReceber.valor = valParc.toFixed(3)
             contaReceber.multa = 0
             contaReceber.juros = 0
@@ -86,12 +89,12 @@ export function PagCredLoja() {
 
     return (
         <>
-        {/* <p>{JSON.stringify(sale.duplicatas)}</p> */}
+        <NavBar/>
             <PagCredLojaForm
             handleSubmit={handleSubmit}
             duplicatas={sale.duplicatas}
+            toGoBackInvoiceSale={()=>{window.location.replace('invoice_sales')}}
             />
-            
         </>
     )
 }
