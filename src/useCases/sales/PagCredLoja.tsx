@@ -2,12 +2,10 @@ import { useState, useEffect } from "react";
 import moment from 'moment-timezone';
 import sale_JSON from "./sale.json"
 import { TContaAreceber, TValsRecebidos } from "../contasAReceber/type/TContasAReceber"
-import { HandleContasAReceber } from "../contasAReceber/HandleContasAReceber"
-import { PagCredLojaForm } from "../../components/sales/PagCredLojaForm"
+// import { HandleContasAReceber } from "../contasAReceber/HandleContasAReceber"
+// import { PagCredLojaForm } from "../../components/sales/PagCredLojaForm"
 
 export function PagCredLoja() {
-
-    const handleContasAReceber = new HandleContasAReceber()
 
     const [sale, setSale] = useState<any>(sale_JSON);
 
@@ -22,7 +20,7 @@ export function PagCredLoja() {
         };
         getSale()
 
-    }, [])
+    },[])
 
     const setPrazo = (i: number) => {
         let days = 0
@@ -80,7 +78,7 @@ export function PagCredLoja() {
     }
 
     const handleSubmit = () => {
-        // getSale()
+        alert("ok")
     }
 
     return (
