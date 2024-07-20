@@ -3,13 +3,13 @@ import moment from 'moment-timezone';
 import sale_JSON from "./sale.json"
 import { TContaAreceber, TValsRecebidos } from "../contasAReceber/type/TContasAReceber"
 // import { HandleContasAReceber } from "../contasAReceber/HandleContasAReceber"
-// import { PagCredLojaForm } from "../../components/sales/PagCredLojaForm"
+import { PagCredLojaForm } from "../../components/sales/PagCredLojaForm"
 
 export function PagCredLoja() {
 
     const [sale, setSale] = useState<any>(sale_JSON);
 
-    useEffect(() => {
+    // useEffect(() => {
         const getSale = () => {
             const sale_store_res = localStorage.getItem('sl');
             if (sale_store_res !== null) {
@@ -18,9 +18,9 @@ export function PagCredLoja() {
                 handleInstallments(sales)
             }
         };
-        getSale()
+    //     getSale()
 
-    },[])
+    // },[])
 
     const setPrazo = (i: number) => {
         let days = 0
@@ -78,16 +78,16 @@ export function PagCredLoja() {
     }
 
     const handleSubmit = () => {
-        alert("ok")
+        // alert("ok")
+        getSale()
     }
 
     return (
         <>
-            <p>{JSON.stringify(sale.duplicatas)}</p>
-            <button className="btn btn-primary m-3"
-                onClick={handleSubmit}
-            >Finalizar compra</button>
-            {/* <PagCredLojaForm /> */}
+        <>{JSON.stringify(sale.duplicatas)}</>
+            <PagCredLojaForm
+            duplicatas={sale.duplicatas}
+            handleSubmit={handleSubmit}/>
         </>
     )
 }
