@@ -1,25 +1,9 @@
 import { useState, useEffect } from "react";
 import moment from 'moment-timezone';
 import sale_JSON from "./sale.json"
+import { TContaAreceber, TValsRecebidos } from "../contasAReceber/type/TContasAReceber"
 import { HandleContasAReceber } from "../contasAReceber/HandleContasAReceber"
 import { PagCredLojaForm } from "../../components/sales/PagCredLojaForm"
-
-type TDuplicata = {
-    id_conta: number
-    filial: number
-    tipo: string
-    venda: number
-    parcela: number | string
-    valor: number | any
-    multa: number
-    juros: number
-    desconto: number
-    emissao: Date | null
-    vencimento: Date | any | null
-    saldo: number
-    pagamento: Date | null
-    recebimento: number | null
-}
 
 export function PagCredLoja() {
 
@@ -27,14 +11,18 @@ export function PagCredLoja() {
 
     const [sale, setSale] = useState<any>(sale_JSON);
 
-    const getSale = () => {
-        const sale_store_res = localStorage.getItem('sl');
-        if (sale_store_res !== null) {
-            const sales = JSON.parse(sale_store_res)
-            setSale(sales)
-            handleInstallments(sales)
-        }
-    };
+    useEffect(() => {
+        const getSale = () => {
+            const sale_store_res = localStorage.getItem('sl');
+            if (sale_store_res !== null) {
+                const sales = JSON.parse(sale_store_res)
+                setSale(sales)
+                handleInstallments(sales)
+            }
+        };
+        getSale()
+
+    }, [])
 
     const setPrazo = (i: number) => {
         let days = 0
@@ -57,7 +45,7 @@ export function PagCredLoja() {
         let pay = parseFloat(sales.paySale)
         let valParc = pay / installments
         for (let i = 1; installments >= i; i++) {
-            let contaReceber: TDuplicata = {
+            let contaReceber: TContaAreceber = {
                 id_conta: 0,
                 filial: 0,
                 tipo: "",
@@ -84,15 +72,6 @@ export function PagCredLoja() {
             contaReceber.desconto = 0
             contaReceber.emissao = new Date()
             contaReceber.vencimento = setPrazo(i)
-            // if (i === 1) {
-            //     contaReceber.vencimento = setPrazo(i)
-            // }
-            // if (i === 2) {
-            //     contaReceber.vencimento = setPrazo(i)
-            // }
-            // if (i === 3) {
-            //     contaReceber.vencimento = setPrazo(i)
-            // }
             contaReceber.saldo = 0
             contaReceber.pagamento = null
             contaReceber.recebimento = 0
@@ -101,7 +80,7 @@ export function PagCredLoja() {
     }
 
     const handleSubmit = () => {
-        getSale()
+        // getSale()
     }
 
     return (
@@ -109,7 +88,7 @@ export function PagCredLoja() {
             <p>{JSON.stringify(sale.duplicatas)}</p>
             <button className="btn btn-primary m-3"
                 onClick={handleSubmit}
-            >Finalizar venda</button>
+            >Finalizar compra</button>
             {/* <PagCredLojaForm /> */}
         </>
     )

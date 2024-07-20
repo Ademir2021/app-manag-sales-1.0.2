@@ -3,8 +3,8 @@ export type TContaAreceber = {
     filial: number
     tipo: string
     venda: number
-    parcela: number
-    valor: number //numeric 13 ,3
+    parcela: number | string
+    valor: number | any //numeric 13 ,3
     multa: number //numeric 8, 4
     juros: number //numeric 8, 4
     desconto: number //numeric 13, 3
@@ -12,7 +12,7 @@ export type TContaAreceber = {
     vencimento:Date | string | any
     saldo:number //numeric 13,3
     pagamento:Date | string  | any
-    recebimento: number
+    recebimento: number | null
 }
 
 export type TValsRecebidos = {
