@@ -6,23 +6,27 @@ import { TContaAreceber, TValsRecebidos } from "../contasAReceber/type/TContasAR
 import { PagCredLojaForm } from "../../components/sales/PagCredLojaForm"
 import { NavBar } from "../../components/navbar/Navbar";
 
+import api from "../../services/api/api";
+import { RegisterSale } from "./RegisterSale";
+
 export function PagCredLoja() {
-
+    // const [flagSale, setFlagSale] = useState<boolean>(false)
+    const [sendSale, setSendSale] = useState<boolean>(false)
     const [sale, setSale] = useState(sale_JSON);
-
 
     useEffect(() => {
         const getSale = () => {
             const sale_store_res = localStorage.getItem('sl');
             if (sale_store_res) {
                 const sales = JSON.parse(sale_store_res)
-                setSale(sales)
+               
+                    setSale(sales)
                 handleInstallments(sales)
-              
+            
             }
         };
         getSale()
-    },[])
+    }, [])
 
     const setPrazo = (i: number) => {
         let days = 0
@@ -52,7 +56,7 @@ export function PagCredLoja() {
                 fk_filial: 0,
                 tipo: "",
                 fk_venda: 0,
-                fk_user:0,
+                fk_user: 0,
                 parcela: "",
                 valor: 0,
                 multa: 0,
@@ -68,9 +72,9 @@ export function PagCredLoja() {
             contaReceber.fk_filial = sales.filial
             contaReceber.tipo = 'cred'
             contaReceber.fk_venda = 0
-            contaReceber.fk_user = sales.user.id
+            contaReceber.fk_user = sales.user.user_id
             contaReceber.parcela = i + '/' + installments
-            contaReceber.valor = valParc.toFixed(3)
+            contaReceber.valor = parseFloat(valParc.toFixed(3))
             contaReceber.multa = 0
             contaReceber.juros = 0
             contaReceber.desconto = 0
@@ -82,21 +86,28 @@ export function PagCredLoja() {
             sales.duplicatas.push(contaReceber)
         }
     }
+    async function registerSale() {
+        await api.post('sale_register', sale)
+            .then(response => {
+                const res = response.data
+                console.log(res)
+            })
+            .catch(error => console.log(error));
+    };
 
     const handleSubmit = () => {
-        //
+            registerSale()
     }
 
     return (
         <>
-        <NavBar/>
+        {/* <p>{JSON.stringify(sale)}</p> */}
+            <NavBar />
             <PagCredLojaForm
-            handleSubmit={handleSubmit}
-            duplicatas={sale.duplicatas}
-            toGoBackInvoiceSale={()=>{window.location.replace('invoice_sales')}}
+                handleSubmit={handleSubmit}
+                duplicatas={sale.duplicatas}
+                toGoBackInvoiceSale={() => { window.location.replace('invoice_sales') }}
             />
         </>
     )
 }
-
-
