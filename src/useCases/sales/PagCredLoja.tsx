@@ -96,7 +96,12 @@ export function PagCredLoja() {
     };
 
     const handleSubmit = () => {
+        if(sendSale === false){
             registerSale()
+            setSendSale(true)
+        }else{
+            alert('Venda já foi enviada')
+        }
     }
 
     return (
