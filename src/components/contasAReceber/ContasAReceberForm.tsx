@@ -2,8 +2,6 @@ import { HandleContasAReceber } from "../../useCases/contasAReceber/HandleContas
 import { TContaAreceber, TValsRecebidos } from "../../useCases/contasAReceber/type/TContasAReceber"
 
 import './ContasAReceber.css'
-import { FormatDate } from '../utils/formatDate/index';
-
 
 type TProps = {
     contasAReceber: TContaAreceber[]
@@ -56,12 +54,12 @@ function ContasAreceberForm({ contasAReceber, receberValor, handleChange, valore
                             <th id="center">{conta.id_conta}</th>
                             <td id="center">{conta.fk_venda}</td>
                             <td id="center">{handleContasAReceber.formatDate(conta.emissao)}</td>
-                            <td id="center">{conta.valor.toFixed(3)}</td>
+                            <td id="center">{conta.valor}</td>
                             <td id="center">{handleContasAReceber.formatDate((conta.vencimento))}</td>
-                            <td id="center">{conta.juros.toFixed(3)}</td>
-                            <td id="center">{conta.multa.toFixed(3)}</td>
-                            <td id="center">{conta.desconto.toFixed(3)}</td>
-                            <td id="center">{conta.saldo.toFixed(3)}</td>
+                            <td id="center">{conta.juros}</td>
+                            <td id="center">{conta.multa}</td>
+                            <td id="center">{conta.desconto}</td>
+                            <td id="center">{parseFloat(conta.saldo)}</td>
                             <td id="center">{conta.pagamento}</td>
                             <td id="center">{conta.recebimento}</td>
                             <td id="center"><button

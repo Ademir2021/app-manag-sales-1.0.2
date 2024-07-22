@@ -1,17 +1,14 @@
-import { HandleContasAReceber } from "../../useCases/contasAReceber/HandleContasAReceber"
-import { TContaAreceber, TValsRecebidos } from "../../useCases/contasAReceber/type/TContasAReceber"
-import { FormatDate } from '../utils/formatDate/index';
+import { TContaAreceber } from "../../useCases/contasAReceber/type/TContasAReceber"
+import { Globais } from "../globais/Globais"
 
 type TProps={
     duplicatas:TContaAreceber []
     handleSubmit:any
     toGoBackInvoiceSale:any
+    URLNoteSubmit:any
 }
 
-
-export function PagCredLojaForm({handleSubmit, duplicatas, toGoBackInvoiceSale}:TProps){
-
-    const handleContasAReceber = new  HandleContasAReceber()
+export function PagCredLojaForm({handleSubmit, duplicatas, toGoBackInvoiceSale,URLNoteSubmit}:TProps){
 
     const listDuplicatas = 
     <>
@@ -50,6 +47,9 @@ export function PagCredLojaForm({handleSubmit, duplicatas, toGoBackInvoiceSale}:
             >Modificar forma de pagamneto</button>
             <dd className="p-3 mb-3">Forma de pagamento</dd>
             {listDuplicatas}
+            <>{URLNoteSubmit ? <button
+            className="btn btn-primary"
+            onClick={() => { window.location.replace(Globais.URL_NOTE + '/' + URLNoteSubmit) }}>Imprimir</button> : null}</>
         </div>
         </>
     )

@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react";
 import moment from 'moment-timezone';
 import sale_JSON from "./sale.json"
-import { TContaAreceber, TValsRecebidos } from "../contasAReceber/type/TContasAReceber"
-// import { HandleContasAReceber } from "../contasAReceber/HandleContasAReceber"
+import { TContaAreceber } from "../contasAReceber/type/TContasAReceber"
 import { PagCredLojaForm } from "../../components/sales/PagCredLojaForm"
 import { NavBar } from "../../components/navbar/Navbar";
 
 import api from "../../services/api/api";
-import { RegisterSale } from "./RegisterSale";
 
 export function PagCredLoja() {
-    // const [flagSale, setFlagSale] = useState<boolean>(false)
+ 
     const [sendSale, setSendSale] = useState<boolean>(false)
+    const [numNote, setNumNote] = useState(0)
     const [sale, setSale] = useState(sale_JSON);
 
     useEffect(() => {
@@ -90,7 +89,7 @@ export function PagCredLoja() {
         await api.post('sale_register', sale)
             .then(response => {
                 const res = response.data
-                console.log(res)
+                setNumNote(res)
             })
             .catch(error => console.log(error));
     };
@@ -98,6 +97,7 @@ export function PagCredLoja() {
     const handleSubmit = () => {
         if(sendSale === false){
             registerSale()
+            sale.duplicatas = []
             setSendSale(true)
         }else{
             alert('Venda já foi enviada')
@@ -112,6 +112,7 @@ export function PagCredLoja() {
                 handleSubmit={handleSubmit}
                 duplicatas={sale.duplicatas}
                 toGoBackInvoiceSale={() => { window.location.replace('invoice_sales') }}
+                URLNoteSubmit={numNote}
             />
         </>
     )
