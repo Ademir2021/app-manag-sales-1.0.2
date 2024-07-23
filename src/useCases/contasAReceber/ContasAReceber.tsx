@@ -1,5 +1,4 @@
 import { useEffect, useState, useContext } from "react"
-
 import { ContasAreceberForm } from "../../components/contasAReceber/ContasAReceberForm"
 import { TContaAreceber, TValsRecebidos } from "./type/TContasAReceber"
 import { HandleContasAReceber } from "./HandleContasAReceber"
@@ -8,16 +7,11 @@ import { NavBar } from "../../components/navbar/Navbar"
 import api from "../../services/api/api"
 
 function ContasAReceber() {
-
     const [msg, setMsg] = useState('')
     const [valor, setValor] = useState(0)
     const handleContasAReceber = new HandleContasAReceber()
     const [contasAReceber, setContasAReceber] = useState<TContaAreceber[]>([])
-    const [valsRecebidos, setValsRecebidos] = useState<TValsRecebidos[]>([
-        { "id_val": 1, "id_conta": 1, "id_venda": 1, "id_user": 1, "valor": 12, "data_recebimento": "2024-07-22T22:04:24.001Z" }, 
-        { "id_val": 1, "id_conta": 1, "id_venda": 1, "id_user": 1, "valor": 100, "data_recebimento": "2024-07-22T22:04:27.904Z" }
-    ])
-
+    const [valsRecebidos, setValsRecebidos] = useState<TValsRecebidos[]>([])
     const { user: isLogged }: any = useContext(AuthContext);
 
     useEffect(() => {
@@ -36,9 +30,7 @@ function ContasAReceber() {
                     })
             } catch (err) { console.log("err: " + err) }
         };
-        // if(contasAReceber.length === 0){
         getContasAReceber()
-        // }
     }, [])
 
     useEffect(() => {
@@ -93,14 +85,12 @@ function ContasAReceber() {
         setMsg('')
         valsPagos(conta)
         for (let i = 0; contasAReceber.length > i; i++) {
-            // if(contasAReceber[i].saldo >=-1)
             if (contasAReceber[i].id_conta === conta.id_conta) {
                 contasAReceber[i].recebimento = parseFloat(verificaQuitacaoTitulo(conta)).toFixed(2)
                 contasAReceber[i].saldo = contasAReceber[i].valor
                     - parseFloat(contasAReceber[i].recebimento)
                     + parseFloat(contasAReceber[i].juros)
                     + parseFloat(contasAReceber[i].multa).toFixed(2)
-
                 contasAReceber[i].pagamento = handleContasAReceber.newData()
             }
         }
@@ -109,7 +99,6 @@ function ContasAReceber() {
 
     function handleSubmit(conta: TContaAreceber) {
         receberValor(conta)
-
     }
 
     return (
