@@ -51,30 +51,37 @@ function ContasAReceber() {
         calcContasAReceber();
     }, [contasAReceber])
 
+    async function registerValRecebido(valRecebido: TValsRecebidos) {
+        await api.post<TValsRecebidos>('val_recebido', valRecebido)
+            .then(response => {
+                console.log(response.data)
+            })
+            .catch(error => console.log((error)))
+    }
+
     function valsPagos(conta: TContaAreceber) {
         let id = 1
         let valRecebido: TValsRecebidos = {
             id_val: 0,
-            id_conta: 0,
-            id_venda: 0,
-            id_user: 0,
+            fk_conta: 0,
+            fk_venda: 0,
+            fk_user: 0,
             valor: 0,
             data_recebimento: ""
         }
         valRecebido.id_val = id++
-        valRecebido.id_conta = conta.id_conta
-        valRecebido.id_venda = conta.fk_venda
-        valRecebido.id_user = isLogged[0].id
+        valRecebido.fk_conta = conta.id_conta
+        valRecebido.fk_venda = conta.fk_venda
+        valRecebido.fk_user = isLogged[0].id
         valRecebido.data_recebimento = new Date()
         valRecebido.valor = valor
-        valsRecebidos.push(valRecebido)
-        // alert(JSON.stringify(valRecebido))
+        registerValRecebido(valRecebido)
     }
 
     function verificaQuitacaoTitulo(conta: TContaAreceber) {
         let total: any = 0
         for (let i = 0; valsRecebidos.length > i; i++) {
-            if (valsRecebidos[i].id_conta === conta.id_conta) {
+            if (valsRecebidos[i].fk_conta === conta.id_conta) {
                 total += parseFloat(valsRecebidos[i].valor.toFixed(3))
             }
         }

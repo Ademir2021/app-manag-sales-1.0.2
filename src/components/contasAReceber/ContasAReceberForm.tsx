@@ -54,14 +54,14 @@ function ContasAreceberForm({ contasAReceber, receberValor, handleChange, valore
                             <th id="center">{conta.id_conta}</th>
                             <td id="center">{conta.fk_venda}</td>
                             <td id="center">{handleContasAReceber.formatDate(conta.emissao)}</td>
-                            <td id="center">{conta.valor}</td>
+                            <td id="center">{parseFloat(conta.valor).toFixed(3)}</td>
                             <td id="center">{handleContasAReceber.formatDate((conta.vencimento))}</td>
-                            <td id="center">{conta.juros}</td>
-                            <td id="center">{conta.multa}</td>
-                            <td id="center">{conta.desconto}</td>
-                            <td id="center">{parseFloat(conta.saldo)}</td>
+                            <td id="center">{parseFloat(conta.juros).toFixed(3)}</td>
+                            <td id="center">{parseFloat(conta.multa).toFixed(3)}</td>
+                            <td id="center">{parseFloat(conta.desconto).toFixed(3)}</td>
+                            <td id="center">{parseFloat(conta.saldo).toFixed(2)}</td>
                             <td id="center">{conta.pagamento}</td>
-                            <td id="center">{conta.recebimento}</td>
+                            <td id="center">{parseFloat(conta.recebimento).toFixed(3)}</td>
                             <td id="center"><button
                                 type="button"
                                 className="btn btn-primary"
@@ -89,9 +89,9 @@ function ContasAreceberForm({ contasAReceber, receberValor, handleChange, valore
                     <tbody>{valoresRecebidos.map((valRec:TValsRecebidos)=>(
                         <tr key={valRec.id_val}>
                             <th id="center">{valRec.id_val}</th>
-                            <th id="center">{valRec.id_conta}</th>
-                            <th id="center">{valRec.id_venda}</th>
-                            <th id="center">{valRec.id_user}</th>
+                            <th id="center">{valRec.fk_conta}</th>
+                            <th id="center">{valRec.fk_venda}</th>
+                            <th id="center">{valRec.fk_user}</th>
                             <th id="center">{valRec.valor}</th>
                             <th id="center">{valRec.data_recebimento.toLocaleString()}</th>
 

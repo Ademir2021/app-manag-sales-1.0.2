@@ -5,10 +5,10 @@ export type TContaAreceber = {
     fk_venda: number
     fk_user:number
     parcela: number | string
-    valor: number   //numeric 13 ,3
+    valor: number | any  //numeric 13 ,3
     multa: number | any//numeric 8, 4
     juros: number | any //numeric 8, 4
-    desconto:number //numeric 13, 3
+    desconto:number | any //numeric 13, 3
     emissao:Date |  string | any 
     vencimento:Date | string | any
     saldo:number | any //numeric 13,3
@@ -18,9 +18,9 @@ export type TContaAreceber = {
 
 export type TValsRecebidos = {
     id_val: number
-    id_conta: number
-    id_venda: number
-    id_user: number
+    fk_conta: number
+    fk_venda: number
+    fk_user: number
     valor: number
     data_recebimento: Date | string
 }
