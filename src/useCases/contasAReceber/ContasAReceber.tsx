@@ -55,6 +55,14 @@ function ContasAReceber() {
         getValsRecebidos()
     }, [valsRecebidos_])
 
+    async function updateContaReceber(conta:TContaAreceber) {
+        await api.put<TContaAreceber>('contas_receber', conta)
+            .then(response => {
+                console.log(response.data)
+            })
+            .catch(error => alert(error))
+    }
+
     useEffect(() => {
         function calcContasAReceber() {
             for (let i = 0; contasAReceber.length > i; i++) {
@@ -124,11 +132,14 @@ function ContasAReceber() {
             for (let i = 0; contasAReceber.length > i; i++) {
                 if (contasAReceber[i].id_conta === conta.id_conta) {
                     contasAReceber[i].recebimento = parseFloat(verificaQuitacaoTitulo(conta)).toFixed(2)
-                    contasAReceber[i].saldo = contasAReceber[i].valor
+                    contasAReceber[i].saldo = (contasAReceber[i].valor
                         - parseFloat(contasAReceber[i].recebimento)
                         + parseFloat(contasAReceber[i].juros)
-                        + parseFloat(contasAReceber[i].multa).toFixed(2)
+                        + parseFloat(contasAReceber[i].multa)).toFixed(2)
+                    contasAReceber[i].juros = parseFloat( contasAReceber[i].juros).toFixed(3)
+                    contasAReceber[i].multa = parseFloat(contasAReceber[i].multa).toFixed(3)
                     contasAReceber[i].pagamento = handleContasAReceber.newData()
+                    updateContaReceber(contasAReceber[i])// Atualiza valores
                 }
             }
         setValor(0)
