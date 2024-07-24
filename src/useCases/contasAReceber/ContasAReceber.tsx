@@ -11,6 +11,7 @@ function ContasAReceber() {
     const [valor, setValor] = useState(0)
     const handleContasAReceber = new HandleContasAReceber()
     const [contasAReceber, setContasAReceber] = useState<TContaAreceber[]>([])
+    const [valsRecebidos_, setValsRecebidos_] = useState<TValsRecebidos[]>([])
     const [valsRecebidos, setValsRecebidos] = useState<TValsRecebidos[]>([])
     const { user: isLogged }: any = useContext(AuthContext);
 
@@ -32,6 +33,27 @@ function ContasAReceber() {
         };
         getContasAReceber()
     }, [])
+
+    useEffect(() => {
+        async function getValsRecebidos() {
+            try {
+                await api.get<TValsRecebidos[]>('vals_recebidos')
+                    .then(response => {
+                        const resp: TValsRecebidos[] = response.data
+                        setValsRecebidos_(resp)
+
+                        // for (let i = 0; valsRecebidos_.length > i; i++) {
+                        //     // if (valsRecebidos_.length !== 0) {
+                        //         valsRecebidos.push(valsRecebidos_[i])
+                        //     // }
+                        // }
+
+                    })
+            } catch (err) { console.log("err: " + err) }
+
+        };
+        getValsRecebidos()
+    }, [valsRecebidos_])
 
     useEffect(() => {
         function calcContasAReceber() {
@@ -59,7 +81,7 @@ function ContasAReceber() {
             .catch(error => console.log((error)))
     }
 
-    function valsPagos(conta: TContaAreceber) {
+    async function valsPagos(conta: TContaAreceber) {
         let id = 1
         let valRecebido: TValsRecebidos = {
             id_val: 0,
@@ -75,7 +97,14 @@ function ContasAReceber() {
         valRecebido.fk_user = isLogged[0].id
         valRecebido.data_recebimento = new Date()
         valRecebido.valor = valor
-        registerValRecebido(valRecebido)
+
+        valsRecebidos.push(valRecebido)
+
+        // for (let i=0; valsRecebidos_.length> i; i++){
+        //     valsRecebidos.push(valsRecebidos_[i])
+        // }
+
+        // registerValRecebido(valRecebido)
     }
 
     function verificaQuitacaoTitulo(conta: TContaAreceber) {
@@ -91,16 +120,17 @@ function ContasAReceber() {
     async function receberValor(conta: TContaAreceber) {
         setMsg('')
         valsPagos(conta)
-        for (let i = 0; contasAReceber.length > i; i++) {
-            if (contasAReceber[i].id_conta === conta.id_conta) {
-                contasAReceber[i].recebimento = parseFloat(verificaQuitacaoTitulo(conta)).toFixed(2)
-                contasAReceber[i].saldo = contasAReceber[i].valor
-                    - parseFloat(contasAReceber[i].recebimento)
-                    + parseFloat(contasAReceber[i].juros)
-                    + parseFloat(contasAReceber[i].multa).toFixed(2)
-                contasAReceber[i].pagamento = handleContasAReceber.newData()
+        if (valsRecebidos)
+            for (let i = 0; contasAReceber.length > i; i++) {
+                if (contasAReceber[i].id_conta === conta.id_conta) {
+                    contasAReceber[i].recebimento = parseFloat(verificaQuitacaoTitulo(conta)).toFixed(2)
+                    contasAReceber[i].saldo = contasAReceber[i].valor
+                        - parseFloat(contasAReceber[i].recebimento)
+                        + parseFloat(contasAReceber[i].juros)
+                        + parseFloat(contasAReceber[i].multa).toFixed(2)
+                    contasAReceber[i].pagamento = handleContasAReceber.newData()
+                }
             }
-        }
         setValor(0)
     }
 
@@ -110,12 +140,12 @@ function ContasAReceber() {
 
     return (
         <>
-            {JSON.stringify(valsRecebidos)}
+            {/* {JSON.stringify(valsRecebidos_)} */}
             <NavBar />
             <div className="text-center">{msg}</div>
             <ContasAreceberForm
                 contasAReceber={contasAReceber}
-                valoresRecebidos={valsRecebidos}
+                valoresRecebidos={valsRecebidos_}
                 receberValor={valor > 0 ? handleSubmit : () => { setMsg('Informe um novo valor') }}
                 handleChange={(e: any) => {
                     setValor(parseFloat(e.target.value))
