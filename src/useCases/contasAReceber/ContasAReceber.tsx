@@ -6,9 +6,11 @@ import { AuthContext } from '../../context/auth'
 import { NavBar } from "../../components/navbar/Navbar"
 import api from "../../services/api/api"
 
+
 function ContasAReceber() {
     const [msg, setMsg] = useState('')
     const [valor, setValor] = useState(0)
+    let [VALOR_REC, SET_VALOR_REC] = useState<number>(0)
     const handleContasAReceber = new HandleContasAReceber()
     const [contasAReceber, setContasAReceber] = useState<TContaAreceber[]>([])
     const [valsRecebidos_, setValsRecebidos_] = useState<TValsRecebidos[]>([])
@@ -41,13 +43,6 @@ function ContasAReceber() {
                     .then(response => {
                         const resp: TValsRecebidos[] = response.data
                         setValsRecebidos_(resp)
-
-                        // for (let i = 0; valsRecebidos_.length > i; i++) {
-                        //     // if (valsRecebidos_.length !== 0) {
-                        //         valsRecebidos.push(valsRecebidos_[i])
-                        //     // }
-                        // }
-
                     })
             } catch (err) { console.log("err: " + err) }
 
@@ -55,7 +50,7 @@ function ContasAReceber() {
         getValsRecebidos()
     }, [valsRecebidos_])
 
-    async function updateContaReceber(conta:TContaAreceber) {
+    async function updateContaReceber(conta: TContaAreceber) {
         await api.put<TContaAreceber>('contas_receber', conta)
             .then(response => {
                 console.log(response.data)
@@ -105,43 +100,40 @@ function ContasAReceber() {
         valRecebido.fk_user = isLogged[0].id
         valRecebido.data_recebimento = new Date()
         valRecebido.valor = valor
-
         valsRecebidos.push(valRecebido)
-
-        // for (let i=0; valsRecebidos_.length> i; i++){
-        //     valsRecebidos.push(valsRecebidos_[i])
-        // }
-
-        // registerValRecebido(valRecebido)
+        registerValRecebido(valRecebido)
     }
 
-    function verificaQuitacaoTitulo(conta: TContaAreceber) {
-        let total: any = 0
+    async function verificaQuitacaoTitulo(conta: TContaAreceber) {
+        setValsRecebidos_(valsRecebidos)
         for (let i = 0; valsRecebidos.length > i; i++) {
             if (valsRecebidos[i].fk_conta === conta.id_conta) {
-                total += parseFloat(valsRecebidos[i].valor.toFixed(3))
+                VALOR_REC += valsRecebidos[i].valor
             }
         }
-        return total
+        return VALOR_REC
     }
 
-    async function receberValor(conta: TContaAreceber) {
+   async function handleReceberValores  (conta: TContaAreceber)  {
+        for (let i = 0; contasAReceber.length > i; i++) {
+            if (contasAReceber[i].id_conta === conta.id_conta) {
+                contasAReceber[i].recebimento = await verificaQuitacaoTitulo(conta)
+                contasAReceber[i].saldo = (contasAReceber[i].valor
+                    - parseFloat(contasAReceber[i].recebimento)
+                    + parseFloat(contasAReceber[i].juros)
+                    + parseFloat(contasAReceber[i].multa)).toFixed(2)
+                contasAReceber[i].juros = parseFloat(contasAReceber[i].juros).toFixed(3)
+                contasAReceber[i].multa = parseFloat(contasAReceber[i].multa).toFixed(3)
+                contasAReceber[i].pagamento = handleContasAReceber.newData()
+                updateContaReceber(contasAReceber[i])
+            }
+        }
+    }
+
+    function receberValor(conta: TContaAreceber) {
         setMsg('')
         valsPagos(conta)
-        if (valsRecebidos)
-            for (let i = 0; contasAReceber.length > i; i++) {
-                if (contasAReceber[i].id_conta === conta.id_conta) {
-                    contasAReceber[i].recebimento = parseFloat(verificaQuitacaoTitulo(conta)).toFixed(2)
-                    contasAReceber[i].saldo = (contasAReceber[i].valor
-                        - parseFloat(contasAReceber[i].recebimento)
-                        + parseFloat(contasAReceber[i].juros)
-                        + parseFloat(contasAReceber[i].multa)).toFixed(2)
-                    contasAReceber[i].juros = parseFloat( contasAReceber[i].juros).toFixed(3)
-                    contasAReceber[i].multa = parseFloat(contasAReceber[i].multa).toFixed(3)
-                    contasAReceber[i].pagamento = handleContasAReceber.newData()
-                    updateContaReceber(contasAReceber[i])// Atualiza valores
-                }
-            }
+        handleReceberValores(conta)
         setValor(0)
     }
 
@@ -151,7 +143,6 @@ function ContasAReceber() {
 
     return (
         <>
-            {/* {JSON.stringify(valsRecebidos_)} */}
             <NavBar />
             <div className="text-center">{msg}</div>
             <ContasAreceberForm
