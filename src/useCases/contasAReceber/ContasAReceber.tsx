@@ -121,9 +121,9 @@ function ContasAReceber() {
                 const recebimento = await verificaQuitacaoTitulo(conta)
                 contasAReceber[i].recebimento = recebimento
                 const saldo = contasAReceber[i].valor - contasAReceber[i].recebimento + contasAReceber[i].juros + contasAReceber[i].multa
-                contasAReceber[i].saldo = saldo
-                contasAReceber[i].juros = parseFloat(contasAReceber[i].juros).toFixed(3)
-                contasAReceber[i].multa = parseFloat(contasAReceber[i].multa).toFixed(3)
+                contasAReceber[i].saldo = parseFloat(saldo).toFixed(2)
+                contasAReceber[i].juros = parseFloat(contasAReceber[i].juros).toFixed(2)
+                contasAReceber[i].multa = parseFloat(contasAReceber[i].multa).toFixed(2)
                 contasAReceber[i].pagamento = handleContasAReceber.newData()
                 await updateContaReceber(contasAReceber[i])
             }
