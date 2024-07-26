@@ -11,6 +11,7 @@ function ContasAReceber() {
     const [msg, setMsg] = useState('')
     const [valor, setValor] = useState(0)
     let [VALOR_REC, SET_VALOR_REC] = useState<number>(0)
+    const [saldo_, setSaldo] = useState<number>(0)
     const handleContasAReceber = new HandleContasAReceber()
     const [contasAReceber, setContasAReceber] = useState<TContaAreceber[]>([])
     const [valsRecebidos_, setValsRecebidos_] = useState<TValsRecebidos[]>([])
@@ -63,15 +64,15 @@ function ContasAReceber() {
             for (let i = 0; contasAReceber.length > i; i++) {
                 const venc_original = new Date(contasAReceber[i].vencimento).getTime();
                 const diaPagamento = new Date().getTime()
-                if (venc_original < diaPagamento) {
+                if (venc_original < diaPagamento) { // se vencer calcular juros e multa
                     const difference = handleContasAReceber.dateDifference(venc_original, diaPagamento);
                     const diasCalcJuros: number | any = (difference.diffInDays - 1).toFixed(0)
                     contasAReceber[i].juros = contasAReceber[i].valor !== 0.00 ? contasAReceber[i].valor * diasCalcJuros * (3 / 100) : 0.00
                     contasAReceber[i].multa = diasCalcJuros > 5 ? contasAReceber[i].valor * (3 / 100) : 0.00
-                    contasAReceber[i].saldo = contasAReceber[i].valor + contasAReceber[i].juros + contasAReceber[i].multa
                 }
+                const saldo = contasAReceber[i].valor - contasAReceber[i].recebimento + contasAReceber[i].juros + contasAReceber[i].multa
+                contasAReceber[i].saldo = saldo
             }
-            setContasAReceber(contasAReceber)
         }
         calcContasAReceber();
     }, [contasAReceber])
@@ -101,11 +102,11 @@ function ContasAReceber() {
         valRecebido.data_recebimento = new Date()
         valRecebido.valor = valor
         valsRecebidos.push(valRecebido)
-        registerValRecebido(valRecebido)
+        await registerValRecebido(valRecebido)
     }
 
     async function verificaQuitacaoTitulo(conta: TContaAreceber) {
-        setValsRecebidos_(valsRecebidos)
+        setValsRecebidos(valsRecebidos)
         for (let i = 0; valsRecebidos.length > i; i++) {
             if (valsRecebidos[i].fk_conta === conta.id_conta) {
                 VALOR_REC += valsRecebidos[i].valor
@@ -114,32 +115,28 @@ function ContasAReceber() {
         return VALOR_REC
     }
 
-   async function handleReceberValores  (conta: TContaAreceber)  {
+    const receberValores = async (conta: TContaAreceber) => {
         for (let i = 0; contasAReceber.length > i; i++) {
             if (contasAReceber[i].id_conta === conta.id_conta) {
-                contasAReceber[i].recebimento = await verificaQuitacaoTitulo(conta)
-                contasAReceber[i].saldo = (contasAReceber[i].valor
-                    - parseFloat(contasAReceber[i].recebimento)
-                    + parseFloat(contasAReceber[i].juros)
-                    + parseFloat(contasAReceber[i].multa)).toFixed(2)
+                const recebimento = await verificaQuitacaoTitulo(conta)
+                contasAReceber[i].recebimento = recebimento
+                const saldo = contasAReceber[i].valor - contasAReceber[i].recebimento + contasAReceber[i].juros + contasAReceber[i].multa
+                contasAReceber[i].saldo = saldo
                 contasAReceber[i].juros = parseFloat(contasAReceber[i].juros).toFixed(3)
                 contasAReceber[i].multa = parseFloat(contasAReceber[i].multa).toFixed(3)
                 contasAReceber[i].pagamento = handleContasAReceber.newData()
-                updateContaReceber(contasAReceber[i])
+                await updateContaReceber(contasAReceber[i])
             }
         }
     }
 
-    function receberValor(conta: TContaAreceber) {
+    function handleSumbit(conta: TContaAreceber) {
         setMsg('')
         valsPagos(conta)
-        handleReceberValores(conta)
+        receberValores(conta)
         setValor(0)
     }
 
-    function handleSubmit(conta: TContaAreceber) {
-        receberValor(conta)
-    }
 
     return (
         <>
@@ -148,7 +145,7 @@ function ContasAReceber() {
             <ContasAreceberForm
                 contasAReceber={contasAReceber}
                 valoresRecebidos={valsRecebidos_}
-                receberValor={valor > 0 ? handleSubmit : () => { setMsg('Informe um novo valor') }}
+                receberValor={valor > 0 ? handleSumbit : () => { setMsg('Informe um novo valor') }}
                 handleChange={(e: any) => {
                     setValor(parseFloat(e.target.value))
                 }}
