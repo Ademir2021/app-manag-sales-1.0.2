@@ -6,7 +6,6 @@ import { AuthContext } from '../../context/auth'
 import { NavBar } from "../../components/navbar/Navbar"
 import api from "../../services/api/api"
 
-
 function ContasAReceber() {
     const [msg, setMsg] = useState('')
     const [valor, setValor] = useState(0)
