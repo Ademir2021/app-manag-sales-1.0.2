@@ -101,6 +101,7 @@ function ContasAReceber() {
         valRecebido.valor = valor
         valsRecebidos.push(valRecebido)
         await registerValRecebido(valRecebido)
+        console.log(valRecebido)
     }
 
     function verificaQuitacaoTitulo(conta: TContaAreceber) {
