@@ -10,7 +10,6 @@ function ContasAReceber() {
     const [msg, setMsg] = useState('')
     const [valor, setValor] = useState(0)
     let [VALOR_REC, SET_VALOR_REC] = useState<number>(0)
-    const [saldo_, setSaldo] = useState<number>(0)
     const handleContasAReceber = new HandleContasAReceber()
     const [contasAReceber, setContasAReceber] = useState<TContaAreceber[]>([])
     const [valsRecebidos_, setValsRecebidos_] = useState<TValsRecebidos[]>([])
@@ -50,12 +49,12 @@ function ContasAReceber() {
         getValsRecebidos()
     }, [valsRecebidos_])
 
-    async function updateContaReceber(conta: TContaAreceber) {
+    const updateContaReceber = async (conta: TContaAreceber) => {
         await api.put<TContaAreceber>('contas_receber', conta)
             .then(response => {
                 console.log(response.data)
             })
-            .catch(error => alert(error))
+            .catch(err => console.log(err))
     }
 
     useEffect(() => {
@@ -104,7 +103,7 @@ function ContasAReceber() {
         await registerValRecebido(valRecebido)
     }
 
-    async function verificaQuitacaoTitulo(conta: TContaAreceber) {
+    function verificaQuitacaoTitulo(conta: TContaAreceber) {
         setValsRecebidos(valsRecebidos)
         for (let i = 0; valsRecebidos.length > i; i++) {
             if (valsRecebidos[i].fk_conta === conta.id_conta) {
@@ -117,13 +116,14 @@ function ContasAReceber() {
     const receberValores = async (conta: TContaAreceber) => {
         for (let i = 0; contasAReceber.length > i; i++) {
             if (contasAReceber[i].id_conta === conta.id_conta) {
-                const recebimento = await verificaQuitacaoTitulo(conta)
+                const recebimento = verificaQuitacaoTitulo(conta)
                 contasAReceber[i].recebimento = recebimento
                 const saldo = contasAReceber[i].valor - contasAReceber[i].recebimento + contasAReceber[i].juros + contasAReceber[i].multa
                 contasAReceber[i].saldo = parseFloat(saldo).toFixed(2)
                 contasAReceber[i].juros = parseFloat(contasAReceber[i].juros).toFixed(2)
                 contasAReceber[i].multa = parseFloat(contasAReceber[i].multa).toFixed(2)
-                contasAReceber[i].pagamento = handleContasAReceber.newData()
+                // contasAReceber[i].pagamento = handleContasAReceber.newData()
+                contasAReceber[i].pagamento = new Date()
                 await updateContaReceber(contasAReceber[i])
             }
         }
