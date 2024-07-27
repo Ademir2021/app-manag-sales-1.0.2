@@ -9,7 +9,6 @@ import api from "../../services/api/api"
 function ContasAReceber() {
     const [msg, setMsg] = useState('')
     const [valor, setValor] = useState(0)
-    let [VALOR_REC, SET_VALOR_REC] = useState<number>(0)
     const handleContasAReceber = new HandleContasAReceber()
     const [contasAReceber, setContasAReceber] = useState<TContaAreceber[]>([])
     const [valsRecebidos_, setValsRecebidos_] = useState<TValsRecebidos[]>([])
@@ -104,20 +103,21 @@ function ContasAReceber() {
         console.log(valRecebido)
     }
 
-    function verificaQuitacaoTitulo(conta: TContaAreceber) {
+    const verificaQuitacaoTitulo = async (conta: TContaAreceber) => {
+        let valRec = 0
         setValsRecebidos(valsRecebidos)
         for (let i = 0; valsRecebidos.length > i; i++) {
             if (valsRecebidos[i].fk_conta === conta.id_conta) {
-                VALOR_REC += valsRecebidos[i].valor
+                valRec += valsRecebidos[i].valor
             }
         }
-        return VALOR_REC
+        return valRec
     }
 
     const receberValores = async (conta: TContaAreceber) => {
         for (let i = 0; contasAReceber.length > i; i++) {
             if (contasAReceber[i].id_conta === conta.id_conta) {
-                const recebimento = verificaQuitacaoTitulo(conta)
+                const recebimento = await verificaQuitacaoTitulo(conta)
                 contasAReceber[i].recebimento = recebimento
                 const saldo = contasAReceber[i].valor - contasAReceber[i].recebimento + contasAReceber[i].juros + contasAReceber[i].multa
                 contasAReceber[i].saldo = parseFloat(saldo).toFixed(2)
