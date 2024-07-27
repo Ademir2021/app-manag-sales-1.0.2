@@ -77,8 +77,8 @@ export function PagCredLoja() {
             contaReceber.multa = 0
             contaReceber.juros = 0
             contaReceber.desconto = 0
-            contaReceber.emissao = new Date()
-            contaReceber.vencimento = setPrazo(i)
+            contaReceber.emissao = new Date().toISOString()
+            contaReceber.vencimento = setPrazo(i).toISOString()
             contaReceber.saldo = 0
             contaReceber.pagamento = null
             contaReceber.recebimento = 0

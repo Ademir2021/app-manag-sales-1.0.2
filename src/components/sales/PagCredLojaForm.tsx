@@ -1,4 +1,5 @@
 import { TContaAreceber } from "../../useCases/contasAReceber/type/TContasAReceber"
+import { HandleContasAReceber } from "../../useCases/contasAReceber/HandleContasAReceber"
 import { Globais } from "../globais/Globais"
 
 type TProps={
@@ -9,6 +10,8 @@ type TProps={
 }
 
 export function PagCredLojaForm({handleSubmit, duplicatas, toGoBackInvoiceSale,URLNoteSubmit}:TProps){
+   
+    const handleContasAReceber = new HandleContasAReceber()
 
     const listDuplicatas = 
     <>
@@ -26,10 +29,10 @@ export function PagCredLojaForm({handleSubmit, duplicatas, toGoBackInvoiceSale,U
                     {duplicatas.map((dup:TContaAreceber) => (
                         <tr key={dup.id_conta}>
                             <th id="center">{dup.id_conta}</th>
-                            <td id="center">{dup.emissao.toString() }</td>
+                            <td id="center">{handleContasAReceber.formatDate(dup.emissao)}</td>
                             <td id="center">{dup.valor}</td>
                             <td id="center">{dup.parcela}</td>
-                            <td id="center">{dup.vencimento.toString()}</td>
+                            <td id="center">{handleContasAReceber.formatDate(dup.vencimento)}</td>
                         </tr>
                     ))}
                 </tbody>
