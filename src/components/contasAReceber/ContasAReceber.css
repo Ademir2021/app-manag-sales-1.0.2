@@ -1,10 +1,22 @@
-#contas-receber{
-    background-color: whitesmoke;
-    padding: 12px;;
-}
-
 #center {
     text-align: center;
+}
+
+#input-valor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 3px;
+}
+
+#header-contas-receber {
+    background-color: gray;
+    padding: 10px;
+    color: aliceblue;
+    font-size: large;
 }
 
 thead {
@@ -22,21 +34,4 @@ tr {
 
 td {
     font-size: 12px;
-}
-
-#input-valor{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 50%;
-    padding: 10px;
-    border-radius: 10px;
-    margin: 3px;
-}
-#header-contas-receber{
-background-color: gray;
-width: 100%;
-padding: 10px;
-color: aliceblue;
-font-size: large;
 }

@@ -5,17 +5,17 @@ import './ContasAReceber.css'
 
 type TProps = {
     contasAReceber: TContaAreceber[]
-    valoresRecebidos:TValsRecebidos[]
+    valoresRecebidos: TValsRecebidos[]
     receberValor: any
     handleChange: React.ChangeEventHandler<HTMLInputElement>
 }
 
 function ContasAreceberForm({ contasAReceber, receberValor, handleChange, valoresRecebidos }: TProps) {
 
-   const handleContasAReceber = new  HandleContasAReceber()
+    const handleContasAReceber = new HandleContasAReceber()
 
     const headerContasReceber =
-        <div id="header-contas-receber">
+        <div id="header-contas-receber" className="container">
             Receber valores dos Titulos
         </div>
 
@@ -60,7 +60,7 @@ function ContasAreceberForm({ contasAReceber, receberValor, handleChange, valore
                             <td id="center">{parseFloat(conta.multa).toFixed(3)}</td>
                             <td id="center">{parseFloat(conta.desconto).toFixed(3)}</td>
                             <td id="center">{parseFloat(conta.saldo).toFixed(2)}</td>
-                            <td id="center">{conta.pagamento}</td>
+                            <td id="center">{conta.pagamento !== null ? handleContasAReceber.formatDate(conta.pagamento) : null}</td>
                             <td id="center">{parseFloat(conta.recebimento).toFixed(3)}</td>
                             <td id="center"><button
                                 type="button"
@@ -73,36 +73,35 @@ function ContasAreceberForm({ contasAReceber, receberValor, handleChange, valore
             </table>
         </>
 
-        const listaValoresRecebidos = 
+    const listaValoresRecebidos =
         <>
-        <table className='table bg-light mt-1'>
-            <thead>
-                <tr>
-                    <th id="center">Id</th>
-                    <th id="center">Conta</th>
-                    <th id="center">Venda</th>
-                    <th id="center">User</th>
-                    <th id="center">Valor</th>
-                    <th id="center">Data Recebimento</th>
-                </tr>
-            </thead>
-                    <tbody>{valoresRecebidos.map((valRec:TValsRecebidos)=>(
-                        <tr key={valRec.id_val}>
-                            <th id="center">{valRec.id_val}</th>
-                            <th id="center">{valRec.fk_conta}</th>
-                            <th id="center">{valRec.fk_venda}</th>
-                            <th id="center">{valRec.fk_user}</th>
-                            <th id="center">{valRec.valor}</th>
-                            <th id="center">{valRec.data_recebimento.toLocaleString()}</th>
+            <table className='table bg-light mt-1'>
+                <thead>
+                    <tr>
+                        <th id="center">Id</th>
+                        <th id="center">Conta</th>
+                        <th id="center">Venda</th>
+                        <th id="center">User</th>
+                        <th id="center">Valor</th>
+                        <th id="center">Data Recebimento</th>
+                    </tr>
+                </thead>
+                <tbody>{valoresRecebidos.map((valRec: TValsRecebidos) => (
+                    <tr key={valRec.id_val}>
+                        <th id="center">{valRec.id_val}</th>
+                        <th id="center">{valRec.fk_conta}</th>
+                        <th id="center">{valRec.fk_venda}</th>
+                        <th id="center">{valRec.fk_user}</th>
+                        <th id="center">{valRec.valor}</th>
+                        <th id="center">{valRec.data_recebimento.toLocaleString()}</th>
 
-                        </tr>
-                    ))}</tbody>
-        </table>
+                    </tr>
+                ))}</tbody>
+            </table>
         </>
 
     return (
-        <div
-            id="contas-receber">
+        <div className="container">
             {headerContasReceber}
             {inputReceberValor}
             {listaContasReceber}

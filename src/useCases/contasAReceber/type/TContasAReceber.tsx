@@ -12,7 +12,7 @@ export type TContaAreceber = {
     emissao:Date |  string | any 
     vencimento:Date | string | any
     saldo:number | any 
-    pagamento:Date | any
+    pagamento:Date | any | null
     recebimento: number | any
 }
 
