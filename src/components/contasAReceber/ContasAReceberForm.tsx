@@ -93,7 +93,7 @@ function ContasAreceberForm({ contasAReceber, receberValor, handleChange, valore
                         <th id="center">{valRec.fk_venda}</th>
                         <th id="center">{valRec.fk_user}</th>
                         <th id="center">{valRec.valor}</th>
-                        <th id="center">{valRec.data_recebimento.toLocaleString()}</th>
+                        <th id="center">{handleContasAReceber.formatDate(valRec.data_recebimento)}</th>
 
                     </tr>
                 ))}</tbody>
