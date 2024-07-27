@@ -55,7 +55,7 @@ function ContasAreceberForm({ contasAReceber, receberValor, handleChange, valore
                             <td id="center">{conta.fk_venda}</td>
                             <td id="center">{handleContasAReceber.formatDate(conta.emissao)}</td>
                             <td id="center">{parseFloat(conta.valor).toFixed(3)}</td>
-                            <td id="center">{handleContasAReceber.formatDate((conta.vencimento))}</td>
+                            <td id="center">{handleContasAReceber.formatDate(conta.vencimento)}</td>
                             <td id="center">{parseFloat(conta.juros).toFixed(3)}</td>
                             <td id="center">{parseFloat(conta.multa).toFixed(3)}</td>
                             <td id="center">{parseFloat(conta.desconto).toFixed(3)}</td>

@@ -21,15 +21,8 @@ class HandleContasAReceber {
         };
     };
     newData() {
-        const data = new Date();
-        const day = data.getUTCDate();
-        const year = data.getFullYear();
-        const month = data.getMonth() + 1;
-        const H = data.getHours();
-        const M = data.getMinutes();
-        const S = data.getSeconds();
-        return day + '-' + month + '-' + year + ' ' +
-            H + ':' + M + ':' + S
+        const data = new Date()
+     return data.toISOString()
     };
     formatDate(date: string) {
         return format(parseISO(date), "dd ' ' MMM ' ' yyyy ' ' HH:mm'h'", {

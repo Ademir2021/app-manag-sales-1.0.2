@@ -122,8 +122,7 @@ function ContasAReceber() {
                 contasAReceber[i].saldo = parseFloat(saldo).toFixed(2)
                 contasAReceber[i].juros = parseFloat(contasAReceber[i].juros).toFixed(2)
                 contasAReceber[i].multa = parseFloat(contasAReceber[i].multa).toFixed(2)
-                // contasAReceber[i].pagamento = handleContasAReceber.newData()
-                contasAReceber[i].pagamento = new Date()
+                contasAReceber[i].pagamento = handleContasAReceber.newData()
                 await updateContaReceber(contasAReceber[i])
             }
         }
