@@ -39,7 +39,6 @@ export function InvoiceSales() {
             const user = JSON.parse(res_)
             setUserLoggedId(user[0].id)
             setUserLoggedUsername(user[0].username)
-
             const res: any | undefined = localStorage.getItem('token')
             const token: string = JSON.parse(res)
             try {
@@ -47,12 +46,10 @@ export function InvoiceSales() {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 }
-
                 await api.post<TPersonRegister[]>('persons_user', isLogged, { headers })
                     .then(response => {
                         setPersons(response.data)
                     })
-
             } catch (err) {
                 // console.log("error occurred !!" + err)
                 setTokenMessage(" Erro: 401 - Token Expirado ! ")
@@ -64,19 +61,19 @@ export function InvoiceSales() {
 
     useEffect(() => {
         function getSale() {
-            for (let i = 0; persons.length > i; i++) {
-                if (persons[i].fk_id_user === userLoggedId) {
-                    sale.filial = persons[i].fk_name_filial;
+            for (let person of persons) {
+                if (person.fk_id_user === userLoggedId) {
+                    sale.filial = person.fk_name_filial;
                     sale.user.user_id = userLoggedId;
                     sale.user.user_name = userLoggedUsername;
-                    sale.person.fk_name_pers = persons[i].id_person;
-                    sale.person.name_pers = persons[i].name_pers;
-                    sale.person.cpf_pers = persons[i].cpf_pers;
-                    sale.person.phone_pers = persons[i].phone_pers;
-                    sale.person.address.address_pers = persons[i].address_pers;
-                    sale.person.address.num_address = persons[i].num_address;
-                    sale.person.address.bairro_pers = persons[i].bairro_pers;
-                    sale.person.address.fk_cep = persons[i].fk_cep;
+                    sale.person.fk_name_pers = person.id_person;
+                    sale.person.name_pers = person.name_pers;
+                    sale.person.cpf_pers = person.cpf_pers;
+                    sale.person.phone_pers = person.phone_pers;
+                    sale.person.address.address_pers = person.address_pers;
+                    sale.person.address.num_address = person.num_address;
+                    sale.person.address.bairro_pers = person.bairro_pers;
+                    sale.person.address.fk_cep = person.fk_cep;
                     const resSum: any | undefined = localStorage.getItem('s');
                     if (resSum) {
                         const sum: number = JSON.parse(resSum);
@@ -96,7 +93,7 @@ export function InvoiceSales() {
                     installments !== 'Credito a vista' ? sale.installments = installments :
                         setInstallments('1')
 
-                        sale.duplicatas = []
+                    sale.duplicatas = []
                 }
             }
             setTimeout(() => {
@@ -141,10 +138,9 @@ export function InvoiceSales() {
 
     useEffect(() => {
         function setCep() {
-            for (let i = 0; i < ceps.length; i++) {
-                if (ceps[i].id_cep === sale.person.address.fk_cep) {
-                    sale.person.address.num_cep = ceps[i].num_cep
-                }
+            for (let cep of ceps) {
+                if (cep.id_cep === sale.person.address.fk_cep)
+                    sale.person.address.num_cep = cep.num_cep
             }
         };
         setCep()
@@ -152,11 +148,10 @@ export function InvoiceSales() {
 
     useEffect(() => {
         async function setCity() {
-            for (let i = 0; i < cities.length; i++) {
-                if (cities[i].id_city === sale.person.address.fk_cep) {
-                    sale.person.address.name_city = cities[i].name_city
-                    sale.person.address.uf = cities[i].uf
-                }
+            for (let citie of cities) {
+                if (citie.id_city === sale.person.address.fk_cep)
+                    sale.person.address.name_city = citie.name_city
+                sale.person.address.uf = citie.uf
             }
         };
         setCity()
@@ -188,20 +183,18 @@ export function InvoiceSales() {
                 }
             }
         } else {
-            setMsg("Pedido já foi enviado ! ")
+            setMsg("Pedido já foi enviado !")
         }
-
     };
 
     function prepareSales() {
-        if (sale.itens.length === 0) {
-            for (let i = 0; itens.length > i; i++) {
-                sale.itens.push(itens[i])
+        if (sale.itens.length === 0)
+            for (let iten of itens) {
+                sale.itens.push(itens)
+                localStorage.setItem("sl", JSON.stringify(sale))
             }
-            localStorage.setItem("sl", JSON.stringify(sale))
-        }
         else {
-            setMsg("Pedido já foi enviado ! ")
+            setMsg("Enviando pedido... ")
         }
     };
 
@@ -233,7 +226,7 @@ export function InvoiceSales() {
                 handleSubmitCard={handleSubmitCard}
                 handleSubmitCred={handleSubmitCred}
                 handleSubmit={installments === "1" ? handleSubmit :
-                    () => (setMsg('Pagar parcelado somente com cartão de crédito!!'))}
+                    () => (setMsg('Parcelado somente com cartão de crédito.'))}
                 alert=""
                 message={msg}
                 installments={setInstallments}
