@@ -232,7 +232,7 @@ export function InvoiceSales() {
                 handleChange={handleChange}
                 handleSubmitCard={handleSubmitCard}
                 handleSubmitCred={handleSubmitCred}
-                handleSubmit={installments === "Credito a vista" ? handleSubmit :
+                handleSubmit={installments === "1" ? handleSubmit :
                     () => (setMsg('Pagar parcelado somente com cartão de crédito!!'))}
                 alert=""
                 message={msg}
