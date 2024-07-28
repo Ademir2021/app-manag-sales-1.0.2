@@ -26,8 +26,13 @@ function ContasAReceber() {
             try {
                 await api.get<TContaAreceber[]>('contas_receber')
                     .then(response => {
-                        const resp: TContaAreceber[] = response.data
-                        setContasAReceber(resp)
+                        const contas_:TContaAreceber | any = []
+                        const contas: TContaAreceber[] = response.data
+                        for (let conta of contas){
+                            if(conta.recebimento == 0)
+                                contas_.push(conta)
+                        }
+                        setContasAReceber(contas_)
                     })
             } catch (err) { console.log("err: " + err) }
         };
@@ -58,17 +63,17 @@ function ContasAReceber() {
 
     useEffect(() => {
         function calcContasAReceber() {
-            for (let i = 0; contasAReceber.length > i; i++) {
-                const venc_original = new Date(contasAReceber[i].vencimento).getTime();
+            for (let contaAReceber of contasAReceber) {
+                const venc_original = new Date(contaAReceber.vencimento).getTime();
                 const diaPagamento = new Date().getTime()
                 if (venc_original < diaPagamento) { // se vencer calcular juros e multa
                     const difference = handleContasAReceber.dateDifference(venc_original, diaPagamento);
                     const diasCalcJuros: number | any = (difference.diffInDays - 1).toFixed(0)
-                    contasAReceber[i].juros = contasAReceber[i].valor !== 0.00 ? contasAReceber[i].valor * diasCalcJuros * (0.10 / 100) : 0.00
-                    contasAReceber[i].multa = diasCalcJuros > 5 ? contasAReceber[i].valor * (3 / 100) : 0.00
+                    contaAReceber.juros = contaAReceber.valor !== 0.00 ? contaAReceber.valor * diasCalcJuros * (0.10 / 100) : 0.00
+                    contaAReceber.multa = diasCalcJuros > 5 ? contaAReceber.valor * (3 / 100) : 0.00
                 }
-                const saldo = contasAReceber[i].valor - contasAReceber[i].recebimento + contasAReceber[i].juros + contasAReceber[i].multa
-                contasAReceber[i].saldo = saldo
+                const saldo = contaAReceber.valor - contaAReceber.recebimento + contaAReceber.juros + contaAReceber.multa
+                contaAReceber.saldo = saldo
             }
         }
         calcContasAReceber();
@@ -106,25 +111,25 @@ function ContasAReceber() {
     const verificaQuitacaoTitulo = async (conta: TContaAreceber) => {
         let valRec = 0
         setValsRecebidos(valsRecebidos)
-        for (let i = 0; valsRecebidos.length > i; i++) {
-            if (valsRecebidos[i].fk_conta === conta.id_conta) {
-                valRec += valsRecebidos[i].valor
+        for (let valRecebido of valsRecebidos) {
+            if (valRecebido.fk_conta === conta.id_conta) {
+                valRec += valRecebido.valor
             }
         }
         return valRec
     }
 
     const receberValores = async (conta: TContaAreceber) => {
-        for (let i = 0; contasAReceber.length > i; i++) {
-            if (contasAReceber[i].id_conta === conta.id_conta) {
+        for (let contaAReceber of contasAReceber) {
+            if (contaAReceber.id_conta === conta.id_conta) {
                 const recebimento = await verificaQuitacaoTitulo(conta)
-                contasAReceber[i].recebimento = recebimento
-                const saldo = contasAReceber[i].valor - contasAReceber[i].recebimento + contasAReceber[i].juros + contasAReceber[i].multa
-                contasAReceber[i].saldo = parseFloat(saldo).toFixed(2)
-                contasAReceber[i].juros = parseFloat(contasAReceber[i].juros).toFixed(2)
-                contasAReceber[i].multa = parseFloat(contasAReceber[i].multa).toFixed(2)
-                contasAReceber[i].pagamento = handleContasAReceber.newData()
-                await updateContaReceber(contasAReceber[i])
+                contaAReceber.recebimento = recebimento
+                const saldo = contaAReceber.valor - contaAReceber.recebimento + contaAReceber.juros + contaAReceber.multa
+                contaAReceber.saldo = parseFloat(saldo).toFixed(2)
+                contaAReceber.juros = parseFloat(contaAReceber.juros).toFixed(2)
+                contaAReceber.multa = parseFloat(contaAReceber.multa).toFixed(2)
+                contaAReceber.pagamento = handleContasAReceber.newData()
+                await updateContaReceber(contaAReceber)
             }
         }
     }
@@ -135,7 +140,6 @@ function ContasAReceber() {
         receberValores(conta)
         setValor(0)
     }
-
 
     return (
         <>
