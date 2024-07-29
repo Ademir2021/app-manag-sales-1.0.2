@@ -12,7 +12,7 @@ function ContasAReceber() {
     const handleContasAReceber = new HandleContasAReceber()
     const [contasAReceber, setContasAReceber] = useState<TContaAreceber[]>([])
     const [valsRecebidos_, setValsRecebidos_] = useState<TValsRecebidos[]>([])
-    const [valsRecebidos, setValsRecebidos] = useState<TValsRecebidos[]>([])
+    const [valsRecebidos] = useState<TValsRecebidos[]>([])
     const { user: isLogged }: any = useContext(AuthContext);
 
     useEffect(() => {
@@ -26,10 +26,10 @@ function ContasAReceber() {
             try {
                 await api.get<TContaAreceber[]>('contas_receber')
                     .then(response => {
-                        const contas_:TContaAreceber | any = []
+                        const contas_: TContaAreceber | any = []
                         const contas: TContaAreceber[] = response.data
-                        for (let conta of contas){
-                            if(conta.recebimento == 0)
+                        for (let conta of contas) {
+                            if (conta.saldo > 0 || conta.recebimento == 0)
                                 contas_.push(conta)
                         }
                         setContasAReceber(contas_)
@@ -44,7 +44,9 @@ function ContasAReceber() {
             try {
                 await api.get<TValsRecebidos[]>('vals_recebidos')
                     .then(response => {
+
                         const resp: TValsRecebidos[] = response.data
+
                         setValsRecebidos_(resp)
                     })
             } catch (err) { console.log("err: " + err) }
@@ -105,24 +107,23 @@ function ContasAReceber() {
         valRecebido.valor = valor
         valsRecebidos.push(valRecebido)
         await registerValRecebido(valRecebido)
-        console.log(valRecebido)
     }
 
-    const verificaQuitacaoTitulo = async (conta: TContaAreceber) => {
-        let valRec = 0
-        setValsRecebidos(valsRecebidos)
-        for (let valRecebido of valsRecebidos) {
-            if (valRecebido.fk_conta === conta.id_conta) {
-                valRec += valRecebido.valor
-            }
+    async function somaValsRecebidos(conta: TContaAreceber) {
+        let valRec:any = 0
+        let soma = 0
+        for (let valRecebido of valsRecebidos_) {
+            if (valRecebido.fk_conta === conta.id_conta)
+                valRec = valRecebido.valor
+                soma += parseFloat(valRec)
         }
-        return valRec
+        return soma + valor
     }
 
     const receberValores = async (conta: TContaAreceber) => {
         for (let contaAReceber of contasAReceber) {
             if (contaAReceber.id_conta === conta.id_conta) {
-                const recebimento = await verificaQuitacaoTitulo(conta)
+                const recebimento = await somaValsRecebidos(conta)
                 contaAReceber.recebimento = recebimento
                 const saldo = contaAReceber.valor - contaAReceber.recebimento + contaAReceber.juros + contaAReceber.multa
                 contaAReceber.saldo = parseFloat(saldo).toFixed(2)
