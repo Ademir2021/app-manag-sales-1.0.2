@@ -25,7 +25,7 @@ export function InvoiceSales() {
     const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
     const [typePay, setTypePay] = useState("")
 
-    const [installments, setInstallments] = useState<number | string>('Credito a vista')
+    const [installments, setInstallments] = useState<number | any>('Credito a vista')
 
     const handleChange = (e: any) => {
         const name = e.target.name;
@@ -90,8 +90,8 @@ export function InvoiceSales() {
                         setItens(itens);
                     }
                     setInstallments(installments)
-                    installments !== 'Credito a vista' ? sale.installments = installments :
-                        setInstallments('1')
+                    installments !== 'Credito a vista' ? sale.installments = parseInt(installments) :
+                        setInstallments(1)
 
                     sale.duplicatas = []
                 }
@@ -190,7 +190,7 @@ export function InvoiceSales() {
     function prepareSales() {
         if (sale.itens.length === 0)
             for (let iten of itens) {
-                sale.itens.push(itens)
+                sale.itens.push(iten)
                 localStorage.setItem("sl", JSON.stringify(sale))
             }
         else {
@@ -225,7 +225,7 @@ export function InvoiceSales() {
                 handleChange={handleChange}
                 handleSubmitCard={handleSubmitCard}
                 handleSubmitCred={handleSubmitCred}
-                handleSubmit={installments === "1" ? handleSubmit :
+                handleSubmit={installments === 1 ? handleSubmit :
                     () => (setMsg('Parcelado somente com cartão de crédito.'))}
                 alert=""
                 message={msg}
