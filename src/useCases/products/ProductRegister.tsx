@@ -150,7 +150,6 @@ export function FormProduct() {
 
     return (
         <>
-            {/* <label>{JSON.stringify(product)}</label> */}
             <Dashboard />
             <ProductForm
                 handleSubmit={handleSubmit}

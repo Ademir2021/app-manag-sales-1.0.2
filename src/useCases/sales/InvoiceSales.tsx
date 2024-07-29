@@ -189,8 +189,8 @@ export function InvoiceSales() {
 
     function prepareSales() {
         if (sale.itens.length === 0)
-            for (let iten of itens) {
-                sale.itens.push(iten)
+            for (let item of itens) {
+                sale.itens.push(item)
                 localStorage.setItem("sl", JSON.stringify(sale))
             }
         else {

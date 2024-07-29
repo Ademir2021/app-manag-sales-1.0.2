@@ -1,52 +1,40 @@
 import { TBrand, TSector, TUnMed, TClasseProd, TGrupoFiscal, TTipoProd } from "./type/TypeProducts";
 
 class HandleProducts {
-    public nameSector(idSector: number, sectors:TSector[]) {
-        for (let i = 0; i < sectors.length; i++) {
-            if (sectors[i].id_sector === idSector) {
-                const sector: string = sectors[i].name_sector;
-                return sector;
-            }
+    public nameSector(idSector: number, sectors: TSector[]) {
+        for (let sector of sectors) {
+            if (sector.id_sector === idSector)
+                return sector.name_sector
         }
     };
-    nameBrands(idBrand: number, brands:TBrand[]) {
-        for (let i = 0; i < brands.length; i++) {
-            if (brands[i].id_brand === idBrand) {
-                const brand: string = brands[i].name_brand;
-                return brand;
-            }
+    nameBrands(idBrand: number, brands: TBrand[]) {
+        for (let brand of brands) {
+            if (brand.id_brand === idBrand)
+                return brand.name_brand
         }
     };
-    nameUnMeds(idUnMed: number, unMeds:TUnMed[]) {
-        for (let i = 0; i < unMeds.length; i++) {
-            if (unMeds[i].id_un === idUnMed) {
-                const unMed: string = unMeds[i].un_med;
-                return unMed;
-            }
+    nameUnMeds(idUnMed: number, unMeds: TUnMed[]) {
+        for (let unMed of unMeds) {
+            if (unMed.id_un === idUnMed)
+                return unMed.un_med
         }
     };
-    nameClasseProd(idClasseProd: number, classesProds:TClasseProd[] ) {
-        for (let i = 0; i < classesProds.length; i++) {
-            if (classesProds[i].id_classe === idClasseProd) {
-                const nameClasse: string = classesProds[i].name_classe;
-                return nameClasse;
-            }
+    nameClasseProd(idClasseProd: number, classesProds: TClasseProd[]) {
+        for (let classeProd of classesProds) {
+            if (classeProd.id_classe === idClasseProd)
+                return classeProd.name_classe
         }
     };
-    nameGruposFiscais(idGrupoFiscal: number, gruposFiscais:TGrupoFiscal[]) {
-        for (let i = 0; i < gruposFiscais.length; i++) {
-            if (gruposFiscais[i].id_grupo_fiscal === idGrupoFiscal) {
-                const nameGrupoFiscal: string = gruposFiscais[i].name_grupo_fiscal;
-                return nameGrupoFiscal;
-            }
+    nameGruposFiscais(idGrupoFiscal: number, gruposFiscais: TGrupoFiscal[]) {
+        for (let grupoFiscal of gruposFiscais) {
+            if (grupoFiscal.id_grupo_fiscal === idGrupoFiscal)
+                return grupoFiscal.name_grupo_fiscal
         }
     };
-    nameTiposProds(idTipoProd: number, tiposProds:TTipoProd[]) {
-        for (let i = 0; i < tiposProds.length; i++) {
-            if (tiposProds[i].id_tipo === idTipoProd) {
-                const nameTipoProd: string = tiposProds[i].name_tipo;
-                return nameTipoProd;
-            }
+    nameTiposProds(idTipoProd: number, tiposProds: TTipoProd[]) {
+        for (let tipoProd of tiposProds) {
+            if (tipoProd.id_tipo === idTipoProd)
+                return tipoProd.name_tipo
         }
     };
 };

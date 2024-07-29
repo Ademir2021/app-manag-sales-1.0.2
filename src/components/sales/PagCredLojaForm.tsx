@@ -47,7 +47,7 @@ export function PagCredLojaForm({handleSubmit, duplicatas, toGoBackInvoiceSale,U
             >Finalizar compra</button>
              <button className="btn btn-primary m-3"
                 onClick={toGoBackInvoiceSale}
-            >Modificar forma de pagamneto</button>
+            >Modificar forma de pagamento</button>
             <dd className="p-3 mb-3">Forma de pagamento</dd>
             {listDuplicatas}
             <>{URLNoteSubmit ? <button
