@@ -14,6 +14,8 @@ export type TContaAreceber = {
     saldo:number | any 
     pagamento:Date | any | null
     recebimento: number | any
+    observacao:string | null
+    fk_pagador:number
 }
 
 export type TValsRecebidos = {

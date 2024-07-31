@@ -21,7 +21,6 @@ export function PagCredLoja() {
                
                     setSale(sales)
                 handleInstallments(sales)
-            
             }
         };
         getSale()
@@ -65,7 +64,9 @@ export function PagCredLoja() {
                 vencimento: null,
                 saldo: 0,
                 pagamento: null,
-                recebimento: null
+                recebimento: null,
+                observacao:"",
+                fk_pagador:0
             };
             contaReceber.id_conta = i
             contaReceber.fk_filial = sales.filial
@@ -82,6 +83,7 @@ export function PagCredLoja() {
             contaReceber.saldo = 0
             contaReceber.pagamento = null
             contaReceber.recebimento = 0
+            contaReceber.fk_pagador = sales.person.fk_name_pers
             sales.duplicatas.push(contaReceber)
         }
     }

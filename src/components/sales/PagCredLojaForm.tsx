@@ -19,6 +19,7 @@ export function PagCredLojaForm({handleSubmit, duplicatas, toGoBackInvoiceSale,U
      <thead>
                     <tr>
                         <th id="center">ID</th>
+                        <th id='center'>Pagador</th>
                         <th id="center">Emissão</th>
                         <th id="center">Valor</th>
                         <th id="center">Parcela</th>
@@ -29,6 +30,7 @@ export function PagCredLojaForm({handleSubmit, duplicatas, toGoBackInvoiceSale,U
                     {duplicatas.map((dup:TContaAreceber) => (
                         <tr key={dup.id_conta}>
                             <th id="center">{dup.id_conta}</th>
+                            <th id="center">{dup.fk_pagador}</th>
                             <td id="center">{handleContasAReceber.formatDate(dup.emissao)}</td>
                             <td id="center">{dup.valor}</td>
                             <td id="center">{dup.parcela}</td>

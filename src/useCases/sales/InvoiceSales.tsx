@@ -215,6 +215,7 @@ export function InvoiceSales() {
 
     function handleSubmitCred() {
         setTypePay('pagcredloja')
+        payment()
     }
 
     return (
