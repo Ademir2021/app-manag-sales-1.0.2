@@ -70,7 +70,7 @@ function ContasAReceber() {
                 const diaPagamento = new Date().getTime()
                 if (venc_original < diaPagamento) { // se vencer calcular juros e multa
                     const difference = handleContasAReceber.dateDifference(venc_original, diaPagamento);
-                    const diasCalcJuros: number | any = (difference.diffInDays - 1).toFixed(0)
+                    const diasCalcJuros: number | any = (difference.diffInDays).toFixed(0)
                     contaAReceber.juros = contaAReceber.valor !== 0.00 ? contaAReceber.valor * diasCalcJuros * (0.10 / 100) : 0.00
                     contaAReceber.multa = diasCalcJuros > 5 ? contaAReceber.valor * (3 / 100) : 0.00
                 }
