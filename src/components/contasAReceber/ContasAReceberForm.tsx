@@ -66,7 +66,7 @@ function ContasAreceberForm({ contasAReceber, receberValor, handleChange, valore
                             <td id="center">{parseFloat(conta.desconto).toFixed(3)}</td>
                             <td id="center">{parseFloat(conta.saldo).toFixed(2)}</td>
                             <td id="center">{conta.pagamento !== null ? handleContasAReceber.formatDate(conta.pagamento) : null}</td>
-                            <td id="center">{parseFloat(conta.recebimento).toFixed(3)}</td>
+                            <td id="center">{parseFloat(conta.recebimento).toFixed(2)}</td>
                             <td id="center">{conta.observacao}</td>
                             <td id="center"><button
                                 type="button"

@@ -74,8 +74,12 @@ function ContasAReceber() {
                     contaAReceber.juros = contaAReceber.valor !== 0.00 ? contaAReceber.valor * diasCalcJuros * (0.10 / 100) : 0.00
                     contaAReceber.multa = diasCalcJuros > 5 ? contaAReceber.valor * (3 / 100) : 0.00
                 }
-                const saldo = contaAReceber.valor - contaAReceber.recebimento + contaAReceber.juros + contaAReceber.multa
-                contaAReceber.saldo = saldo
+                const saldo =
+                    parseFloat(contaAReceber.valor) -
+                    parseFloat(contaAReceber.recebimento) +
+                    parseFloat(contaAReceber.juros) +
+                    parseFloat(contaAReceber.multa)
+                contaAReceber.saldo = saldo.toFixed(3)
             }
         }
         calcContasAReceber();
@@ -110,12 +114,12 @@ function ContasAReceber() {
     }
 
     async function somaValsRecebidos(conta: TContaAreceber) {
-        let valRec:any = 0
+        let valRec: any = 0
         let soma = 0
         for (let valRecebido of valsRecebidos_) {
             if (valRecebido.fk_conta === conta.id_conta)
                 valRec = valRecebido.valor
-                soma += parseFloat(valRec)
+            soma += parseFloat(valRec)
         }
         return soma + valor
     }

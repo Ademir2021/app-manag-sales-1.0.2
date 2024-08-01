@@ -2,7 +2,7 @@ export type TContaAreceber = {
     id_conta: number 
     fk_filial: number
     tipo: string
-    fk_venda: number
+    fk_venda: number 
     fk_user:number
     parcela: number | string
     valor: number | any
