@@ -25,6 +25,8 @@ export type TValsRecebidos = {
     fk_user: number
     valor: number
     data_recebimento: Date | any | null
+    descricao:string
+    fk_person:number
 }
 
 type TContaBancaria = {

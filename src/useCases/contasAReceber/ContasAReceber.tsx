@@ -101,7 +101,9 @@ function ContasAReceber() {
             fk_venda: 0,
             fk_user: 0,
             valor: 0,
-            data_recebimento: ""
+            data_recebimento: "",
+            descricao:"",
+            fk_person:0
         }
         valRecebido.id_val = id++
         valRecebido.fk_conta = conta.id_conta
@@ -114,6 +116,8 @@ function ContasAReceber() {
         valRecebido.fk_user = isLogged[0].id
         valRecebido.data_recebimento = new Date()
         valRecebido.valor = valor
+        valRecebido.descricao = 'venda'
+        valRecebido.fk_person = 0
         valsRecebidos.push(valRecebido)
         await registerValRecebido(valRecebido)
     }

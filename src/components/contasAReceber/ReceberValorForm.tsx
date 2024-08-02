@@ -1,0 +1,48 @@
+
+type Props = {
+    children: any
+    handlechange: any
+    handleSubmit: any
+    listPersons: any
+}
+
+export function ReceberValorForm({
+    children,
+    handlechange,
+    handleSubmit,
+    listPersons,
+}: Props) {
+    const receberValor = <div className="container-global">
+        <div className="main-global">
+            <p>Receber Valores</p>
+            <div className="main-global-form">
+                <label>Digite o valor recebido</label>
+                <input
+                    type="number"
+                    name='valor'
+                    value={children.valor || ''}
+                    placeholder="Digite o valor"
+                    onChange={handlechange}
+                />
+                <label>Descrição do recebimento</label>
+                   <input
+                    type="text"
+                    name='descricao'
+                    value={children.descricao || ''}
+                    placeholder="Descrição do valor"
+                    onChange={handlechange}
+                />
+                <button className="btn btn-primary"
+                    onClick={handleSubmit}
+                >Registrar Valor</button>
+                <hr></hr>
+                <span>{listPersons}</span>
+            </div>
+        </div>
+    </div>
+    return (
+        <>
+            {receberValor}
+        </>
+    )
+}

@@ -22,13 +22,13 @@ class HandleContasAReceber {
     };
     newData() {
         const data = new Date()
-     return data.toISOString()
+        return data.toISOString()
     };
     formatDate(date: string) {
         return format(parseISO(date), "dd ' ' MMM ' ' yyyy ' ' HH:mm'h'", {
             locale: ptBR
         })
-    }
+    };
 }
 
 export { HandleContasAReceber }

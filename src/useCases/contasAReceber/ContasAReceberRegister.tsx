@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react"
 import { ContasAReceberRegisterForm } from "../../components/contasAReceber/ContasAReceberRegisterForm";
-import { TContaAreceber } from "./type/TContasAReceber";
+import { TContaAreceber, TValsRecebidos } from "./type/TContasAReceber";
 import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api"
@@ -35,6 +35,8 @@ export function ContasAReceberRegister() {
 
     });
 
+    // const [valrecebido, getValRecebido] = useState<TValsRecebidos>()
+
     const handleChange = (e: any) => {
         const name = e.target.name;
         const value = e.target.value;
@@ -58,9 +60,9 @@ export function ContasAReceberRegister() {
                     })
             }
             catch (err) {
+                await HandleEnsureAuth()
                 // console.log("error occurred !!" + err)
                 setTokenMessage(" Erro: 401 - Token Expirado ! ")
-                await HandleEnsureAuth()
             }
         };
         getPerson()
@@ -97,11 +99,12 @@ export function ContasAReceberRegister() {
             <ContasAReceberRegisterForm
                 handleSubmit={handleSubmit}
                 handleChange={handleChange}
-                pagador={persons.length > 0 ? persons[0].name_pers : null}
                 msg={msg}
                 listPersons={<select
                     onChange={e => setIdPerson(parseInt(e.target.value))}
-                >{persons.map((person: TPersonRegister) => (
+                >
+                    <option>Selecione um pagador</option>
+                    {persons.map((person: TPersonRegister) => (
                     <option
                         key={person.id_person}
                         value={person.id_person}
