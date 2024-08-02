@@ -105,14 +105,19 @@ function ContasAReceber() {
         }
         valRecebido.id_val = id++
         valRecebido.fk_conta = conta.id_conta
-        valRecebido.fk_venda = conta.fk_venda
+        if (conta.fk_venda !== null) {
+            valRecebido.fk_venda = conta.fk_venda
+        }
+        else if (conta.fk_venda === null) {
+            valRecebido.fk_venda = 0
+        }
         valRecebido.fk_user = isLogged[0].id
         valRecebido.data_recebimento = new Date()
         valRecebido.valor = valor
         valsRecebidos.push(valRecebido)
         await registerValRecebido(valRecebido)
     }
-
+    console.log(contasAReceber)
     async function somaValsRecebidos(conta: TContaAreceber) {
         let valRec: any = 0
         let soma = 0
@@ -129,8 +134,12 @@ function ContasAReceber() {
             if (contaAReceber.id_conta === conta.id_conta) {
                 const recebimento = await somaValsRecebidos(conta)
                 contaAReceber.recebimento = recebimento
-                const saldo = contaAReceber.valor - contaAReceber.recebimento + contaAReceber.juros + contaAReceber.multa
-                contaAReceber.saldo = parseFloat(saldo).toFixed(2)
+                const saldo =
+                    parseFloat(contaAReceber.valor) -
+                    parseFloat(contaAReceber.recebimento) +
+                    parseFloat(contaAReceber.juros) +
+                    parseFloat(contaAReceber.multa)
+                contaAReceber.saldo = saldo.toFixed(2)
                 contaAReceber.juros = parseFloat(contaAReceber.juros).toFixed(2)
                 contaAReceber.multa = parseFloat(contaAReceber.multa).toFixed(2)
                 contaAReceber.pagamento = handleContasAReceber.newData()

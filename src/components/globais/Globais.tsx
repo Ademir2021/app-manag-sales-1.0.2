@@ -59,13 +59,13 @@ export class Globais {
     static company = "Centro Informática"
     static CNPJ = "18.069.383/0001-10"
 
-    // static URL = config_ === "dev" ? process.env.REACT_APP_URL : 'https://centroinfo.com.br'
-    // static API_URL = config_ === "dev" ? process.env.REACT_APP_API_URL : 'https://api-centroinfo-614cdab7bd81.herokuapp.com'
-    // static URL_NOTE = config_ === "dev" ? process.env.REACT_APP_URL_NOTE : 'https://api-centroinfo-614cdab7bd81.herokuapp.com/note'
-    // static URL_CENTROINFO = config_ === "dev" ? process.env.REACT_APP_URL_CENTROINFO : 'https://www.centroinfo.com.br'
+    static URL = config_ === "dev" ? process.env.REACT_APP_URL : 'https://centroinfo.com.br'
+    static API_URL = config_ === "dev" ? process.env.REACT_APP_API_URL : 'https://api-centroinfo-614cdab7bd81.herokuapp.com'
+    static URL_NOTE = config_ === "dev" ? process.env.REACT_APP_URL_NOTE : 'https://api-centroinfo-614cdab7bd81.herokuapp.com/note'
+    static URL_CENTROINFO = config_ === "dev" ? process.env.REACT_APP_URL_CENTROINFO : 'https://www.centroinfo.com.br'
 
-    static URL ='https://centroinfo.com.br'
-    static API_URL = 'https://api-centroinfo-614cdab7bd81.herokuapp.com'
-    static URL_NOTE =  'https://api-centroinfo-614cdab7bd81.herokuapp.com/note'
-    static URL_CENTROINFO =  'https://api-centroinfo-614cdab7bd81.herokuapp.com'
+    // static URL ='https://centroinfo.com.br'
+    // static API_URL = 'https://api-centroinfo-614cdab7bd81.herokuapp.com'
+    // static URL_NOTE =  'https://api-centroinfo-614cdab7bd81.herokuapp.com/note'
+    // static URL_CENTROINFO =  'https://api-centroinfo-614cdab7bd81.herokuapp.com'
 }
