@@ -7,22 +7,22 @@ import api from "../../services/api/api"
 import { AuthContext } from '../../context/auth'
 import { postRegister } from "../../services/handleService";
 
-export function ReceberValor(){
+export function ReceberValor() {
     const [IdPerson, setIdPerson] = useState<number>(0)
-    const [sendConta, setSendConta] = useState<boolean>(false)
-    // const [msg, setMsg] = useState<string>('Aguardando titulo')
+    const [sendValor, setSendValor] = useState<boolean>(false)
+    const [msg, setMsg] = useState<string>('Aguardando valor')
     const [persons, setPersons] = useState<TPersonRegister[]>([])
     const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
     const { user: isLogged }: any = useContext(AuthContext);
     const [receberValor, setReceberValor] = useState<TValsRecebidos>({
-        id_val:0,
-        fk_conta:0,
-        fk_venda:0,
-        fk_user:isLogged[0].id,
-        valor:0,
-        data_recebimento:new Date().toISOString(),
-        descricao:'',
-        fk_person:0
+        id_val: 0,
+        fk_conta: 0,
+        fk_venda: 0,
+        fk_user: isLogged[0].id,
+        valor: 0,
+        data_recebimento: new Date().toISOString(),
+        descricao: '',
+        fk_person: 0
     })
 
     const handleChange = (e: any) => {
@@ -56,35 +56,47 @@ export function ReceberValor(){
         getPerson()
     }, [persons])
 
-
-    function handleSubmit(){
-        if(persons.length > 0)
-         receberValor.fk_person = IdPerson   
-        
-        postRegister(receberValor, 'val_recebido')
+    function clearFields() {
+        receberValor.valor = 0
+        receberValor.descricao = ''
     }
 
-    return(
+    function handleSubmit() {
+        if (persons.length > 0)
+            receberValor.fk_person = IdPerson
+        if (sendValor === false) {
+            postRegister(receberValor, 'val_recebido')
+            setSendValor(true)
+            clearFields()
+            setMsg('Valor registrado com sucesso')
+        } else {
+            setMsg('Valor já foi registrado')
+        }
+    }
+
+    return (
         <>
-        <ReceberValorForm
-        handlechange={handleChange}
-        handleSubmit={handleSubmit}
-        listPersons={<select
-            onChange={e => setIdPerson(parseInt(e.target.value))}
-        >
-            <option>Selecione um pagador</option>
-            {persons.map((person: TPersonRegister) => (
-            <option
-                key={person.id_person}
-                value={person.id_person}
+        <p className="text-center p-3">{tokenMessage}</p>
+            <ReceberValorForm
+                handlechange={handleChange}
+                handleSubmit={handleSubmit}
+                listPersons={<select
+                    onChange={e => setIdPerson(parseInt(e.target.value))}
+                >
+                    <option>Selecione um pagador</option>
+                    {persons.map((person: TPersonRegister) => (
+                        <option
+                            key={person.id_person}
+                            value={person.id_person}
+                        >
+                            {person.name_pers}
+                            {" - " + person.cpf_pers}
+                        </option>
+                    ))}</select>}
+                msg={msg}
             >
-                { person.name_pers }
-                {" - " + person.cpf_pers }
-            </option>
-        ))}</select>}
-        >
-        {receberValor}
-        </ReceberValorForm>
+                {receberValor}
+            </ReceberValorForm>
         </>
     )
 }

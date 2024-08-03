@@ -4,6 +4,7 @@ type Props = {
     handlechange: any
     handleSubmit: any
     listPersons: any
+    msg:string
 }
 
 export function ReceberValorForm({
@@ -11,6 +12,7 @@ export function ReceberValorForm({
     handlechange,
     handleSubmit,
     listPersons,
+    msg
 }: Props) {
     const receberValor = <div className="container-global">
         <div className="main-global">
@@ -35,6 +37,7 @@ export function ReceberValorForm({
                 <button className="btn btn-primary"
                     onClick={handleSubmit}
                 >Registrar Valor</button>
+                <dd>{msg}</dd>
                 <hr></hr>
                 <span>{listPersons}</span>
             </div>
