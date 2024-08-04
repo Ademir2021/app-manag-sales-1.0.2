@@ -1,5 +1,6 @@
 import { HandleContasAReceber } from "../../useCases/contasAReceber/HandleContasAReceber"
 import { TContaAreceber, TValsRecebidos } from "../../useCases/contasAReceber/type/TContasAReceber"
+import { NavBar } from "../navbar/Navbar"
 
 import './ContasAReceber.css'
 
@@ -8,16 +9,26 @@ type TProps = {
     valoresRecebidos: TValsRecebidos[]
     receberValor: any
     handleChange: React.ChangeEventHandler<HTMLInputElement>
+    msg:string
 }
 
-function ContasAreceberForm({ contasAReceber, receberValor, handleChange, valoresRecebidos }: TProps) {
+function ContasAreceberForm({
+    contasAReceber,
+    receberValor,
+    handleChange,
+    valoresRecebidos,
+    msg
+}: TProps) {
 
     const handleContasAReceber = new HandleContasAReceber()
 
     const headerContasReceber =
+    <>
+        <NavBar/>
         <div id="header-contas-receber" className="container">
             Receber valores dos Titulos
         </div>
+    </>
 
     const inputReceberValor =
         <input
@@ -31,6 +42,7 @@ function ContasAreceberForm({ contasAReceber, receberValor, handleChange, valore
 
     const listaContasReceber =
         <>
+                <dd>{msg}</dd>
             <table className='table bg-light mt-1'>
                 <thead>
                     <tr>

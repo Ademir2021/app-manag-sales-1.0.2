@@ -3,7 +3,6 @@ import { ContasAreceberForm } from "../../components/contasAReceber/ContasAReceb
 import { TContaAreceber, TValsRecebidos } from "./type/TContasAReceber"
 import { HandleContasAReceber } from "./HandleContasAReceber"
 import { AuthContext } from '../../context/auth'
-import { NavBar } from "../../components/navbar/Navbar"
 import api from "../../services/api/api"
 
 function ContasAReceber() {
@@ -161,8 +160,6 @@ function ContasAReceber() {
 
     return (
         <>
-            <NavBar />
-            <div className="text-center">{msg}</div>
             <ContasAreceberForm
                 contasAReceber={contasAReceber}
                 valoresRecebidos={valsRecebidos_}
@@ -170,6 +167,7 @@ function ContasAReceber() {
                 handleChange={(e: any) => {
                     setValor(parseFloat(e.target.value))
                 }}
+                msg={msg}
             />
         </>
     )
