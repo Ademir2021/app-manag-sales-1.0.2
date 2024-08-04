@@ -9,7 +9,7 @@ type TProps = {
     valoresRecebidos: TValsRecebidos[]
     receberValor: any
     handleChange: React.ChangeEventHandler<HTMLInputElement>
-    msg:string
+    msg: string
 }
 
 function ContasAreceberForm({
@@ -23,12 +23,9 @@ function ContasAreceberForm({
     const handleContasAReceber = new HandleContasAReceber()
 
     const headerContasReceber =
-    <>
-        <NavBar/>
         <div id="header-contas-receber" className="container">
-            Receber valores dos Titulos
+            Contas a receber - Títulos em aberto.
         </div>
-    </>
 
     const inputReceberValor =
         <input
@@ -41,8 +38,6 @@ function ContasAreceberForm({
         />
 
     const listaContasReceber =
-        <>
-                <dd>{msg}</dd>
             <table className='table bg-light mt-1'>
                 <thead>
                     <tr>
@@ -89,10 +84,9 @@ function ContasAreceberForm({
                     ))}
                 </tbody>
             </table>
-        </>
+        
 
     const listaValoresRecebidos =
-        <>
             <table className='table bg-light mt-1'>
                 <thead>
                     <tr>
@@ -115,16 +109,19 @@ function ContasAreceberForm({
 
                     </tr>
                 ))}</tbody>
-            </table>
-        </>
+            </table> 
 
     return (
-        <div className="container">
-            {headerContasReceber}
-            {inputReceberValor}
-            {listaContasReceber}
-            {listaValoresRecebidos}
-        </div>
+        <>
+            <div className="container">
+                <NavBar/>
+                {headerContasReceber}
+                {<div>{msg}</div>}
+                {inputReceberValor}
+                {listaContasReceber}
+                {listaValoresRecebidos}
+            </div>
+        </>
     )
 }
 
