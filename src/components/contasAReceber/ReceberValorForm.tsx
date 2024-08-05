@@ -18,7 +18,6 @@ export function ReceberValorForm({
         <div className="main-global">
             <p>Receber Valores</p>
             <div className="main-global-form">
-                <label>Digite o valor recebido</label>
                 <input
                     type="number"
                     name='valor'
@@ -26,7 +25,6 @@ export function ReceberValorForm({
                     placeholder="Digite o valor"
                     onChange={handlechange}
                 />
-                <label>Descrição do recebimento</label>
                    <input
                     type="text"
                     name='descricao'
