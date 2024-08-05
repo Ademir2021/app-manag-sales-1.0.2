@@ -101,8 +101,8 @@ function ContasAReceber() {
             fk_user: 0,
             valor: 0,
             data_recebimento: "",
-            descricao:"",
-            fk_person:0
+            descricao: "",
+            fk_person: 0
         }
         valRecebido.id_val = id++
         valRecebido.fk_conta = conta.id_conta
@@ -168,6 +168,9 @@ function ContasAReceber() {
                     setValor(parseFloat(e.target.value))
                 }}
                 msg={msg}
+                submitContasAReceberRegister={() => { window.location.assign("/contas_receber_register") }}
+                submitInserirValor={() => { window.location.assign("receber_valor") }}
+                submitfluxoDeCaixa={() => { window.location.assign("caixa_mov") }}
             />
         </>
     )
