@@ -3,12 +3,8 @@ import { CaixaMovListComp } from "../../components/caixaMov/CaixaMovList";
 import { TCaixaMov } from "./type/TCaixaMov";
 import api from "../../services/api/api";
 
-
-
 export function CaixaMovList() {
-
     const [caixaMov, setCaixaMov] = useState<TCaixaMov[]>([])
-
     useEffect(() => {
         async function getProducts() {
             try {

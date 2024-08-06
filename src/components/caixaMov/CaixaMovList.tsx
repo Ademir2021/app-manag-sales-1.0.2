@@ -1,4 +1,4 @@
-import { TCaixaMov } from "../../useCases/CaixaMovList.tsx/type/TCaixaMov"
+import { TCaixaMov } from "../../useCases/CaixaMov/type/TCaixaMov"
 import { HandleContasAReceber } from "../../useCases/contasAReceber/HandleContasAReceber"
 
 type Props = {

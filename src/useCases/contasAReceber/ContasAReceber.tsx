@@ -8,6 +8,7 @@ import api from "../../services/api/api"
 function ContasAReceber() {
     const [msg, setMsg] = useState('')
     const [valor, setValor] = useState(0)
+    const [desconto, setDesconto] = useState(0)
     const handleContasAReceber = new HandleContasAReceber()
     const [contasAReceber, setContasAReceber] = useState<TContaAreceber[]>([])
     const [valsRecebidos_, setValsRecebidos_] = useState<TValsRecebidos[]>([])
@@ -137,14 +138,17 @@ function ContasAReceber() {
             if (contaAReceber.id_conta === conta.id_conta) {
                 const recebimento = await somaValsRecebidos(conta)
                 contaAReceber.recebimento = recebimento
+                contaAReceber.desconto = desconto
                 const saldo =
                     parseFloat(contaAReceber.valor) -
                     parseFloat(contaAReceber.recebimento) +
                     parseFloat(contaAReceber.juros) +
-                    parseFloat(contaAReceber.multa)
+                    parseFloat(contaAReceber.multa) -
+                    parseFloat(contaAReceber.desconto)
                 contaAReceber.saldo = saldo.toFixed(2)
                 contaAReceber.juros = parseFloat(contaAReceber.juros).toFixed(2)
                 contaAReceber.multa = parseFloat(contaAReceber.multa).toFixed(2)
+                contaAReceber.desconto = parseFloat(contaAReceber.desconto).toFixed(2)
                 contaAReceber.pagamento = handleContasAReceber.newData()
                 await updateContaReceber(contaAReceber)
             }
@@ -164,8 +168,11 @@ function ContasAReceber() {
                 contasAReceber={contasAReceber}
                 valoresRecebidos={valsRecebidos_}
                 receberValor={valor > 0 ? handleSumbit : () => { setMsg('Informe um novo valor') }}
-                handleChange={(e: any) => {
+                handleChangeValor={(e: any) => {
                     setValor(parseFloat(e.target.value))
+                }}
+                handleChangeDesconto={(e: any) => {
+                    setDesconto(parseFloat(e.target.value))
                 }}
                 msg={msg}
                 submitContasAReceberRegister={() => { window.location.assign("/contas_receber_register") }}

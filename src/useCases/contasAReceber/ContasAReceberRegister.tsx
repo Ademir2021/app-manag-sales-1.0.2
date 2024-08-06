@@ -35,8 +35,6 @@ export function ContasAReceberRegister() {
 
     });
 
-    // const [valrecebido, getValRecebido] = useState<TValsRecebidos>()
-
     const handleChange = (e: any) => {
         const name = e.target.name;
         const value = e.target.value;
@@ -74,7 +72,6 @@ export function ContasAReceberRegister() {
         if (persons.length > 0)
             contaAReceber.fk_pagador = IdPerson
         contaAReceber.fk_filial = persons[0].fk_name_filial
-        console.log(contaAReceber)
     }
 
     function clerFields(){

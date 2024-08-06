@@ -8,7 +8,8 @@ type TProps = {
     contasAReceber: TContaAreceber[]
     valoresRecebidos: TValsRecebidos[]
     receberValor: any
-    handleChange: React.ChangeEventHandler<HTMLInputElement>
+    handleChangeValor: React.ChangeEventHandler<HTMLInputElement>
+    handleChangeDesconto: React.ChangeEventHandler<HTMLInputElement>
     msg: string
     submitContasAReceberRegister: any
     submitInserirValor: any
@@ -19,7 +20,8 @@ type TProps = {
 function ContasAreceberForm({
     contasAReceber,
     receberValor,
-    handleChange,
+    handleChangeValor,
+    handleChangeDesconto,
     valoresRecebidos,
     msg,
     submitContasAReceberRegister,
@@ -54,14 +56,24 @@ function ContasAreceberForm({
         </div>
 
     const inputReceberValor =
+    <div>
         <input
             min={0}
             max={999}
             type="number"
             id="input-valor"
             placeholder="Informe o valor recebido"
-            onChange={handleChange}
+            onChange={handleChangeValor}
         />
+        <input
+        min={0}
+        max={999}
+        type="number"
+        id="input-valor"
+        placeholder="desconto"
+        onChange={ handleChangeDesconto}
+    />
+    </div>
 
     const listaContasReceber =
         <table className='table bg-light mt-1'>

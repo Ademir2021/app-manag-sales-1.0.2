@@ -31,7 +31,7 @@ import { ContasAReceber } from "./useCases/contasAReceber/ContasAReceber";
 import { PagCredLoja } from "./useCases/sales/PagCredLoja";
 import { ContasAReceberRegister } from "./useCases/contasAReceber/ContasAReceberRegister";
 import { ReceberValor } from "./useCases/contasAReceber/ReceberValor";
-import { CaixaMovList } from "./useCases/CaixaMovList.tsx/CaixaMovList";
+import { CaixaMovList } from "./useCases/CaixaMov/CaixaMovList";
 
 
 export function AppRoutes() {
