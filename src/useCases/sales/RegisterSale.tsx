@@ -3,11 +3,10 @@ import { RegisterSaleForm } from "../../components/sales/RegisterSaleForm";
 import { Itens } from "../../components/sales/Itens";
 import { TProductRegister, TItens } from "../products/type/TypeProducts";
 import { currencyFormat } from "../../components/utils/currentFormat/CurrentFormat";
-import api from "../../services/api/api";
 import { Dashboard } from "../dashboard/Dashboard";
+import api from "../../services/api/api";
 
 export function RegisterSale() {
-
     const [product, setProduct] = useState<TItens>(
         { id: 0, item: 0, descric: "", valor: 0, amount: 1, tItem: 0 });
     const [products, setProducts] = useState<TProductRegister[]>([]);
@@ -29,10 +28,12 @@ export function RegisterSale() {
     };
 
     useEffect(() => {
-        async function getProducts () {
+        async function getProducts() {
             try {
                 await api.post<TProductRegister[]>('products_list')
-                    .then(response => { setProducts(response.data) })
+                    .then(response => {
+                        setProducts(response.data)
+                    })
             } catch (err) { console.log("error occurred !" + err) }
         }
         getProducts()
@@ -56,23 +57,23 @@ export function RegisterSale() {
     };
 
     function findProducts() {
-        for (let i = 0; products.length > i; i++) {
-            if (product.descric == products[i].id_product
-                || product.descric === products[i].bar_code
-                || product.descric === products[i].descric_product) {
+        for (let prod of products) {
+            if (product.descric == prod.id_product
+                || product.descric === prod.bar_code
+                || product.descric === prod.descric_product) {
                 if (editId !== null) {
                     product.id = editId;
                 } else {
                     product.id = id;
                 }
-                product.item = products[i].id_product;
-                product.descric = products[i].descric_product;
-                product.valor = products[i].val_max_product;
+                product.item = prod.id_product;
+                product.descric = prod.descric_product;
+                product.valor = prod.val_max_product;
                 product.tItem = product.valor * product.amount;
-                if (products[i].image === null) {
+                if (prod.image === null) {
                     setIemImg('./img/car_sale.png')
                 } else {
-                    setIemImg("./img/img_itens/" + products[i].image);
+                    setIemImg("./img/img_itens/" + prod.image);
                 }
             }
         }
@@ -93,8 +94,8 @@ export function RegisterSale() {
 
     function verifItem(product: TItens) {
         if (product.item !== 0) {
-            for (let i = 0; itens.length > i; i++)
-                if (product.item === itens[i].item && editId == null) {
+            for (let item of itens)
+                if (product.item === item.item && editId == null) {
                     return alert("Item já foi lançado")
                 }
             setId(id + 1);
@@ -105,10 +106,10 @@ export function RegisterSale() {
     };
 
     function verifItemUP(product: TItens) {
-        for (let i = 0; itens.length > i; i++)
-            if (product.item === itens[i].item && editId !== null) {
-                itens[i].amount = product.amount
-                itens[i].tItem = product.amount * product.valor
+        for (let item of itens)
+            if (product.item === item.item && editId !== null) {
+                item.amount = product.amount
+                item.tItem = product.amount * product.valor
                 return alert("Item já foi lançado ! a quantidade é de " + product.amount + " item(s)")
             }
         deleteProduct();
@@ -118,8 +119,8 @@ export function RegisterSale() {
 
     function sumItens() {
         let sum = 0
-        for (var i = 0; i < itens.length; i++) {
-            sum += (itens[i].amount * itens[i].valor)
+        for (let item of itens) {
+            sum += (item.amount * item.valor)
         }
         setTotalItens(sum)
         return sum
@@ -205,14 +206,13 @@ export function RegisterSale() {
         setPreco(product.valor);
     };
 
-    
     function itensStore() {
-        const itens_store_res: [] | any = localStorage.getItem('p');
+        const itens_store_res: TItens[] | any = localStorage.getItem('p');
         if (itens_store_res !== null) {
             const itens_store: TItens[] = JSON.parse(itens_store_res)
             setItenStorage(itens_store);
-            for (let i = 0; itenStorage.length > i; i++) {
-                itens.push(itenStorage[i]);
+            for (let itemStorage of itenStorage) {
+                itens.push(itemStorage);
                 setItens(itens)
                 const res_id: any = localStorage.getItem('id');
                 setId(JSON.parse(res_id))
@@ -225,7 +225,7 @@ export function RegisterSale() {
 
     return (
         <>
-        <Dashboard/>
+            <Dashboard />
             <RegisterSaleForm
                 handleChange={handleChange}
                 handleSaveUpdate={handleSaveUpdate}
@@ -241,10 +241,10 @@ export function RegisterSale() {
                 message=""
                 totalItens={totalItens <= 0 ? '' : "SubTotal " + currencyFormat(totalItens)}
                 loadItens={itens.length === 0 ? "Carregando" :
-                <Itens 
-                itens={itens}
-                updateListProduct={updateListProduct}
-                />}
+                    <Itens
+                        itens={itens}
+                        updateListProduct={updateListProduct}
+                    />}
             >
                 {product}
             </RegisterSaleForm>
