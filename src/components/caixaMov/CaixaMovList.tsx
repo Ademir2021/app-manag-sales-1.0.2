@@ -15,11 +15,11 @@ export function CaixaMovListComp({
         <table className='table bg-light mt-1'>
             <thead>
                 <tr>
-                    <th id="center">Id_caixa</th>
-                    <th id="center">fk_val</th>
-                    <th id="center">data_recebimento</th>
-                    <th id="center">debito</th>
-                    <th id="center">credito</th>
+                    <th id="center">ID</th>
+                    <th id="center">Recebimento</th>
+                    <th id="center">Movimento</th>
+                    <th id="center">D/C</th>
+                    <th id="center">Valor</th>
                     <th id="center">saldo</th>
                 </tr>
             </thead>
@@ -27,10 +27,10 @@ export function CaixaMovListComp({
                 {caixaMov.map((caixa: TCaixaMov) => (
                     <tr key={caixa.id_caixa}>
                         <th id="center">{caixa.id_caixa}</th>
-                        <td id="center">{caixa.fk_val}</td>
                         <td id="center">{handleContasAReceber.formatDate(caixa.data_recebimento)}</td>
-                        <td id="center">{caixa.debito === null ? 0 : caixa.debito}</td>
-                        <td id="center">{caixa.credito === null ? 0 : caixa.credito}</td>
+                        <td id="center">{caixa.fk_val}</td>
+                        <td id="center">{caixa.credito === null ? "D" : "C"}</td>
+                        <td id="center">{caixa.credito === null ? caixa.debito : caixa.credito}</td>
                         <td id="center">{caixa.saldo}</td>
                     </tr>
                 ))}
@@ -40,7 +40,7 @@ export function CaixaMovListComp({
     return (
         <>
             <div className="container">
-                <div>Movimento de Caixa</div>
+                <div className="text-center p-1">Movimento do Caixa</div>
                 {caixaMovList}
             </div>
         </>
