@@ -12,14 +12,14 @@ export function ItenStore() {
 
     useEffect(() => {
         function getItensStorage() {
-            const itens_store_res = localStorage.getItem('p');
-            if (itens_store_res !== null)
+            const itens_store_res:any | undefined = localStorage.getItem('p');
+            if (itens_store_res)
                 setItens(JSON.parse(itens_store_res));
-            const counter_res = localStorage.getItem('c');
-            if (counter_res !== null)
+            const counter_res:any | undefined = localStorage.getItem('c');
+            if (counter_res)
                 setCounter(JSON.parse(counter_res));
-            const subTotal_res = localStorage.getItem('t');
-            if (subTotal_res !== null)
+            const subTotal_res:any | undefined = localStorage.getItem('t');
+            if (subTotal_res)
                 setsubtotal(JSON.parse(subTotal_res));
         };
         getItensStorage()
@@ -27,20 +27,20 @@ export function ItenStore() {
 
     function sumItens() {
         let sum = 0
-        for (let i = 0; i < itens.length; i++) {
-            sum += (itens[i].amount * itens[i].valor)
+        for (let item of itens) {
+            sum += (item.amount * item.valor)
         }
         localStorage.setItem("t", JSON.stringify(sum));
         return sum
     }
 
-    function deleteListStore(item: TItens) {
-        if (window.confirm('Deseja remover, ' + item.descric + ' ?')) {
+    function deleteListStore(item_: TItens) {
+        if (window.confirm('Deseja remover, ' + item_.descric + ' ?')) {
             for (let i = 0; itens.length > 0; i++) {
-                if (itens[i].id === item.id) {
+                if (itens[i].id === item_.id) {
                     itens.splice(i, 1);
                     localStorage.setItem("p", JSON.stringify(itens));
-                    setMessages(item.descric + ', foi removido com sucesso !');
+                    setMessages(item_.descric + ', foi removido com sucesso !');
                     let res_counter = localStorage.getItem('c');
                     if (res_counter !== null) {
                         const counter = JSON.parse(res_counter)
@@ -57,23 +57,23 @@ export function ItenStore() {
         }
     }
 
-    function incrementItemListStore(item: TItens) {
-        for (let i = 0; itens.length > 0; i++) {
-            if (itens[i].id === item.id) {
-                itens[i].amount += 1
-                itens[i].tItem = itens[i].amount * itens[i].valor
+    function incrementItemListStore(item_: TItens) {
+        for (let item of itens) {
+            if (item.id === item_.id) {
+                item.amount += 1
+                item.tItem = item.amount * item.valor
                 localStorage.setItem("p", JSON.stringify(itens));
                 sumItens()
             }
         }
     };
 
-    function decrementItemListStore(item: TItens) {
-        for (let i = 0; itens.length > 0; i++) {
-            if (itens[i].id === item.id) {
-                itens[i].amount -= 1
-                if (itens[i].amount > 0) {
-                    itens[i].tItem = itens[i].amount * itens[i].valor
+    function decrementItemListStore(item_: TItens) {
+        for (let item of itens) {
+            if (item.id === item_.id) {
+                item.amount -= 1
+                if (item.amount > 0) {
+                    item.tItem = item.amount * item.valor
                     localStorage.setItem("p", JSON.stringify(itens));
                     sumItens()
                 }
