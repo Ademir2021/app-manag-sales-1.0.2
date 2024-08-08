@@ -6,10 +6,9 @@ import { TPersonRegister, TCeps } from "./type/PersonCeps";
 import api from "../../services/api/api";
 
 export function FormPerson() {
-
     const [person, setPerson] = useState<TPersonRegister>({
         name_pers: "", cpf_pers: "", phone_pers: "", address_pers: "",
-        num_address:"", bairro_pers: "", fk_cep: 0, name_city: "", uf: "",
+        num_address: "", bairro_pers: "", fk_cep: 0, name_city: "", uf: "",
         num_cep: "", fk_name_filial: 1, fk_id_user: 0
     })
 
@@ -31,7 +30,7 @@ export function FormPerson() {
             person.phone_pers = person.phone_pers.replace(/[()-]/g, '')
             new setNumCeps().setNumCep()
             if (person.fk_cep === undefined) {
-                alert("Digite um Cep válido")
+                alert("Digite um CEP válido")
             } else {
                 await api.post<any[]>('person', person)
                     .then(response => {
@@ -45,9 +44,7 @@ export function FormPerson() {
     }
 
     useEffect(() => {
-
         async function getCeps() {
-
             try {
                 await api.get<TCeps[]>(`/ceps`)
                     .then(response => {
@@ -61,16 +58,15 @@ export function FormPerson() {
     }, [ceps])
 
     class setNumCeps {
-
         setNumCep() {
-            for (let i = 0; i < ceps.length; i++) {
-                if (ceps[i].num_cep !== person.num_cep)
+            for (let cep of ceps) {
+                if (cep.num_cep !== person.num_cep)
                     person.fk_cep = undefined
                 setPerson(person)
             }
-            for (let i = 0; i < ceps.length; i++) {
-                if (ceps[i].num_cep === person.num_cep)
-                    person.fk_cep = ceps[i].id_cep;
+            for (let cep of ceps) {
+                if (cep.num_cep === person.num_cep)
+                    person.fk_cep = cep.id_cep;
                 setPerson(person)
             }
         }

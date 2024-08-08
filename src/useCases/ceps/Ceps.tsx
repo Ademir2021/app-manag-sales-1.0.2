@@ -68,7 +68,7 @@ export function Ceps() {
                         setSelectedNameCity(response.data.name_city)
                     })
             } catch (err) {
-                alert("error occurred !!: " + err);
+                alert("err: " + err);
             }
         }
 
@@ -87,7 +87,7 @@ export function Ceps() {
                             }
                         }
                     })
-            } catch (err) { alert("error occurred !!" + err) }
+            } catch (err) { alert("err " + err) }
         };
         getOneCity()
         getCities()
@@ -98,16 +98,15 @@ export function Ceps() {
             try {
                 await api.get<ICeps[]>(`ceps`)
                     .then(response => { setCeps(response.data) })
-            } catch (err) { alert("error occurred !!" + err) }
+            } catch (err) { alert("err " + err) }
         };
         getCeps()
     }, [ceps])
 
     function checkCepExist() {
-        for (let i = 0; ceps.length > i; i++) {
-            if (ceps[i].num_cep === cep.num_cep) {
+        for (let cep_ of ceps) {
+            if (cep_.num_cep === cep.num_cep)
                 return true
-            }
         }
         return false
     }
@@ -140,7 +139,7 @@ export function Ceps() {
                 cep.city = selectedNameCity
                 postRegister(cep, 'ceps')
             }
-        } else { setAlertCep("Cep já Existe") }
+        } else { setAlertCep("CEP já existente na base") }
     }
 
     return (

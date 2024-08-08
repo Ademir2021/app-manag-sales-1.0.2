@@ -11,7 +11,6 @@ import api from "../../services/api/api"
 
 import "../../App.css"
 
-
 export function PersonUpdate() {
     const { user: isLogged }: any = useContext(AuthContext)
     const [persons, setPersons] = useState<TPersonRegister[]>([])
@@ -19,7 +18,7 @@ export function PersonUpdate() {
     const [cities, setCities] = useState<TCities[]>([])
     const [person, setPerson] = useState<TPersonRegister>({
         created_at: '', updated_at: '', name_pers: '',
-        num_address:"", cpf_pers: "", phone_pers: "", address_pers: "",
+        num_address: "", cpf_pers: "", phone_pers: "", address_pers: "",
         bairro_pers: "", fk_cep: 0, name_city: "", uf: "",
         num_cep: "", fk_name_filial: 1, fk_id_user: 0
     })
@@ -51,7 +50,6 @@ export function PersonUpdate() {
     };
 
     async function getPersons() {
-
         const res: any | undefined = localStorage.getItem('token')
         const token = JSON.parse(res)
         try {
@@ -62,25 +60,24 @@ export function PersonUpdate() {
             await api.post<TPersonRegister[]>('persons_user', isLogged, { headers })
                 .then(response => {
                     setTokenMessage("Token Válido !")
-                    const res: TPersonRegister[] = response.data
-                    setPersons(res)
-                    for (let i = 0; res.length > i; i++) {
-                        if (person.id_person === res[i].id_person) {
-                            person.name_pers = res[i].name_pers
-                            person.cpf_pers = res[i].cpf_pers
-                            person.phone_pers = res[i].phone_pers
-                            person.address_pers = res[i].address_pers
-                            person.num_address = res[i].num_address
-                            person.bairro_pers = res[i].bairro_pers
-                            person.fk_name_filial = res[i].fk_name_filial
-                            person.fk_id_user = res[0].fk_id_user
-                        }
+                    const resp: TPersonRegister[] = response.data
+                    setPersons(resp)
+                    for (let res of resp) {
+                        if (person.id_person === res.id_person)
+                            person.name_pers = res.name_pers
+                            person.cpf_pers = res.cpf_pers
+                            person.phone_pers = res.phone_pers
+                            person.address_pers = res.address_pers
+                            person.num_address = res.num_address
+                            person.bairro_pers = res.bairro_pers
+                            person.fk_name_filial = res.fk_name_filial
+                            person.fk_id_user = res.fk_id_user
                     }
                 })
 
         } catch (err) {
             // console.log("error occurred !!" + err)
-            setTokenMessage(" Erro: 401 - Token Expirado ! ")
+            setTokenMessage("Erro: 401 - Token Expirado!")
             await HandleEnsureAuth()
         }
     };
@@ -122,7 +119,6 @@ export function PersonUpdate() {
             if (person.fk_cep === undefined) {
                 alert('Digite um Cep válido')
             } else {
-                // putUpdate(person.id_person, person, 'person_update')
                 await api.put<any[]>('person_update', person)
                     .then(response => {
                         alert(response.data)
@@ -137,7 +133,7 @@ export function PersonUpdate() {
         e.preventDefault();
         setPerson({
             id_person: 0, created_at: '', name_pers: '', cpf_pers: "",
-            phone_pers: "", address_pers: "", num_address:'', bairro_pers: "", fk_cep: 0,
+            phone_pers: "", address_pers: "", num_address: '', bairro_pers: "", fk_cep: 0,
             name_city: "", uf: "", num_cep: "", fk_name_filial: 1, fk_id_user: 0
         })
         person.fk_id_user = isLogged[0].id
@@ -181,32 +177,27 @@ export function PersonUpdate() {
     }, [cities])
 
     function setCep(idCep: number) {
-        for (let i = 0; i < ceps.length; i++) {
-            if (ceps[i].id_cep === idCep) {
-                return ceps[i];
-            }
+        for (let cep of ceps) {
+            if (cep.id_cep === idCep)
+                return cep
         }
     }
 
     function setCity(idCep: number) {
-        for (let i = 0; i < cities.length; i++) {
-            if (cities[i].id_city === idCep) {
-                return cities[i];
-            }
+        for (let city of cities) {
+            if (city.id_city === idCep)
+                return city
         }
     }
 
-    const setNumCep = (numCep: string) => { // Busca e valida o CEP
-        for (let i = 0; i < ceps.length; i++) {
-            if (ceps[i].num_cep === numCep) {
-                const idCep: number = ceps[i].id_cep;
-                return idCep;
-            }
+    const setNumCep = (numCep: string) => {
+        for (let cep of ceps) {
+            if (cep.num_cep === numCep)
+                return cep.id_cep;
         }
-        for (let i = 0; i < ceps.length; i++) {
-            if (ceps[i].num_cep !== numCep) {
+        for (let cep of ceps) {
+            if (cep.num_cep !== numCep)
                 return undefined;
-            }
         }
     }
 

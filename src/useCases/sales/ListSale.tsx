@@ -20,12 +20,10 @@ type TSaleList = {
 };
 
 export function ListSales() {
-
   const { user: isLogged }: any = useContext(AuthContext);
   const [sales, setSales] = useState<TSaleList[]>([]);
   const [created_int, setInt] = useState<Date | any>('')
   const [created_end, setEnd] = useState<Date | any>('')
-
   const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
 
   function searchSales(e: Event) {
@@ -39,7 +37,6 @@ export function ListSales() {
   };
 
   const getSales = async () => {
-
     const res: any | undefined = localStorage.getItem('token')
     const token = JSON.parse(res)
     try {
@@ -47,20 +44,19 @@ export function ListSales() {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       }
-      await api.post<TSaleList[]>('sale_user',isLogged, { headers })
+      await api.post<TSaleList[]>('sale_user', isLogged, { headers })
         .then(response => {
           setTokenMessage("Token Válido !")
-          const res: TSaleList[] = response.data
+          const resp: TSaleList[] = response.data
           let data_sale: TSaleList[] = []
-          for (let i = 0; res.length > i; i++) {
-            if (res[i].created_at >= created_int
-              && res[i].created_at <= created_end) {
-              data_sale.push((res[i]))
-            }
+          for (let res of resp) {
+            if (res.created_at >= created_int
+              && res.created_at <= created_end)
+              data_sale.push((res))
           }
           setSales(data_sale)
-          if (!res[0].id_sale)
-          alert("Cliente sem Nota")
+          if (!resp[0].id_sale)
+            alert("Cliente sem Nota")
         })
     } catch (err) {
       // console.log("error occurred !!" + err)
@@ -72,7 +68,7 @@ export function ListSales() {
   return (
     <>
       <Dashboard />
-        <div className="text-center"><a href="list_sale">{tokenMessage}</a></div>
+      <div className="text-center"><a href="list_sale">{tokenMessage}</a></div>
       <InputSearch
         int={created_int}
         end={created_end}

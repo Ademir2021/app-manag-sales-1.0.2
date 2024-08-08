@@ -6,15 +6,12 @@ import { TPersonRegister, TCeps, TCities } from './type/TypePerson'
 import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api";
-import { HandleProducts } from "../products/HandleProduct";
 
 export function PersonsList() {
-
     const { user: isLogged }: any = useContext(AuthContext);
     const [persons, setPersons] = useState<TPersonRegister[]>([])
     const [ceps, setCeps] = useState<TCeps[]>([])
     const [cities, setCities] = useState<TCities[]>([])
-
     const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
 
     useEffect(() => {
@@ -28,7 +25,7 @@ export function PersonsList() {
                 }
                 await api.post<TPersonRegister[]>('persons_user', isLogged, { headers })
                     .then(response => {
-                        setTokenMessage("Token Válido !")
+                        setTokenMessage("Token Válido!")
                         const res: TPersonRegister[] = response.data
                         setPersons(res)
                     })
@@ -47,7 +44,7 @@ export function PersonsList() {
             try {
                 await api.get<TCeps[]>(`/ceps`)
                     .then(response => { setCeps(response.data) })
-            } catch (err) { alert("error occurred !!" + err) }
+            } catch (err) { alert("err " + err) }
         };
         getCeps()
     }, [ceps])
@@ -57,24 +54,22 @@ export function PersonsList() {
             try {
                 await api.get<TCities[]>(`/cities`)
                     .then(response => { setCities(response.data) })
-            } catch (err) { alert("error occurred !!" + err) }
+            } catch (err) { alert("err " + err) }
         };
         getCities()
     }, [cities])
 
     function setCep(idCep: number) {
-        for (let i = 0; i < ceps.length; i++) {
-            if (ceps[i].id_cep === idCep) {
-                return ceps[i];
-            }
+        for (let cep of ceps) {
+            if (cep.id_cep === idCep)
+                return cep;
         }
     }
 
     function setCity(idCep: number) {
-        for (let i = 0; i < cities.length; i++) {
-            if (cities[i].id_city === idCep) {
-                return cities[i]
-            }
+        for (let city of cities) {
+            if (city.id_city === idCep)
+                return city
         }
     }
 

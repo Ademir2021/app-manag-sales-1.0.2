@@ -6,7 +6,6 @@ import saleJSON from "./sale.json"
 import api from './../../services/api/api';
 
 export function PagSeguroCard() {
-    
     const [card, setCard] = useState({
         public_key: "??", holder: "", number: "",
         ex_month: "", ex_year: "", secure_code: "", encrypted: "??"
@@ -115,7 +114,7 @@ export function PagSeguroCard() {
             };
         }
         if (paid === 0) {
-            registerPagSeguroCard() // Registra o o pagamento
+            registerPagSeguroCard() // Registra o pagamento
         }
         if (paid !== 0) {
             clearFieldCard()

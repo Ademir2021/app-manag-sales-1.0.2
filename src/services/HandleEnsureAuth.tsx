@@ -1,7 +1,6 @@
 import api from "../services/api/api";
 
 export async function HandleEnsureAuth() {
-
     const user = { username: "", password: "" }
     const res = localStorage.getItem('u')
     const res_ = localStorage.getItem('xxx')
@@ -19,11 +18,10 @@ export async function HandleEnsureAuth() {
                 api.post("refresh_token", { "refresh_token": resToken })
                     .then(response => {
                         const token: string = response.data.token
-
                         localStorage.setItem("token", JSON.stringify(token));
                     })
             })
     } catch (err) {
-        console.log("Error Occurred ! " + err)
+        console.log("Err " + err)
     }
 }
