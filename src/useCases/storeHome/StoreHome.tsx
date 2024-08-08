@@ -44,14 +44,12 @@ export function StoreHome() {
                     .then(response => {
                         const resultProducts: TProductRegister[] = []
                         const items: TProductRegister[] = response.data
-
                         if (flgItens === false) {
                             setlistProd(items)
                             setFlgItens(true)
                         }
-
-                        for (let i = 0; items.length > i; i++) {
-                            if (items[i].fk_sector === idSector(selectSector)?.id_sector) resultProducts.push(items[i]);
+                        for (let item of items) {
+                            if (item.fk_sector === idSector(selectSector)?.id_sector) resultProducts.push(item);
                             selectSector !== "Todos" ? setProducts(resultProducts) : setProducts(items);
                         }
                     })
@@ -63,14 +61,14 @@ export function StoreHome() {
 
     useEffect(() => {
         function getItensStorage() {
-            const res_itens = localStorage.getItem('p')
-            if (res_itens !== null)
+            const res_itens: any | undefined = localStorage.getItem('p')
+            if (res_itens)
                 setItens(JSON.parse(res_itens))
-            const res_counter = localStorage.getItem('c')
-            if (res_counter !== null)
+            const res_counter: any | undefined = localStorage.getItem('c')
+            if (res_counter)
                 setCounter(JSON.parse(res_counter))
-            const res_sub_total = localStorage.getItem('t')
-            if (res_sub_total !== null)
+            const res_sub_total: any | undefined = localStorage.getItem('t')
+            if (res_sub_total)
                 setsubtotal(JSON.parse(res_sub_total))
         }
 
@@ -79,8 +77,8 @@ export function StoreHome() {
 
     function sumItens() {
         let sum = 0
-        for (let i = 0; i < itens.length; i++) {
-            sum += (itens[i].amount * itens[i].valor)
+        for (let item of itens) {
+            sum += (item.amount * item.valor)
         }
         setsubtotal(sum)
         localStorage.setItem("t", JSON.stringify(sum));
@@ -88,10 +86,10 @@ export function StoreHome() {
     }
 
     function verifItem(element: TItens) {
-        for (let i = 0; itens.length > i; i++)
-            if (element.item === itens[i].item) {
-                itens[i].amount = itens[i].amount + element.amount;
-                return itens[i].tItem = itens[i].amount * itens[i].valor;
+        for (let item of itens)
+            if (element.item === item.item) {
+                item.amount = item.amount + element.amount;
+                return item.tItem = item.amount * item.valor;
             }
 
         setCounter(counter + 1)
@@ -99,7 +97,6 @@ export function StoreHome() {
         setId(id + 1);
         return itens.push(element);
     }
-
 
     function handleItem(item: TProductRegister) {
         const getItem: TItens = {
@@ -116,9 +113,9 @@ export function StoreHome() {
         getItem.tItem = getItem.valor * getItem.amount;
         verifItem(getItem);
         setItens(itens);
-        for (let i = 0; itens.length > i; i++) { // add amount itens
-            if (itens[i].item === item.id_product) {
-                item.amount = itens[i].amount
+        for (let item_ of itens) { // Add amount item
+            if (item_.item === item.id_product) {
+                item.amount = item_.amount
             }
         }
         setsubtotal(sumItens)
@@ -126,14 +123,13 @@ export function StoreHome() {
         localStorage.setItem("id", JSON.stringify(id));
     }
 
-  
     function handleProducts() {
         if (item.descric !== '') {
-            const res: TProductRegister[] = []
+            const resp: TProductRegister[] = []
             for (let i = 0; products.length > 0; i++) {
                 if (item.descric === products[i].descric_product) {
-                    res.push(products[i])
-                    setlistProd(res)
+                    resp.push(products[i])
+                    setlistProd(resp)
                     item.descric = ""
                 }
             }
@@ -153,8 +149,7 @@ export function StoreHome() {
                     setBrand(response.data);
                 });
         } catch (err) {
-            console.log("error occurred !!" + err);
-
+            console.log("err" + err);
         }
     };
     useEffect(() => {
@@ -169,28 +164,26 @@ export function StoreHome() {
                         setSector(response.data);
                     });
             } catch (err) {
-                console.log("error occurred !!" + err);
+                console.log("err" + err);
             }
         };
         getSectors()
     }, [sectors])
 
     function nameBrands(idBrand: number) {
-        for (let i = 0; i < brands.length; i++) {
-            if (brands[i].id_brand === idBrand) {
-                return brands[i].name_brand;
-            }
+        for (let brand of brands) {
+            if (brand.id_brand === idBrand)
+                return brand.name_brand
         }
     }
 
     function nameSector(idSector: number) {
-        for (let i = 0; i < sectors.length; i++) {
-            if (sectors[i].id_sector === idSector) {
-                return sectors[i].name_sector;
-            }
+        for (let sector of sectors) {
+            if (sector.id_sector === idSector)
+                return sector.name_sector
         }
     }
-    
+
     return (
         <>
             <Header
