@@ -14,6 +14,7 @@ type PropsListItens = {
     tItem?: number;
     selectAmount: React.ChangeEventHandler<HTMLSelectElement> | undefined;
     itemParameter: {};
+    unMed:string | undefined
 }
 
 export function ListItens(props: PropsListItens) {
@@ -25,7 +26,7 @@ export function ListItens(props: PropsListItens) {
                     <li><b>ITEM</b> {props.id}</li>
                     <li>{props.descric}</li>
                     <div style={{color:'gray'}}>
-                    {<li><b>{props.amount}</b> <i>UN no Carrinho</i></li>}
+                    {<li><b>{props.amount}</b> <i>{props.unMed} no Carrinho</i></li>}
                     </div>
                     <li><b>Marca</b> {props.brand}</li>
                     <li><b>Setor</b> {props.sector}</li>

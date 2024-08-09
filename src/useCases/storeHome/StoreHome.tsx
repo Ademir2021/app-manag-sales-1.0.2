@@ -1,6 +1,6 @@
 import { useState, useEffect, SetStateAction } from 'react';
 import { NavBar } from "../../components/navbar/Navbar";
-import { TProductRegister, TItem, TItens, TBrand, TSector } from '../products/type/TypeProducts';
+import { TProductRegister, TItem, TItens, TBrand, TSector, TUnMed } from '../products/type/TypeProducts';
 import api from '../../services/api/api'
 import { ListItens } from '../../components/storeHome/ListItens';
 import { Header } from '../../components/storeHome/Header';
@@ -21,6 +21,7 @@ export function StoreHome() {
     const [item, setItem] = useState<TItem>({ descric: '' });
     const [brands, setBrand] = useState<TBrand[]>([]);
     const [sectors, setSector] = useState<TSector[]>([]);
+    const [uniMeds, setUniMeds] = useState<TUnMed[]>([])
     const [selectSector, setSelectSector] = useState<string>("Todos")
     const [flgItens, setFlgItens] = useState<boolean>(false)
     const handleChange = (e: any) => {
@@ -170,6 +171,20 @@ export function StoreHome() {
         getSectors()
     }, [sectors])
 
+    useEffect(() => {
+        async function getUniMeds() {
+            try {
+                await api.get<TUnMed[]>('/un_meds')
+                    .then(response => {
+                        setUniMeds(response.data);
+                    });
+            } catch (err) {
+                console.log("err" + err);
+            }
+        };
+        getUniMeds()
+    }, [uniMeds])
+
     function nameBrands(idBrand: number) {
         for (let brand of brands) {
             if (brand.id_brand === idBrand)
@@ -181,6 +196,13 @@ export function StoreHome() {
         for (let sector of sectors) {
             if (sector.id_sector === idSector)
                 return sector.name_sector
+        }
+    }
+
+    function nameUniMeds(idUniMeds: number) {
+        for (let uniMed of uniMeds) {
+            if (uniMed.id_un === idUniMeds)
+                return uniMed.un_med
         }
     }
 
@@ -214,6 +236,7 @@ export function StoreHome() {
                     selectAmount={e => e.target.value !== "Quant: 1" ? setAmount(parseInt(e.target.value)) : setAmount(1)}
                     handleItem={handleItem}
                     itemParameter={item}
+                    unMed={nameUniMeds(item.fk_un_med)}
                 />
             )))}
             <FooterHomePage />
