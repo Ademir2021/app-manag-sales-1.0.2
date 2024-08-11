@@ -22,5 +22,6 @@ export type TSale = {
     "tItens": number
     "tNote": number
     "paySale": number
+    "dinheiro":number
     "itens": []
 }

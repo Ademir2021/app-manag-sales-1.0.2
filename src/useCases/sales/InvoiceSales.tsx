@@ -10,9 +10,7 @@ import api from "../../services/api/api";
 import { AuthContext } from '../../context/auth'
 
 export function InvoiceSales() {
-
     const { user: isLogged }: any = useContext(AuthContext);
-
     const [ceps, setCeps] = useState<TCeps[]>([])
     const [cities, setCities] = useState<TCities[]>([])
     const [msg, setMsg] = useState<string>('')
@@ -24,7 +22,6 @@ export function InvoiceSales() {
     const [userLoggedUsername, setUserLoggedUsername] = useState("")
     const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
     const [typePay, setTypePay] = useState("")
-
     const [installments, setInstallments] = useState<number | any>('Credito a vista')
 
     const handleChange = (e: any) => {
@@ -80,10 +77,8 @@ export function InvoiceSales() {
                         sale.tItens = sum;
                         setSum(sum);
                     };
-
                     sale.tNote = sale.tItens - sale.disc_sale;
                     calcInstallments()
-
                     const resItens: any | undefined = localStorage.getItem('i');
                     if (resItens) {
                         const itens: TItens[] = JSON.parse(resItens);
@@ -92,7 +87,6 @@ export function InvoiceSales() {
                     setInstallments(installments)
                     installments !== 'Credito a vista' ? sale.installments = parseInt(installments) :
                         setInstallments(1)
-
                     sale.duplicatas = []
                 }
             }
@@ -220,6 +214,7 @@ export function InvoiceSales() {
 
     return (
         <>
+        {/* <p>{JSON.stringify(sale.dinheiro)}</p> */}
             <InvoiceSalesForm
                 token={tokenMessage}
                 backHomeInvoice={<BackHome />}

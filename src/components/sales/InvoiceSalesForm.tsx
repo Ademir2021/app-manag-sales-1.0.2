@@ -61,6 +61,14 @@ export function InvoiceSalesForm({
               required
               onChange={handleChange}
             />
+              <input
+              type='number'
+              name="dinheiro"
+              value={children.dinheiro || ''}
+              placeholder='Dinheiro'
+              required
+              onChange={handleChange}
+            />
             <input
               type='text'
               name="paySale"
