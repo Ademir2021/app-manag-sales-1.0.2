@@ -109,7 +109,7 @@ export function PagCredLoja() {
 
     return (
         <>
-            {/* <p>{JSON.stringify(sale.dinheiro)}</p> */}
+            {/* <p>{JSON.stringify(sale.paySale)}</p> */}
             <NavBar />
             <PagCredLojaForm
                 handleSubmit={handleSubmit}
