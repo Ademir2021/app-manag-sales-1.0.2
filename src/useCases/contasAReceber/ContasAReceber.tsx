@@ -44,16 +44,14 @@ function ContasAReceber() {
             try {
                 await api.get<TValsRecebidos[]>('vals_recebidos')
                     .then(response => {
-
                         const resp: TValsRecebidos[] = response.data
-
                         setValsRecebidos_(resp)
                     })
             } catch (err) { console.log("err: " + err) }
 
         };
         getValsRecebidos()
-    }, [valsRecebidos_])
+    }, [valsRecebidos])
 
     const updateContaReceber = async (conta: TContaAreceber) => {
         await api.put<TContaAreceber>('contas_receber', conta)
