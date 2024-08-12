@@ -100,7 +100,7 @@ function ContasAreceberForm({
                 {contasAReceber.map((conta: TContaAreceber) => (
                     <tr key={conta.id_conta}>
                         <th id="center">{conta.id_conta}</th>
-                        <th id="center">{conta.tipo}</th>
+                        <td id="center">{conta.tipo}</td>
                         <td id="center">{conta.fk_pagador}</td>
                         <td id="center">{conta.fk_venda}</td>
                         <td id="center">{handleContasAReceber.formatDate(conta.emissao)}</td>
@@ -139,11 +139,11 @@ function ContasAreceberForm({
             <tbody>{valoresRecebidos.map((valRec: TValsRecebidos) => (
                 <tr key={valRec.id_val}>
                     <th id="center">{valRec.id_val}</th>
-                    <th id="center">{valRec.fk_conta}</th>
-                    <th id="center">{valRec.fk_venda}</th>
-                    <th id="center">{valRec.fk_user}</th>
-                    <th id="center">{valRec.valor}</th>
-                    <th id="center">{handleContasAReceber.formatDate(valRec.data_recebimento)}</th>
+                    <td id="center">{valRec.fk_conta}</td>
+                    <td id="center">{valRec.fk_venda}</td>
+                    <td id="center">{valRec.fk_user}</td>
+                    <td id="center">{valRec.valor}</td>
+                    <td id="center">{handleContasAReceber.formatDate(valRec.data_recebimento)}</td>
 
                 </tr>
             ))}</tbody>
