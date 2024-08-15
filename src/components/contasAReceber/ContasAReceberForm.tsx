@@ -14,7 +14,7 @@ type TProps = {
     submitContasAReceberRegister: any
     submitInserirValor: any
     submitfluxoDeCaixa: any
-
+    saldo:number
 }
 
 function ContasAreceberForm({
@@ -26,7 +26,8 @@ function ContasAreceberForm({
     msg,
     submitContasAReceberRegister,
     submitInserirValor,
-    submitfluxoDeCaixa
+    submitfluxoDeCaixa,
+    saldo,
 }: TProps) {
 
     const handleContasAReceber = new HandleContasAReceber()
@@ -53,6 +54,9 @@ function ContasAreceberForm({
                 className="btn btn-primary"
                 onClick={submitfluxoDeCaixa}
             >Fluxo de caixa</button>
+            <span
+            style={{marginLeft:"12px", borderRadius:'0px'}}
+            ><b>Saldo a receber - </b>R$ {saldo}</span>
         </div>
 
     const inputReceberValor =

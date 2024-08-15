@@ -24,7 +24,7 @@ function ContasAReceber() {
     useEffect(() => {
         async function getContasAReceber() {
             try {
-                await api.get<TContaAreceber[]>('contas_receber')
+                await api.get<TContaAreceber[]>('contaS_receber')
                     .then(response => {
                         const contas_: TContaAreceber | any = []
                         const contas: TContaAreceber[] = response.data
@@ -160,6 +160,17 @@ function ContasAReceber() {
         setValor(0)
     }
 
+    function sumSaldoAReceber() {
+        let saldo: number | any = 0
+        if (contasAReceber) {
+            for (let contaReceber_ of contasAReceber)
+                saldo += parseFloat(contaReceber_.saldo)
+            return saldo
+        }
+        else if (!contasAReceber)
+            return 0
+    }
+
     return (
         <>
             <ContasAreceberForm
@@ -176,6 +187,7 @@ function ContasAReceber() {
                 submitContasAReceberRegister={() => { window.location.assign("/contas_receber_register") }}
                 submitInserirValor={() => { window.location.assign("receber_valor") }}
                 submitfluxoDeCaixa={() => { window.location.assign("caixa_mov") }}
+                saldo={sumSaldoAReceber()}
             />
         </>
     )
