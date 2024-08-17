@@ -32,6 +32,7 @@ import { PagCredLoja } from "./useCases/sales/PagCredLoja";
 import { ContasAReceberRegister } from "./useCases/contasAReceber/ContasAReceberRegister";
 import { ReceberValor } from "./useCases/contasAReceber/ReceberValor";
 import { CaixaMovList } from "./useCases/CaixaMov/CaixaMovList";
+import { NotaRecebida } from "./useCases/NotaRecebida/NotaRecebida";
 
 
 export function AppRoutes() {
@@ -86,6 +87,7 @@ export function AppRoutes() {
                     <Route path="/contas_receber_register" element={<Private><ContasAReceberRegister /></Private>} />
                     <Route path="/receber_valor" element={<Private><ReceberValor /></Private>} />
                     <Route path="/caixa_mov" element={<Private><CaixaMovList /></Private>} />
+                    <Route path="/nota_recebida" element={<Private><NotaRecebida /></Private>} />
                     <Route path="*" element={<><BackHome /><strong>Error 404: <label>Endereço URL inválido</label></strong><br /></>} />
                 </Routes>
             </AuthProvider>
