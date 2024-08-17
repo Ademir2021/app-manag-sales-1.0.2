@@ -62,8 +62,8 @@ export function NotaRecebida() {
     function handleSubmit() {
         notaRecebida.data = new Date(notaRecebida.data).toISOString()
         notaRecebida.emissao = new Date(notaRecebida.emissao).toISOString()
-        setNotaRecebida(notaRecebida)
-        console.log(notaRecebida)
+        // setNotaRecebida(notaRecebida)
+        // console.log(notaRecebida)
     }
 
     const [item, setItem] = useState<TItem>(
@@ -114,7 +114,7 @@ export function NotaRecebida() {
 
     return (
         <>
-            <p>{JSON.stringify(item)}</p>
+            <p>{JSON.stringify(notaRecebida)}</p>
             <NotaRecebidaForm
                 handeChange={handleChange}
                 handleSubmit={handleSubmit}
@@ -123,8 +123,8 @@ export function NotaRecebida() {
             </NotaRecebidaForm>
 
             <NotaRecebidaItemForm
-                handleSubmit={handleSubmitItem}
                 handleChange={handleChange_}
+                handleSubmit={handleSubmitItem}
                 products={products}
                 items={notaRecebida.items}
             >
