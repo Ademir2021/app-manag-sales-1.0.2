@@ -4,13 +4,13 @@ export type TNotaRecebida = {
     emissao: Date | string
     numNota: number
     modelo: string
-    tProdutos: number
-    vFrete: number
-    vSeguro: number
-    despAcessorias: number
-    encargos: number
-    acrescimo: number
-    desconto: number
+    vFrete: number | any
+    vSeguro: number | any
+    despAcessorias: number | any
+    encargos: number | any
+    acrescimo: number | any
+    desconto: number | any
+    tProdutos: number | any
     total: number
     items: TItems[]
 }
@@ -22,7 +22,7 @@ export type TItem = {
     descric: string | number
     quantidade: number
     unitario: number
-    total: number
+    total: number | any
 }
 
 export type TItems = {
@@ -32,7 +32,7 @@ export type TItems = {
     descric: string | number
     quantidade: number
     unitario: number
-    total: number
+    total: number | any
 }
 
 export type TTrib = {

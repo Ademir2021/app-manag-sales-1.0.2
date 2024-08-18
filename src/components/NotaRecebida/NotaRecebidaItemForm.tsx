@@ -63,6 +63,7 @@ export function NotaRecebidaItemForm(
     <tr>
         <th id="center">ID</th>
         <td id="center">Tipo</td>
+        <td id="center">Item</td>
         <td id="center">Descrição</td>
         <td id="center">Quantidade</td>
         <td id="center">Unitario</td>
@@ -74,6 +75,7 @@ export function NotaRecebidaItemForm(
         <tr key={item.id}>
             <th id="center">{item.id}</th>
             <td id="center">{item.tipo}</td>
+            <td id="center">{item.item}</td>
             <td id="center">{item.descric}</td>
             <td id="center">{item.quantidade}</td>
             <td id="center">{item.unitario}</td>
