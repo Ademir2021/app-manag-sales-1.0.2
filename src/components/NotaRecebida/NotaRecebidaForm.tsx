@@ -8,7 +8,6 @@ export function NotaRecebidaForm({
     children,
     handeChange,
     handleSubmit,
-
 }: Props) {
     return (
         <div className="container-global">
@@ -16,13 +15,13 @@ export function NotaRecebidaForm({
             <p>Lançamento de nota de entrada</p>
                 <div className="main-global-form">
                     <b>Dados da Nota</b>
-                    <dd>Código do Fornecedor</dd>
+                    <dd>ID do Fornecedor</dd>
                     <input
                         type='number'
                         name="fkFornecedor"
                         value={children.fkFornecedor || ''}
                         onChange={handeChange}
-                        placeholder="Código do Fornecedor"
+                        placeholder="ID do Fornecedor"
                     />
                     <dd>Data</dd>
                     <input

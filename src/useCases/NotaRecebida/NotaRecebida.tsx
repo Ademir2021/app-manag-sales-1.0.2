@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { NotaRecebidaForm } from "../../components/NotaRecebida/NotaRecebidaForm";
 import { TNotaRecebida, TItem } from "./type/TNotaRecebida";
-import api from "../../services/api/api";
 import { TProductRegister } from "../products/type/TypeProducts";
 import { NotaRecebidaItemForm } from "../../components/NotaRecebida/NotaRecebidaItemForm";
+import api from "../../services/api/api";
 
 export function NotaRecebida() {
+    const[msg, setMsg] = useState<string>('')
     const [notaRecebida, setNotaRecebida] = useState<TNotaRecebida>({
         fkFornecedor: 0,
         data: '',
@@ -93,7 +94,6 @@ export function NotaRecebida() {
         }
     );
 
-
     const clearFields = () => {
         setItem({
             id: 0,
@@ -105,7 +105,7 @@ export function NotaRecebida() {
             total: 0
         })
     }
-
+    
     function handleItems() {
         for (let product of products) {
             if (item.descric == product.descric_product) {
@@ -118,7 +118,9 @@ export function NotaRecebida() {
                 item.total = item.total
                 notaRecebida.items.push(item)
             }
-            // else if(item.descric !== product.descric_product)
+            // else if(item.descric !== product.descric_product){
+            //     setMsg('Item não localizado')
+            // }
         }
         clearFields()
     }
@@ -126,7 +128,6 @@ export function NotaRecebida() {
     async function handleSubmitItem(e: Event) {
         e.preventDefault()
         handleItems()
-
     }
 
     return (
@@ -144,6 +145,7 @@ export function NotaRecebida() {
                 handleSubmit={handleSubmitItem}
                 products={products}
                 items={notaRecebida.items}
+                msg={msg}
             >
                 {item}
             </NotaRecebidaItemForm>

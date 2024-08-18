@@ -6,6 +6,7 @@ type Props = {
     handleSubmit:any
     handleChange:any
     items:TItems[]
+    msg:string
 }
 
 export function NotaRecebidaItemForm(
@@ -14,7 +15,8 @@ export function NotaRecebidaItemForm(
         products,
         handleSubmit,
         handleChange,
-        items
+        items,
+        msg
     }:Props
 ) {
     return (
@@ -55,6 +57,7 @@ export function NotaRecebidaItemForm(
                     onClick={handleSubmit}
                 >Inserir Item</button>
             </form>
+            <>{msg}</>
         </div>
     </div>
 
