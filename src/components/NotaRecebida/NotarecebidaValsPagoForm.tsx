@@ -1,17 +1,29 @@
+import { TValsPago } from "../../useCases/NotaRecebida/type/TNotaRecebida"
 
 type Props = {
     children:any
     handleChange__:any
     handleSubmit:any
+    valsPago:TValsPago[]
 }
 
 export function NotaRecebidaValsPagoForm({
 children,
 handleChange__,
-handleSubmit
+handleSubmit,
+valsPago
 }:Props){
 
+    const body = <thead>
+    <tr>
+        <th id="center">ID</th>
+        <td id="center">Valor</td>
+        <td id="center">Descrição</td>
+    </tr>
+</thead>
+
     return(
+        <>
         <div className="container-global">
             <div className="main-global">
                 <form className="main-global-form">
@@ -39,5 +51,19 @@ handleSubmit
                 </form>
             </div>
         </div>
+        <table className='table bg-light mt-1'>
+                { valsPago.length !== 0 ? body : null }
+                <tbody>
+                    { valsPago.length !== 0 ? valsPago.map((contaAPagar: TValsPago) => (
+                        <tr key={contaAPagar.id_val}>
+                            <th id="center">{contaAPagar.id_val}</th>
+                            <td id="center">{contaAPagar.valor}</td>
+                            <td id="center">{contaAPagar.descricao}</td>
+                        </tr>
+                    )):null}
+                </tbody>
+            </table>
+            <hr></hr>
+        </>
     )
 }

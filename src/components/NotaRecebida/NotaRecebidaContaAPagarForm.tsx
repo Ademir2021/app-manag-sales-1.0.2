@@ -13,6 +13,19 @@ export function NotaRecebidaContaAPagarForm({
     handleSubmit,
     contasApagar
 }: Props) {
+
+    const body = <thead>
+        <tr>
+            <th id="center">ID</th>
+            <td id="center">Tipo\Origem</td>
+            <td id='center'>Parcela</td>
+            <td id="center">Emissão</td>
+            <td id="center">Vencimento</td>
+            <td id="center">Valor</td>
+            <td id="center">Observação</td>
+        </tr>
+    </thead>
+
     return (
         <>
             <hr></hr>
@@ -44,19 +57,9 @@ export function NotaRecebidaContaAPagarForm({
             </div>
 
             <table className='table bg-light mt-1'>
-                <thead>
-                    <tr>
-                        <th id="center">ID</th>
-                        <td id="center">Tipo\Origem</td>
-                        <td id='center'>Parcela</td>
-                        <td id="center">Emissão</td>
-                        <td id="center">Vencimento</td>
-                        <td id="center">Valor</td>
-                        <td id="center">Observação</td>
-                    </tr>
-                </thead>
+                { contasApagar.length !== 0 ? body : null }
                 <tbody>
-                    {contasApagar.map((contaAPagar: TContaAPagar) => (
+                    { contasApagar.length !== 0 ? contasApagar.map((contaAPagar: TContaAPagar) => (
                         <tr key={contaAPagar.id_conta}>
                             <th id="center">{contaAPagar.id_conta}</th>
                             <td id="center">{contaAPagar.tipo}</td>
@@ -66,9 +69,10 @@ export function NotaRecebidaContaAPagarForm({
                             <td id="center">{contaAPagar.valor}</td>
                             <td id="center">{contaAPagar.observacao}</td>
                         </tr>
-                    ))}
+                    )):null}
                 </tbody>
             </table>
+            <hr></hr>
         </>
     )
 }

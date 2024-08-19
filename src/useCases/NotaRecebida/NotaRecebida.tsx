@@ -7,8 +7,12 @@ import { NotaRecebidaValsPagoForm } from "../../components/NotaRecebida/Notarece
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api";
 import { NotaRecebidaContaAPagarForm } from "../../components/NotaRecebida/NotaRecebidaContaAPagarForm";
+import { NotaRecebidaEnviarForm } from "../../components/NotaRecebida/NotaRecebidaEnviarForm";
+import { postRegister } from "../../services/handleService";
 
 export function NotaRecebida() {
+
+    const [flagSendNota, setFlagSendNota] = useState<boolean>(false)
 
     const [msg, setMsg] = useState<string>('')
 
@@ -178,30 +182,93 @@ export function NotaRecebida() {
         handleItems()
     }
 
-    function handleValor() {
+    function handleValorPago() {
         valPago.data_pagamento = new Date().toISOString()
+        valPago.id_val = notaRecebida.valsPago.length + 1
         notaRecebida.valsPago.push(valPago)
+    }
+
+    function clearFiledsValPago(){
+        setValsPago({
+            id_val: 0,
+            fk_conta: 0,
+            fk_compra: 0,
+            fk_user: 0,
+            valor: 0,
+            data_pagamento: "",
+            descricao: "",
+            fk_person: 0
+        })
+
     }
 
     function handleSubmitValor(e: Event) {
         e.preventDefault()
-        handleValor()
+        handleValorPago()
+        clearFiledsValPago()
     }
+
+    // function sumContasAPagar(){
+    //     let sum = 0
+    //     for(let contaAPagar_ of notaRecebida.contaAPagar){
+    //         sum += parseFloat(contaAPagar_.valor)
+    //     }
+    //     return sum
+    // }
 
     function handleContaAPagar() {
         contaAPagar.emissao = new Date(notaRecebida.emissao).toISOString()
         contaAPagar.vencimento = new Date(contaAPagar.vencimento).toISOString()
+        let parc = notaRecebida.contaAPagar.length + 1
+        contaAPagar.id_conta = parc
+        contaAPagar.parcela = parc + "/" + parc
         notaRecebida.contaAPagar.push(contaAPagar)
+    }
+
+    const clearFieldsContaAPagar = () =>{
+      setContaAPagar({
+            id_conta: 0,
+            fk_filial: 0,
+            tipo: "compra",
+            fk_compra: 0,
+            fk_user: isLogged[0].id,
+            parcela: '1/1',
+            valor: 0,
+            multa: 0,
+            juros: 0,
+            desconto: 0,
+            emissao: new Date(notaRecebida.emissao).toISOString(),
+            vencimento: new Date().toISOString(),
+            saldo: 0,
+            pagamento: null,
+            recebimento: 0,
+            observacao: "",
+            fk_pagador: 0
+        })
     }
 
     function handleSubmitContaAPagar(e: Event) {
         e.preventDefault()
         handleContaAPagar()
+        clearFieldsContaAPagar()
+    }
+
+    function handleSubmitEnviarNota(e:Event){
+        e.preventDefault()
+        if(notaRecebida.total > 0){
+        if(flagSendNota === false){
+            postRegister(notaRecebida, 'registrar_nota_recebida')
+            setFlagSendNota(true)
+        }else{
+            alert('Nota já foi enviada')
+        }
+    }else{
+        alert('Total da Nota sem valor')
+    }
     }
 
     return (
-        <>
-            <p>{JSON.stringify(notaRecebida)}</p>
+        <div className="container">
             <NotaRecebidaForm
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
@@ -212,6 +279,7 @@ export function NotaRecebida() {
             <NotaRecebidaValsPagoForm
                 handleChange__={handleChange__}
                 handleSubmit={handleSubmitValor}
+                valsPago={notaRecebida.valsPago}
             >
                 {valPago}
             </NotaRecebidaValsPagoForm>
@@ -233,7 +301,11 @@ export function NotaRecebida() {
             >
                 {contaAPagar}
             </NotaRecebidaContaAPagarForm>
-        </>
+
+            <NotaRecebidaEnviarForm
+            handleSubmit={handleSubmitEnviarNota}
+            />
+        </div>
     )
 }
 

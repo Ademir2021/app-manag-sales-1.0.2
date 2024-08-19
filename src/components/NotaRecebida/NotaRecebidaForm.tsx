@@ -12,7 +12,7 @@ export function NotaRecebidaForm({
     return (
         <div className="container-global">
             <div className="main-global">
-            <p>Lançamento de nota de entrada</p>
+            {/* <p>Lançamento de nota de entrada</p> */}
                 <div className="main-global-form">
                     <b>Dados da Nota</b>
                     <dd>ID do Fornecedor</dd>
@@ -38,13 +38,14 @@ export function NotaRecebidaForm({
                         onChange={handleChange}
                         placeholder="Número da Nota"
                     />
-                      <dd>Modelo da Nota</dd>
+                      {/* <dd>Modelo da Nota</dd> */}
                        <input
                         type='text'
                         name="modelo"
                         value={children.modelo || ''}
                         onChange={handleChange}
                         placeholder="Modelo da Nota"
+                        hidden
                     />
                       <dd>Valor do Frete</dd>
                        <input
@@ -53,46 +54,52 @@ export function NotaRecebidaForm({
                         value={children.vFrete || ''}
                         onChange={handleChange}
                         placeholder="Valor do Frete"
+                        // hidden
                     />
-                      <dd>Valor do Seguro</dd>
+                      {/* <dd>Valor do Seguro</dd> */}
                        <input
                         type='number'
                         name="vSeguro"
                         value={children.vSeguro || ''}
                         onChange={handleChange}
                         placeholder="Valor do Seguro"
+                        hidden
                     />
-                      <dd>Despesas Acessorias</dd>
+                      {/* <dd>Despesas Acessorias</dd> */}
                        <input
                         type='number'
                         name="despAcessorias"
                         value={children.despAcessorias || ''}
                         onChange={handleChange}
                         placeholder="Despesas Acessorias"
+                        hidden
                     />
-                      <dd>Encargos</dd>
+                      {/* <dd>Encargos</dd> */}
                        <input
                         type='number'
                         name="encargos"
                         value={children.encargos || ''}
                         onChange={handleChange}
                         placeholder="Encargos"
+                        hidden
                     />
-                      <dd>Acréscimo</dd>
+                      {/* <dd>Acréscimo</dd> */}
                        <input
                         type='number'
                         name="acrescimo"
                         value={children.acrescimo || ''}
                         onChange={handleChange}
                         placeholder="Acréscimo"
+                        hidden
                     />
-                      <dd>Desconto</dd>
+                      {/* <dd>Desconto</dd> */}
                        <input
                         type='number'
                         name="desconto"
                         value={children.desconto || ""}
                         onChange={handleChange}
                         placeholder="Desconto"
+                        hidden
                     />
                       <dd>Total dos Produtos</dd>
                        <input
