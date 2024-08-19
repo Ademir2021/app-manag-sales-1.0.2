@@ -11,13 +11,9 @@ import { NotaRecebidaEnviarForm } from "../../components/NotaRecebida/NotaRecebi
 import { postRegister } from "../../services/handleService";
 
 export function NotaRecebida() {
-
     const [flagSendNota, setFlagSendNota] = useState<boolean>(false)
-
     const [msg, setMsg] = useState<string>('')
-
     const { user: isLogged }: any = useContext(AuthContext);
-
     const [notaRecebida, setNotaRecebida] = useState<TNotaRecebida>({
         fkFornecedor: 0,
         data: new Date().toISOString(),
@@ -228,7 +224,7 @@ export function NotaRecebida() {
     const clearFieldsContaAPagar = () =>{
       setContaAPagar({
             id_conta: 0,
-            fk_filial: 0,
+            fk_filial: 1,
             tipo: "compra",
             fk_compra: 0,
             fk_user: isLogged[0].id,
