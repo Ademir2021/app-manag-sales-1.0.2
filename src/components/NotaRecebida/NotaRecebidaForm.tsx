@@ -1,12 +1,12 @@
 type Props = {
     children: any
-    handeChange: any
+    handleChange: any
     handleSubmit: any
 }
 
 export function NotaRecebidaForm({
     children,
-    handeChange,
+    handleChange,
     handleSubmit,
 }: Props) {
     return (
@@ -20,29 +20,22 @@ export function NotaRecebidaForm({
                         type='number'
                         name="fkFornecedor"
                         value={children.fkFornecedor || ''}
-                        onChange={handeChange}
+                        onChange={handleChange}
                         placeholder="ID do Fornecedor"
-                    />
-                    <dd>Data</dd>
-                    <input
-                        type='date'
-                        name="data"
-                        value={children.data}
-                        onChange={handeChange}
                     />
                     <dd>Emissão</dd>
                     <input
                         type='date'
                         name="emissao"
-                        value={children.emissao}
-                        onChange={handeChange}
+                        value={children.emissao || new Date().toISOString()}
+                        onChange={handleChange}
                     />
                     <dd>Número da Nota</dd>
                        <input
                         type='text'
                         name="numNota"
                         value={children.numNota || ''}
-                        onChange={handeChange}
+                        onChange={handleChange}
                         placeholder="Número da Nota"
                     />
                       <dd>Modelo da Nota</dd>
@@ -50,7 +43,7 @@ export function NotaRecebidaForm({
                         type='text'
                         name="modelo"
                         value={children.modelo || ''}
-                        onChange={handeChange}
+                        onChange={handleChange}
                         placeholder="Modelo da Nota"
                     />
                       <dd>Valor do Frete</dd>
@@ -58,7 +51,7 @@ export function NotaRecebidaForm({
                         type='number'
                         name="vFrete"
                         value={children.vFrete || ''}
-                        onChange={handeChange}
+                        onChange={handleChange}
                         placeholder="Valor do Frete"
                     />
                       <dd>Valor do Seguro</dd>
@@ -66,7 +59,7 @@ export function NotaRecebidaForm({
                         type='number'
                         name="vSeguro"
                         value={children.vSeguro || ''}
-                        onChange={handeChange}
+                        onChange={handleChange}
                         placeholder="Valor do Seguro"
                     />
                       <dd>Despesas Acessorias</dd>
@@ -74,7 +67,7 @@ export function NotaRecebidaForm({
                         type='number'
                         name="despAcessorias"
                         value={children.despAcessorias || ''}
-                        onChange={handeChange}
+                        onChange={handleChange}
                         placeholder="Despesas Acessorias"
                     />
                       <dd>Encargos</dd>
@@ -82,7 +75,7 @@ export function NotaRecebidaForm({
                         type='number'
                         name="encargos"
                         value={children.encargos || ''}
-                        onChange={handeChange}
+                        onChange={handleChange}
                         placeholder="Encargos"
                     />
                       <dd>Acréscimo</dd>
@@ -90,7 +83,7 @@ export function NotaRecebidaForm({
                         type='number'
                         name="acrescimo"
                         value={children.acrescimo || ''}
-                        onChange={handeChange}
+                        onChange={handleChange}
                         placeholder="Acréscimo"
                     />
                       <dd>Desconto</dd>
@@ -98,7 +91,7 @@ export function NotaRecebidaForm({
                         type='number'
                         name="desconto"
                         value={children.desconto || ""}
-                        onChange={handeChange}
+                        onChange={handleChange}
                         placeholder="Desconto"
                     />
                       <dd>Total dos Produtos</dd>
@@ -106,7 +99,7 @@ export function NotaRecebidaForm({
                         type='number'
                         name='tProdutos'
                         value={children.tProdutos || ''}
-                        onChange={handeChange}
+                        onChange={handleChange}
                         placeholder='Total dos Produtos'
                         disabled
                     />
@@ -115,14 +108,14 @@ export function NotaRecebidaForm({
                         type='number'
                         name="total"
                         value={children.total || ''}
-                        onChange={handeChange}
+                        onChange={handleChange}
                         placeholder="Total Nota"
                         disabled
                     />
                     <button
                         className='btn btn-primary'
                         onClick={handleSubmit}
-                    >Gravar Nota</button>
+                    >Inserir Dados</button>
                 </div>
             </div>
         </div>

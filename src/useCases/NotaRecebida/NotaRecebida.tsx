@@ -1,16 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { NotaRecebidaForm } from "../../components/NotaRecebida/NotaRecebidaForm";
-import { TNotaRecebida, TItem } from "./type/TNotaRecebida";
+import { TNotaRecebida, TItem, TValsPago, TContaAPagar } from "./type/TNotaRecebida";
 import { TProductRegister } from "../products/type/TypeProducts";
 import { NotaRecebidaItemForm } from "../../components/NotaRecebida/NotaRecebidaItemForm";
+import { NotaRecebidaValsPagoForm } from "../../components/NotaRecebida/NotarecebidaValsPagoForm";
+import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api";
+import { NotaRecebidaContaAPagarForm } from "../../components/NotaRecebida/NotaRecebidaContaAPagarForm";
 
 export function NotaRecebida() {
-    const[msg, setMsg] = useState<string>('')
+
+    const [msg, setMsg] = useState<string>('')
+
+    const { user: isLogged }: any = useContext(AuthContext);
+
     const [notaRecebida, setNotaRecebida] = useState<TNotaRecebida>({
         fkFornecedor: 0,
-        data: '',
-        emissao: '',
+        data: new Date().toISOString(),
+        emissao: new Date().toISOString(),
         numNota: 0,
         modelo: '',
         vFrete: 0,
@@ -22,10 +29,42 @@ export function NotaRecebida() {
         tProdutos: 0,
         total: 0,
         items: [],
-
+        contaAPagar: [],
+        valsPago: []
     });
 
     const [products, setProducts] = useState<TProductRegister[]>([])
+
+    const [valPago, setValsPago] = useState<TValsPago>({
+        id_val: 0,
+        fk_conta: 0,
+        fk_compra: 0,
+        fk_user: 0,
+        valor: 0,
+        data_pagamento: "",
+        descricao: "",
+        fk_person: 0
+    })
+
+    const [contaAPagar, setContaAPagar] = useState<TContaAPagar>({
+        id_conta: 0,
+        fk_filial: 0,
+        tipo: "compra",
+        fk_compra: 0,
+        fk_user: isLogged[0].id,
+        parcela: '1/1',
+        valor: 0,
+        multa: 0,
+        juros: 0,
+        desconto: 0,
+        emissao: new Date(notaRecebida.emissao).toISOString(),
+        vencimento: new Date().toISOString(),
+        saldo: 0,
+        pagamento: null,
+        recebimento: 0,
+        observacao: "",
+        fk_pagador: 0
+    })
 
     // trib: {
     //     vIpi: 0,
@@ -46,6 +85,18 @@ export function NotaRecebida() {
         const name = e.target.name;
         const value = e.target.value;
         setItem(values => ({ ...values, [name]: value }))
+    };
+
+    const handleChange__ = (e: any) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        setValsPago(values => ({ ...values, [name]: value }))
+    };
+
+    const handleChange___ = (e: any) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        setContaAPagar(values => ({ ...values, [name]: value }))
     };
 
     useEffect(() => {
@@ -69,7 +120,7 @@ export function NotaRecebida() {
     }
 
     function handleSubmit() {
-        notaRecebida.data = new Date(notaRecebida.data).toISOString()
+        notaRecebida.data = new Date().toISOString()
         notaRecebida.emissao = new Date(notaRecebida.emissao).toISOString()
         notaRecebida.tProdutos = sumItems()
         notaRecebida.total = notaRecebida.tProdutos
@@ -105,7 +156,7 @@ export function NotaRecebida() {
             total: 0
         })
     }
-    
+
     function handleItems() {
         for (let product of products) {
             if (item.descric == product.descric_product) {
@@ -118,9 +169,6 @@ export function NotaRecebida() {
                 item.total = item.total
                 notaRecebida.items.push(item)
             }
-            // else if(item.descric !== product.descric_product){
-            //     setMsg('Item não localizado')
-            // }
         }
         clearFields()
     }
@@ -130,15 +178,43 @@ export function NotaRecebida() {
         handleItems()
     }
 
+    function handleValor() {
+        valPago.data_pagamento = new Date().toISOString()
+        notaRecebida.valsPago.push(valPago)
+    }
+
+    function handleSubmitValor(e: Event) {
+        e.preventDefault()
+        handleValor()
+    }
+
+    function handleContaAPagar() {
+        contaAPagar.emissao = new Date(notaRecebida.emissao).toISOString()
+        contaAPagar.vencimento = new Date(contaAPagar.vencimento).toISOString()
+        notaRecebida.contaAPagar.push(contaAPagar)
+    }
+
+    function handleSubmitContaAPagar(e: Event) {
+        e.preventDefault()
+        handleContaAPagar()
+    }
+
     return (
         <>
             <p>{JSON.stringify(notaRecebida)}</p>
             <NotaRecebidaForm
-                handeChange={handleChange}
+                handleChange={handleChange}
                 handleSubmit={handleSubmit}
             >
                 {notaRecebida}
             </NotaRecebidaForm>
+
+            <NotaRecebidaValsPagoForm
+                handleChange__={handleChange__}
+                handleSubmit={handleSubmitValor}
+            >
+                {valPago}
+            </NotaRecebidaValsPagoForm>
 
             <NotaRecebidaItemForm
                 handleChange={handleChange_}
@@ -149,6 +225,14 @@ export function NotaRecebida() {
             >
                 {item}
             </NotaRecebidaItemForm>
+
+            <NotaRecebidaContaAPagarForm
+                handleChange={handleChange___}
+                handleSubmit={handleSubmitContaAPagar}
+                contasApagar={notaRecebida.contaAPagar}
+            >
+                {contaAPagar}
+            </NotaRecebidaContaAPagarForm>
         </>
     )
 }

@@ -55,7 +55,7 @@ export function NotaRecebidaItemForm(
                 <button
                     className="btn btn-primary"
                     onClick={handleSubmit}
-                >Inserir Item</button>
+                >Inserir Items</button>
             </form>
             <>{msg}</>
         </div>
