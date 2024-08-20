@@ -176,8 +176,8 @@ function ContasAPagar() {
         <>
             <ContasAPagarForm
                 contasAPagar={contasAPagar}
-                valoresRecebidos={valsPagos_}
-                receberValor={valor > 0 ? handleSumbit : () => { setMsg('Informe um novo valor') }}
+                valoresPagos={valsPagos_}
+                pagarValor={valor > 0 ? handleSumbit : () => { setMsg('Informe um novo valor') }}
                 handleChangeValor={(e: any) => {
                     setValor(parseFloat(e.target.value))
                 }}
@@ -185,7 +185,7 @@ function ContasAPagar() {
                     setDesconto(parseFloat(e.target.value))
                 }}
                 msg={msg}
-                submitContasAReceberRegister={() => { window.location.assign("/contas_receber_register") }}
+                submitContasAPagarRegister={() => { window.location.assign("/contas_receber_register") }}
                 submitInserirValor={() => { window.location.assign("receber_valor") }}
                 submitfluxoDeCaixa={() => { window.location.assign("caixa_mov") }}
                 saldo={sumSaldoAPagar()}

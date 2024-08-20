@@ -6,12 +6,12 @@ import './ContasAPagar.css'
 
 type TProps = {
     contasAPagar: TContaAPagar[]
-    valoresRecebidos: TValsPagos[]
-    receberValor: any
+    valoresPagos: TValsPagos[]
+    pagarValor: any
     handleChangeValor: React.ChangeEventHandler<HTMLInputElement>
     handleChangeDesconto: React.ChangeEventHandler<HTMLInputElement>
     msg: string
-    submitContasAReceberRegister: any
+    submitContasAPagarRegister: any
     submitInserirValor: any
     submitfluxoDeCaixa: any
     saldo:number
@@ -19,12 +19,12 @@ type TProps = {
 
 function ContasAPagarForm({
     contasAPagar,
-    receberValor,
+    pagarValor,
     handleChangeValor,
     handleChangeDesconto,
-    valoresRecebidos,
+    valoresPagos,
     msg,
-    submitContasAReceberRegister,
+    submitContasAPagarRegister,
     submitInserirValor,
     submitfluxoDeCaixa,
     saldo,
@@ -32,7 +32,7 @@ function ContasAPagarForm({
 
     const handleContasAPagar = new HandleContasAPagar()
 
-    const headerContasReceber =
+    const headerContasPagar =
         <div id="header-contas-receber" className="container">
             Contas a Pagar - Em aberto.
         </div>
@@ -42,7 +42,7 @@ function ContasAPagarForm({
             <button
             style={{marginLeft:"0px", borderRadius:'0px'}}
                 className="btn btn-primary"
-                onClick={submitContasAReceberRegister}
+                onClick={submitContasAPagarRegister}
             >Emitir título</button>
             <button
               style={{marginLeft:"1px", borderRadius:'0px'}}
@@ -59,14 +59,14 @@ function ContasAPagarForm({
             ><b>Saldo a receber - </b>R$ {saldo}</span>
         </div>
 
-    const inputReceberValor =
+    const inputPagarValor =
     <div>
         <input
             min={0}
             max={999}
             type="number"
             id="input-valor"
-            placeholder="Informe o valor recebido"
+            placeholder="Informe o valor pago"
             onChange={handleChangeValor}
         />
         <input
@@ -79,7 +79,7 @@ function ContasAPagarForm({
     />
     </div>
 
-    const listaContasReceber =
+    const listaContasPagar =
         <table className='table bg-light mt-1'>
             <thead>
                 <tr>
@@ -120,7 +120,7 @@ function ContasAPagarForm({
                         <td id="center"><button
                             type="button"
                             className="btn btn-primary"
-                            onClick={() => receberValor(conta)}
+                            onClick={() => pagarValor(conta)}
                         >Receber</button></td>
                     </tr>
                 ))}
@@ -128,7 +128,7 @@ function ContasAPagarForm({
         </table>
 
 
-    const listaValoresRecebidos =
+    const listaValoresPago =
         <table className='table bg-light mt-1'>
             <thead>
                 <tr>
@@ -140,14 +140,14 @@ function ContasAPagarForm({
                     <th id="center">Data Recebimento</th>
                 </tr>
             </thead>
-            <tbody>{valoresRecebidos.map((valRec: TValsPagos) => (
-                <tr key={valRec.id_val}>
-                    <th id="center">{valRec.id_val}</th>
-                    <td id="center">{valRec.fk_conta}</td>
-                    <td id="center">{valRec.fk_venda}</td>
-                    <td id="center">{valRec.fk_user}</td>
-                    <td id="center">{valRec.valor}</td>
-                    <td id="center">{handleContasAPagar.formatDate(valRec.data_recebimento)}</td>
+            <tbody>{valoresPagos.map((valPago: TValsPagos) => (
+                <tr key={valPago.id_val}>
+                    <th id="center">{valPago.id_val}</th>
+                    <td id="center">{valPago.fk_conta}</td>
+                    <td id="center">{valPago.fk_venda}</td>
+                    <td id="center">{valPago.fk_user}</td>
+                    <td id="center">{valPago.valor}</td>
+                    <td id="center">{handleContasAPagar.formatDate(valPago.data_recebimento)}</td>
 
                 </tr>
             ))}</tbody>
@@ -158,11 +158,11 @@ function ContasAPagarForm({
             <div className="container">
                 <NavBar />
                 {sumbit}
-                {headerContasReceber}
+                {headerContasPagar}
                 {<div>{msg}</div>}
-                {inputReceberValor}
-                {listaContasReceber}
-                {listaValoresRecebidos}
+                {inputPagarValor}
+                {listaContasPagar}
+                {listaValoresPago}
             </div>
         </>
     )
