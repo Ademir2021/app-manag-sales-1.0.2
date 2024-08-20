@@ -1,0 +1,171 @@
+import { HandleContasAPagar } from "../../useCases/contasAPagar/handleContasAPagar"
+import { TContaAPagar, TValsPagos } from "../../useCases/contasAPagar/type/TContasAPagar"
+import { NavBar } from "../navbar/Navbar"
+
+import './ContasAPagar.css'
+
+type TProps = {
+    contasAPagar: TContaAPagar[]
+    valoresRecebidos: TValsPagos[]
+    receberValor: any
+    handleChangeValor: React.ChangeEventHandler<HTMLInputElement>
+    handleChangeDesconto: React.ChangeEventHandler<HTMLInputElement>
+    msg: string
+    submitContasAReceberRegister: any
+    submitInserirValor: any
+    submitfluxoDeCaixa: any
+    saldo:number
+}
+
+function ContasAPagarForm({
+    contasAPagar,
+    receberValor,
+    handleChangeValor,
+    handleChangeDesconto,
+    valoresRecebidos,
+    msg,
+    submitContasAReceberRegister,
+    submitInserirValor,
+    submitfluxoDeCaixa,
+    saldo,
+}: TProps) {
+
+    const handleContasAPagar = new HandleContasAPagar()
+
+    const headerContasReceber =
+        <div id="header-contas-receber" className="container">
+            Contas a Pagar - Em aberto.
+        </div>
+
+    const sumbit =
+        <div className="mb-1">
+            <button
+            style={{marginLeft:"0px", borderRadius:'0px'}}
+                className="btn btn-primary"
+                onClick={submitContasAReceberRegister}
+            >Emitir título</button>
+            <button
+              style={{marginLeft:"1px", borderRadius:'0px'}}
+                className="btn btn-primary"
+                onClick={submitInserirValor}
+            >Inserir valor</button>
+            <button
+             style={{marginLeft:"1px", borderRadius:'0px'}}
+                className="btn btn-primary"
+                onClick={submitfluxoDeCaixa}
+            >Fluxo de caixa</button>
+            <span
+            style={{marginLeft:"12px", borderRadius:'0px'}}
+            ><b>Saldo a receber - </b>R$ {saldo}</span>
+        </div>
+
+    const inputReceberValor =
+    <div>
+        <input
+            min={0}
+            max={999}
+            type="number"
+            id="input-valor"
+            placeholder="Informe o valor recebido"
+            onChange={handleChangeValor}
+        />
+        <input
+        min={0}
+        max={999}
+        type="number"
+        id="input-valor"
+        placeholder="desconto"
+        onChange={ handleChangeDesconto}
+    />
+    </div>
+
+    const listaContasReceber =
+        <table className='table bg-light mt-1'>
+            <thead>
+                <tr>
+                    <th id="center">ID</th>
+                    <th id="center">Tipo</th>
+                    <th id="center">Pagador</th>
+                    <th id="center">Origem</th>
+                    <th id="center">Emissão</th>
+                    <th id="center">Valor</th>
+                    <th id="center">Vencimento</th>
+                    <th id="center">Juros</th>
+                    <th id="center">Multa</th>
+                    <th id="center">Desconto</th>
+                    <th id="center">Saldo</th>
+                    <th id="center">Pagamento</th>
+                    <th id="center">Recebimento</th>
+                    <th id="center">Observação</th>
+                    <th id="center">Receber</th>
+                </tr>
+            </thead>
+            <tbody>
+                {contasAPagar.map((conta: TContaAPagar) => (
+                    <tr key={conta.id_conta}>
+                        <th id="center">{conta.id_conta}</th>
+                        <td id="center">{conta.tipo}</td>
+                        <td id="center">{conta.fk_pagador}</td>
+                        <td id="center">{conta.fk_venda}</td>
+                        <td id="center">{handleContasAPagar.formatDate(conta.emissao)}</td>
+                        <td id="center">{parseFloat(conta.valor).toFixed(3)}</td>
+                        <td id="center">{handleContasAPagar.formatDate(conta.vencimento)}</td>
+                        <td id="center">{parseFloat(conta.juros).toFixed(3)}</td>
+                        <td id="center">{parseFloat(conta.multa).toFixed(3)}</td>
+                        <td id="center">{parseFloat(conta.desconto).toFixed(3)}</td>
+                        <td id="center">{parseFloat(conta.saldo).toFixed(2)}</td>
+                        <td id="center">{conta.pagamento !== null ? handleContasAPagar.formatDate(conta.pagamento) : null}</td>
+                        <td id="center">{parseFloat(conta.recebimento).toFixed(2)}</td>
+                        <td id="center">{conta.observacao}</td>
+                        <td id="center"><button
+                            type="button"
+                            className="btn btn-primary"
+                            onClick={() => receberValor(conta)}
+                        >Receber</button></td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+
+
+    const listaValoresRecebidos =
+        <table className='table bg-light mt-1'>
+            <thead>
+                <tr>
+                    <th id="center">Id</th>
+                    <th id="center">Conta</th>
+                    <th id="center">Venda</th>
+                    <th id="center">User</th>
+                    <th id="center">Valor</th>
+                    <th id="center">Data Recebimento</th>
+                </tr>
+            </thead>
+            <tbody>{valoresRecebidos.map((valRec: TValsPagos) => (
+                <tr key={valRec.id_val}>
+                    <th id="center">{valRec.id_val}</th>
+                    <td id="center">{valRec.fk_conta}</td>
+                    <td id="center">{valRec.fk_venda}</td>
+                    <td id="center">{valRec.fk_user}</td>
+                    <td id="center">{valRec.valor}</td>
+                    <td id="center">{handleContasAPagar.formatDate(valRec.data_recebimento)}</td>
+
+                </tr>
+            ))}</tbody>
+        </table>
+
+    return (
+        <>
+            <div className="container">
+                <NavBar />
+                {sumbit}
+                {headerContasReceber}
+                {<div>{msg}</div>}
+                {inputReceberValor}
+                {listaContasReceber}
+                {listaValoresRecebidos}
+            </div>
+        </>
+    )
+}
+
+export { ContasAPagarForm }

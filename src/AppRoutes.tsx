@@ -33,6 +33,7 @@ import { ContasAReceberRegister } from "./useCases/contasAReceber/ContasAReceber
 import { ReceberValor } from "./useCases/contasAReceber/ReceberValor";
 import { CaixaMovList } from "./useCases/CaixaMov/CaixaMovList";
 import { NotaRecebida } from "./useCases/NotaRecebida/NotaRecebida";
+import { ContasAPagar } from "./useCases/contasAPagar/ContasAPagar";
 
 
 export function AppRoutes() {
@@ -88,6 +89,7 @@ export function AppRoutes() {
                     <Route path="/receber_valor" element={<Private><ReceberValor /></Private>} />
                     <Route path="/caixa_mov" element={<Private><CaixaMovList /></Private>} />
                     <Route path="/nota_recebida" element={<Private><NotaRecebida /></Private>} />
+                    <Route path="/contas_pagar" element={<Private><ContasAPagar /></Private>} />
                     <Route path="*" element={<><BackHome /><strong>Error 404: <label>Endereço URL inválido</label></strong><br /></>} />
                 </Routes>
             </AuthProvider>
