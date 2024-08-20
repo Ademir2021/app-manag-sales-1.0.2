@@ -25,7 +25,7 @@ function ContasAPagar() {
     useEffect(() => {
         async function getContasAPagar() {
             try {
-                await api.get<TContaAPagar[]>('contas_receber')
+                await api.get<TContaAPagar[]>('contas_pagar')
                     .then(response => {
                         const contas_: TContaAPagar | any = []
                         const contas: TContaAPagar[] = response.data
@@ -43,7 +43,7 @@ function ContasAPagar() {
     useEffect(() => {
         async function getValsPagos() {
             try {
-                await api.get<TValsPagos[]>('vals_recebidos')
+                await api.get<TValsPagos[]>('vals_pagos')
                     .then(response => {
                         const resp: TValsPagos[] = response.data
                         setValsPagos_(resp)
@@ -55,7 +55,7 @@ function ContasAPagar() {
     }, [valsPagos__])
 
     const updateContaPagar = async (conta: TContaAPagar) => {
-        await api.put<TContaAPagar>('contas_receber', conta)
+        await api.put<TContaAPagar>('contas_pagar', conta)
             .then(response => {
                 console.log(response.data)
             })
@@ -85,7 +85,7 @@ function ContasAPagar() {
     }, [contasAPagar])
 
     async function registerValPago(valPago: TValsPagos) {
-        await api.post<TValsPagos>('val_recebido', valPago)
+        await api.post<TValsPagos>('val_pago', valPago)
             .then(response => {
                 console.log(response.data)
             })
@@ -106,10 +106,10 @@ function ContasAPagar() {
         }
         valPago.id_val = id++
         valPago.fk_conta = conta.id_conta
-        if (conta.fk_venda !== null) {
-            valPago.fk_venda = conta.fk_venda
+        if (conta.fk_compra !== null) {
+            valPago.fk_venda = conta.fk_compra
         }
-        else if (conta.fk_venda === null) {
+        else if (conta.fk_compra === null) {
             valPago.fk_venda = 0
         }
         valPago.fk_user = isLogged[0].id
@@ -164,8 +164,8 @@ function ContasAPagar() {
     function sumSaldoAPagar() {
         let saldo: number | any = 0
         if (contasAPagar) {
-            for (let contaReceber_ of contasAPagar)
-                saldo += parseFloat(contaReceber_.saldo)
+            for (let contaPagar_ of contasAPagar)
+                saldo += parseFloat(contaPagar_.saldo)
             return saldo
         }
         else if (!contasAPagar)

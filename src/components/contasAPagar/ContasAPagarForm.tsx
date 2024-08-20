@@ -56,7 +56,7 @@ function ContasAPagarForm({
             >Fluxo de caixa</button>
             <span
             style={{marginLeft:"12px", borderRadius:'0px'}}
-            ><b>Saldo a receber - </b>R$ {saldo}</span>
+            ><b>Saldo a pagar - </b>R$ {saldo}</span>
         </div>
 
     const inputPagarValor =
@@ -106,7 +106,7 @@ function ContasAPagarForm({
                         <th id="center">{conta.id_conta}</th>
                         <td id="center">{conta.tipo}</td>
                         <td id="center">{conta.fk_pagador}</td>
-                        <td id="center">{conta.fk_venda}</td>
+                        <td id="center">{conta.fk_compra}</td>
                         <td id="center">{handleContasAPagar.formatDate(conta.emissao)}</td>
                         <td id="center">{parseFloat(conta.valor).toFixed(3)}</td>
                         <td id="center">{handleContasAPagar.formatDate(conta.vencimento)}</td>
@@ -121,7 +121,7 @@ function ContasAPagarForm({
                             type="button"
                             className="btn btn-primary"
                             onClick={() => pagarValor(conta)}
-                        >Receber</button></td>
+                        >Pagar</button></td>
                     </tr>
                 ))}
             </tbody>
