@@ -1,19 +1,16 @@
 import { TValsPago } from "../../useCases/NotaRecebida/type/TNotaRecebida"
-
 type Props = {
     children:any
     handleChange__:any
     handleSubmit:any
     valsPago:TValsPago[]
 }
-
 export function NotaRecebidaValsPagoForm({
 children,
 handleChange__,
 handleSubmit,
 valsPago
 }:Props){
-
     const body = <thead>
     <tr>
         <th id="center">ID</th>
@@ -21,7 +18,6 @@ valsPago
         <td id="center">Descrição</td>
     </tr>
 </thead>
-
     return(
         <>
         <div className="container-global">
@@ -63,7 +59,6 @@ valsPago
                     )):null}
                 </tbody>
             </table>
-            <hr></hr>
         </>
     )
 }

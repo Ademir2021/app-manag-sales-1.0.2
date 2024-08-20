@@ -1,6 +1,5 @@
 import { TItems } from "../../useCases/NotaRecebida/type/TNotaRecebida"
 import { TProductRegister } from "../../useCases/products/type/TypeProducts"
-
 type Props = {
     children: any
     products: TProductRegister[]
@@ -9,7 +8,6 @@ type Props = {
     items: TItems[]
     msg: string
 }
-
 export function NotaRecebidaItemForm(
     {
         children,
@@ -20,7 +18,6 @@ export function NotaRecebidaItemForm(
         msg
     }: Props
 ) {
-
     const body = <thead>
         <tr>
             <th id="center">ID</th>
@@ -32,7 +29,6 @@ export function NotaRecebidaItemForm(
             <td id="center">Total</td>
         </tr>
     </thead>
-
     return (
         <>
             <div className="container-global">

@@ -1,19 +1,16 @@
 import { TContaAPagar } from "../../useCases/NotaRecebida/type/TNotaRecebida"
-
 type Props = {
     children: any
     handleChange: any
     handleSubmit: any
     contasApagar: TContaAPagar[]
 }
-
 export function NotaRecebidaContaAPagarForm({
     children,
     handleChange,
     handleSubmit,
     contasApagar
 }: Props) {
-
     const body = <thead>
         <tr>
             <th id="center">ID</th>
@@ -25,13 +22,10 @@ export function NotaRecebidaContaAPagarForm({
             <td id="center">Observação</td>
         </tr>
     </thead>
-
     return (
         <>
-            <hr></hr>
             <div className="container-global">
                 <div className="main-global">
-                    <dd>Duplicatas</dd>
                     <form className="main-global-form">
                         <dd>Valor do título</dd>
                         <input
@@ -55,7 +49,6 @@ export function NotaRecebidaContaAPagarForm({
                     </form>
                 </div>
             </div>
-
             <table className='table bg-light mt-1'>
                 { contasApagar.length !== 0 ? body : null }
                 <tbody>
@@ -72,7 +65,6 @@ export function NotaRecebidaContaAPagarForm({
                     )):null}
                 </tbody>
             </table>
-            <hr></hr>
         </>
     )
 }
