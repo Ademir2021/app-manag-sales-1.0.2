@@ -1,9 +1,11 @@
 type Props = {
     handleSubmit: any
+    msgSendNota:string
 }
 
 export function NotaRecebidaEnviarForm({
-    handleSubmit
+    handleSubmit,
+    msgSendNota
 }: Props) {
 
     return (
@@ -15,6 +17,7 @@ export function NotaRecebidaEnviarForm({
                         className="btn btn-primary"
                         onClick={handleSubmit}
                     >Gravar nota</button>
+                <label>{msgSendNota}</label>
                 </form>
             </div>
         </div>

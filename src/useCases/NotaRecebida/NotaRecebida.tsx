@@ -4,16 +4,18 @@ import { TNotaRecebida, TItem, TValsPago, TContaAPagar } from "./type/TNotaReceb
 import { TProductRegister } from "../products/type/TypeProducts";
 import { NotaRecebidaItemForm } from "../../components/NotaRecebida/NotaRecebidaItemForm";
 import { NotaRecebidaValsPagoForm } from "../../components/NotaRecebida/NotarecebidaValsPagoForm";
-import { AuthContext } from '../../context/auth'
-import api from "../../services/api/api";
 import { NotaRecebidaContaAPagarForm } from "../../components/NotaRecebida/NotaRecebidaContaAPagarForm";
 import { NotaRecebidaEnviarForm } from "../../components/NotaRecebida/NotaRecebidaEnviarForm";
 import { postRegister } from "../../services/handleService";
+import { AuthContext } from '../../context/auth'
+import api from "../../services/api/api";
 
 export function NotaRecebida() {
     const [flagSendNota, setFlagSendNota] = useState<boolean>(false)
     const [msg, setMsg] = useState<string>('')
+    const [msgSendNota, setMsgSendNota] = useState<string>('Aguardando o envio da nota')
     const { user: isLogged }: any = useContext(AuthContext);
+    const [products, setProducts] = useState<TProductRegister[]>([])
     const [notaRecebida, setNotaRecebida] = useState<TNotaRecebida>({
         fkFornecedor: 0,
         data: new Date().toISOString(),
@@ -32,9 +34,6 @@ export function NotaRecebida() {
         contaAPagar: [],
         valsPago: []
     });
-
-    const [products, setProducts] = useState<TProductRegister[]>([])
-
     const [valPago, setValsPago] = useState<TValsPago>({
         id_val: 0,
         fk_conta: 0,
@@ -44,8 +43,7 @@ export function NotaRecebida() {
         data_pagamento: "",
         descricao: "",
         fk_person: 0
-    })
-
+    });
     const [contaAPagar, setContaAPagar] = useState<TContaAPagar>({
         id_conta: 0,
         fk_filial: 0,
@@ -64,8 +62,7 @@ export function NotaRecebida() {
         recebimento: 0,
         observacao: "",
         fk_pagador: 0
-    })
-
+    });
     // trib: {
     //     vIpi: 0,
     //     bcIcmsSt: 0,
@@ -74,31 +71,26 @@ export function NotaRecebida() {
     //     cofinsSubst: 0,
     //     icmsSobreIpi: 0
     // }
-
     const handleChange = (e: any) => {
         const name = e.target.name;
         const value = e.target.value;
         setNotaRecebida(values => ({ ...values, [name]: value }))
     };
-
     const handleChange_ = (e: any) => {
         const name = e.target.name;
         const value = e.target.value;
         setItem(values => ({ ...values, [name]: value }))
     };
-
     const handleChange__ = (e: any) => {
         const name = e.target.name;
         const value = e.target.value;
         setValsPago(values => ({ ...values, [name]: value }))
     };
-
     const handleChange___ = (e: any) => {
         const name = e.target.name;
         const value = e.target.value;
         setContaAPagar(values => ({ ...values, [name]: value }))
     };
-
     useEffect(() => {
         async function getProducts() {
             try {
@@ -132,7 +124,6 @@ export function NotaRecebida() {
             - parseFloat(notaRecebida.desconto);
         parseFloat(notaRecebida.total.toFixed(2))
     };
-
     const [item, setItem] = useState<TItem>(
         {
             id: 0,
@@ -144,7 +135,6 @@ export function NotaRecebida() {
             total: 0
         }
     );
-
     const clearFields = () => {
         setItem({
             id: 0,
@@ -155,36 +145,30 @@ export function NotaRecebida() {
             unitario: 0,
             total: 0
         })
-    }
-
+    };
     function handleItems() {
         for (let product of products) {
             if (item.descric == product.descric_product) {
                 item.descric = product.descric_product
                 item.item = product.id_product
                 item.tipo = 'sem'
-                item.quantidade = item.quantidade
-                item.unitario = item.total / item.quantidade
-                item.unitario = parseFloat(item.unitario.toFixed(2))
-                item.total = item.total
+                parseFloat(item.unitario)
+                item.unitario = parseFloat(item.total) / parseInt(item.quantidade)
                 notaRecebida.items.push(item)
             }
         }
         clearFields()
-    }
-
+    };
     async function handleSubmitItem(e: Event) {
         e.preventDefault()
         handleItems()
-    }
-
+    };
     function handleValorPago() {
         valPago.data_pagamento = new Date().toISOString()
         valPago.id_val = notaRecebida.valsPago.length + 1
         notaRecebida.valsPago.push(valPago)
-    }
-
-    function clearFiledsValPago(){
+    };
+    function clearFiledsValPago() {
         setValsPago({
             id_val: 0,
             fk_conta: 0,
@@ -195,23 +179,19 @@ export function NotaRecebida() {
             descricao: "",
             fk_person: 0
         })
-
-    }
-
+    };
     function handleSubmitValor(e: Event) {
         e.preventDefault()
         handleValorPago()
         clearFiledsValPago()
     }
-
     // function sumContasAPagar(){
     //     let sum = 0
     //     for(let contaAPagar_ of notaRecebida.contaAPagar){
     //         sum += parseFloat(contaAPagar_.valor)
     //     }
     //     return sum
-    // }
-
+    // };
     function handleContaAPagar() {
         contaAPagar.emissao = new Date(notaRecebida.emissao).toISOString()
         contaAPagar.vencimento = new Date(contaAPagar.vencimento).toISOString()
@@ -219,10 +199,9 @@ export function NotaRecebida() {
         contaAPagar.id_conta = parc
         contaAPagar.parcela = parc + "/" + parc
         notaRecebida.contaAPagar.push(contaAPagar)
-    }
-
-    const clearFieldsContaAPagar = () =>{
-      setContaAPagar({
+    };
+    const clearFieldsContaAPagar = () => {
+        setContaAPagar({
             id_conta: 0,
             fk_filial: 1,
             tipo: "compra",
@@ -240,29 +219,26 @@ export function NotaRecebida() {
             recebimento: 0,
             observacao: "",
             fk_pagador: 0
-        })
-    }
-
+        });
+    };
     function handleSubmitContaAPagar(e: Event) {
         e.preventDefault()
         handleContaAPagar()
         clearFieldsContaAPagar()
-    }
-
-    function handleSubmitEnviarNota(e:Event){
+    };
+    function handleSubmitEnviarNota(e: Event) {
         e.preventDefault()
-        if(notaRecebida.total > 0){
-        if(flagSendNota === false){
-            postRegister(notaRecebida, 'registrar_nota_recebida')
-            setFlagSendNota(true)
-        }else{
-            alert('Nota já foi enviada')
+        if (notaRecebida.total > 0) {
+            if (flagSendNota === false) {
+                postRegister(notaRecebida, 'registrar_nota_recebida')
+                setFlagSendNota(true)
+            } else {
+            setMsgSendNota('Nota já foi enviada com sucesso')
+            }
+        } else {
+            setMsgSendNota('Total da Nota sem valor')
         }
-    }else{
-        alert('Total da Nota sem valor')
-    }
-    }
-
+    };
     return (
         <div className="container">
             <NotaRecebidaForm
@@ -271,7 +247,6 @@ export function NotaRecebida() {
             >
                 {notaRecebida}
             </NotaRecebidaForm>
-
             <NotaRecebidaValsPagoForm
                 handleChange__={handleChange__}
                 handleSubmit={handleSubmitValor}
@@ -279,7 +254,6 @@ export function NotaRecebida() {
             >
                 {valPago}
             </NotaRecebidaValsPagoForm>
-
             <NotaRecebidaItemForm
                 handleChange={handleChange_}
                 handleSubmit={handleSubmitItem}
@@ -289,7 +263,6 @@ export function NotaRecebida() {
             >
                 {item}
             </NotaRecebidaItemForm>
-
             <NotaRecebidaContaAPagarForm
                 handleChange={handleChange___}
                 handleSubmit={handleSubmitContaAPagar}
@@ -297,9 +270,9 @@ export function NotaRecebida() {
             >
                 {contaAPagar}
             </NotaRecebidaContaAPagarForm>
-
             <NotaRecebidaEnviarForm
-            handleSubmit={handleSubmitEnviarNota}
+                handleSubmit={handleSubmitEnviarNota}
+                msgSendNota={msgSendNota}
             />
         </div>
     )

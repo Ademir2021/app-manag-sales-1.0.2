@@ -22,8 +22,8 @@ export type TItem = {
     tipo: string
     item: number | any
     descric: string | number
-    quantidade: number
-    unitario: number
+    quantidade: number | any
+    unitario: number | any
     total: number | any
 }
 
