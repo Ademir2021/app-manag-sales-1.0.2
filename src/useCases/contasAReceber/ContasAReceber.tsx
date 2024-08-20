@@ -24,7 +24,7 @@ function ContasAReceber() {
     useEffect(() => {
         async function getContasAReceber() {
             try {
-                await api.get<TContaAreceber[]>('contaS_receber')
+                await api.get<TContaAreceber[]>('contas_receber')
                     .then(response => {
                         const contas_: TContaAreceber | any = []
                         const contas: TContaAreceber[] = response.data

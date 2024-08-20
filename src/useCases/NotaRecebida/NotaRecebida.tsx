@@ -63,14 +63,6 @@ export function NotaRecebida() {
         observacao: "",
         fk_pagador: 0
     });
-    // trib: {
-    //     vIpi: 0,
-    //     bcIcmsSt: 0,
-    //     icmsSubst: 0,
-    //     pisSubst: 0,
-    //     cofinsSubst: 0,
-    //     icmsSobreIpi: 0
-    // }
     const handleChange = (e: any) => {
         const name = e.target.name;
         const value = e.target.value;
@@ -102,15 +94,13 @@ export function NotaRecebida() {
         }
         getProducts()
     }, [products]);
-
     const sumItems = () => {
         let sum = 0
         for (let item_ of notaRecebida.items) {
             sum += parseFloat(item_.total)
         }
         return sum
-    }
-
+    };
     function handleSubmit() {
         notaRecebida.data = new Date().toISOString()
         notaRecebida.emissao = new Date(notaRecebida.emissao).toISOString()
@@ -184,14 +174,7 @@ export function NotaRecebida() {
         e.preventDefault()
         handleValorPago()
         clearFiledsValPago()
-    }
-    // function sumContasAPagar(){
-    //     let sum = 0
-    //     for(let contaAPagar_ of notaRecebida.contaAPagar){
-    //         sum += parseFloat(contaAPagar_.valor)
-    //     }
-    //     return sum
-    // };
+    };
     function handleContaAPagar() {
         contaAPagar.emissao = new Date(notaRecebida.emissao).toISOString()
         contaAPagar.vencimento = new Date(contaAPagar.vencimento).toISOString()
@@ -233,7 +216,7 @@ export function NotaRecebida() {
                 postRegister(notaRecebida, 'registrar_nota_recebida')
                 setFlagSendNota(true)
             } else {
-            setMsgSendNota('Nota já foi enviada com sucesso')
+                setMsgSendNota('Nota já foi enviada com sucesso')
             }
         } else {
             setMsgSendNota('Total da Nota sem valor')
@@ -277,4 +260,3 @@ export function NotaRecebida() {
         </div>
     )
 }
-

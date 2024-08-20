@@ -13,7 +13,7 @@ export function NotaRecebidaEnviarForm({
                     <button
                         className="btn btn-primary"
                         onClick={handleSubmit}
-                    >Gravar nota</button>
+                    >Gravar a Nota</button>
                 <label>{msgSendNota}</label>
                 </form>
             </div>

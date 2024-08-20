@@ -1,16 +1,12 @@
 import { TCaixaMov } from "../../useCases/CaixaMov/type/TCaixaMov"
 import { HandleContasAReceber } from "../../useCases/contasAReceber/HandleContasAReceber"
-
 type Props = {
     caixaMov: TCaixaMov[]
 }
-
 export function CaixaMovListComp({
     caixaMov,
 }: Props) {
-
     const handleContasAReceber = new HandleContasAReceber()
-
     const caixaMovList =
         <table className='table bg-light mt-1'>
             <thead>
@@ -36,7 +32,6 @@ export function CaixaMovListComp({
                 ))}
             </tbody>
         </table>
-
     return (
         <>
             <div className="container">
