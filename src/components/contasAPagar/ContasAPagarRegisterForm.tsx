@@ -6,7 +6,7 @@ type Props = {
     listPersons: any
 }
 
-export function ContasAReceberRegisterForm({
+export function ContasAPagarRegisterForm({
     children,
     handleSubmit,
     handleChange,
@@ -16,7 +16,7 @@ export function ContasAReceberRegisterForm({
 
     const emitirTitulo = <div className="container-global">
         <div className="main-global">
-            <p>Emitir título de conta a receber</p>
+            <p>Emitir título de conta a pagar</p>
             <div className="main-global-form">
                 <input
                     type="number"

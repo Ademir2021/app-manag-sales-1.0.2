@@ -48,7 +48,7 @@ function ContasAPagarForm({
               style={{marginLeft:"1px", borderRadius:'0px'}}
                 className="btn btn-primary"
                 onClick={submitInserirValor}
-            >Inserir valor</button>
+            >Retirar valor - Pagar</button>
             <button
              style={{marginLeft:"1px", borderRadius:'0px'}}
                 className="btn btn-primary"
@@ -134,7 +134,7 @@ function ContasAPagarForm({
                 <tr>
                     <th id="center">Id</th>
                     <th id="center">Conta</th>
-                    <th id="center">Venda</th>
+                    <th id="center">Compra</th>
                     <th id="center">User</th>
                     <th id="center">Valor</th>
                     <th id="center">Data Recebimento</th>
@@ -144,7 +144,7 @@ function ContasAPagarForm({
                 <tr key={valPago.id_val}>
                     <th id="center">{valPago.id_val}</th>
                     <td id="center">{valPago.fk_conta}</td>
-                    <td id="center">{valPago.fk_venda}</td>
+                    <td id="center">{valPago.fk_compra}</td>
                     <td id="center">{valPago.fk_user}</td>
                     <td id="center">{valPago.valor}</td>
                     <td id="center">{handleContasAPagar.formatDate(valPago.data_recebimento)}</td>

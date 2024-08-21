@@ -97,7 +97,7 @@ function ContasAPagar() {
         let valPago: TValsPagos = {
             id_val: 0,
             fk_conta: 0,
-            fk_venda: 0,
+            fk_compra: 0,
             fk_user: 0,
             valor: 0,
             data_recebimento: "",
@@ -107,10 +107,10 @@ function ContasAPagar() {
         valPago.id_val = id++
         valPago.fk_conta = conta.id_conta
         if (conta.fk_compra !== null) {
-            valPago.fk_venda = conta.fk_compra
+            valPago.fk_compra = conta.fk_compra
         }
         else if (conta.fk_compra === null) {
-            valPago.fk_venda = 0
+            valPago.fk_compra = 0
         }
         valPago.fk_user = isLogged[0].id
         valPago.data_recebimento = new Date()
@@ -185,8 +185,8 @@ function ContasAPagar() {
                     setDesconto(parseFloat(e.target.value))
                 }}
                 msg={msg}
-                submitContasAPagarRegister={() => { window.location.assign("/contas_receber_register") }}
-                submitInserirValor={() => { window.location.assign("receber_valor") }}
+                submitContasAPagarRegister={() => { window.location.assign("/contas_pagar_register") }}
+                submitInserirValor={() => { window.location.assign("pagar_valor") }}
                 submitfluxoDeCaixa={() => { window.location.assign("caixa_mov") }}
                 saldo={sumSaldoAPagar()}
             />

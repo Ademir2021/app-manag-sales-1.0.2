@@ -21,7 +21,7 @@ export type TContaAPagar = {
 export type TValsPagos = {
     id_val: number
     fk_conta: number
-    fk_venda: number
+    fk_compra: number
     fk_user: number
     valor: number
     data_recebimento: Date | any | null
