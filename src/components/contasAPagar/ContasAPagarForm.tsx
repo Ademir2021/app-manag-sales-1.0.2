@@ -48,7 +48,7 @@ function ContasAPagarForm({
               style={{marginLeft:"1px", borderRadius:'0px'}}
                 className="btn btn-primary"
                 onClick={submitInserirValor}
-            >Retirar valor - Pagar</button>
+            >Pagar</button>
             <button
              style={{marginLeft:"1px", borderRadius:'0px'}}
                 className="btn btn-primary"
@@ -56,7 +56,7 @@ function ContasAPagarForm({
             >Fluxo de caixa</button>
             <span
             style={{marginLeft:"12px", borderRadius:'0px'}}
-            ><b>Saldo a pagar - </b>R$ {saldo}</span>
+            ><b>Saldo a pagar - </b>R$ {parseFloat(saldo.toFixed(2))}</span>
         </div>
 
     const inputPagarValor =
@@ -86,7 +86,8 @@ function ContasAPagarForm({
                     <th id="center">ID</th>
                     <th id="center">Tipo</th>
                     <th id="center">Pagador</th>
-                    <th id="center">Origem</th>
+                    <th id="center">Compra</th>
+                    <th id="center">Despesa</th>
                     <th id="center">Emissão</th>
                     <th id="center">Valor</th>
                     <th id="center">Vencimento</th>
@@ -107,6 +108,7 @@ function ContasAPagarForm({
                         <td id="center">{conta.tipo}</td>
                         <td id="center">{conta.fk_pagador}</td>
                         <td id="center">{conta.fk_compra}</td>
+                        <td id="center">{conta.fk_despesa}</td>
                         <td id="center">{handleContasAPagar.formatDate(conta.emissao)}</td>
                         <td id="center">{parseFloat(conta.valor).toFixed(3)}</td>
                         <td id="center">{handleContasAPagar.formatDate(conta.vencimento)}</td>

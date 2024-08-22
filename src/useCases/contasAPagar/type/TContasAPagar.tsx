@@ -16,6 +16,7 @@ export type TContaAPagar = {
     recebimento: number | any
     observacao:string | null
     fk_pagador:number
+    fk_despesa:number
 }
 
 export type TValsPagos = {
@@ -27,4 +28,16 @@ export type TValsPagos = {
     data_recebimento: Date | any | null
     descricao:string
     fk_person:number
+}
+
+export type TDespesa = {
+    id:number 
+    name:string 
+    fk_setor:number
+}
+
+export type TSetorDespesa = {
+    id:number
+    name:string 
+    tipo:string
 }

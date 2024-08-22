@@ -33,3 +33,18 @@ tr {
 td {
     font-size: 12px;
 }
+
+.list-person {
+    font-size: 12px;
+    display: flex;
+    max-width: 50%;
+    justify-content: center;
+}
+
+.list-despesa {
+    font-size: 12px;
+    display: flex;
+    max-width: 50%;
+    justify-content: center;
+    padding: 12px;
+}

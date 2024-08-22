@@ -1,9 +1,12 @@
+import './ContasAPagar.css'
+
 type Props = {
     children: any
     handleSubmit: any
     handleChange: any
     msg: string
     listPersons: any
+    listDespesas: any
 }
 
 export function ContasAPagarRegisterForm({
@@ -11,12 +14,13 @@ export function ContasAPagarRegisterForm({
     handleSubmit,
     handleChange,
     msg,
-    listPersons
+    listPersons,
+    listDespesas
 }: Props) {
 
     const emitirTitulo = <div className="container-global">
         <div className="main-global">
-            <p>Emitir título de conta a pagar</p>
+            <p>Emitir provisão de despesas</p>
             <div className="main-global-form">
                 <input
                     type="number"
@@ -43,9 +47,9 @@ export function ContasAPagarRegisterForm({
                 >Salvar conta</button>
                 <dd className="text-center">{msg}</dd>
                 <hr></hr>
-                {/* <span>Selecione o Pagador</span> */}
-                <span>{listPersons}</span>
             </div>
+            <div className='list-person'>{listPersons}</div>
+            <div className='list-despesa'>{listDespesas}</div>
         </div>
     </div>
 

@@ -43,9 +43,8 @@ export function ContasAReceberRegisterForm({
                 >Salvar conta</button>
                 <dd className="text-center">{msg}</dd>
                 <hr></hr>
-                {/* <span>Selecione o Pagador</span> */}
-                <span>{listPersons}</span>
             </div>
+                <div className="list-person">{listPersons}</div>
         </div>
     </div>
 

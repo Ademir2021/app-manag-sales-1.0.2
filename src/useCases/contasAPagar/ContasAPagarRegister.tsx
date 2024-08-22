@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react"
-import { TContaAPagar, TValsPagos } from "./type/TContasAPagar";
+import { TContaAPagar, TDespesa } from "./type/TContasAPagar";
 import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api"
@@ -8,10 +8,14 @@ import { postRegister } from "../../services/handleService";
 import { ContasAPagarRegisterForm } from "../../components/contasAPagar/ContasAPagarRegisterForm";
 
 export function ContasAPagarRegister() {
-    const [IdPerson, setIdPerson] = useState<number>(0)
+    const [idPerson, setIdPerson] = useState<number>(0)
     const [sendConta, setSendConta] = useState<boolean>(false)
     const [msg, setMsg] = useState<string>('Aguardando titulo')
     const [persons, setPersons] = useState<TPersonRegister[]>([])
+
+    const [despesas, setDespesas] = useState<TDespesa[]>([]) //criar no banco
+    const [idDespesa, setIdDespesa ] = useState<number>(0)
+
     const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
     const { user: isLogged }: any = useContext(AuthContext);
     const [contaAPagar, setContaAPagar] = useState<TContaAPagar>({
@@ -31,7 +35,8 @@ export function ContasAPagarRegister() {
         pagamento: null,
         recebimento: 0,
         observacao: "",
-        fk_pagador: 0
+        fk_pagador: 0,
+        fk_despesa: 0
 
     });
 
@@ -40,6 +45,18 @@ export function ContasAPagarRegister() {
         const value = e.target.value;
         setContaAPagar(values => ({ ...values, [name]: value }))
     };
+
+    useEffect(() => {
+        const getDespesas = async () => {
+            try {
+                await api.get<TDespesa[]>('despesas')
+                    .then(response => {
+                        setDespesas(response.data)
+                    })
+            } catch (err) { console.log("err: " + err) }
+        };
+        getDespesas()
+    }, [despesas])
 
     useEffect(() => {
         async function getPerson() {
@@ -70,8 +87,10 @@ export function ContasAPagarRegister() {
         contaAPagar.vencimento = new Date(contaAPagar.vencimento).toISOString()
         contaAPagar.valor = parseFloat(contaAPagar.valor).toFixed(3)
         if (persons.length > 0)
-            contaAPagar.fk_pagador = IdPerson
+            contaAPagar.fk_pagador = idPerson
         contaAPagar.fk_filial = persons[0].fk_name_filial
+        if (despesas.length > 0)
+        contaAPagar.fk_despesa = idDespesa
     }
 
     function clerFields(){
@@ -100,7 +119,7 @@ export function ContasAPagarRegister() {
                 listPersons={<select
                     onChange={e => setIdPerson(parseInt(e.target.value))}
                 >
-                    <option>Selecione um pagador</option>
+                    <option>Selecione o beneficiario</option>
                     {persons.map((person: TPersonRegister) => (
                     <option
                         key={person.id_person}
@@ -110,6 +129,20 @@ export function ContasAPagarRegister() {
                         {" - " + person.cpf_pers }
                     </option>
                 ))}</select>}
+
+                listDespesas={<select
+                    onChange={e => setIdDespesa(parseInt(e.target.value))}
+                >
+                    <option>Selecione a Despesa</option>
+                    {despesas.map((despesa:TDespesa)=>(
+                        <option 
+                        key={despesa.id}
+                        value={despesa.id}
+                        >
+                            {despesa.name}
+                        </option>
+                    ))}
+                </select>}
             >
                 {contaAPagar}
             </ContasAPagarRegisterForm>
