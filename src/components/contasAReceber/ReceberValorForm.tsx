@@ -1,3 +1,5 @@
+import './ContasAReceber.css'
+
 type Props = {
     children: any
     handlechange: any
@@ -36,8 +38,8 @@ export function ReceberValorForm({
                 >Registrar Valor</button>
                 <dd>{msg}</dd>
                 <hr></hr>
-                <span>{listPersons}</span>
             </div>
+                <div className="list-person">{listPersons}</div>
         </div>
     </div>
     return (
