@@ -14,7 +14,7 @@ export function ContasAPagarRegister() {
     const [persons, setPersons] = useState<TPersonRegister[]>([])
 
     const [despesas, setDespesas] = useState<TDespesa[]>([]) //criar no banco
-    const [idDespesa, setIdDespesa ] = useState<number>(0)
+    const [idDespesa, setIdDespesa] = useState<number>(0)
 
     const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
     const { user: isLogged }: any = useContext(AuthContext);
@@ -36,7 +36,7 @@ export function ContasAPagarRegister() {
         recebimento: 0,
         observacao: "",
         fk_pagador: 0,
-        fk_despesa: 0
+        fk_despesa: 1
 
     });
 
@@ -90,10 +90,11 @@ export function ContasAPagarRegister() {
             contaAPagar.fk_pagador = idPerson
         contaAPagar.fk_filial = persons[0].fk_name_filial
         if (despesas.length > 0)
-        contaAPagar.fk_despesa = idDespesa
+            contaAPagar.fk_despesa = idDespesa
     }
 
-    function clerFields(){
+
+    function clerFields() {
         contaAPagar.valor = 0
         contaAPagar.vencimento = ''
         contaAPagar.observacao = ''
@@ -121,23 +122,23 @@ export function ContasAPagarRegister() {
                 >
                     <option>Selecione o beneficiario</option>
                     {persons.map((person: TPersonRegister) => (
-                    <option
-                        key={person.id_person}
-                        value={person.id_person}
-                    >
-                        { person.name_pers }
-                        {" - " + person.cpf_pers }
-                    </option>
-                ))}</select>}
+                        <option
+                            key={person.id_person}
+                            value={person.id_person}
+                        >
+                            {person.name_pers}
+                            {" - " + person.cpf_pers}
+                        </option>
+                    ))}</select>}
 
                 listDespesas={<select
                     onChange={e => setIdDespesa(parseInt(e.target.value))}
                 >
                     <option>Selecione a Despesa</option>
-                    {despesas.map((despesa:TDespesa)=>(
-                        <option 
-                        key={despesa.id}
-                        value={despesa.id}
+                    {despesas.map((despesa: TDespesa) => (
+                        <option
+                            key={despesa.id}
+                            value={despesa.id}
                         >
                             {despesa.name}
                         </option>

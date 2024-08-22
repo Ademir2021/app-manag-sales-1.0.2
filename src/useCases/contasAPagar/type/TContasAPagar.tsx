@@ -17,6 +17,7 @@ export type TContaAPagar = {
     observacao:string | null
     fk_pagador:number
     fk_despesa:number
+    despesa?:string 
 }
 
 export type TValsPagos = {

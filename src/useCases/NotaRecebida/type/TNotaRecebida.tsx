@@ -64,6 +64,7 @@ export type TContaAPagar = {
     recebimento: number | any
     observacao:string | null
     fk_pagador:number
+    fk_despesa:number
 }
 
 export type TValsPago = {

@@ -15,6 +15,7 @@ type TProps = {
     submitInserirValor: any
     submitfluxoDeCaixa: any
     saldo:number
+    findNameDespesa:any // (id: number)
 }
 
 function ContasAPagarForm({
@@ -28,6 +29,7 @@ function ContasAPagarForm({
     submitInserirValor,
     submitfluxoDeCaixa,
     saldo,
+    findNameDespesa
 }: TProps) {
 
     const handleContasAPagar = new HandleContasAPagar()
@@ -85,8 +87,9 @@ function ContasAPagarForm({
                 <tr>
                     <th id="center">ID</th>
                     <th id="center">Tipo</th>
-                    <th id="center">Pagador</th>
+                    <th id="center">BenefID</th>
                     <th id="center">Compra</th>
+                    <th id="center">DespID</th>
                     <th id="center">Despesa</th>
                     <th id="center">Emissão</th>
                     <th id="center">Valor</th>
@@ -109,6 +112,7 @@ function ContasAPagarForm({
                         <td id="center">{conta.fk_pagador}</td>
                         <td id="center">{conta.fk_compra}</td>
                         <td id="center">{conta.fk_despesa}</td>
+                        <td id="center">{findNameDespesa(conta.fk_despesa)}</td>
                         <td id="center">{handleContasAPagar.formatDate(conta.emissao)}</td>
                         <td id="center">{parseFloat(conta.valor).toFixed(3)}</td>
                         <td id="center">{handleContasAPagar.formatDate(conta.vencimento)}</td>

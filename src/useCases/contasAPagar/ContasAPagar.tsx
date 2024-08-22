@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react"
-import { TContaAPagar, TValsPagos } from "./type/TContasAPagar"
+import { TContaAPagar, TDespesa, TValsPagos } from "./type/TContasAPagar"
 import { HandleContasAPagar } from "./handleContasAPagar"
 import { ContasAPagarForm } from "../../components/contasAPagar/ContasAPagarForm"
 
@@ -14,6 +14,7 @@ function ContasAPagar() {
     const [contasAPagar, setContasAPagar] = useState<TContaAPagar[]>([])
     const [valsPagos_, setValsPagos_] = useState<TValsPagos[]>([])
     const [valsPagos__] = useState<TValsPagos[]>([])
+    const [despesas, setDespesas] = useState<TDespesa[]>([])
     const { user: isLogged }: any = useContext(AuthContext);
 
     useEffect(() => {
@@ -21,6 +22,25 @@ function ContasAPagar() {
             setMsg('')
         }, 9000);
     }, [msg])
+
+    useEffect(() => {
+        const getDespesas = async () => {
+            try {
+                await api.get<TDespesa[]>('despesas')
+                    .then(response => {
+                        setDespesas(response.data)
+                    })
+            } catch (err) { console.log("err: " + err) }
+        };
+        getDespesas()
+    }, [despesas])
+
+    function findNameDespesa(id:number){
+        for (let despesa of despesas){
+            if(despesa.id === id)
+                return despesa.name
+        }
+    }
 
     useEffect(() => {
         async function getContasAPagar() {
@@ -189,6 +209,7 @@ function ContasAPagar() {
                 submitInserirValor={() => { window.location.assign("pagar_valor") }}
                 submitfluxoDeCaixa={() => { window.location.assign("caixa_mov") }}
                 saldo={sumSaldoAPagar()}
+                findNameDespesa={findNameDespesa}
             />
         </>
     )
