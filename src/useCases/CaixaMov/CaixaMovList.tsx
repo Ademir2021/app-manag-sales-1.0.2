@@ -2,9 +2,15 @@ import { useState, useEffect } from "react";
 import { CaixaMovListComp } from "../../components/caixaMov/CaixaMovList";
 import { TCaixaMov } from "./type/TCaixaMov";
 import api from "../../services/api/api";
+import { TDespesa, TValsPagos } from "../contasAPagar/type/TContasAPagar";
+import { TValsRecebidos } from "../contasAReceber/type/TContasAReceber";
 
 export function CaixaMovList() {
     const [caixaMov, setCaixaMov] = useState<TCaixaMov[]>([])
+    const [despesas, setDespesas] = useState<TDespesa[]>([])
+    const [valsPagos, setValsPagos] = useState<TValsPagos[]>([])
+    const [valsRecebidos, setValsRecebidos] = useState<TValsRecebidos[]>([])
+
     useEffect(() => {
         async function getProducts() {
             try {
@@ -12,15 +18,70 @@ export function CaixaMovList() {
                     .then(response => {
                         setCaixaMov(response.data)
                     })
-            } catch (err) { console.log("error occurred !!" + err) }
+            } catch (err) { console.log("err: " + err) }
         };
         getProducts();
     }, [caixaMov]);
+
+    useEffect(() => {
+        const getDespesas = async () => {
+            try {
+                await api.get<TDespesa[]>('despesas')
+                    .then(response => {
+                        setDespesas(response.data)
+                    })
+            } catch (err) { console.log("err: " + err) }
+        };
+        getDespesas()
+    }, [despesas])
+
+    useEffect(() => {
+        async function getValsPagos() {
+            try {
+                await api.get<TValsPagos[]>('vals_pagos')
+                    .then(response => {
+                        const resp: TValsPagos[] = response.data
+                        setValsPagos(resp)
+                    })
+            } catch (err) { console.log("err: " + err) }
+
+        };
+        getValsPagos()
+    }, [valsPagos])
+
+    useEffect(() => {
+        async function getValsRecebidos() {
+            try {
+                await api.get<TValsRecebidos[]>('vals_recebidos')
+                    .then(response => {
+                        setValsRecebidos(response.data)
+                    })
+            } catch (err) { console.log("err: " + err) }
+
+        };
+        getValsRecebidos()
+    }, [valsRecebidos])
+
+    function findNameMovCaixaDebito(id: number) {
+        for (let val of valsPagos)
+            if (val.id_val === id)
+                for (let despesa of despesas)
+                    if (val.fk_despesa == despesa.id)
+                        return despesa.name
+    }
+
+    function findNameMovCaixaCredito(id: number) {
+        for (let valRecebido of valsRecebidos)
+            if (valRecebido.id_val === id)
+                return valRecebido.descricao
+    }
 
     return (
         <>
             <CaixaMovListComp
                 caixaMov={caixaMov}
+                findNameMovCaixaDebito={findNameMovCaixaDebito}
+                findNameMovCaixaCredito={findNameMovCaixaCredito}
             />
         </>
     )

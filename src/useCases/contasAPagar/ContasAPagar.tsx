@@ -122,7 +122,8 @@ function ContasAPagar() {
             valor: 0,
             data_recebimento: "",
             descricao: "",
-            fk_person: 0
+            fk_person: 0,
+            fk_despesa:0
         }
         valPago.id_val = id++
         valPago.fk_conta = conta.id_conta
@@ -132,6 +133,7 @@ function ContasAPagar() {
         else if (conta.fk_compra === null) {
             valPago.fk_compra = 0
         }
+        valPago.fk_despesa = conta.fk_despesa
         valPago.fk_user = isLogged[0].id
         valPago.data_recebimento = new Date()
         valPago.valor = valor

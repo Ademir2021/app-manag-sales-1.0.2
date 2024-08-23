@@ -22,7 +22,8 @@ export function PagarValor() {
         valor: 0,
         data_recebimento: new Date().toISOString(),
         descricao: '',
-        fk_person: 0
+        fk_person: 0,
+        fk_despesa:0
     })
 
     const handleChange = (e: any) => {

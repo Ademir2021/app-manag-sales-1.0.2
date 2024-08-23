@@ -2,9 +2,13 @@ import { TCaixaMov } from "../../useCases/CaixaMov/type/TCaixaMov"
 import { HandleContasAReceber } from "../../useCases/contasAReceber/HandleContasAReceber"
 type Props = {
     caixaMov: TCaixaMov[]
+    findNameMovCaixaDebito:any // (id:number)
+    findNameMovCaixaCredito:any // (id:number)
 }
 export function CaixaMovListComp({
     caixaMov,
+    findNameMovCaixaDebito,
+    findNameMovCaixaCredito
 }: Props) {
     const handleContasAReceber = new HandleContasAReceber()
     const caixaMovList =
@@ -12,11 +16,12 @@ export function CaixaMovListComp({
             <thead>
                 <tr>
                     <th id="center">ID</th>
-                    <th id="center">Recebimento</th>
-                    <th id="center">Movimento</th>
-                    <th id="center">D/C</th>
-                    <th id="center">Valor</th>
-                    <th id="center">saldo</th>
+                    <td id="center">Recebimento</td>
+                    <td id="center">MovId</td>
+                    <td id="center">Mov</td>
+                    <td id="center">D/C</td>
+                    <td id="center">Valor</td>
+                    <td id="center">saldo</td>
                 </tr>
             </thead>
             <tbody>
@@ -25,6 +30,7 @@ export function CaixaMovListComp({
                         <th id="center">{caixa.id_caixa}</th>
                         <td id="center">{handleContasAReceber.formatDate(caixa.data_recebimento)}</td>
                         <td id="center">{caixa.fk_val}</td>
+                        <td id="center">{caixa.debito !== null ? findNameMovCaixaDebito(caixa.fk_val) : findNameMovCaixaCredito(caixa.fk_val)}</td>
                         <td id="center">{caixa.credito === null ? "D" : "C"}</td>
                         <td id="center">{caixa.credito === null ? caixa.debito : caixa.credito}</td>
                         <td id="center">{caixa.saldo}</td>
