@@ -44,8 +44,8 @@ export function PagCredLoja() {
 
     function handleInstallments(sales: any) {
         const installments = parseInt(sales.installments)
+        let pay = parseFloat(sales.paySale) - sales.dinheiro - parseFloat(sales.disc_sale)
         sales.dinheiro = parseFloat(sales.dinheiro)
-        let pay = parseFloat(sales.paySale) - sales.dinheiro
         if (pay > 0) {
             let valParc = pay / installments
             for (let i = 1; installments >= i; i++) {

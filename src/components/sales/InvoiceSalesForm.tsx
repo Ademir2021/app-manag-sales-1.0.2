@@ -99,7 +99,7 @@ export function InvoiceSalesForm({
             <dd><b>Bairro</b> {children.person.address.bairro_pers}</dd>
             <dd><b>Cidade</b> {children.person.address.name_city}</dd>
             <dd><b>Estado</b> {children.person.address.uf}</dd>
-            <dd><b>Cep</b> {children.person.address.num_cep}</dd>
+            <dd><b>CEP</b> {children.person.address.num_cep}</dd>
             <br></br>
             <dd><b>Dados da Filial</b></dd>
             <dd>{Globais.company + ': ' + Globais.CNPJ}</dd>
