@@ -61,7 +61,7 @@ export function NotaRecebida() {
         pagamento: null,
         recebimento: 0,
         observacao: "",
-        fk_pagador: 0,
+        fk_beneficiario: 0,
         fk_despesa:1
     });
     const handleChange = (e: any) => {
@@ -202,7 +202,7 @@ export function NotaRecebida() {
             pagamento: null,
             recebimento: 0,
             observacao: "",
-            fk_pagador: 1,
+            fk_beneficiario: 1,
             fk_despesa:1
         });
     };

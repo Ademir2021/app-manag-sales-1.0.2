@@ -35,7 +35,7 @@ export function ContasAPagarRegister() {
         pagamento: null,
         recebimento: 0,
         observacao: "",
-        fk_pagador: 0,
+        fk_beneficiario: 0,
         fk_despesa: 1
 
     });
@@ -87,7 +87,7 @@ export function ContasAPagarRegister() {
         contaAPagar.vencimento = new Date(contaAPagar.vencimento).toISOString()
         contaAPagar.valor = parseFloat(contaAPagar.valor).toFixed(3)
         if (persons.length > 0)
-            contaAPagar.fk_pagador = idPerson
+            contaAPagar.fk_beneficiario = idPerson
         contaAPagar.fk_filial = persons[0].fk_name_filial
         if (despesas.length > 0)
             contaAPagar.fk_despesa = idDespesa

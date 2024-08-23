@@ -109,7 +109,7 @@ function ContasAPagarForm({
                     <tr key={conta.id_conta}>
                         <th id="center">{conta.id_conta}</th>
                         <td id="center">{conta.tipo}</td>
-                        <td id="center">{conta.fk_pagador}</td>
+                        <td id="center">{conta.fk_beneficiario}</td>
                         <td id="center">{conta.fk_compra}</td>
                         <td id="center">{conta.fk_despesa}</td>
                         <td id="center">{findNameDespesa(conta.fk_despesa)}</td>
