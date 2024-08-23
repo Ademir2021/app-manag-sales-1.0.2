@@ -26,20 +26,27 @@ export function PersonUpdate() {
     const [dropdown, setDropdown] = useState<string>("");
     const modalRef = useRef<any>(null);
     const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
+    
+    function clearFields(){
+        setPerson({
+            id_person: 0, created_at: '', name_pers: '', cpf_pers: "",
+            phone_pers: "", address_pers: "", num_address: '', bairro_pers: "", fk_cep: 0,
+            name_city: "", uf: "", num_cep: "", fk_name_filial: 1, fk_id_user: 0
+        })
+    }
 
-    function listUpdate(_person: TPersonRegister) {
-        person.id_person = _person.id_person
-        person.name_pers = _person.name_pers
-        person.cpf_pers = _person.cpf_pers
-        person.phone_pers = _person.phone_pers
-        person.address_pers = _person.address_pers
-        person.num_address = _person.num_address
-        person.bairro_pers = _person.bairro_pers
-        person.num_cep = _person.num_cep
+    function listUpdate(pers: TPersonRegister) {
+        person.id_person = pers.id_person
+        person.name_pers = pers.name_pers
+        person.cpf_pers = pers.cpf_pers
+        person.phone_pers = pers.phone_pers
+        person.address_pers = pers.address_pers
+        person.num_address = pers.num_address
+        person.bairro_pers = pers.bairro_pers
+        person.num_cep = pers.num_cep
         person.fk_cep = setNumCep(person.num_cep);
-        person.name_city = _person.name_city
-        person.uf = _person.uf
-        getPersons()
+        person.name_city = pers.name_city
+        person.uf = pers.uf
         toggleDropdown()
     };
 
@@ -93,11 +100,11 @@ export function PersonUpdate() {
     async function handleSubmit(e: Event) {
         e.preventDefault();
         if (PersonsValFields(person)) {
-            listUpdate(person); //Atualiza o CEP do Cliente
+            listUpdate(person); // Atualiza o CEP do Cliente !!
             person.cpf_pers = person.cpf_pers.replace(/[..-]/g, '')
             person.phone_pers = person.phone_pers.replace(/[()-]/g, '')
             if (person.fk_cep === undefined) {
-                alert('Digite um Cep válido')
+                alert('Digite um CEP Válido')
             } else {
                 await api.post<any[]>('person', person)
                     .then(response => {
@@ -107,7 +114,7 @@ export function PersonUpdate() {
                     })
                     .catch(error => alert(error));
             }
-        } else { alert("Digite um novo usuário") }
+        } else { alert("Digite um novo Usuário") }
     }
 
     async function handleUpdate(e: Event) {
@@ -117,7 +124,7 @@ export function PersonUpdate() {
             person.cpf_pers = person.cpf_pers.replace(/[..-]/g, '')
             person.phone_pers = person.phone_pers.replace(/[()-]/g, '')
             if (person.fk_cep === undefined) {
-                alert('Digite um Cep válido')
+                alert('Digite um CEP Válido')
             } else {
                 await api.put<any[]>('person_update', person)
                     .then(response => {
@@ -125,19 +132,13 @@ export function PersonUpdate() {
                     })
                     .catch(error => alert(error));
             }
-            getPersons()
         }
     }
 
     async function handleDelete(e: Event) {
-        e.preventDefault();
-        setPerson({
-            id_person: 0, created_at: '', name_pers: '', cpf_pers: "",
-            phone_pers: "", address_pers: "", num_address: '', bairro_pers: "", fk_cep: 0,
-            name_city: "", uf: "", num_cep: "", fk_name_filial: 1, fk_id_user: 0
-        })
-        person.fk_id_user = isLogged[0].id
-        alert("Digite um novo usuário !!")
+        e.preventDefault()
+        clearFields()
+        alert("Insira um novo Cliente !!")
     }
 
     function toggleDropdown(): void {
@@ -219,26 +220,26 @@ export function PersonUpdate() {
             <Dashboard />
             <div className="text-center"><a href="person_update">{tokenMessage}</a></div>
             {persons.length === 0 ? <p>Carregando...</p> : (
-                persons.map((person: TPersonRegister) => (
+                persons.map((per: TPersonRegister) => (
                     <PersonList
-                        key={person.id_person}
-                        id_person={person.id_person}
-                        created_at={FormatDate(person.created_at)}
-                        updated_at={person.updated_at === null ?
-                            "não houve atualização" : (FormatDate(person.updated_at))}
-                        name={person.name_pers}
-                        phone={person.phone_pers}
-                        address={person.address_pers}
-                        num_address={person.num_address}
-                        bairro={person.bairro_pers}
-                        num_cep={person.num_cep = setCep(person.fk_cep)?.num_cep}
-                        name_city={person.name_city = setCity(person.fk_cep)?.name_city}
-                        uf={person.uf = setCity(person.fk_cep)?.uf}
-                        cpf={person.cpf_pers}
-                        id_user={person.fk_id_user}
-                        filial={person.fk_name_filial}
+                        key={per.id_person}
+                        id_person={per.id_person}
+                        created_at={FormatDate(per.created_at)}
+                        updated_at={per.updated_at === null ?
+                            "não houve atualização" : (FormatDate(per.updated_at))}
+                        name={per.name_pers}
+                        phone={per.phone_pers}
+                        address={per.address_pers}
+                        num_address={per.num_address}
+                        bairro={per.bairro_pers}
+                        num_cep={per.num_cep = setCep(per.fk_cep)?.num_cep}
+                        name_city={per.name_city = setCity(per.fk_cep)?.name_city}
+                        uf={per.uf = setCity(per.fk_cep)?.uf}
+                        cpf={per.cpf_pers}
+                        id_user={per.fk_id_user}
+                        filial={per.fk_name_filial}
                         update={<button onClick={() =>
-                            listUpdate(person)}>Atualizar</button>}
+                            listUpdate(per)}>Atualizar</button>}
                     />
                 )))}
         </>

@@ -12,7 +12,7 @@ export function CaixaMovList() {
     const [valsRecebidos, setValsRecebidos] = useState<TValsRecebidos[]>([])
 
     useEffect(() => {
-        async function getProducts() {
+        async function getCaixaMov() {
             try {
                 await api.post<TCaixaMov[]>('caixa_movs')
                     .then(response => {
@@ -20,7 +20,7 @@ export function CaixaMovList() {
                     })
             } catch (err) { console.log("err: " + err) }
         };
-        getProducts();
+        getCaixaMov();
     }, [caixaMov]);
 
     useEffect(() => {
@@ -67,13 +67,24 @@ export function CaixaMovList() {
             if (val.id_val === id)
                 for (let despesa of despesas)
                     if (val.fk_despesa == despesa.id)
+                        if(despesa.name)
                         return despesa.name
     }
 
     function findNameMovCaixaCredito(id: number) {
         for (let valRecebido of valsRecebidos)
             if (valRecebido.id_val === id)
+                if(valRecebido.descricao)
                 return valRecebido.descricao
+    }
+
+    function findVendaMovCaixaCredito(id: number) {
+        for (let caixa of caixaMov)
+            if (caixa.fk_val === id)
+                for (let val of valsRecebidos)
+                    if (val.id_val === caixa.fk_val)
+                        if (val.fk_venda)
+                            return val.fk_venda
     }
 
     return (
@@ -82,6 +93,7 @@ export function CaixaMovList() {
                 caixaMov={caixaMov}
                 findNameMovCaixaDebito={findNameMovCaixaDebito}
                 findNameMovCaixaCredito={findNameMovCaixaCredito}
+                findVendaMovCaixaCredito={findVendaMovCaixaCredito}
             />
         </>
     )
