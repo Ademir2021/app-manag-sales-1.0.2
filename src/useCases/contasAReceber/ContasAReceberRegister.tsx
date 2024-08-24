@@ -17,7 +17,7 @@ export function ContasAReceberRegister() {
     const [contaAReceber, setContaAReceber] = useState<TContaAreceber>({
         id_conta: 0,
         fk_filial: 0,
-        tipo: "leg",
+        tipo: "Leg",
         fk_venda: 0,
         fk_user: isLogged[0].id,
         parcela: '1/1',
