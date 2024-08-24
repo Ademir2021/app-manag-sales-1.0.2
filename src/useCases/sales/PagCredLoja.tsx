@@ -70,7 +70,7 @@ export function PagCredLoja() {
                 };
                 contaReceber.id_conta = i
                 contaReceber.fk_filial = sales.filial
-                contaReceber.tipo = 'cred'
+                contaReceber.tipo = 'Cred'
                 contaReceber.fk_venda = 0
                 contaReceber.fk_user = sales.user.user_id
                 contaReceber.parcela = i + '/' + installments

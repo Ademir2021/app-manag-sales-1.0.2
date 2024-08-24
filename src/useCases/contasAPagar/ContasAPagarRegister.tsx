@@ -21,7 +21,7 @@ export function ContasAPagarRegister() {
     const [contaAPagar, setContaAPagar] = useState<TContaAPagar>({
         id_conta: 0,
         fk_filial: 0,
-        tipo: "desp",
+        tipo: "Desp",
         fk_compra: 0,
         fk_user: isLogged[0].id,
         parcela: '1/1',

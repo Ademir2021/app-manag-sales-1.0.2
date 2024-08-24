@@ -115,7 +115,7 @@ function ContasAReceber() {
         valRecebido.fk_user = isLogged[0].id
         valRecebido.data_recebimento = new Date()
         valRecebido.valor = valor
-        valRecebido.descricao = 'venda'
+        valRecebido.descricao = 'Venda'
         valRecebido.fk_person = 0
         valsRecebidos.push(valRecebido)
         await registerValRecebido(valRecebido)
