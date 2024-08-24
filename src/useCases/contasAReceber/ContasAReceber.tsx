@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react"
 import { ContasAreceberForm } from "../../components/contasAReceber/ContasAReceberForm"
 import { TContaAreceber, TValsRecebidos } from "./type/TContasAReceber"
 import { HandleContasAReceber } from "./HandleContasAReceber"
+
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api"
 
@@ -172,7 +173,6 @@ function ContasAReceber() {
     }
 
     return (
-        <>
             <ContasAreceberForm
                 contasAReceber={contasAReceber}
                 valoresRecebidos={valsRecebidos_}
@@ -189,7 +189,6 @@ function ContasAReceber() {
                 submitfluxoDeCaixa={() => { window.location.assign("caixa_mov") }}
                 saldo={sumSaldoAReceber()}
             />
-        </>
     )
 }
 

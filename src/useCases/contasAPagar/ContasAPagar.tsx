@@ -193,9 +193,7 @@ function ContasAPagar() {
         else if (!contasAPagar)
             return 0
     }
-
     return (
-        <>
             <ContasAPagarForm
                 contasAPagar={contasAPagar}
                 valoresPagos={valsPagos_}
@@ -213,7 +211,6 @@ function ContasAPagar() {
                 saldo={sumSaldoAPagar()}
                 findNameDespesa={findNameDespesa}
             />
-        </>
     )
 }
 
