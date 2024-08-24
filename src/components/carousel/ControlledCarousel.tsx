@@ -42,7 +42,7 @@ function ControlledCarousel() {
             <a href='register'>
             <div id='carousel-item3'>
               <h2><>Acesso rápido e seguro</></h2>
-              <dd>WEB-Token + confiança para suas compras</dd><br></br>
+              <dd>Web -Token + confiança para suas compras</dd><br></br>
               <button className='btn btn-primary' onClick={() => { window.location.replace('register') }}>Criar conta</button>
             </div>
             </a>

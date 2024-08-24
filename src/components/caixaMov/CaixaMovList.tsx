@@ -25,7 +25,7 @@ export function CaixaMovListComp({
                     <td id="center">Vendas</td>
                     <td id="center">D/C</td>
                     <td id="">Valor</td>
-                    <td id="">saldo</td>
+                    <td id="">Saldo</td>
                 </tr>
             </thead>
             <tbody>
@@ -51,7 +51,7 @@ export function CaixaMovListComp({
         </table>
     return (
             <div className="container">
-                <div className="text-center p-1">Movimento do Caixa</div>
+                <div className="mt-2">Movimento de caixa</div>
                 {caixaMovList}
             </div>
     )
