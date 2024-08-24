@@ -27,7 +27,7 @@ export type TValsPagos = {
     fk_user: number
     valor: number
     data_recebimento: Date | any | null
-    descricao:string
+    descricao:string | undefined
     fk_person:number
     fk_despesa:number
 }

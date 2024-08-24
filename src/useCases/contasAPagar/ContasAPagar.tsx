@@ -137,7 +137,7 @@ function ContasAPagar() {
         valPago.fk_user = isLogged[0].id
         valPago.data_recebimento = new Date()
         valPago.valor = valor
-        valPago.descricao = 'venda'
+        valPago.descricao = findNameDespesa(conta.fk_despesa)
         valPago.fk_person = 0
         valsPagos__.push(valPago)
         await registerValPago(valPago)
