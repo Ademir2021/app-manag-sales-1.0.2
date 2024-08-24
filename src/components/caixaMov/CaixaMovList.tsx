@@ -1,11 +1,13 @@
-import { TCaixaMov } from "../../useCases/CaixaMov/type/TCaixaMov"
+import { TCaixaMov } from "../../useCases/caixaMov/type/TCaixaMov"
 import { HandleContasAReceber } from "../../useCases/contasAReceber/HandleContasAReceber"
+
 type Props = {
     caixaMov: TCaixaMov[]
     findNameMovCaixaDebito: any // (id:number)
     findNameMovCaixaCredito: any // (id:number)
     findVendaMovCaixaCredito: any //(id:number
 }
+
 export function CaixaMovListComp({
     caixaMov,
     findNameMovCaixaDebito,
@@ -13,8 +15,7 @@ export function CaixaMovListComp({
     findVendaMovCaixaCredito
 }: Props) {
     const handleContasAReceber = new HandleContasAReceber()
-    const caixaMovList =
-        <table className='table bg-light mt-1'>
+    const caixaMovList = <table className='table bg-light mt-1'>
             <thead>
                 <tr>
                     <th id="center">ID</th>
@@ -31,27 +32,27 @@ export function CaixaMovListComp({
                 {caixaMov.map((caixa: TCaixaMov) => (
                     <tr key={caixa.id_caixa}>
                         <th id="center">{caixa.id_caixa}</th>
-                        <td id="">{handleContasAReceber.formatDate(caixa.data_recebimento)}</td>
+                        <td>{handleContasAReceber.formatDate(caixa.data_recebimento)}</td>
                         <td id="center">{caixa.fk_val}</td>
-                        <td id="">{caixa.debito !== null ?
+                        <td id='center'>{caixa.debito !== null ?
                             findNameMovCaixaDebito(caixa.fk_val) :
                             findNameMovCaixaCredito(caixa.fk_val)}</td>
                         <td id="center">{findVendaMovCaixaCredito(caixa.fk_val) !==
                             undefined && caixa.credito !== null ?
                             findVendaMovCaixaCredito(caixa.fk_val) : null}</td>
                         <td id="center">{caixa.credito === null ? "D" : "C"}</td>
-                        <td id="">{caixa.credito === null ? caixa.debito : caixa.credito}</td>
-                        <td id="">{caixa.saldo}</td>
+                        <td>{caixa.credito === null ?
+                        parseFloat(caixa.debito).toFixed(2) :
+                        parseFloat(caixa.credito).toFixed(2)}</td>
+                        <td>{parseFloat(caixa.saldo).toFixed(2)}</td>
                     </tr>
                 ))}
             </tbody>
         </table>
     return (
-        <>
             <div className="container">
                 <div className="text-center p-1">Movimento do Caixa</div>
                 {caixaMovList}
             </div>
-        </>
     )
 }

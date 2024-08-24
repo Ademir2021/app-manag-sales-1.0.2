@@ -4,7 +4,7 @@ export type TCaixaMov = {
     name?:string
     venda?:string
     data_recebimento: Date | string | any
-    debito:number 
-    credito:number 
-    saldo:number
+    debito:number  | any
+    credito:number | any
+    saldo:number | any
 }
