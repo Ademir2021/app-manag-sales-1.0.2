@@ -66,7 +66,7 @@ export function CaixaMovList() {
         for (let val of valsPagos)
             if (val.id_val === id)
                 for (let despesa of despesas)
-                    if (val.fk_despesa == despesa.id)
+                    if (val.fk_despesa === despesa.id)
                         if(despesa.name)
                         return despesa.name
     }
