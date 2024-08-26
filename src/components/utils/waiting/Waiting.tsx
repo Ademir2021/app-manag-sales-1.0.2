@@ -1,8 +1,8 @@
-type PropsWaiting = {
+type Props = {
     waiting: string;
 }
 
-export function Waiting(props: PropsWaiting) {
+export function Waiting(props: Props) {
     return (
         <h5><b style={{
             display: 'flex',

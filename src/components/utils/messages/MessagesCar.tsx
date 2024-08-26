@@ -1,13 +1,13 @@
 import { currencyFormat } from "../currentFormat/CurrentFormat";
 
-type PropsMessages = {
+type Props = {
     messages:string;
     subtotal:number;
     counter_:number;
 
 }
 
-export function MessagesCar(props:PropsMessages) {
+export function MessagesCar(props:Props) {
     return (
             <>
                 <dd className="text-center">{props.messages}</dd>

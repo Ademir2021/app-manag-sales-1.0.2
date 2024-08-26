@@ -4,8 +4,9 @@ import { PersonFormUpdate } from "../../components/persons/PersonFormUpdate"
 import { PersonList } from "../../components/persons/PersonList"
 import { Dashboard } from "../dashboard/Dashboard"
 import { TPersonRegister, TCeps, TCities } from './type/TypePerson'
-import { PersonsValFields } from "../../components/utils/crypt/Crypt"
 import { HandleEnsureAuth } from "../../services/HandleEnsureAuth"
+import { PersonsValFields } from "./valsFields/ValFields"
+
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api"
 

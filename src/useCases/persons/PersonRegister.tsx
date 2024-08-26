@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { PersonForm } from '../../components/persons/PersonForm';
-import { PersonsValFields } from '../../components/utils/crypt/Crypt';
 import { Dashboard } from "../dashboard/Dashboard";
 import { TPersonRegister, TCeps } from "./type/PersonCeps";
 import api from "../../services/api/api";
+import { PersonsValFields } from "./valsFields/ValFields";
 
 export function FormPerson() {
     const [person, setPerson] = useState<TPersonRegister>({
