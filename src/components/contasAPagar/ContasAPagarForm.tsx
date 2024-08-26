@@ -64,7 +64,7 @@ function ContasAPagarForm({
             max={999}
             type="number"
             id="input-valor"
-            placeholder="Informe o valor pago"
+            placeholder="Informe o Valor a pagar"
             onChange={handleChangeValor}
         />
         <input
@@ -72,7 +72,7 @@ function ContasAPagarForm({
         max={999}
         type="number"
         id="input-valor"
-        placeholder="desconto"
+        placeholder="Desconto"
         onChange={ handleChangeDesconto}
     />
     </div>

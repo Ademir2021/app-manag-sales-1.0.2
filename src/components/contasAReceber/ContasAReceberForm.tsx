@@ -61,7 +61,7 @@ export function ContasAreceberForm({
             max={999}
             type="number"
             id="input-valor"
-            placeholder="Informe o valor recebido"
+            placeholder="Informe o Valor a receber"
             onChange={handleChangeValor}
         />
         <input
@@ -69,7 +69,7 @@ export function ContasAreceberForm({
         max={999}
         type="number"
         id="input-valor"
-        placeholder="desconto"
+        placeholder="Desconto"
         onChange={ handleChangeDesconto}
     />
     </div>
