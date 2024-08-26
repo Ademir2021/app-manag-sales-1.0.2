@@ -12,6 +12,7 @@ import { Dashboard } from "../dashboard/Dashboard";
 import { HandleProducts } from "./HandleProduct";
 import api from '../../services/api/api';
 import "../../App.css"
+import { ProductValFields } from "./valsFields/ValsFields";
 
 export function ProductUpdate() {
     const { user: isLogged }: any = useContext(AuthContext);
@@ -211,29 +212,15 @@ export function ProductUpdate() {
         }
     };
 
-    function ProductValFields() {
-        let content = "Campo obrigatório: "
-        let msg = ""
-        if (product.descric_product === "") { msg += content + "descrição do produto, " };
-        if (product.val_max_product === 0) { msg += content + "valor max, " };
-        if (product.val_min_product === 0) { msg += content + "valor min, " };
-        if (product.bar_code === "") { msg += content + "código de barras, " };
-        if (msg !== "") {
-            setAlert_(msg)
-            return false;
-        };
-        return true;
-    };
-
     async function handleSubmit(e: any) {
         e.preventDefault();
-        if (ProductValFields()) {
+        if (ProductValFields(product, setAlert_)) {
             postRegister(product, 'product');
         }
     };
     async function handleUpdate(e: Event) {
         e.preventDefault();
-        if (ProductValFields()) {
+        if (ProductValFields(product, setAlert_)) {
             const resp: any = await putUpdate(product, 'product_update')
             setAlert_(resp)
         }
