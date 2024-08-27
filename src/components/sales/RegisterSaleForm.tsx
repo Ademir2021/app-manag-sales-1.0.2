@@ -3,7 +3,7 @@ import { currencyFormat } from '../utils/currentFormat/CurrentFormat';
 import '../global-module.css'
 import './SaleForm.css'
 
-type TRegisterSaleForm = {
+type Props = {
   children: string | number | readonly string[] | undefined | any;
   handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
   handleSubmit: any;
@@ -37,7 +37,7 @@ export function RegisterSaleForm({
   item_img,
   alert,
   message
-}: TRegisterSaleForm) {
+}: Props) {
 
   return (
     <>

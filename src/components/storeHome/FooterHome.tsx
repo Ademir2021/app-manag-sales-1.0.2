@@ -1,7 +1,9 @@
 import { NewsLetter } from '../../useCases/contacts/newsLetter'
 import { Globais } from '../globais/Globais'
+
 import './FooterHome.css'
 import './cookies.css'
+
 export function FooterHome() {
     return (
         <>

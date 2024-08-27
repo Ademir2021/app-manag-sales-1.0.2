@@ -11,8 +11,7 @@ type Props = {
     dinheiro: number
 }
 
-export function PagCredLojaForm(
-    {
+export function PagCredLojaForm({
         handleSubmit,
         duplicatas,
         toGoBackInvoiceSale,

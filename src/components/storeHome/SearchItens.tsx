@@ -1,27 +1,28 @@
+import { TProductRegister, TSector } from '../../useCases/products/type/TypeProducts'
+
 import './SearchItens.css'
 
-type SearchItens = {
+type Props = {
     handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
     handleSubmit: React.FormEvent<HTMLFormElement> | undefined | any ;
     descric: string;
     messageItems: string;
     selectSector: React.ChangeEventHandler<HTMLSelectElement> | undefined;
-    sectors: Array<object>;
-    products: Array<object>
+    sectors: TSector[]
+    products: TProductRegister[]
 }
 
-export function SearchItens(props: SearchItens) {
-
+export function SearchItens(props: Props) {
     return (
             <section className="search-item-main">
                 <form onSubmit={props.handleSubmit} className="d-flex mt-1 mt-lg-0" role="search">
-                    <datalist id='data-itens' ><select>{props.products.map((product: any) => (
+                    <datalist id='data-itens' ><select>{props.products.map((product: TProductRegister) => (
                         <option key={product.id_product}>
                             {product.descric_product}</option>))}
                     </select></datalist>
                     <select className='search-select' onChange={props.selectSector} >
                         <option>Todos</option>
-                        {props.sectors.map((sector: any) => (
+                        {props.sectors.map((sector: TSector) => (
                             <option key={sector.id_sector}>
                                 {sector.name_sector}</option>))}
                     </select>

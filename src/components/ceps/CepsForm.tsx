@@ -126,7 +126,6 @@ export function CepsForm({
                                         {city.name_city}
                                     </option>))}</select>
                         </label>
-
                         {/* <input
                             type="text"
                             name="city"

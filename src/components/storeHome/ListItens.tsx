@@ -1,7 +1,8 @@
 import { checksUserLogged } from '../utils/checksUserLogged/ChecksUserLogged';
+
 import './ListItens.css'
 
-type PropsListItens = {
+type Props = {
     handleItem: any;
     id?: number;
     item_img: string;
@@ -17,7 +18,7 @@ type PropsListItens = {
     unMed:string | undefined
 }
 
-export function ListItens(props: PropsListItens) {
+export function ListItens(props: Props) {
     return (
         <div className='container-itens'>
             <div className='main-itens'>
@@ -32,7 +33,6 @@ export function ListItens(props: PropsListItens) {
                     <li><b>Setor</b> {props.sector}</li>
                     {checksUserLogged() !== undefined ? <li><b>R$</b> {props.valor}</li> : null}
                 </ul>
-
                 {checksUserLogged() !== undefined ?
                     < select onChange={props.selectAmount}
                     ><option>{"Quant: 1"}</option>
@@ -46,9 +46,7 @@ export function ListItens(props: PropsListItens) {
                         <option>{9}</option>
                         <option>{10}</option>
                     </select> : null}
-
                 {checksUserLogged() !== undefined ? <div className='mb-1'><a href='pe'>Ir para o Carrinho</a></div> : null}
-
                 {checksUserLogged() !== undefined ? <button className='btn btn-primary mb-2' onClick={() =>
                     props.handleItem(props.itemParameter)}>Comprar</button> : <button className='btn btn-primary mb-2'
                         onClick={() => { window.location.replace("/pe") }}>Solicitar cotação</button>}

@@ -10,7 +10,7 @@ type Props = {
 
 export function SalesList(props: Props) {
 
-    const NFeStatus:JSX.Element = <img src="img/NFe/status/autorizada.ico" alt="img NFe autorizada"></img>
+    const NFeStatus = <img src="img/NFe/status/autorizada.ico" alt="img NFe autorizada"></img>
 
     return (
         <table className='table bg-light mt-1 container'>

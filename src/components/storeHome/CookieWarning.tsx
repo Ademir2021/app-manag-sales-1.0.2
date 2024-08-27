@@ -1,7 +1,5 @@
 export function CookiesWarnings() {
-
     return (
-        <>
             <div className="container">
                 <hr></hr>
                 <div><strong>O que são cookies ?</strong></div>
@@ -34,6 +32,5 @@ export function CookiesWarnings() {
                     </p>
                 </span>
             </div>
-        </>
     )
 }

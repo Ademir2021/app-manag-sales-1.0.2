@@ -1,14 +1,15 @@
 import './Contact.css'
 
-type PropsNewsLetterForm = {
+type Props = {
     children: React.ChangeEventHandler<HTMLInputElement> | undefined | any;
     handleSubmit: React.FormEventHandler<HTMLButtonElement> | undefined | any
     handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined | any;
 }
 
-
-export function NewsLetterForm(
-    { children, handleSubmit, handleChange }: PropsNewsLetterForm) {
+export function NewsLetterForm({
+    children,
+    handleSubmit,
+    handleChange }: Props) {
 
     return (
         <form id='form-newsLetter' >

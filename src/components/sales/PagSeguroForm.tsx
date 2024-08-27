@@ -3,7 +3,7 @@ import '../global-module.css'
 import { currencyFormat } from '../utils/currentFormat/CurrentFormat';
 import { LogoIn } from '../utils/logoIn/LogoIn';
 
-type TPaymentSaleForm = {
+type Props= {
     children?:any
     handleBoleto: any
     handleQrCode: any
@@ -31,7 +31,7 @@ export function PagSeguroForm({
     paySale,
     URLNoteSubmit,
     error
-}: TPaymentSaleForm) {
+}: Props) {
     return (
         <>
             <div className='container-global'>
