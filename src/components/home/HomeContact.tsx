@@ -9,7 +9,12 @@ export type PropsHomeContact = {
 
 }
 
-export function HomeContact({children,handleChange,handleSubmit,msg,msgFields}:PropsHomeContact) {
+export function HomeContact({
+    children,
+    handleChange,
+    handleSubmit,
+    msg,
+    msgFields}:PropsHomeContact) {
 
     return (
         <>

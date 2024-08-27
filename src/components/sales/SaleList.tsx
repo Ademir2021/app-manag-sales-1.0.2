@@ -5,7 +5,7 @@ type Props = {
     total_prod: string | number;
     disc_sale: string | number;
     total_note: string | number;
-    issueNote: HTMLAnchorElement | string | undefined | HTMLLabelElement | any;
+    issueNote: any;
 }
 
 export function SalesList(props: Props) {

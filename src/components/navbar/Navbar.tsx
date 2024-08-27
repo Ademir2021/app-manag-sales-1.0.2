@@ -1,4 +1,3 @@
-import React from "react";
 import { checksUserLogged, checkAdminPrivilege } from "../utils/checksUserLogged/ChecksUserLogged";
 import { Globais } from "../globais/Globais";
 import { Logo } from "../logo/Logo";

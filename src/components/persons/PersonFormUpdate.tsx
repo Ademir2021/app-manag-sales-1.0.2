@@ -2,7 +2,7 @@
 import InputMask from "react-input-mask";
 import '../global-module.css'
 
-type PropsPersonsFormUpdate = {
+type Props = {
     children: string | number | readonly string[] | undefined | any
     handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined
     handleSubmit: any
@@ -26,7 +26,7 @@ export function PersonFormUpdate({
     close,
     alert,
     message
-}: PropsPersonsFormUpdate) {
+}: Props) {
     return (
         <div ref={modalRef} className={`${className} modal`}>
             <div className="container-global">

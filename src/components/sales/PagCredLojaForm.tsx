@@ -3,7 +3,7 @@ import { HandleContasAReceber } from "../../useCases/contasAReceber/HandleContas
 import { Globais } from "../globais/Globais"
 import { currencyFormat } from "../utils/currentFormat/CurrentFormat"
 
-type TProps = {
+type Props = {
     duplicatas: TContaAreceber[]
     handleSubmit: any
     toGoBackInvoiceSale: any
@@ -18,7 +18,7 @@ export function PagCredLojaForm(
         toGoBackInvoiceSale,
         URLNoteSubmit,
         dinheiro
-    }: TProps) {
+    }: Props) {
 
     const handleContasAReceber = new HandleContasAReceber()
 

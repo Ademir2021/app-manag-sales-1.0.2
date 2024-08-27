@@ -5,7 +5,7 @@ import { Logo } from "../logo/Logo";
 
 import './ContasAPagar.css'
 
-type TProps = {
+type Props = {
     contasAPagar: TContaAPagar[]
     valoresPagos: TValsPagos[]
     pagarValor: any
@@ -31,7 +31,7 @@ function ContasAPagarForm({
     submitfluxoDeCaixa,
     saldo,
     findNameDespesa
-}: TProps) {
+}: Props) {
 
     const handleContasAPagar = new HandleContasAPagar()
 

@@ -5,7 +5,7 @@ import { Globais } from '../globais/Globais';
 import '../global-module.css'
 import './InvoiceSalesForm.css'
 
-type TInvoiceSalesForm = {
+type Props = {
   children: string | number | readonly string[] | undefined | any;
   handleChange: any;
   handleSubmitCard: any;
@@ -31,7 +31,7 @@ export function InvoiceSalesForm({
   backHomeInvoice,
   token,
   installments
-}: TInvoiceSalesForm) {
+}: Props) {
 
   return (
     <>

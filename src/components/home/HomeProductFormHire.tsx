@@ -2,14 +2,18 @@ import InputMask from "react-input-mask";
 import { HomeNav } from './HomeNav'
 import './HomeProductFormHire.css'
 
-type PropsroductFormHire ={
+type Props ={
     children: React.ChangeEventHandler<HTMLInputElement> | undefined | any;
     handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined | any;
     handleSubmit: any
     sendMsg:String;
 }
 
-export function HomeProductFormHire({children,handleChange,handleSubmit,sendMsg}:PropsroductFormHire) {
+export function HomeProductFormHire({
+    children,
+    handleChange,
+    handleSubmit,
+    sendMsg}:Props) {
     return (
         <>
             <HomeNav />

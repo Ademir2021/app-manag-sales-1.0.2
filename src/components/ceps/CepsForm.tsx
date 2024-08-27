@@ -1,7 +1,8 @@
-import '../global-module.css'
 import InputMask from 'react-input-mask';
 
-interface ICepsForm {
+import '../global-module.css'
+
+interface Props {
     children: React.ChangeEventHandler<HTMLInputElement> | undefined | any
     handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined
     handleSubmit: any
@@ -21,7 +22,7 @@ export function CepsForm({
     listUf,
     listCity,
     setSelectedIdCity
-}: ICepsForm) {
+}: Props) {
 
     return (
         <>

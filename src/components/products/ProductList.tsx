@@ -1,6 +1,5 @@
 import '../global-module.css'
 
-
 type Props = {
     id: number;
     created_at: Date | any;

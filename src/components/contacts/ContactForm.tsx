@@ -2,7 +2,7 @@ import { Globais } from '../globais/Globais';
 import '../global-module.css'
 import InputMask from "react-input-mask";
 
-type IContact = {
+type Props = {
     children: React.ChangeEventHandler<HTMLInputElement> | undefined | any;
     handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined | any;
     handleSubmit: any
@@ -14,7 +14,7 @@ export function ContactForm({
     handleChange,
     handleSubmit,
     msg
-}: IContact) {
+}: Props) {
     return (
         <>
             <hr></hr>

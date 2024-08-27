@@ -76,7 +76,7 @@ export function ListSales() {
         setEnd={setEnd}
         searchHandle={searchSales}
       />
-      {sales.length === 0 ? <Waiting waiting={'Aguardando busca !'} /> : (
+      {sales.length === 0 ?  <Waiting waiting="Aguardando Notas"/> : (
         sales.map((sale: TSaleList) => (
           <SalesList
             key={sale.id_sale}

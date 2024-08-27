@@ -1,15 +1,12 @@
-import React from "react";
-import { checksUserLogged, checkAdminPrivilege } from "../utils/checksUserLogged/ChecksUserLogged";
+import { checksUserLogged } from "../utils/checksUserLogged/ChecksUserLogged";
 import { Globais } from "../globais/Globais";
 import { Logo } from "../logo/Logo";
 
 import "../assets/dist/css/bootstrap.min.css"
 import "./HomeNav.css"
-import { Button } from '../Button/Button';
 
 export function HomeNav() {
 
-    const privilAdmin = Globais.privilAdmin;
     const privilegeShopping = Globais.checksUserLogged;
 
     const isHome = true

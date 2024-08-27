@@ -3,7 +3,7 @@ import { useState } from 'react';
 import './ProductForm.css'
 import '../global-module.css'
 
-type PropsProductFormUpdate = {
+type Props = {
     children?: string | number | readonly string[] | undefined | any;
     handleChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
     handleSubmit?: any;
@@ -45,7 +45,7 @@ export function ProductFormUpdate({
     listNcm,
     msgNcm,
     flagRegister,
-}: PropsProductFormUpdate) {
+}: Props) {
     const [menu, setMenu] = useState("geral")
     const nav = <>
         <div className='container mb-3 text-center'>

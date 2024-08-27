@@ -1,11 +1,9 @@
 import { currencyFormat } from "../utils/currentFormat/CurrentFormat";
 import { TItens } from "../../useCases/products/type/TypeProducts";
-import { Waiting } from "../utils/waiting/Waiting";
-import { MessagesCar } from "../utils/messages/MessagesCar";
 
 import './itensStore.css'
 
-type TProps = {
+type Props = {
     itens: TItens[]
     decrementItemListStore: any
     incrementItemListStore: any
@@ -13,7 +11,6 @@ type TProps = {
     messages: string
     counter_: number
     subtotal: number
-
 }
 
 export function ListItensStore({
@@ -24,7 +21,7 @@ export function ListItensStore({
     messages,
     counter_,
     subtotal,
-}: TProps) {
+}: Props) {
 
     const list = itens.map((item: TItens) => (
         <div key={item.id}>
@@ -55,13 +52,19 @@ export function ListItensStore({
                         src="img/car_sale.png"
                         alt="Carrinho de Compras" />
                 </a>
-            {itens.length !== 0 ? <MessagesCar
-                messages={messages}
-                counter_={counter_}
-                subtotal={subtotal} /> : null}
-            {itens.length === 0 ?
-                <Waiting waiting={"O seu Carrinho de compras está vazio"} /> : null}
+                <div className="text-center">
+                    {itens.length !== 0 ? messages : null}
                 </div>
+                <div className="text-center">
+                    {itens.length !== 0 ? "Quantidade = " + counter_ : null}
+                </div>
+                <div className="text-center">
+                    {itens.length !== 0 ? "TItems = " + currencyFormat(subtotal) : null}
+                </div>
+                <div>
+                    {itens.length === 0 ? "O seu Carrinho de compras está vazio" : null}
+                </div>
+            </div>
             {itens.length === 0 ? <div id='itensStoreCartogoback'><button
                 className='btn btn-primary'
                 onClick={() => { window.location.replace("/store") }}>Voltar as Compras</button></div> : null}
@@ -72,6 +75,6 @@ export function ListItensStore({
                     </div>
                 </div >
             </div >
-        </>
+            </>
     )
 }

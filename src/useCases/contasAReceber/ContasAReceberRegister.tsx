@@ -2,10 +2,11 @@ import { useEffect, useState, useContext } from "react"
 import { ContasAReceberRegisterForm } from "../../components/contasAReceber/ContasAReceberRegisterForm";
 import { TContaAreceber, TValsRecebidos } from "./type/TContasAReceber";
 import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
-import { AuthContext } from '../../context/auth'
-import api from "../../services/api/api"
 import { TPersonRegister } from "../persons/type/TypePerson";
 import { postRegister } from "../../services/handleService";
+
+import { AuthContext } from '../../context/auth'
+import api from "../../services/api/api"
 
 export function ContasAReceberRegister() {
     const [IdPerson, setIdPerson] = useState<number>(0)

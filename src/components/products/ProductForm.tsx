@@ -3,7 +3,7 @@ import '../global-module.css'
 
 import './ProductForm.css'
 
-type IProdctForm = {
+type Props = {
     children: React.ChangeEventHandler<HTMLInputElement> | undefined | any;
     handleChange: React.ChangeEventHandler<HTMLInputElement> | any;
     handleSubmit: any;
@@ -33,7 +33,7 @@ export function ProductForm({
     listTipoProd,
     listNcm,
     msgNcm
-}: IProdctForm) {
+}: Props) {
 
     const [menu, setMenu] = useState("geral")
 

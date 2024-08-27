@@ -2,7 +2,7 @@
 import InputMask from "react-input-mask";
 import '../../components/global-module.css'
 
-type IPersonForm = {
+type Props = {
     children: string | number | readonly string[] | undefined | any
     handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined
     handleSubmit: any
@@ -15,7 +15,7 @@ export function PersonForm({
     handleSubmit,
     message,
     alert,
-}: IPersonForm): JSX.Element {
+}: Props) {
     return (
         <div className='container-global'>
             <fieldset className='main-global'>
