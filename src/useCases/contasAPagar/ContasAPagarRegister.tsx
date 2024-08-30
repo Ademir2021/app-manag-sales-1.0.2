@@ -3,7 +3,7 @@ import { TContaAPagar, TDespesa } from "./type/TContasAPagar";
 import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api"
-import { TPersonRegister } from "../persons/type/TypePerson";
+import { TPerson } from "../persons/type/TPerson";
 import { postRegister } from "../../services/handleService";
 import { ContasAPagarRegisterForm } from "../../components/contasAPagar/ContasAPagarRegisterForm";
 
@@ -11,7 +11,7 @@ export function ContasAPagarRegister() {
     const [idPerson, setIdPerson] = useState<number>(0)
     const [sendConta, setSendConta] = useState<boolean>(false)
     const [msg, setMsg] = useState<string>('Aguardando titulo')
-    const [persons, setPersons] = useState<TPersonRegister[]>([])
+    const [persons, setPersons] = useState<TPerson[]>([])
 
     const [despesas, setDespesas] = useState<TDespesa[]>([]) //criar no banco
     const [idDespesa, setIdDespesa] = useState<number>(0)
@@ -67,10 +67,10 @@ export function ContasAPagarRegister() {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 }
-                await api.post<TPersonRegister[]>('persons_user', isLogged, { headers })
+                await api.post<TPerson[]>('persons_user', isLogged, { headers })
                     .then(response => {
                         setTokenMessage("Token Válido !")
-                        const persons: TPersonRegister[] = response.data
+                        const persons: TPerson[] = response.data
                         setPersons(persons)
                     })
             }
@@ -120,7 +120,7 @@ export function ContasAPagarRegister() {
                     onChange={e => setIdPerson(parseInt(e.target.value))}
                 >
                     <option>Selecione o beneficiario</option>
-                    {persons.map((person: TPersonRegister) => (
+                    {persons.map((person: TPerson) => (
                         <option
                             key={person.id_person}
                             value={person.id_person}

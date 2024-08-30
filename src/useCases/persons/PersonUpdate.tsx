@@ -3,7 +3,8 @@ import { FormatDate } from "../../components/utils/formatDate"
 import { PersonFormUpdate } from "../../components/persons/PersonFormUpdate"
 import { PersonList } from "../../components/persons/PersonList"
 import { Dashboard } from "../dashboard/Dashboard"
-import { TPersonRegister, TCeps, TCities } from './type/TypePerson'
+import { TPerson } from './type/TPerson'
+import { ICeps, ICities } from "../ceps/type/TCeps"
 import { HandleEnsureAuth } from "../../services/HandleEnsureAuth"
 import { PersonsValFields } from "./valsFields/ValFields"
 
@@ -14,29 +15,31 @@ import "../../App.css"
 
 export function PersonUpdate() {
     const { user: isLogged }: any = useContext(AuthContext)
-    const [persons, setPersons] = useState<TPersonRegister[]>([])
-    const [ceps, setCeps] = useState<TCeps[]>([])
-    const [cities, setCities] = useState<TCities[]>([])
-    const [person, setPerson] = useState<TPersonRegister>({
+    const [persons, setPersons] = useState<TPerson[]>([])
+    const [ceps, setCeps] = useState<ICeps[]>([])
+    const [cities, setCities] = useState<ICities[]>([])
+    const [person, setPerson] = useState<TPerson>({
         created_at: '', updated_at: '', name_pers: '',
-        num_address: "", cpf_pers: "", phone_pers: "", address_pers: "",
+        num_address: "", cpf_pers: "0", phone_pers: "", address_pers: "",
         bairro_pers: "", fk_cep: 0, name_city: "", uf: "",
-        num_cep: "", fk_name_filial: 1, fk_id_user: 0
+        num_cep: "", fk_name_filial: 1, fk_id_user: 0, rg: '0',
+        cnpj: '0', inscricao: '0', fantasia: '', limit_cred: 800, fk_grupo: 1
     })
     const isLoggedParams: number = isLogged[0].id
     const [dropdown, setDropdown] = useState<string>("");
     const modalRef = useRef<any>(null);
     const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
-    
-    function clearFields(){
+
+    function clearFields() {
         setPerson({
-            id_person: 0, created_at: '', name_pers: '', cpf_pers: "",
+            id_person: 0, created_at: '', name_pers: '', cpf_pers: "0",
             phone_pers: "", address_pers: "", num_address: '', bairro_pers: "", fk_cep: 0,
-            name_city: "", uf: "", num_cep: "", fk_name_filial: 1, fk_id_user: 0
+            name_city: "", uf: "", num_cep: "", fk_name_filial: 1, fk_id_user: 0, rg: '0',
+            cnpj: '0', inscricao: '0', fantasia: '', limit_cred: 800, fk_grupo: 1
         })
     }
 
-    function listUpdate(pers: TPersonRegister) {
+    function listUpdate(pers: TPerson) {
         person.id_person = pers.id_person
         person.name_pers = pers.name_pers
         person.cpf_pers = pers.cpf_pers
@@ -48,6 +51,12 @@ export function PersonUpdate() {
         person.fk_cep = setNumCep(person.num_cep);
         person.name_city = pers.name_city
         person.uf = pers.uf
+        person.rg = pers.rg
+        person.cnpj = pers.cnpj
+        person.inscricao = pers.inscricao
+        person.fantasia = pers.fantasia
+        person.limit_cred = pers.limit_cred
+        person.fk_grupo = pers.fk_grupo
         toggleDropdown()
     };
 
@@ -65,21 +74,27 @@ export function PersonUpdate() {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
-            await api.post<TPersonRegister[]>('persons_user', isLogged, { headers })
+            await api.post<TPerson[]>('persons_user', isLogged, { headers })
                 .then(response => {
                     setTokenMessage("Token Válido !")
-                    const resp: TPersonRegister[] = response.data
+                    const resp: TPerson[] = response.data
                     setPersons(resp)
                     for (let res of resp) {
                         if (person.id_person === res.id_person)
                             person.name_pers = res.name_pers
-                            person.cpf_pers = res.cpf_pers
-                            person.phone_pers = res.phone_pers
-                            person.address_pers = res.address_pers
-                            person.num_address = res.num_address
-                            person.bairro_pers = res.bairro_pers
-                            person.fk_name_filial = res.fk_name_filial
-                            person.fk_id_user = res.fk_id_user
+                        person.cpf_pers = res.cpf_pers
+                        person.phone_pers = res.phone_pers
+                        person.address_pers = res.address_pers
+                        person.num_address = res.num_address
+                        person.bairro_pers = res.bairro_pers
+                        person.fk_name_filial = res.fk_name_filial
+                        person.fk_id_user = res.fk_id_user
+                        person.rg = res.rg
+                        person.cnpj = res.cnpj
+                        person.inscricao = res.cnpj
+                        person.fantasia = res.fantasia
+                        person.limit_cred = res.limit_cred
+                        person.fk_grupo = res.fk_grupo
                     }
                 })
 
@@ -104,6 +119,8 @@ export function PersonUpdate() {
             listUpdate(person); // Atualiza o CEP do Cliente !!
             person.cpf_pers = person.cpf_pers.replace(/[..-]/g, '')
             person.phone_pers = person.phone_pers.replace(/[()-]/g, '')
+            person.cnpj = person.cnpj.replace(/[../-]/g, '')
+            person.rg = person.rg.replace(/[..-]/g, '')
             if (person.fk_cep === undefined) {
                 alert('Digite um CEP Válido')
             } else {
@@ -124,6 +141,8 @@ export function PersonUpdate() {
             listUpdate(person); //Atualiza o CEP do Cliente
             person.cpf_pers = person.cpf_pers.replace(/[..-]/g, '')
             person.phone_pers = person.phone_pers.replace(/[()-]/g, '')
+            person.cnpj = person.cnpj.replace(/[../-]/g, '')
+            person.rg = person.rg.replace(/[..-]/g, '')
             if (person.fk_cep === undefined) {
                 alert('Digite um CEP Válido')
             } else {
@@ -221,7 +240,7 @@ export function PersonUpdate() {
             <Dashboard />
             <div className="text-center"><a href="person_update">{tokenMessage}</a></div>
             {persons.length === 0 ? <p>Carregando...</p> : (
-                persons.map((per: TPersonRegister) => (
+                persons.map((per: TPerson) => (
                     <PersonList
                         key={per.id_person}
                         id_person={per.id_person}
@@ -237,8 +256,12 @@ export function PersonUpdate() {
                         name_city={per.name_city = setCity(per.fk_cep)?.name_city}
                         uf={per.uf = setCity(per.fk_cep)?.uf}
                         cpf={per.cpf_pers}
+                        rg={per.rg}
+                        cnpj={per.cnpj}
+                        inscricao={per.inscricao}
                         id_user={per.fk_id_user}
                         filial={per.fk_name_filial}
+                        fk_grupo={per.fk_grupo}
                         update={<button onClick={() =>
                             listUpdate(per)}>Atualizar</button>}
                     />

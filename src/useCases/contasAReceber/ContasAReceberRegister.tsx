@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react"
 import { ContasAReceberRegisterForm } from "../../components/contasAReceber/ContasAReceberRegisterForm";
 import { TContaAreceber, TValsRecebidos } from "./type/TContasAReceber";
 import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
-import { TPersonRegister } from "../persons/type/TypePerson";
+import { TPerson } from "../persons/type/TPerson";
 import { postRegister } from "../../services/handleService";
 
 import { AuthContext } from '../../context/auth'
@@ -12,7 +12,7 @@ export function ContasAReceberRegister() {
     const [IdPerson, setIdPerson] = useState<number>(0)
     const [sendConta, setSendConta] = useState<boolean>(false)
     const [msg, setMsg] = useState<string>('Aguardando titulo')
-    const [persons, setPersons] = useState<TPersonRegister[]>([])
+    const [persons, setPersons] = useState<TPerson[]>([])
     const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
     const { user: isLogged }: any = useContext(AuthContext);
     const [contaAReceber, setContaAReceber] = useState<TContaAreceber>({
@@ -51,10 +51,10 @@ export function ContasAReceberRegister() {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 }
-                await api.post<TPersonRegister[]>('persons_user', isLogged, { headers })
+                await api.post<TPerson[]>('persons_user', isLogged, { headers })
                     .then(response => {
                         setTokenMessage("Token Válido !")
-                        const persons: TPersonRegister[] = response.data
+                        const persons: TPerson[] = response.data
                         setPersons(persons)
                     })
             }
@@ -102,7 +102,7 @@ export function ContasAReceberRegister() {
                     onChange={e => setIdPerson(parseInt(e.target.value))}
                 >
                     <option>Selecione um pagador</option>
-                    {persons.map((person: TPersonRegister) => (
+                    {persons.map((person: TPerson) => (
                     <option
                         key={person.id_person}
                         value={person.id_person}

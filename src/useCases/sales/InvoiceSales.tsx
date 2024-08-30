@@ -1,7 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { InvoiceSalesForm } from '../../components/sales/InvoiceSalesForm';
 import { BackHome } from "../../components/utils/backHome/BackHome";
-import { TCeps, TCities, TPersonRegister } from "../persons/type/TypePerson";
+import {TPerson } from "../persons/type/TPerson";
+import { ICeps, ICities } from "../ceps/type/TCeps";
 import { currencyFormat } from "../../components/utils/currentFormat/CurrentFormat";
 import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
 import saleJSON from "./sale.json"
@@ -11,12 +12,12 @@ import { AuthContext } from '../../context/auth'
 
 export function InvoiceSales() {
     const { user: isLogged }: any = useContext(AuthContext);
-    const [ceps, setCeps] = useState<TCeps[]>([])
-    const [cities, setCities] = useState<TCities[]>([])
+    const [ceps, setCeps] = useState<ICeps[]>([])
+    const [cities, setCities] = useState<ICities[]>([])
     const [msg, setMsg] = useState<string>('')
     const [sum, setSum] = useState<number>(0)
     const [itens, setItens] = useState<TItens[]>([]);
-    const [persons, setPersons] = useState<TPersonRegister[]>([])
+    const [persons, setPersons] = useState<TPerson[]>([])
     const [sale, setSale] = useState<any>(saleJSON);
     const [userLoggedId, setUserLoggedId] = useState(0)
     const [userLoggedUsername, setUserLoggedUsername] = useState("")
@@ -43,7 +44,7 @@ export function InvoiceSales() {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 }
-                await api.post<TPersonRegister[]>('persons_user', isLogged, { headers })
+                await api.post<TPerson[]>('persons_user', isLogged, { headers })
                     .then(response => {
                         setPersons(response.data)
                     })

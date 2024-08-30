@@ -1,6 +1,7 @@
-// import React from "react";
 import InputMask from "react-input-mask";
+
 import '../global-module.css'
+import { checkAdminPrivilege } from "../utils/checksUserLogged/ChecksUserLogged";
 
 type Props = {
     children: string | number | readonly string[] | undefined | any
@@ -27,6 +28,102 @@ export function PersonFormUpdate({
     alert,
     message
 }: Props) {
+
+    const naturalPerson = <>
+        <dd>CPF</dd>
+        <InputMask
+            type="text"
+            name="cpf_pers"
+            placeholder="Seu CPF"
+            mask="999.999.999-99"
+            mask-selectonfocus="true"
+            maxLength={14}
+            autoComplete="off"
+            maskChar={null}
+            value={children.cpf_pers || ""}
+            onChange={handleChange}
+        />
+        <dd>RG</dd>
+        <InputMask
+            type="text"
+            name="rg"
+            placeholder="Seu RG"
+            mask="999.999.999-9"
+            mask-selectonfocus="true"
+            maxLength={14}
+            autoComplete="off"
+            maskChar={null}
+            value={children.rg || ""}
+            onChange={handleChange}
+        />
+    </>
+
+const legalPerson = <>
+<dd>Nome Fantasia</dd>
+<input
+    type="text"
+    name="fantasia"
+    placeholder="Nome fantasia"
+    value={children.fantasia || ""}
+    onChange={handleChange}
+/>
+<dd>CNPJ</dd>
+<InputMask
+    type="text"
+    name="cnpj"
+    placeholder="CNPJ da empresa"
+    mask="99.999.999/9999-99"
+    mask-selectonfocus="true"
+    maxLength={18}
+    autoComplete="off"
+    maskChar={null}
+    value={children.cnpj || ""}
+    onChange={handleChange}
+/>
+<dd>Inscrição estadual</dd>
+<InputMask
+    type="text"
+    name="inscricao"
+    placeholder="Inscrição estadual"
+    mask=""
+    mask-selectonfocus="true"
+    maxLength={10}
+    autoComplete="off"
+    maskChar={null}
+    value={children.inscricao || ""}
+    onChange={handleChange}
+/>
+</>
+
+const limiteCredito = <>
+<dd>Limite de crédito</dd>
+<InputMask
+    type="number"
+    name="limit_cred"
+    placeholder='Informe o limite para crédito'
+    mask=""
+    max-selectfucus='true'
+    maxLength={9}
+    autoComplete="off"
+    maskChar={null}
+    value={children.limit_cred || ""}
+    onChange={handleChange}
+/>
+</>
+
+const grupo = <>
+<dd>Informe o grupo</dd>
+ <label>{"1-Cliente 2-Fornecedor 3-Transportadora 4-Geral"}</label>
+    <input className=""
+        type="number"
+        name="fk_grupo"
+        placeholder='Informe número do grupo'
+        value={children.fk_grupo || ''}
+        onChange={handleChange}
+        
+    />
+</>
+
     return (
         <div ref={modalRef} className={`${className} modal`}>
             <div className="container-global">
@@ -51,19 +148,7 @@ export function PersonFormUpdate({
                             placeholder="Seu nome"
                             onChange={handleChange}
                         />
-                        <dd>CPF</dd>
-                        <InputMask
-                            type="text"
-                            name="cpf_pers"
-                            placeholder="Seu CPF"
-                            mask="999.999.999-99"
-                            mask-selectonfocus="true"
-                            maxLength={14}
-                            autoComplete="off"
-                            maskChar={null}
-                            value={children.cpf_pers}
-                            onChange={handleChange}
-                        />
+                    {children.cpf_pers === '0' ? legalPerson : naturalPerson}
                         <dd>Telefone</dd>
                         <InputMask
                             type="text"
@@ -144,11 +229,12 @@ export function PersonFormUpdate({
                             disabled
                             onChange={handleChange}
                         />
+                          {checkAdminPrivilege() === "2" ? limiteCredito: null}
+                          {checkAdminPrivilege() === "2" ? grupo: null}
                         <button onClick={handleUpdate} >Atualizar</button>
                         <button onClick={close}>Sair</button>
                         <button onClick={handleDelete}>Novo</button>
                         <button onClick={handleSubmit}>Registrar</button>
-                        <a href='###'>{'Mantenha seu cadastro atualizado'}</a>
                     </form>
 
                 </div>

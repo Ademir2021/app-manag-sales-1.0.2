@@ -2,16 +2,18 @@ import { useState, useEffect, useContext } from "react";
 import { FormatDate } from "../../components/utils/formatDate";
 import { PersonList } from "../../components/persons/PersonList";
 import { Dashboard } from "../dashboard/Dashboard";
-import { TPersonRegister, TCeps, TCities } from './type/TypePerson'
+import { TPerson } from './type/TPerson'
+import { ICeps, ICities } from "../ceps/type/TCeps";
 import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
+
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api";
 
 export function PersonsList() {
     const { user: isLogged }: any = useContext(AuthContext);
-    const [persons, setPersons] = useState<TPersonRegister[]>([])
-    const [ceps, setCeps] = useState<TCeps[]>([])
-    const [cities, setCities] = useState<TCities[]>([])
+    const [persons, setPersons] = useState<TPerson[]>([])
+    const [ceps, setCeps] = useState<ICeps[]>([])
+    const [cities, setCities] = useState<ICities[]>([])
     const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
 
     useEffect(() => {
@@ -23,10 +25,10 @@ export function PersonsList() {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 }
-                await api.post<TPersonRegister[]>('persons_user', isLogged, { headers })
+                await api.post<TPerson[]>('persons_user', isLogged, { headers })
                     .then(response => {
                         setTokenMessage("Token Válido!")
-                        const res: TPersonRegister[] = response.data
+                        const res: TPerson[] = response.data
                         setPersons(res)
                     })
             }
@@ -42,7 +44,7 @@ export function PersonsList() {
     useEffect(() => {
         async function getCeps() {
             try {
-                await api.get<TCeps[]>(`/ceps`)
+                await api.get<ICeps[]>(`/ceps`)
                     .then(response => { setCeps(response.data) })
             } catch (err) { alert("err " + err) }
         };
@@ -52,7 +54,7 @@ export function PersonsList() {
     useEffect(() => {
         async function getCities() {
             try {
-                await api.get<TCities[]>(`/cities`)
+                await api.get<ICities[]>(`/cities`)
                     .then(response => { setCities(response.data) })
             } catch (err) { alert("err " + err) }
         };
@@ -78,24 +80,28 @@ export function PersonsList() {
             <Dashboard />
             <div className="text-center"><a href="person_list">{tokenMessage}</a></div>
             {persons.length === 0 ? <p>Carregando...</p> : (
-                persons.map((person: TPersonRegister) => (
+                persons.map((per: TPerson) => (
                     <PersonList
-                        key={person.id_person}
-                        id_person={person.id_person}
-                        created_at={FormatDate(person.created_at)}
-                        updated_at={(person.updated_at === null ?
-                            "não houve atualização" : FormatDate(person.updated_at))}
-                        name={person.name_pers}
-                        phone={person.phone_pers}
-                        address={person.address_pers}
-                        num_address={person.num_address}
-                        bairro={person.bairro_pers}
-                        num_cep={person.num_cep = setCep(person.fk_cep)?.num_cep}
-                        name_city={setCity(person.fk_cep)?.name_city}
-                        uf={setCity(person.fk_cep)?.uf}
-                        cpf={person.cpf_pers}
-                        id_user={person.fk_id_user}
-                        filial={person.fk_name_filial}
+                        key={per.id_person}
+                        id_person={per.id_person}
+                        created_at={FormatDate(per.created_at)}
+                        updated_at={(per.updated_at === null ?
+                            "não houve atualização" : FormatDate(per.updated_at))}
+                        name={per.name_pers}
+                        phone={per.phone_pers}
+                        address={per.address_pers}
+                        num_address={per.num_address}
+                        bairro={per.bairro_pers}
+                        num_cep={per.num_cep = setCep(per.fk_cep)?.num_cep}
+                        name_city={setCity(per.fk_cep)?.name_city}
+                        uf={setCity(per.fk_cep)?.uf}
+                        cpf={per.cpf_pers}
+                        rg={per.rg}
+                        cnpj={per.cnpj}
+                        inscricao={per.inscricao}
+                        id_user={per.fk_id_user}
+                        filial={per.fk_name_filial}
+                        fk_grupo={per.fk_grupo}
                         update={null}
                     />
                 )))}

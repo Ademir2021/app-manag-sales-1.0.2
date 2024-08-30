@@ -6,15 +6,19 @@ export type Props = {
     updated_at: Date | any
     name: string
     cpf: string
+    rg: string
+    cnpj: string
+    inscricao: string
     phone: string
     address: string
-    num_address:string | undefined ;
+    num_address: string | undefined;
     bairro: string
     num_cep: string | undefined
     name_city: string | undefined
     uf: string | undefined
     filial: number
     id_user: number
+    fk_grupo:number
     update: any
 }
 
@@ -27,7 +31,10 @@ export const PersonList = (props: Props) => {
                     <li><b>Cadastro</b> {props.created_at}</li>
                     <li><b>Alterado</b> {props.updated_at}</li>
                     <li><b>Nome</b> {props.name}</li>
-                    <li><b>CPF</b> {props.cpf}</li>
+                    {props.cpf != '0' ? <li><b>CPF</b> {props.cpf}</li> : null}
+                    {props.rg != '0' ? <li><b>RG</b> {props.rg}</li> : null}
+                    {props.cnpj != '0' ? <li><b>CNPJ</b> {props.cnpj}</li> : null}
+                    {props.inscricao != '0' ? <li><b>Incric</b> {props.inscricao}</li> : null}
                     <li><b>Telefone</b> {props.phone}</li>
                     <li><b>Endereço</b> {props.address}</li>
                     <li><b>Número</b> {props.num_address}</li>
@@ -37,6 +44,7 @@ export const PersonList = (props: Props) => {
                     <li><b>Estado</b> {props.uf}</li>
                     <li><b>Filial</b> {props.filial}</li>
                     <li><b>Usuário</b> {props.id_user}</li>
+                    <li><b>Grupo</b> {props.fk_grupo}</li>
                     <>{props.update}</>
                 </ul>
             </div>

@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react"
 import { TValsPagos } from "./type/TContasAPagar";
 import { PagarValorForm } from "../../components/contasAPagar/PagarValorForm";
 import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
-import { TPersonRegister } from "../persons/type/TypePerson";
+import { TPerson } from "../persons/type/TPerson";
 import { postRegister } from "../../services/handleService";
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api"
@@ -11,7 +11,7 @@ export function PagarValor() {
     const [IdPerson, setIdPerson] = useState<number>(0)
     const [sendValor, setSendValor] = useState<boolean>(false)
     const [msg, setMsg] = useState<string>('Aguardando valor')
-    const [persons, setPersons] = useState<TPersonRegister[]>([])
+    const [persons, setPersons] = useState<TPerson[]>([])
     const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
     const { user: isLogged }: any = useContext(AuthContext);
     const [pagarValor, setReceberValor] = useState<TValsPagos>({
@@ -41,10 +41,10 @@ export function PagarValor() {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 }
-                await api.post<TPersonRegister[]>('persons_user', isLogged, { headers })
+                await api.post<TPerson[]>('persons_user', isLogged, { headers })
                     .then(response => {
                         setTokenMessage("Token Válido !")
-                        const persons: TPersonRegister[] = response.data
+                        const persons: TPerson[] = response.data
                         setPersons(persons)
                     })
             }
@@ -85,7 +85,7 @@ export function PagarValor() {
                     onChange={e => setIdPerson(parseInt(e.target.value))}
                 >
                     <option>Selecione um pagador</option>
-                    {persons.map((person: TPersonRegister) => (
+                    {persons.map((person: TPerson) => (
                         <option
                             key={person.id_person}
                             value={person.id_person}

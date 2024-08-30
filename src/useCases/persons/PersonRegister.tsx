@@ -1,18 +1,21 @@
 import { useState, useEffect } from "react";
 import { PersonForm } from '../../components/persons/PersonForm';
 import { Dashboard } from "../dashboard/Dashboard";
-import { TPersonRegister, TCeps } from "./type/PersonCeps";
-import api from "../../services/api/api";
+import { TPerson} from "./type/TPerson";
+import { ICeps } from "../ceps/type/TCeps";
 import { PersonsValFields } from "./valsFields/ValFields";
 
+import api from "../../services/api/api";
+
 export function FormPerson() {
-    const [person, setPerson] = useState<TPersonRegister>({
-        name_pers: "", cpf_pers: "", phone_pers: "", address_pers: "",
+    const [person, setPerson] = useState<TPerson>({
+        name_pers: "", cpf_pers: "0", phone_pers: "", address_pers: "",
         num_address: "", bairro_pers: "", fk_cep: 0, name_city: "", uf: "",
-        num_cep: "", fk_name_filial: 1, fk_id_user: 0
+        num_cep: "", fk_name_filial: 1, fk_id_user: 0, rg:'0',
+        cnpj:'0',inscricao:'0',fantasia:'',limit_cred:800,fk_grupo:1
     })
 
-    const [ceps, setCeps] = useState<TCeps[]>([])
+    const [ceps, setCeps] = useState<ICeps[]>([])
     const res: any = localStorage.getItem('u')
     const [userIdLogged] = useState(JSON.parse(res))
     person.fk_id_user = userIdLogged[0].id
@@ -28,6 +31,8 @@ export function FormPerson() {
         if (PersonsValFields(person)) {
             person.cpf_pers = person.cpf_pers.replace(/[..-]/g, '')
             person.phone_pers = person.phone_pers.replace(/[()-]/g, '')
+            person.cnpj = person.cnpj.replace(/[../-]/g, '')
+            person.rg = person.rg.replace(/[..-]/g, '')
             new setNumCeps().setNumCep()
             if (person.fk_cep === undefined) {
                 alert("Digite um CEP válido")
@@ -39,6 +44,7 @@ export function FormPerson() {
                         alert(msg)
                     })
                     .catch(error => alert(error));
+                // alert(JSON.stringify(person))
             }
         }
     }
@@ -46,7 +52,7 @@ export function FormPerson() {
     useEffect(() => {
         async function getCeps() {
             try {
-                await api.get<TCeps[]>(`/ceps`)
+                await api.get<ICeps[]>(`/ceps`)
                     .then(response => {
                         setCeps(response.data)
                     })
