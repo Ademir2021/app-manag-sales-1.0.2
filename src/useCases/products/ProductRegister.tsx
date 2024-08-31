@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { ProductForm } from '../../components/products/ProductForm';
 import { Dashboard } from "../dashboard/Dashboard";
 import { postRegister } from "../../services/handleService";
-import { TProductRegister, TBrand, TSector, TUnMed, TClasseProd, TGrupoFiscal, TTipoProd, TNcm } from "./type/TypeProducts"
+import { TProduct, TBrand, TSector, TUnMed, TClasseProd, TGrupoFiscal, TTipoProd, TNcm } from "./type/TProducts"
 import ncmJSON from './NCM.json'
 import api from "../../services/api/api";
 import { ProductValFields } from "./valsFields/ValsFields";
@@ -24,7 +24,7 @@ export function FormProduct() {
     const [selectedIdGrupoFiscal, setSelectedIdGrupoFiscal] = useState<any>(1)
     const [selectedIdTipoProd, setSelectdIdTipoProd] = useState<any>(1)
     const [selectedIdNcm, setSelectdIdNcm] = useState<any>('0000.0')
-    const [product, setProduct] = useState<TProductRegister>({
+    const [product, setProduct] = useState<TProduct>({
         id_product: 0, descric_product: '',
         val_max_product: 0.00, val_min_product: 0.00,
         fk_brand: 1, fk_sector: 1, fk_un_med: 1,

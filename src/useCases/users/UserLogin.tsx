@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import { useState, useContext } from 'react'
 import { UserFormLogin } from '../../components/users/UserFormLogin'
 import { AuthContext } from '../../context/auth'
 
@@ -45,7 +45,6 @@ export function UserLogin() {
   }
 
   return (
-    <>
       <UserFormLogin
         handleSubmit={handleSubmit}
         handleChange={handleChange}
@@ -54,6 +53,5 @@ export function UserLogin() {
       >
         {user}
       </UserFormLogin>
-    </>
   )
 }

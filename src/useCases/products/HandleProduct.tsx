@@ -1,4 +1,4 @@
-import { TBrand, TSector, TUnMed, TClasseProd, TGrupoFiscal, TTipoProd } from "./type/TypeProducts";
+import { TBrand, TSector, TUnMed, TClasseProd, TGrupoFiscal, TTipoProd } from "./type/TProducts";
 
 class HandleProducts {
     public nameSector(idSector: number, sectors: TSector[]) {

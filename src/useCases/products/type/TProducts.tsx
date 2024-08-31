@@ -1,4 +1,4 @@
-export type TProductRegister = {
+export type TProduct = {
     id_product: number;
     created_at?: Date | any;
     updated_at?: Date | any | null;

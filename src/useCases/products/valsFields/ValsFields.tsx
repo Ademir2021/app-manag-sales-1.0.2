@@ -1,6 +1,6 @@
-import { TProductRegister } from "../type/TypeProducts"
+import { TProduct } from "../type/TProducts"
 
-export function ProductValFields(product:TProductRegister, setAlert_:any) {
+export function ProductValFields(product:TProduct, setAlert_:any) {
     let content = "Campo obrigatório: "
     let msg = ""
     if (product.descric_product === "") { msg += content + "descrição do produto, " };

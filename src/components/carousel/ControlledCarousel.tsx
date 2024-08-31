@@ -57,4 +57,4 @@ function ControlledCarousel() {
   )
 }
 
-export default ControlledCarousel;
+export default ControlledCarousel

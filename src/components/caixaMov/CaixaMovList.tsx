@@ -14,7 +14,9 @@ export function CaixaMovListComp({
     findNameMovCaixaCredito,
     findVendaMovCaixaCredito
 }: Props) {
+
     const handleContasAReceber = new HandleContasAReceber()
+    
     const caixaMovList = <table className='table bg-light mt-1'>
             <thead>
                 <tr>

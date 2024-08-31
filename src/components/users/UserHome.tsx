@@ -11,5 +11,5 @@ export function UserHome() {
             {isHome() === 'true' ? <a href='/'><b>Home</b></a> :
                 <a href="/store">Home</a>}
         </>
-    );
-};
+    )
+}

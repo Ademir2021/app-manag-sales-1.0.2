@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Dashboard } from './Dashboard';
 import { ListItensStore } from '../../components/dashboard/ListItensStore';
-import { TItens } from '../products/type/TypeProducts';
+import { TItens } from '../products/type/TProducts';
 
 export function ItenStore() {
 

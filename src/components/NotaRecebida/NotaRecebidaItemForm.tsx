@@ -1,8 +1,8 @@
 import { TItems } from "../../useCases/NotaRecebida/type/TNotaRecebida"
-import { TProductRegister } from "../../useCases/products/type/TypeProducts"
+import { TProduct } from "../../useCases/products/type/TProducts"
 type Props = {
     children: any
-    products: TProductRegister[]
+    products: TProduct[]
     handleSubmit: any
     handleChange: any
     items: TItems[]
@@ -35,7 +35,7 @@ export function NotaRecebidaItemForm(
                 <div className="main-global">
                     <form className="main-global-form">
                         <datalist id="data-itens">
-                            <select>{products.map((product:TProductRegister) => (
+                            <select>{products.map((product:TProduct) => (
                                 <option key={product.id_product}>
                                     {product.descric_product}</option>))}
                             </select>

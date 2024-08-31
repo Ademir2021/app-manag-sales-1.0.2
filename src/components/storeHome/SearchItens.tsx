@@ -1,4 +1,4 @@
-import { TProductRegister, TSector } from '../../useCases/products/type/TypeProducts'
+import { TProduct, TSector } from '../../useCases/products/type/TProducts'
 
 import './SearchItens.css'
 
@@ -9,14 +9,14 @@ type Props = {
     messageItems: string;
     selectSector: React.ChangeEventHandler<HTMLSelectElement> | undefined;
     sectors: TSector[]
-    products: TProductRegister[]
+    products: TProduct[]
 }
 
 export function SearchItens(props: Props) {
     return (
             <section className="search-item-main">
                 <form onSubmit={props.handleSubmit} className="d-flex mt-1 mt-lg-0" role="search">
-                    <datalist id='data-itens' ><select>{props.products.map((product: TProductRegister) => (
+                    <datalist id='data-itens' ><select>{props.products.map((product: TProduct) => (
                         <option key={product.id_product}>
                             {product.descric_product}</option>))}
                     </select></datalist>

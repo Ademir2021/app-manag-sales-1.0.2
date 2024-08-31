@@ -40,7 +40,7 @@ export function InvoiceSalesForm({
           <div className='main-global-form'>
             <LogoIn />
             <hr></hr>
-            <span><b>Finalizar compra</b></span>
+            <strong>Finalizar compra</strong>
             <dd><b>SubTotal</b> {currencyFormat(children.tItens)}</dd>
             <dd><b>Valor do desconto</b> {currencyFormat(children.disc_sale)}</dd>
             <dd><b>Total da nota</b> {currencyFormat(children.tNote)}</dd>
@@ -78,9 +78,9 @@ export function InvoiceSalesForm({
               disabled
               onChange={handleChange}
             />
-            <button className='btn btn-primary' onClick={handleSubmitCard}>Pagar com Cartão</button>
-            <button className='btn btn-primary' onClick={handleSubmit}>Pagar com PIX ou BOLETO</button>
-            <button className='btn btn-primary' onClick={handleSubmitCred}>Pagar com Crediário Loja</button>
+            <button onClick={handleSubmitCard}>Pagar com Cartão</button>
+            <button onClick={handleSubmit}>Pagar com PIX ou BOLETO</button>
+            <button onClick={handleSubmitCred}>Pagar com Crediário Loja</button>
             <a href='/person_update'>{"[ Atualização de Cadastro ]"}</a><a href='invoice_sales'>{token}</a>
             <span className='load-list-itens' >{loadItens}</span>
           </div>

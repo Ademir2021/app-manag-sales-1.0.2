@@ -1,6 +1,7 @@
 import { Globais } from '../globais/Globais';
-import '../global-module.css'
 import InputMask from "react-input-mask";
+
+import '../global-module.css'
 
 type Props = {
     children: React.ChangeEventHandler<HTMLInputElement> | undefined | any;
@@ -16,10 +17,8 @@ export function ContactForm({
     msg
 }: Props) {
     return (
-        <>
-            <hr></hr>
             <div className='container'>
-                <h1 className="p-1 text-center">Formulário para contato</h1>
+                <strong className="p-1 text-center">Formulário para contato</strong>
                 <form method="" className="form-control input-contact bg-secondarys">
 
                     <div className="mb-3">
@@ -79,6 +78,5 @@ export function ContactForm({
                 <><b>Telefone:</b> {Globais.phone}</>
                 <hr></hr>
             </div>
-        </>
     )
 }

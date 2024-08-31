@@ -1,6 +1,6 @@
 import { useState, useEffect, SetStateAction } from 'react';
 import { NavBar } from "../../components/navbar/Navbar";
-import { TProductRegister, TItem, TItens, TBrand, TSector, TUnMed } from '../products/type/TypeProducts';
+import { TProduct, TItem, TItens, TBrand, TSector, TUnMed } from '../products/type/TProducts';
 import api from '../../services/api/api'
 import { ListItens } from '../../components/storeHome/ListItens';
 import { Header } from '../../components/storeHome/Header';
@@ -15,8 +15,8 @@ export function StoreHome() {
     const [counter, setCounter] = useState<number>(0)
     const [subtotal, setsubtotal] = useState<number>(0)
     const [itemImg,] = useState<string>('./img/img_itens/sale_avatar.png');
-    const [products, setProducts] = useState<TProductRegister[]>([]);
-    const [listProd, setlistProd] = useState<TProductRegister[]>([]);
+    const [products, setProducts] = useState<TProduct[]>([]);
+    const [listProd, setlistProd] = useState<TProduct[]>([]);
     const [itens, setItens] = useState<TItens[]>([]);
     const [item, setItem] = useState<TItem>({ descric: '' });
     const [brands, setBrand] = useState<TBrand[]>([]);
@@ -41,10 +41,10 @@ export function StoreHome() {
 
         async function getProducts() {
             try {
-                await api.post<TProductRegister[]>('products_list')
+                await api.post<TProduct[]>('products_list')
                     .then(response => {
-                        const resultProducts: TProductRegister[] = []
-                        const items: TProductRegister[] = response.data
+                        const resultProducts: TProduct[] = []
+                        const items: TProduct[] = response.data
                         if (flgItens === false) {
                             setlistProd(items)
                             setFlgItens(true)
@@ -99,7 +99,7 @@ export function StoreHome() {
         return itens.push(element);
     }
 
-    function handleItem(item: TProductRegister) {
+    function handleItem(item: TProduct) {
         const getItem: TItens = {
             id: 0, item: 0, descric: '', amount: 0, valor: 0, tItem: 0
         }
@@ -126,7 +126,7 @@ export function StoreHome() {
 
     function handleProducts() {
         if (item.descric !== '') {
-            const resp: TProductRegister[] = []
+            const resp: TProduct[] = []
             for (let i = 0; products.length > 0; i++) {
                 if (item.descric === products[i].descric_product) {
                     resp.push(products[i])
@@ -223,7 +223,7 @@ export function StoreHome() {
                 handleSubmit={handleSubmit}
             />
             {selectSector === "Todos" ? <ControlledCarousel /> : null}
-            {(listProd.map((item: TProductRegister) => (
+            {(listProd.map((item: TProduct) => (
                 <ListItens
                     key={item.id_product}
                     item_img={item.image !== null ? `./img/img_itens/${item.image}` : itemImg}

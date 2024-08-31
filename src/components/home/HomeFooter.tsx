@@ -1,4 +1,5 @@
 import { Globais } from '../globais/Globais'
+
 import './HomeFooter.css'
 import './cookies.css'
 

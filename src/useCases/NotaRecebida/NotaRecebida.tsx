@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { NotaRecebidaForm } from "../../components/NotaRecebida/NotaRecebidaForm";
 import { TNotaRecebida, TItem, TValsPago, TContaAPagar } from "./type/TNotaRecebida";
-import { TProductRegister } from "../products/type/TypeProducts";
+import { TProduct } from "../products/type/TProducts";
 import { NotaRecebidaItemForm } from "../../components/NotaRecebida/NotaRecebidaItemForm";
 import { NotaRecebidaValsPagoForm } from "../../components/NotaRecebida/NotarecebidaValsPagoForm";
 import { NotaRecebidaContaAPagarForm } from "../../components/NotaRecebida/NotaRecebidaContaAPagarForm";
@@ -15,7 +15,7 @@ export function NotaRecebida() {
     const [msg, setMsg] = useState<string>('')
     const [msgSendNota, setMsgSendNota] = useState<string>('Aguardando o envio da nota')
     const { user: isLogged }: any = useContext(AuthContext);
-    const [products, setProducts] = useState<TProductRegister[]>([])
+    const [products, setProducts] = useState<TProduct[]>([])
     const [notaRecebida, setNotaRecebida] = useState<TNotaRecebida>({
         fkFornecedor: 0,
         data: new Date().toISOString(),
@@ -87,7 +87,7 @@ export function NotaRecebida() {
     useEffect(() => {
         async function getProducts() {
             try {
-                await api.post<TProductRegister[]>('products_list')
+                await api.post<TProduct[]>('products_list')
                     .then(response => {
                         setProducts(response.data)
                     })

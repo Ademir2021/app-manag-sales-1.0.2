@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { RegisterSaleForm } from "../../components/sales/RegisterSaleForm";
 import { Itens } from "../../components/sales/Itens";
-import { TProductRegister, TItens } from "../products/type/TypeProducts";
+import { TProduct, TItens } from "../products/type/TProducts";
 import { currencyFormat } from "../../components/utils/currentFormat/CurrentFormat";
 import { Dashboard } from "../dashboard/Dashboard";
 import api from "../../services/api/api";
@@ -9,7 +9,7 @@ import api from "../../services/api/api";
 export function RegisterSale() {
     const [product, setProduct] = useState<TItens>(
         { id: 0, item: 0, descric: "", valor: 0, amount: 1, tItem: 0 });
-    const [products, setProducts] = useState<TProductRegister[]>([]);
+    const [products, setProducts] = useState<TProduct[]>([]);
     const [itens, setItens] = useState<TItens[]>([]);
     const [id, setId] = useState<number>(1);
     const [editId, setEditId] = useState<number | null | any>(null);
@@ -30,7 +30,7 @@ export function RegisterSale() {
     useEffect(() => {
         async function getProducts() {
             try {
-                await api.post<TProductRegister[]>('products_list')
+                await api.post<TProduct[]>('products_list')
                     .then(response => {
                         setProducts(response.data)
                     })

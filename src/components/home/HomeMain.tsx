@@ -1,7 +1,7 @@
 import { HomeCards } from './HomeCards'
 import { HomeContact, PropsHomeContact } from './HomeContact'
-import './HomeMain.css'
 
+import './HomeMain.css'
 
 export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields }: PropsHomeContact) {
 

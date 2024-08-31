@@ -1,4 +1,5 @@
 import InputMask from 'react-input-mask';
+import { ICities } from '../../useCases/ceps/type/TCeps';
 
 import '../global-module.css'
 
@@ -9,7 +10,7 @@ interface Props {
     alertCep: string
     message: string
     listUf: React.ChangeEvent<HTMLSelectElement> | EventTarget & HTMLSelectElement | any
-    listCity: object[]
+    listCity: ICities[]
     setSelectedIdCity: React.ChangeEvent<HTMLSelectElement> | EventTarget & HTMLSelectElement | any
 }
 
@@ -29,9 +30,9 @@ export function CepsForm({
             <div className="container-global">
                 <fieldset className="main-global">
                     <form className="main-global-form">
-                        <strong>Cadastro de Ceps<a href="form_person">Cadastro de clientes</a></strong>
+                        <strong>Cadastro de CEP<a href="form_person">Cadastro de Clientes</a></strong>
                         <label>{alertCep}</label><br />
-                        <dd>Cep</dd>
+                        <dd>CEP</dd>
                         <InputMask
                             mask={"99.999-999"}
                             type="text"
@@ -60,7 +61,7 @@ export function CepsForm({
                         <input
                             type="number"
                             name="num_initial"
-                            placeholder='número inicial'
+                            placeholder='Número inicial'
                             value={children.num_initial || ""}
                             onChange={handleChange}
                         />
@@ -68,7 +69,7 @@ export function CepsForm({
                         <input
                             type="number"
                             name="num_final"
-                            placeholder='número final'
+                            placeholder='Número final'
                             value={children.num_final || ""}
                             onChange={handleChange}
                         />
@@ -118,7 +119,7 @@ export function CepsForm({
                             <strong>Selecione um Município</strong>
                             <select onChange={e => setSelectedIdCity(e.target.value)}>
                                 <option>Escolha um Municipio</option>
-                                {listCity.map((city: any) => (
+                                {listCity.map((city: ICities) => (
                                     <option
                                         key={city.id_city}
                                         value={city.id_city}
@@ -126,17 +127,7 @@ export function CepsForm({
                                         {city.name_city}
                                     </option>))}</select>
                         </label>
-                        {/* <input
-                            type="text"
-                            name="city"
-                            placeholder="Município"
-                            value={children.city || ""}
-                            onChange={handleChange}
-                            disabled
-                        /> */}
-                        {/* <button type="reset">Reset</button> */}
                         <button onClick={handleSubmit}>Registrar</button>
-                        <a href='###'>{''}</a>
                     </form>
                 </fieldset>
             </div>

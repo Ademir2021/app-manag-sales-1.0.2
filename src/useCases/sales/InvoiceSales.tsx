@@ -6,7 +6,7 @@ import { ICeps, ICities } from "../ceps/type/TCeps";
 import { currencyFormat } from "../../components/utils/currentFormat/CurrentFormat";
 import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
 import saleJSON from "./sale.json"
-import { TItens } from "../products/type/TypeProducts";
+import { TItens } from "../products/type/TProducts";
 import api from "../../services/api/api";
 import { AuthContext } from '../../context/auth'
 

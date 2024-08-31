@@ -6,7 +6,6 @@ export type PropsHomeContact = {
     handleSubmit: any
     msg:String
     msgFields:String
-
 }
 
 export function HomeContact({
@@ -53,7 +52,6 @@ export function HomeContact({
                             type="submit"
                             onClick={handleSubmit}
                         >Enviar contato</button>
-                        {/* <div>Em breve estaremos em contato</div> */}
                     </div>
                 </div>
             </form>

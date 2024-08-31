@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useContext } from "react"
 import ncmJSON from './NCM.json'
 import { FormatDate } from "../../components/utils/formatDate";
-import { TProductRegister, TSector, TBrand, TClasseProd, TGrupoFiscal, TTipoProd, TUnMed, TNcm } from "./type/TypeProducts";
+import { TProduct, TSector, TBrand, TClasseProd, TGrupoFiscal, TTipoProd, TUnMed, TNcm } from "./type/TProducts";
 import { postRegister, putUpdate } from "../../services/handleService";
 import { ProductFormUpdate } from "../../components/products/ProductFormUpdate";
 import { ProductList } from "../../components/products/ProductList";
@@ -34,8 +34,8 @@ export function ProductUpdate() {
     const [selectedIdNcm, setSelectdIdNcm] = useState<any>('0000.0')
     const [selectedIdBrand, setSelectedIdBrand] = useState<any>(1);
     const [selectedIdSector, setSelectedIdSector] = useState<any>(1);
-    const [products, setProducts] = useState<TProductRegister[]>([])
-    const [product, setProduct] = useState<TProductRegister>({
+    const [products, setProducts] = useState<TProduct[]>([])
+    const [product, setProduct] = useState<TProduct>({
         id_product: 0, descric_product: '',
         val_max_product: 0.00, val_min_product: 0.00,
         fk_brand: 1, fk_sector: 1, fk_un_med: 1,
@@ -157,7 +157,7 @@ export function ProductUpdate() {
     const [dropdown, setDropdown] = useState<string>("");
     const modalRef = useRef<any>(null);
 
-    function listUpdate(product_: TProductRegister) {
+    function listUpdate(product_: TProduct) {
         product.id_product = product_.id_product
         product.descric_product = product_.descric_product
         product.val_max_product = product_.val_max_product
@@ -183,7 +183,7 @@ export function ProductUpdate() {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 }
-                await api.post<TProductRegister[]>('products_list', { headers })
+                await api.post<TProduct[]>('products_list', { headers })
                     .then(response => {
                         setTokenMessage("Token Válido !")
                         setProducts(response.data)
@@ -341,7 +341,7 @@ export function ProductUpdate() {
                 {product}
             </ProductFormUpdate>
             {products.length === 0 ? <p>Carregando ...</p> : (
-                products.map((product: TProductRegister) => (
+                products.map((product: TProduct) => (
                     <ProductList
                         key={product.id_product}
                         id={product.id_product}

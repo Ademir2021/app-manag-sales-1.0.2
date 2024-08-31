@@ -67,7 +67,6 @@ export function UserRegister() {
   }
 
   return (
-    <>
       <UserFormRegister
         handleSubmit={handleSubmit}
         handleChange={handleChange}
@@ -76,6 +75,5 @@ export function UserRegister() {
       >
         {user}
       </UserFormRegister>
-    </>
-  );
-};
+  )
+}

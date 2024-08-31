@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { TProductRegister, TBrand, TSector, TUnMed, TClasseProd, TGrupoFiscal, TTipoProd, TNcm } from "./type/TypeProducts"
+import { TProduct, TBrand, TSector, TUnMed, TClasseProd, TGrupoFiscal, TTipoProd, TNcm } from "./type/TProducts"
 import { FormatDate } from "../../components/utils/formatDate";
 import { ProductList } from "../../components/products/ProductList";
 import { currencyFormat } from "../../components/utils/currentFormat/CurrentFormat";
@@ -9,7 +9,7 @@ import api from "../../services/api/api";
 
 export function ProductsList() {
     const handleProducts:HandleProducts = new HandleProducts();
-    const [products, setproducts] = useState<TProductRegister[]>([]);
+    const [products, setproducts] = useState<TProduct[]>([]);
     const [brands, setBrands] = useState<TBrand[]>([]);
     const [sectors, setSectors] = useState<TSector[]>([]);
     const [unMeds, setUnMeds] = useState<TUnMed[]>([])
@@ -20,7 +20,7 @@ export function ProductsList() {
     useEffect(()=>{
         async function getProducts() {
             try {
-                await api.post<TProductRegister[]>('products_list')
+                await api.post<TProduct[]>('products_list')
                     .then(response => { setproducts(response.data)})
             } catch (err) { console.log("error occurred !!" + err) }
         };
@@ -104,7 +104,7 @@ export function ProductsList() {
             <Dashboard />
             <h1 className="text-center">Lista de Produtos</h1>
             {products.length === 0 ? <p>Carregando...</p> : (
-                products.map((product: TProductRegister) => (
+                products.map((product: TProduct) => (
                     <ProductList
                         key={product.id_product}
                         id={product.id_product}
