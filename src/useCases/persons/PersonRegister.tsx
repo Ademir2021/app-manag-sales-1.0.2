@@ -9,10 +9,10 @@ import api from "../../services/api/api";
 
 export function FormPerson() {
     const [person, setPerson] = useState<TPerson>({
-        name_pers: "", cpf_pers: "0", phone_pers: "", address_pers: "",
+        name_pers: "", cpf_pers: "", phone_pers: "", address_pers: "",
         num_address: "", bairro_pers: "", fk_cep: 0, name_city: "", uf: "",
-        num_cep: "", fk_name_filial: 1, fk_id_user: 0, rg:'0',
-        cnpj:'0',inscricao:'0',fantasia:'',limit_cred:800,fk_grupo:1
+        num_cep: "", fk_name_filial: 1, fk_id_user: 0, rg:'',
+        cnpj:'',inscricao:'',fantasia:'',limit_cred:800,fk_grupo:1
     })
 
     const [ceps, setCeps] = useState<ICeps[]>([])

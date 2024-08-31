@@ -39,7 +39,7 @@ export function NotaRecebidaContaAPagarForm({
                         <input
                             type='date'
                             name="vencimento"
-                            value={(children.vencimento || new Date())}
+                            value={(children.vencimento || null)}
                             onChange={handleChange}
                         />
                         <button
