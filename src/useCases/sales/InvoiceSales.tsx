@@ -24,6 +24,7 @@ export function InvoiceSales() {
     const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
     const [typePay, setTypePay] = useState("")
     const [installments, setInstallments] = useState<number | any>('Credito a vista')
+    const [idPerson, setIdPerson] = useState<number | any >(0)
 
     const handleChange = (e: any) => {
         const name = e.target.name;
@@ -60,7 +61,7 @@ export function InvoiceSales() {
     useEffect(() => {
         function getSale() {
             for (let person of persons) {
-                if (person.fk_id_user === userLoggedId) {
+                if ( person.id_person === idPerson) {
                     sale.filial = person.fk_name_filial;
                     sale.user.user_id = userLoggedId;
                     sale.user.user_name = userLoggedUsername;
@@ -215,7 +216,7 @@ export function InvoiceSales() {
 
     return (
         <>
-        {/* <p>{JSON.stringify(sale.dinheiro)}</p> */}
+        {/* <p>{JSON.stringify(idPerson)}</p> */}
             <InvoiceSalesForm
                 token={tokenMessage}
                 backHomeInvoice={<BackHome />}
@@ -227,6 +228,8 @@ export function InvoiceSales() {
                 alert=""
                 message={msg}
                 installments={setInstallments}
+                persons={persons}
+                idPerson={setIdPerson}
             >
                 {sale}
             </InvoiceSalesForm>

@@ -2,4 +2,12 @@
     padding: 6px;
     margin: 12px;
     margin-inline: 18px;
+    font-size: small;
+}
+
+#persons{
+    padding: 6px;
+    margin:12px;
+    margin-inline: 1px;
+    font-size: small;
 }
