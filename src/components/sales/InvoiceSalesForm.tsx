@@ -42,14 +42,13 @@ export function InvoiceSalesForm({
         <div className="main-global">
           <div className='main-global-form'>
             <LogoIn />
-            <div className='container p-3'>
-            <strong>Faturar pedido</strong>
-            <dd><b>SubTotal</b> {currencyFormat(children.tItens)}</dd>
-            <dd><b>Desconto</b> {currencyFormat(children.disc_sale)}</dd>
-            <dd><b>Total da nota</b> {currencyFormat(children.tNote)}</dd>
-            <dd><b>Valor a pagar</b> {currencyFormat(children.paySale)}</dd>
+            <div id ='invoice-header'>
+            <dd>Sub-total = {currencyFormat(children.tItens)}</dd>
+            <dd>Desconto = {children.disc_sale ? currencyFormat(children.disc_sale):'0,00'}</dd>
+            <dd> Total da nota = {currencyFormat(children.tNote)}</dd>
+            <dd>Valor a pagar = {currencyFormat(children.paySale)}</dd>
             </div>
-            <dd>{message}</dd>
+            <label>{message}</label>
             <dd>Parcelar Crédito\Cartão</dd>
             <select onChange={e => installments(e.target.value)} id='installments'>
               <option>Credito a vista</option>
@@ -93,17 +92,17 @@ export function InvoiceSalesForm({
                 <option key={pers.id_person}>{pers.id_person}-{pers.name_pers}</option>
               ))}
             </select>
-            <dd><b>Nome</b> {children.person.name_pers}</dd>
-            <dd><b>Telefone</b> {children.person.phone_pers}</dd>
-            <dd><b>CPF</b> {children.person.cpf_pers}</dd>
-            <dd><b>Endereço</b> {children.person.address.address_pers}</dd>
-            <dd><b>Número</b> {children.person.address.num_address}</dd>
-            <dd><b>Bairro</b> {children.person.address.bairro_pers}</dd>
-            <dd><b>Cidade</b> {children.person.address.name_city}</dd>
-            <dd><b>Estado</b> {children.person.address.uf}</dd>
-            <dd><b>CEP</b> {children.person.address.num_cep}</dd>
+            <dd>Nome = {children.person.name_pers}</dd>
+            <dd>Telefone = {children.person.phone_pers}</dd>
+            <dd>CPF = {children.person.cpf_pers}</dd>
+            <dd>Endereço = {children.person.address.address_pers}</dd>
+            <dd>Número = {children.person.address.num_address}</dd>
+            <dd>Bairro = {children.person.address.bairro_pers}</dd>
+            <dd>Cidade = {children.person.address.name_city}</dd>
+            <dd>Estado = {children.person.address.uf}</dd>
+            <dd>CEP = {children.person.address.num_cep}</dd>
             <br></br>
-            <dd><b>Dados da Filial</b></dd>
+            <dd>Filial</dd>
             <dd>{Globais.company + ': ' + Globais.CNPJ}</dd>
           </div>
         </div>

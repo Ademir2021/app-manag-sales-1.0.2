@@ -1,3 +1,10 @@
+#invoice-header{
+    padding: 16px;
+    margin-inline: 18px;
+    border-radius: 8px;
+    font-size: 18px;
+}
+
 #installments{
     padding: 6px;
     margin: 12px;
