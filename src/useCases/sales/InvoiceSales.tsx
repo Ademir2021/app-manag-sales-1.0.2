@@ -130,28 +130,30 @@ export function InvoiceSales() {
             } catch (err) { alert("error occurred !!" + err) }
         };
         getCities()
-    }, [cities])
+    }, [sale, cities])
 
     useEffect(() => {
         function setCep() {
             for (let cep of ceps) {
-                if (cep.id_cep === sale.person.address.fk_cep)
+                if (cep.id_cep === sale.person.address.fk_cep){
                     sale.person.address.num_cep = cep.num_cep
+                    sale.person.address.uf = cep.uf
+                }
             }
         };
         setCep()
-    }, [ceps, sale])
+    }, [sale, ceps])
 
     useEffect(() => {
         async function setCity() {
             for (let citie of cities) {
-                if (citie.id_city === sale.person.address.fk_cep)
+                if (citie.id_city === sale.person.address.fk_cep){
                     sale.person.address.name_city = citie.name_city
-                sale.person.address.uf = citie.uf
+                }
             }
         };
         setCity()
-    }, [cities, sale])
+    }, [cities])
 
     function payment() {
         if (sale) {
