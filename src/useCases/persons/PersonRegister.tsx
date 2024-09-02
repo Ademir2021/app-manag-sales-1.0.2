@@ -29,6 +29,12 @@ export function FormPerson() {
     async function handleSubmit(e: Event) {
         e.preventDefault();
         if (PersonsValFields(person)) {
+            if(person.cpf_pers == ''){
+                person.cpf_pers = '0'
+            }
+            if(person.cnpj == ''){
+                person.cnpj = '0'
+            }
             person.cpf_pers = person.cpf_pers.replace(/[..-]/g, '')
             person.phone_pers = person.phone_pers.replace(/[()-]/g, '')
             person.cnpj = person.cnpj.replace(/[../-]/g, '')
