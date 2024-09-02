@@ -42,12 +42,6 @@ export function InvoiceSalesForm({
         <div className="main-global">
           <div className='main-global-form'>
             <LogoIn />
-            <div id ='invoice-header'>
-            <dd>Sub-total = {currencyFormat(children.tItens)}</dd>
-            <dd>Desconto = {children.disc_sale ? currencyFormat(children.disc_sale):'0,00'}</dd>
-            <dd> Total da nota = {currencyFormat(children.tNote)}</dd>
-            <dd>Valor a pagar = {currencyFormat(children.paySale)}</dd>
-            </div>
             <label>{message}</label>
             <dd>Parcelar Crédito\Cartão</dd>
             <select onChange={e => installments(e.target.value)} id='installments'>
@@ -68,7 +62,7 @@ export function InvoiceSalesForm({
               type='number'
               name="dinheiro"
               value={children.dinheiro || ''}
-              placeholder='Dinheiro'
+              placeholder='Valor em dinheiro'
               required
               onChange={handleChange}
             />
@@ -86,13 +80,18 @@ export function InvoiceSalesForm({
             <button onClick={handleSubmitCred}>Pagar com Crediário Loja</button>
             <a href='/person_update'>Atualizar de Cadastro</a><a href='invoice_sales'>{token}</a>
             <span className='load-list-itens' >{loadItens}</span>
+            <div id='invoice-header'>
+              <dd>Sub-total = {currencyFormat(children.tItens)}</dd>
+              <dd>Desconto = {currencyFormat(children.disc_sale)}</dd>
+              <dd> Total da nota = {currencyFormat(children.tNote)}</dd>
+              <dd>Valor a pagar = {currencyFormat(children.paySale)}</dd>
+            </div>
             <select onChange={e => idPerson(parseInt(e.target.value))} id='persons'>
               <option>Selecione o Cliente</option>
               {persons.map((pers: TPerson) => (
                 <option key={pers.id_person}>{pers.id_person}-{pers.name_pers}</option>
               ))}
             </select>
-            <dd>Nome = {children.person.name_pers}</dd>
             <dd>Telefone = {children.person.phone_pers}</dd>
             <dd>CPF = {children.person.cpf_pers}</dd>
             <dd>Endereço = {children.person.address.address_pers}</dd>
@@ -101,9 +100,7 @@ export function InvoiceSalesForm({
             <dd>Cidade = {children.person.address.name_city}</dd>
             <dd>Estado = {children.person.address.uf}</dd>
             <dd>CEP = {children.person.address.num_cep}</dd>
-            <br></br>
-            <dd>Filial</dd>
-            <dd>{Globais.company + ': ' + Globais.CNPJ}</dd>
+            <dd>Filial = {Globais.company + ' - ' + Globais.CNPJ}</dd>
           </div>
         </div>
       </div>
