@@ -1,12 +1,14 @@
 import { useEffect, useState, useContext } from "react";
 import { NotaRecebidaForm } from "../../components/NotaRecebida/NotaRecebidaForm";
-import { TNotaRecebida, TItem, TValsPago, TContaAPagar } from "./type/TNotaRecebida";
+import { TNotaRecebida, TItem, TContaAPagar } from "./type/TNotaRecebida";
 import { TProduct } from "../products/type/TProducts";
+import { TValsPagos } from "../contasAPagar/type/TContasAPagar";
 import { NotaRecebidaItemForm } from "../../components/NotaRecebida/NotaRecebidaItemForm";
 import { NotaRecebidaValsPagoForm } from "../../components/NotaRecebida/NotarecebidaValsPagoForm";
 import { NotaRecebidaContaAPagarForm } from "../../components/NotaRecebida/NotaRecebidaContaAPagarForm";
 import { NotaRecebidaEnviarForm } from "../../components/NotaRecebida/NotaRecebidaEnviarForm";
 import { postRegister } from "../../services/handleService";
+
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api";
 
@@ -34,15 +36,16 @@ export function NotaRecebida() {
         contaAPagar: [],
         valsPago: []
     });
-    const [valPago, setValsPago] = useState<TValsPago>({
+    const [valPago, setValsPago] = useState<TValsPagos>({
         id_val: 0,
         fk_conta: 0,
         fk_compra: 0,
         fk_user: 0,
         valor: 0,
-        data_pagamento: "",
+        data_recebimento: "",
         descricao: "",
-        fk_person: 0
+        fk_person: 0,
+        fk_despesa:0
     });
     const [contaAPagar, setContaAPagar] = useState<TContaAPagar>({
         id_conta: 0,
@@ -155,7 +158,7 @@ export function NotaRecebida() {
         handleItems()
     };
     function handleValorPago() {
-        valPago.data_pagamento = new Date().toISOString()
+        valPago.data_recebimento = new Date().toISOString()
         valPago.id_val = notaRecebida.valsPago.length + 1
         notaRecebida.valsPago.push(valPago)
     };
@@ -166,9 +169,10 @@ export function NotaRecebida() {
             fk_compra: 0,
             fk_user: 0,
             valor: 0,
-            data_pagamento: "",
+            data_recebimento: "",
             descricao: "",
-            fk_person: 0
+            fk_person: 0,
+            fk_despesa:0
         })
     };
     function handleSubmitValor(e: Event) {
