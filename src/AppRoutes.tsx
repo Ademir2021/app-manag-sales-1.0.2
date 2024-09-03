@@ -32,7 +32,7 @@ import { PagCredLoja } from "./useCases/sales/PagCredLoja";
 import { ContasAReceberRegister } from "./useCases/contasAReceber/ContasAReceberRegister";
 import { ReceberValor } from "./useCases/contasAReceber/ReceberValor";
 import { CaixaMovList } from "./useCases/caixaMov/CaixaMovList";
-import { NotaRecebida } from "./useCases/NotaRecebida/NotaRecebida";
+import { NotaRecebida } from "./useCases/notaRecebida/NotaRecebida";
 import { ContasAPagar } from "./useCases/contasAPagar/ContasAPagar";
 import { ContasAPagarRegister } from "./useCases/contasAPagar/ContasAPagarRegister";
 import { PagarValor } from "./useCases/contasAPagar/PagarValor";

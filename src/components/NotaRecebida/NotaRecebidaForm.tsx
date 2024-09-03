@@ -17,8 +17,8 @@ export function NotaRecebidaForm({
                     <dd>ID do Fornecedor</dd>
                     <input
                         type='number'
-                        name="fkFornecedor"
-                        value={children.fkFornecedor || ''}
+                        name="fk_fornecedor"
+                        value={children.fk_fornecedor || ''}
                         onChange={handleChange}
                         placeholder="ID do Fornecedor"
                     />

@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react"
-import { TContaAPagar, TDespesa, TValsPagos } from "./type/TContasAPagar"
+import { TContaAPagar, TDespesa, TValPago } from "./type/TContasAPagar"
 import { HandleContasAPagar } from "./handleContasAPagar"
 import { ContasAPagarForm } from "../../components/contasAPagar/ContasAPagarForm"
 
@@ -12,8 +12,8 @@ function ContasAPagar() {
     const [desconto, setDesconto] = useState(0)
     const handleContasAPagar= new HandleContasAPagar()
     const [contasAPagar, setContasAPagar] = useState<TContaAPagar[]>([])
-    const [valsPagos_, setValsPagos_] = useState<TValsPagos[]>([])
-    const [valsPagos__] = useState<TValsPagos[]>([])
+    const [valsPagos_, setValsPagos_] = useState<TValPago[]>([])
+    const [valsPagos__] = useState<TValPago[]>([])
     const [despesas, setDespesas] = useState<TDespesa[]>([])
     const { user: isLogged }: any = useContext(AuthContext);
 
@@ -63,9 +63,9 @@ function ContasAPagar() {
     useEffect(() => {
         async function getValsPagos() {
             try {
-                await api.get<TValsPagos[]>('vals_pagos')
+                await api.get<TValPago[]>('vals_pagos')
                     .then(response => {
-                        const resp: TValsPagos[] = response.data
+                        const resp: TValPago[] = response.data
                         setValsPagos_(resp)
                     })
             } catch (err) { console.log("err: " + err) }
@@ -104,8 +104,8 @@ function ContasAPagar() {
         calcContasAReceber();
     }, [contasAPagar])
 
-    async function registerValPago(valPago: TValsPagos) {
-        await api.post<TValsPagos>('val_pago', valPago)
+    async function registerValPago(valPago: TValPago) {
+        await api.post<TValPago>('val_pago', valPago)
             .then(response => {
                 console.log(response.data)
             })
@@ -114,7 +114,7 @@ function ContasAPagar() {
 
     async function valsPagos(conta: TContaAPagar) {
         let id = 1
-        let valPago: TValsPagos = {
+        let valPago: TValPago = {
             id_val: 0,
             fk_conta: 0,
             fk_compra: 0,

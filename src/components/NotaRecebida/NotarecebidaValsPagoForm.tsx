@@ -1,10 +1,10 @@
-import { TValsPagos } from "../../useCases/contasAPagar/type/TContasAPagar"
+import { TValPago } from "../../useCases/contasAPagar/type/TContasAPagar"
 
 type Props = {
     children:any
     handleChange__:any
     handleSubmit:any
-    valsPago:TValsPagos[]
+    valsPago:TValPago[]
 }
 export function NotaRecebidaValsPagoForm({
 children,
@@ -51,7 +51,7 @@ valsPago
         <table className='table bg-light mt-1'>
                 { valsPago.length !== 0 ? body : null }
                 <tbody>
-                    { valsPago.length !== 0 ? valsPago.map((contaAPagar: TValsPagos) => (
+                    { valsPago.length !== 0 ? valsPago.map((contaAPagar: TValPago) => (
                         <tr key={contaAPagar.id_val}>
                             <th id="center">{contaAPagar.id_val}</th>
                             <td id="center">{contaAPagar.valor}</td>

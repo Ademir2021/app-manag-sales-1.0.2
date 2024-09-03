@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import { CaixaMovListComp } from "../../components/caixaMov/CaixaMovList";
 import { TCaixaMov } from "./type/TCaixaMov";
 import api from "../../services/api/api";
-import { TDespesa, TValsPagos } from "../contasAPagar/type/TContasAPagar";
+import { TDespesa, TValPago } from "../contasAPagar/type/TContasAPagar";
 import { TValsRecebidos } from "../contasAReceber/type/TContasAReceber";
 
 export function CaixaMovList() {
     const [caixaMov, setCaixaMov] = useState<TCaixaMov[]>([])
     const [despesas, setDespesas] = useState<TDespesa[]>([])
-    const [valsPagos, setValsPagos] = useState<TValsPagos[]>([])
+    const [valsPagos, setValsPagos] = useState<TValPago[]>([])
     const [valsRecebidos, setValsRecebidos] = useState<TValsRecebidos[]>([])
 
     useEffect(() => {
@@ -38,9 +38,9 @@ export function CaixaMovList() {
     useEffect(() => {
         async function getValsPagos() {
             try {
-                await api.get<TValsPagos[]>('vals_pagos')
+                await api.get<TValPago[]>('vals_pagos')
                     .then(response => {
-                        const resp: TValsPagos[] = response.data
+                        const resp: TValPago[] = response.data
                         setValsPagos(resp)
                     })
             } catch (err) { console.log("err: " + err) }

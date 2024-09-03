@@ -1,4 +1,4 @@
-import { TItems } from "../../useCases/NotaRecebida/type/TNotaRecebida"
+import { TItems } from "../../useCases/notaRecebida/type/TNotaRecebida"
 import { TProduct } from "../../useCases/products/type/TProducts"
 type Props = {
     children: any

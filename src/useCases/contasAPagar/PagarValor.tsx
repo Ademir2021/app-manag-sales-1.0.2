@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react"
-import { TValsPagos } from "./type/TContasAPagar";
+import { TValPago } from "./type/TContasAPagar";
 import { PagarValorForm } from "../../components/contasAPagar/PagarValorForm";
 import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
 import { TPerson } from "../persons/type/TPerson";
@@ -14,7 +14,7 @@ export function PagarValor() {
     const [persons, setPersons] = useState<TPerson[]>([])
     const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
     const { user: isLogged }: any = useContext(AuthContext);
-    const [pagarValor, setReceberValor] = useState<TValsPagos>({
+    const [pagarValor, setReceberValor] = useState<TValPago>({
         id_val: 0,
         fk_conta: 0,
         fk_compra: 0,

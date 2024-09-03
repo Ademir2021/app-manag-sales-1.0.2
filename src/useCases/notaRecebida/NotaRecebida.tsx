@@ -1,8 +1,8 @@
 import { useEffect, useState, useContext } from "react";
 import { NotaRecebidaForm } from "../../components/NotaRecebida/NotaRecebidaForm";
-import { TNotaRecebida, TItem, TContaAPagar } from "./type/TNotaRecebida";
+import { TNotaRecebida, TItem } from "./type/TNotaRecebida";
 import { TProduct } from "../products/type/TProducts";
-import { TValsPagos } from "../contasAPagar/type/TContasAPagar";
+import { TContaAPagar, TValPago } from "../contasAPagar/type/TContasAPagar";
 import { NotaRecebidaItemForm } from "../../components/NotaRecebida/NotaRecebidaItemForm";
 import { NotaRecebidaValsPagoForm } from "../../components/NotaRecebida/NotarecebidaValsPagoForm";
 import { NotaRecebidaContaAPagarForm } from "../../components/NotaRecebida/NotaRecebidaContaAPagarForm";
@@ -19,7 +19,7 @@ export function NotaRecebida() {
     const { user: isLogged }: any = useContext(AuthContext);
     const [products, setProducts] = useState<TProduct[]>([])
     const [notaRecebida, setNotaRecebida] = useState<TNotaRecebida>({
-        fkFornecedor: 0,
+        fk_fornecedor: 0,
         data: new Date().toISOString(),
         emissao: new Date().toISOString(),
         numNota: 0,
@@ -36,7 +36,7 @@ export function NotaRecebida() {
         contaAPagar: [],
         valsPago: []
     });
-    const [valPago, setValsPago] = useState<TValsPagos>({
+    const [valPago, setValsPago] = useState<TValPago>({
         id_val: 0,
         fk_conta: 0,
         fk_compra: 0,

@@ -1,7 +1,7 @@
-import { TValsPagos } from "../../contasAPagar/type/TContasAPagar"
-
+import { TValPago } from "../../contasAPagar/type/TContasAPagar"
+import { TContaAPagar } from "../../contasAPagar/type/TContasAPagar"
 export type TNotaRecebida = {
-    fkFornecedor: number,
+    fk_fornecedor: number,
     data: Date | string
     emissao: Date | string
     numNota: number
@@ -16,7 +16,7 @@ export type TNotaRecebida = {
     total: number
     items: TItems[]
     contaAPagar:TContaAPagar[]
-    valsPago: TValsPagos[]
+    valsPago: TValPago[]
 }
 
 export type TItem = {
@@ -48,23 +48,3 @@ export type TTrib = {
     icmsSobreIpi: number
 }
 
-export type TContaAPagar = {
-    id_conta: number 
-    fk_filial: number
-    tipo: string
-    fk_compra: number 
-    fk_user:number
-    parcela: number | string
-    valor: number | any
-    multa: number | any
-    juros: number | any
-    desconto:number | any
-    emissao:Date |  string | any 
-    vencimento:Date | string | any
-    saldo:number | any 
-    pagamento:Date | any | null
-    recebimento: number | any
-    observacao:string | null
-    fk_beneficiario:number
-    fk_despesa:number
-}

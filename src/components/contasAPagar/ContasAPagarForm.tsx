@@ -1,5 +1,5 @@
 import { HandleContasAPagar } from "../../useCases/contasAPagar/handleContasAPagar"
-import { TContaAPagar, TValsPagos } from "../../useCases/contasAPagar/type/TContasAPagar"
+import { TContaAPagar, TValPago } from "../../useCases/contasAPagar/type/TContasAPagar"
 import { currencyFormat } from '../utils/currentFormat/CurrentFormat';
 import { Logo } from "../logo/Logo";
 
@@ -7,7 +7,7 @@ import './ContasAPagar.css'
 
 type Props = {
     contasAPagar: TContaAPagar[]
-    valoresPagos: TValsPagos[]
+    valoresPagos: TValPago[]
     pagarValor: any
     handleChangeValor: React.ChangeEventHandler<HTMLInputElement>
     handleChangeDesconto: React.ChangeEventHandler<HTMLInputElement>
@@ -140,7 +140,7 @@ function ContasAPagarForm({
                     <td>Descrição</td>
                 </tr>
             </thead>
-            <tbody>{valoresPagos.map((valPago: TValsPagos) => (
+            <tbody>{valoresPagos.map((valPago: TValPago) => (
                 <tr key={valPago.id_val}>
                     <th id="center">{valPago.id_val}</th>
                     <td id="center">{valPago.fk_conta}</td>

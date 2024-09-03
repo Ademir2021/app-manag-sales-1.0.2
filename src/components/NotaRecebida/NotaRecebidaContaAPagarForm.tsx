@@ -1,4 +1,5 @@
-import { TContaAPagar } from "../../useCases/NotaRecebida/type/TNotaRecebida"
+import { TContaAPagar } from "../../useCases/contasAPagar/type/TContasAPagar"
+
 type Props = {
     children: any
     handleChange: any

@@ -17,10 +17,9 @@ export type TContaAPagar = {
     observacao:string | null
     fk_beneficiario:number
     fk_despesa:number
-    despesa?:string 
 }
 
-export type TValsPagos = {
+export type TValPago = {
     id_val: number
     fk_conta: number
     fk_compra: number
