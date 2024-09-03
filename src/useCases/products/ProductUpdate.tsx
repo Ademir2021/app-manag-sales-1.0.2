@@ -361,9 +361,7 @@ export function ProductUpdate() {
                         grupo_fiscal={handleProducts.nameGruposFiscais(product.fk_grupo_fiscal, gruposFiscais)}
                         tipo_prod={handleProducts.nameTiposProds(product.fk_tipo_prod, tiposProds)}
                         ncm={product.ncm}
-                        update={<button className="btn  btn-danger"
-                            onClick={() =>
-                                listUpdate(product)}>Atualizar</button>}
+                        update={<button onClick={() => listUpdate(product)}>Atualizar</button>}
                     />
                 )))}
         </>

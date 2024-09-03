@@ -1,5 +1,5 @@
 import { currencyFormat } from '../utils/currentFormat/CurrentFormat';
-import { LogoIn } from '../utils/logoIn/LogoIn';
+import { NavBar } from '../navbar/Navbar';
 import { Globais } from '../globais/Globais';
 import { TPerson } from '../../useCases/persons/type/TPerson';
 
@@ -37,11 +37,11 @@ export function InvoiceSalesForm({
 }: Props) {
 
   return (
-    <>
+    <div>
+      <NavBar />
       <div className="container-global" >
         <div className="main-global">
           <div className='main-global-form'>
-            <LogoIn />
             <label>{message}</label>
             <dd>Parcelar Crédito\Cartão</dd>
             <select onChange={e => installments(e.target.value)} id='installments'>
@@ -104,6 +104,6 @@ export function InvoiceSalesForm({
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
