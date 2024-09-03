@@ -1,5 +1,6 @@
 import { TValPago } from "../../contasAPagar/type/TContasAPagar"
 import { TContaAPagar } from "../../contasAPagar/type/TContasAPagar"
+
 export type TNotaRecebida = {
     fk_fornecedor: number,
     data: Date | string
@@ -15,7 +16,7 @@ export type TNotaRecebida = {
     tProdutos: number | any
     total: number
     items: TItems[]
-    contaAPagar:TContaAPagar[]
+    contaAPagar: TContaAPagar[]
     valsPago: TValPago[]
 }
 
