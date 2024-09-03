@@ -1,7 +1,3 @@
-import config from '../../../package.json';
-
-const config_:string | undefined = config.scripts.config
-
 const data = new Date();
 const day = data.getUTCDate();
 const year = data.getFullYear();
@@ -48,6 +44,42 @@ const setMonth = () => {
         return "dez"
 }
 
+function handleURL() {
+    if (process.env.REACT_APP_URL) {
+        return process.env.REACT_APP_URL
+    }
+    else if (process.env.REACT_APP_URL) {
+        return 'https://centroinfo.com.br'
+    }
+}
+
+function handleAPI_URL() {
+    if (process.env.REACT_APP_API_URL) {
+        return process.env.REACT_APP_API_URL
+    }
+    else if (process.env.REACT_APP_API_URL) {
+        return 'https://api-centroinfo-614cdab7bd81.herokuapp.com'
+    }
+}
+
+function handle_URL_NOTE() {
+    if (process.env.REACT_APP_URL_NOTE) {
+        return process.env.REACT_APP_URL_NOTE
+    }
+    else if (process.env.REACT_APP_URL_NOTE) {
+        return 'https://api-centroinfo-614cdab7bd81.herokuapp.com/note'
+    }
+}
+
+function handle_URL_CENTROINFO() {
+    if (process.env.REACT_APP_URL_CENTROINFO) {
+        return process.env.REACT_APP_URL_CENTROINFO
+    }
+    else if (process.env.REACT_APP_URL_CENTROINFO) {
+        return 'https://api-centroinfo-614cdab7bd81.herokuapp.com'
+    }
+}
+
 export class Globais {
     static calendar = saudacao + ' ' + day + ' ' + setMonth() + ' ' + year + ' ' + H + ':' + M + ':' + S
     static checksUserLogged = undefined;
@@ -59,13 +91,13 @@ export class Globais {
     static company = "Centro Informática"
     static CNPJ = "18.069.383/0001-10"
 
-    // static URL = config_ === "dev" ? process.env.REACT_APP_URL : 'null'
-    // static API_URL = config_ === "dev" ? process.env.REACT_APP_API_URL : 'null'
-    // static URL_NOTE = config_ === "dev" ? process.env.REACT_APP_URL_NOTE : null
-    // static URL_CENTROINFO = config_ === "dev" ? process.env.REACT_APP_URL_CENTROINFO : 'null'
+    static URL = handleURL()
+    static API_URL = handleAPI_URL()
+    static URL_NOTE = handle_URL_NOTE()
+    static URL_CENTROINFO = handle_URL_CENTROINFO()
 
-    static URL ='https://centroinfo.com.br'
-    static API_URL = 'https://api-centroinfo-614cdab7bd81.herokuapp.com'
-    static URL_NOTE =  'https://api-centroinfo-614cdab7bd81.herokuapp.com/note'
-    static URL_CENTROINFO =  'https://api-centroinfo-614cdab7bd81.herokuapp.com'
+    // static URL = 'https://centroinfo.com.br'
+    // static API_URL = 'https://api-centroinfo-614cdab7bd81.herokuapp.com'
+    // static URL_NOTE =  'https://api-centroinfo-614cdab7bd81.herokuapp.com/note'
+    // static URL_CENTROINFO =  'https://api-centroinfo-614cdab7bd81.herokuapp.com'
 }

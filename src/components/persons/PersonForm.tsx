@@ -119,7 +119,7 @@ export function PersonForm({
         <div className='container-global'>
             <fieldset className='main-global'>
                 <form className='main-global-form'>
-                    <strong>Cadastro de Clientes<a href="ceps">Seu CEP</a></strong>
+                    <strong>Cadastro do Cliente<a href="ceps">Seu CEP</a></strong>
                     <select className="mb-2 mt-2" onChange={(e) => setTpPerson(e.target.value)}>
                         <option>{'Pessoa-Fisica'}</option>
                         <option>{'Pessoa-Juridica'}</option>

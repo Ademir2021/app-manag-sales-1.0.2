@@ -136,8 +136,8 @@ export function ProductFormUpdate({
                 <div className="main-global" id='fiscal-main'>
     {nav}
                     <form className='main-global-form'>
-                    {menu === 'geral' ? <span className='m-3'>Atualizar produtos</span> : null}
-                        {menu === 'fiscal' ? <><span className='m-3'>Situação fiscal do produto</span><br /></> : null}
+                    {menu === 'geral' ? <span className='m-3'>Atualizar Produto</span> : null}
+                        {menu === 'fiscal' ? <><span className='m-3'>Situação fiscal do Produto</span><br /></> : null}
                         <label>{alert}</label>
                         <label>{message}</label>
                         {menu === 'fiscal' ? fiscal : null}

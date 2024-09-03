@@ -131,7 +131,7 @@ const grupo = <>
             <div className="container-global">
                 <div className="main-global">
                     <form className="main-global-form">
-                        <strong>Atualizaçao de Clientes</strong>
+                        <strong>Atualização do Cliente</strong>
                         <label>{alert}</label>
                         <label>{message}</label>
                         <input
