@@ -5,13 +5,13 @@ import { PersonList } from "../../components/persons/PersonList"
 import { Dashboard } from "../dashboard/Dashboard"
 import { TPerson } from './type/TPerson'
 import { ICeps, ICities } from "../ceps/type/TCeps"
-import { HandleEnsureAuth } from "../../services/HandleEnsureAuth"
 import { PersonsValFields } from "./valsFields/ValFields"
 
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api"
 
 import "../../App.css"
+import { postAuthHandle } from "../../services/handleService"
 
 export function PersonUpdate() {
     const { user: isLogged }: any = useContext(AuthContext)
@@ -67,41 +67,23 @@ export function PersonUpdate() {
     };
 
     async function getPersons() {
-        const res: any | undefined = localStorage.getItem('token')
-        const token = JSON.parse(res)
-        try {
-            const headers = {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
-            await api.post<TPerson[]>('persons_user', isLogged, { headers })
-                .then(response => {
-                    setTokenMessage("Token Válido !")
-                    const resp: TPerson[] = response.data
-                    setPersons(resp)
-                    for (let res of resp) {
-                        if (person.id_person === res.id_person)
-                            person.name_pers = res.name_pers
-                        person.cpf_pers = res.cpf_pers
-                        person.phone_pers = res.phone_pers
-                        person.address_pers = res.address_pers
-                        person.num_address = res.num_address
-                        person.bairro_pers = res.bairro_pers
-                        person.fk_name_filial = res.fk_name_filial
-                        person.fk_id_user = res.fk_id_user
-                        person.rg = res.rg
-                        person.cnpj = res.cnpj
-                        person.inscricao = res.cnpj
-                        person.fantasia = res.fantasia
-                        person.limit_cred = res.limit_cred
-                        person.fk_grupo = res.fk_grupo
-                    }
-                })
-
-        } catch (err) {
-            // console.log("error occurred !!" + err)
-            setTokenMessage("Erro: 401 - Token Expirado!")
-            await HandleEnsureAuth()
+        postAuthHandle('persons_user', setTokenMessage, setPersons, isLogged)
+        for (let res of persons) {
+            if (person.id_person === res.id_person)
+                person.name_pers = res.name_pers
+            person.cpf_pers = res.cpf_pers
+            person.phone_pers = res.phone_pers
+            person.address_pers = res.address_pers
+            person.num_address = res.num_address
+            person.bairro_pers = res.bairro_pers
+            person.fk_name_filial = res.fk_name_filial
+            person.fk_id_user = res.fk_id_user
+            person.rg = res.rg
+            person.cnpj = res.cnpj
+            person.inscricao = res.cnpj
+            person.fantasia = res.fantasia
+            person.limit_cred = res.limit_cred
+            person.fk_grupo = res.fk_grupo
         }
     };
 

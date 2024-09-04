@@ -1,10 +1,9 @@
 import { useEffect, useState, useContext } from "react"
 import { TContaAPagar, TDespesa } from "./type/TContasAPagar";
-import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api"
 import { TPerson } from "../persons/type/TPerson";
-import { postRegister } from "../../services/handleService";
+import { postAuthHandle, postRegister } from "../../services/handleService";
 import { ContasAPagarRegisterForm } from "../../components/contasAPagar/ContasAPagarRegisterForm";
 
 export function ContasAPagarRegister() {
@@ -59,28 +58,7 @@ export function ContasAPagarRegister() {
     }, [despesas])
 
     useEffect(() => {
-        async function getPerson() {
-            const res: any | undefined = localStorage.getItem('token')
-            const token: string = JSON.parse(res)
-            try {
-                const headers = {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                }
-                await api.post<TPerson[]>('persons_user', isLogged, { headers })
-                    .then(response => {
-                        setTokenMessage("Token Válido !")
-                        const persons: TPerson[] = response.data
-                        setPersons(persons)
-                    })
-            }
-            catch (err) {
-                await HandleEnsureAuth()
-                // console.log("error occurred !!" + err)
-                setTokenMessage(" Erro: 401 - Token Expirado ! ")
-            }
-        };
-        getPerson()
+       postAuthHandle('persons_user',setTokenMessage,setPersons,isLogged)
     }, [persons])
 
     function getContaAPagar() {

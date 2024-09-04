@@ -1,14 +1,28 @@
+import { HandleEnsureAuth } from './HandleEnsureAuth';
+
 import api from './api/api';
 
-export async function postList(object: Object, route: string) { // create in 26-08-24
-    let resp:Object[] = []
-    await api.post<Object[]>(`${route}`, object) // Em teste
-        .then(response => {
-            resp = response.data
-        })
-        .catch(error => resp = error);
-        return resp
-}
+export async function postAuthHandle(route: string, setTokenMessage: any, setHandle: any, isLogged:number) {
+    const res: any | undefined = localStorage.getItem('token')
+    const token: string = JSON.parse(res)
+    try {
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+        await api.post<[]>(route, isLogged, { headers })
+            .then(response => {
+                setTokenMessage("Token Válido!")
+                const resp:[] = response.data
+                setHandle(resp)
+            })
+    }
+    catch (err) {
+        // console.log("error occurred !!" + err)
+        setTokenMessage(" Erro: 401 - Token Expirado ! ")
+        await HandleEnsureAuth()
+    }
+};
 
 export async function postRegister(object: any, route: string) {
     await api.post<any[]>(`${route}`, object)
@@ -18,12 +32,12 @@ export async function postRegister(object: any, route: string) {
         .catch(error => alert(error));
 }
 
-export async function putUpdate( object: any, route: string) {
-    let resp:any[] = [] //retorno
+export async function putUpdate(object: any, route: string) {
+    let resp: any[] = [] //retorno
     await api.put<any[]>(`${route}`, object)
-        .then(response => { resp = response.data})
+        .then(response => { resp = response.data })
         .catch(error => resp = error);
-        return resp
+    return resp
 }
 
 

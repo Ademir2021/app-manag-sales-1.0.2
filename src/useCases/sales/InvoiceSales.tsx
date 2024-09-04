@@ -4,11 +4,11 @@ import { BackHome } from "../../components/utils/backHome/BackHome";
 import {TPerson } from "../persons/type/TPerson";
 import { ICeps, ICities } from "../ceps/type/TCeps";
 import { currencyFormat } from "../../components/utils/currentFormat/CurrentFormat";
-import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
 import saleJSON from "./sale.json"
 import { TItens } from "../products/type/TProducts";
 import api from "../../services/api/api";
 import { AuthContext } from '../../context/auth'
+import { postAuthHandle } from "../../services/handleService";
 
 export function InvoiceSales() {
     const { user: isLogged }: any = useContext(AuthContext);
@@ -33,29 +33,7 @@ export function InvoiceSales() {
     };
 
     useEffect(() => {
-        async function getPerson() {
-            const res_: any | undefined = localStorage.getItem('u')
-            const user = JSON.parse(res_)
-            setUserLoggedId(user[0].id)
-            setUserLoggedUsername(user[0].username)
-            const res: any | undefined = localStorage.getItem('token')
-            const token: string = JSON.parse(res)
-            try {
-                const headers = {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                }
-                await api.post<TPerson[]>('persons_user', isLogged, { headers })
-                    .then(response => {
-                        setPersons(response.data)
-                    })
-            } catch (err) {
-                // console.log("error occurred !!" + err)
-                setTokenMessage(" Erro: 401 - Token Expirado ! ")
-                await HandleEnsureAuth()
-            }
-        }
-        getPerson()
+        postAuthHandle('persons_user',setTokenMessage,setPersons, isLogged)
     }, [persons])
 
     useEffect(() => {

@@ -4,10 +4,11 @@ import { PersonList } from "../../components/persons/PersonList";
 import { Dashboard } from "../dashboard/Dashboard";
 import { TPerson } from './type/TPerson'
 import { ICeps, ICities } from "../ceps/type/TCeps";
-import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
+// import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
 
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api";
+import { postAuthHandle } from "../../services/handleService";
 
 export function PersonsList() {
     const { user: isLogged }: any = useContext(AuthContext);
@@ -17,28 +18,7 @@ export function PersonsList() {
     const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
 
     useEffect(() => {
-        async function getPerson() {
-            const res: any | undefined = localStorage.getItem('token')
-            const token: string = JSON.parse(res)
-            try {
-                const headers = {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                }
-                await api.post<TPerson[]>('persons_user', isLogged, { headers })
-                    .then(response => {
-                        setTokenMessage("Token Válido!")
-                        const res: TPerson[] = response.data
-                        setPersons(res)
-                    })
-            }
-            catch (err) {
-                // console.log("error occurred !!" + err)
-                setTokenMessage(" Erro: 401 - Token Expirado ! ")
-                await HandleEnsureAuth()
-            }
-        };
-        getPerson()
+       postAuthHandle('persons_user',setTokenMessage,setPersons, isLogged)
     }, [persons])
 
     useEffect(() => {
