@@ -1,3 +1,5 @@
+import { NavBar } from "../navbar/Navbar"
+
 type Props = {
     children: any
     handleChange: any
@@ -10,6 +12,8 @@ export function NotaRecebidaForm({
     handleSubmit,
 }: Props) {
     return (
+        <>
+        <NavBar/>
         <div className="container-global">
             <div className="main-global">
             <div>Lançar Nota de Entrada</div>
@@ -118,5 +122,6 @@ export function NotaRecebidaForm({
                 </div>
             </div>
         </div>
+        </>
     )
 }

@@ -1,12 +1,12 @@
 import { useEffect, useState, useContext } from "react";
-import { NotaRecebidaForm } from "../../components/NotaRecebida/NotaRecebidaForm";
+import { NotaRecebidaForm } from "../../components/notaRecebida/NotaRecebidaForm";
 import { TNotaRecebida, TItem } from "./type/TNotaRecebida";
 import { TProduct } from "../products/type/TProducts";
 import { TContaAPagar, TValPago } from "../contasAPagar/type/TContasAPagar";
-import { NotaRecebidaItemForm } from "../../components/NotaRecebida/NotaRecebidaItemForm";
-import { NotaRecebidaValsPagoForm } from "../../components/NotaRecebida/NotarecebidaValsPagoForm";
-import { NotaRecebidaContaAPagarForm } from "../../components/NotaRecebida/NotaRecebidaContaAPagarForm";
-import { NotaRecebidaEnviarForm } from "../../components/NotaRecebida/NotaRecebidaEnviarForm";
+import { NotaRecebidaItemForm } from "../../components/notaRecebida/NotaRecebidaItemForm";
+import { NotaRecebidaValsPagoForm } from "../../components/notaRecebida/NotarecebidaValsPagoForm";
+import { NotaRecebidaContaAPagarForm } from "../../components/notaRecebida/NotaRecebidaContaAPagarForm";
+import { NotaRecebidaEnviarForm } from "../../components/notaRecebida/NotaRecebidaEnviarForm";
 import { postRegister } from "../../services/handleService";
 
 import { AuthContext } from '../../context/auth'
@@ -50,7 +50,7 @@ export function NotaRecebida() {
     const [contaAPagar, setContaAPagar] = useState<TContaAPagar>({
         id_conta: 0,
         fk_filial: 0,
-        tipo: "compra",
+        tipo: "Compra",
         fk_compra: 0,
         fk_user: isLogged[0].id,
         parcela: '1/1',
@@ -192,7 +192,7 @@ export function NotaRecebida() {
         setContaAPagar({
             id_conta: 0,
             fk_filial: 1,
-            tipo: "compra",
+            tipo: "Compra",
             fk_compra: 0,
             fk_user: isLogged[0].id,
             parcela: '1/1',
