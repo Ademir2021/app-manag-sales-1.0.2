@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react"
 import { ContasAReceberRegisterForm } from "../../components/contasAReceber/ContasAReceberRegisterForm";
-import { TContaAreceber, TValsRecebidos } from "./type/TContasAReceber";
+import { TContaAreceber } from "./type/TContasAReceber";
 import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
 import { TPerson } from "../persons/type/TPerson";
 import { postRegister } from "../../services/handleService";
