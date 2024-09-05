@@ -22,7 +22,7 @@ function ControlledCarousel() {
           <Carousel.Item interval={800}>
             <a href='form_person'>
             <div id="carousel-item1">
-              <h2>Realize suas compras aqui!</h2>
+              <h2>Realize suas compras aqui</h2>
               <dd>Produtos com até 10% de desconto</dd><br></br>
               <button className='btn btn-primary' onClick={() => { window.location.replace('form_person') }}>Cadastre-se</button>
             </div>
