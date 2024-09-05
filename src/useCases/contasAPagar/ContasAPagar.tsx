@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react"
 import { TContaAPagar, TDespesa, TValPago } from "./type/TContasAPagar"
-import { HandleContasAPagar } from "./handleContasAPagar"
+import { HandleFinanceiro } from "../../components/utils/financeiro/HandleFinanceiro"
 import { ContasAPagarForm } from "../../components/contasAPagar/ContasAPagarForm"
 
 import { AuthContext } from '../../context/auth'
@@ -10,7 +10,7 @@ function ContasAPagar() {
     const [msg, setMsg] = useState('')
     const [valor, setValor] = useState(0)
     const [desconto, setDesconto] = useState(0)
-    const handleContasAPagar= new HandleContasAPagar()
+    const handleContasAPagar= new HandleFinanceiro()
     const [contasAPagar, setContasAPagar] = useState<TContaAPagar[]>([])
     const [valsPagos_, setValsPagos_] = useState<TValPago[]>([])
     const [valsPagos__] = useState<TValPago[]>([])

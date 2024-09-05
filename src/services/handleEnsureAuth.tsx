@@ -1,6 +1,6 @@
 import api from "../services/api/api";
 
-export async function HandleEnsureAuth() {
+export async function handleEnsureAuth() {
     const user = { username: "", password: "" }
     const res = localStorage.getItem('u')
     const res_ = localStorage.getItem('xxx')

@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react"
 import { ContasAreceberForm } from "../../components/contasAReceber/ContasAReceberForm"
 import { TContaAreceber, TValsRecebidos } from "./type/TContasAReceber"
-import { HandleContasAReceber } from "./HandleContasAReceber"
+import { HandleFinanceiro } from "../../components/utils/financeiro/HandleFinanceiro"
 
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api"
@@ -10,7 +10,7 @@ function ContasAReceber() {
     const [msg, setMsg] = useState('')
     const [valor, setValor] = useState(0)
     const [desconto, setDesconto] = useState(0)
-    const handleContasAReceber = new HandleContasAReceber()
+    const handleContasAReceber = new HandleFinanceiro()
     const [contasAReceber, setContasAReceber] = useState<TContaAreceber[]>([])
     const [valsRecebidos_, setValsRecebidos_] = useState<TValsRecebidos[]>([])
     const [valsRecebidos] = useState<TValsRecebidos[]>([])

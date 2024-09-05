@@ -3,7 +3,6 @@ import { UserFormUpdate } from "../../components/users/UserFormUpdate";
 import { crypt } from '../../components/utils/crypt/Crypt'
 import { AuthContext } from '../../context/auth'
 import { ButtonOnClick } from '../../components/utils/btnOnClick/BtnOnClick';
-import { HandleEnsureAuth } from '../../services/HandleEnsureAuth';
 import api from '../../services/api/api'
 
 import '../../App.css'

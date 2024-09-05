@@ -1,7 +1,7 @@
 import { TContaAreceber } from "../../useCases/contasAReceber/type/TContasAReceber"
-import { HandleContasAReceber } from "../../useCases/contasAReceber/HandleContasAReceber"
 import { Globais } from "../globais/Globais"
 import { currencyFormat } from "../utils/currentFormat/CurrentFormat"
+import { HandleFinanceiro } from "../utils/financeiro/HandleFinanceiro"
 
 type Props = {
     duplicatas: TContaAreceber[]
@@ -19,7 +19,7 @@ export function PagCredLojaForm({
         dinheiro
     }: Props) {
 
-    const handleContasAReceber = new HandleContasAReceber()
+    const handleContasAReceber = new HandleFinanceiro()
 
     const listDuplicatas =
         <>

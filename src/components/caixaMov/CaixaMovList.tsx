@@ -1,5 +1,6 @@
 import { TCaixaMov } from "../../useCases/caixaMov/type/TCaixaMov"
-import { HandleContasAReceber } from "../../useCases/contasAReceber/HandleContasAReceber"
+import { HandleFinanceiro } from "../utils/financeiro/HandleFinanceiro"
+
 
 type Props = {
     caixaMov: TCaixaMov[]
@@ -15,7 +16,7 @@ export function CaixaMovListComp({
     findVendaMovCaixaCredito
 }: Props) {
 
-    const handleContasAReceber = new HandleContasAReceber()
+    const handleContasAReceber = new HandleFinanceiro()
     
     const caixaMovList = <table className='table bg-light mt-1'>
             <thead>

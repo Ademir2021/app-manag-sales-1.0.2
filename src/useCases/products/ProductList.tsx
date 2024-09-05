@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { TProduct, TBrand, TSector, TUnMed, TClasseProd, TGrupoFiscal, TTipoProd, TNcm } from "./type/TProducts"
+import { TProduct, TBrand, TSector, TUnMed, TClasseProd, TGrupoFiscal, TTipoProd } from "./type/TProducts"
 import { FormatDate } from "../../components/utils/formatDate";
 import { ProductList } from "../../components/products/ProductList";
 import { currencyFormat } from "../../components/utils/currentFormat/CurrentFormat";

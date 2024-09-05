@@ -1,4 +1,4 @@
-import { HandleContasAReceber } from "../../useCases/contasAReceber/HandleContasAReceber"
+import { HandleFinanceiro } from "../utils/financeiro/HandleFinanceiro";
 import { TContaAreceber, TValsRecebidos } from "../../useCases/contasAReceber/type/TContasAReceber"
 import { currencyFormat } from '../utils/currentFormat/CurrentFormat';
 import { Logo } from "../logo/Logo"
@@ -31,7 +31,7 @@ export function ContasAreceberForm({
     saldo,
 }: Props) {
 
-    const handleContasAReceber = new HandleContasAReceber()
+    const handleContasAReceber = new HandleFinanceiro()
 
     const headerContasReceber =
         <div id="header-contas-receber" className="container">

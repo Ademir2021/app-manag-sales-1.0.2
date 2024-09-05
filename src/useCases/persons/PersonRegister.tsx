@@ -51,7 +51,6 @@ export function FormPerson() {
                         alert(msg)
                     })
                     .catch(error => alert(error));
-                // alert(JSON.stringify(person))
             }
         }
     }

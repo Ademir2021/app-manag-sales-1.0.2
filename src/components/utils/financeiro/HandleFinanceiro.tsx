@@ -1,7 +1,7 @@
 import { format, parseISO } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 
-class HandleContasAReceber {
+class HandleFinanceiro {
     dateDifference(date1: number | Date | any, date2: number | Date | any) {
         const diffInMilliseconds = Math.abs(date2 - date1);
         const diffInSeconds = diffInMilliseconds / 1000;
@@ -31,4 +31,4 @@ class HandleContasAReceber {
     };
 }
 
-export { HandleContasAReceber }
+export { HandleFinanceiro }

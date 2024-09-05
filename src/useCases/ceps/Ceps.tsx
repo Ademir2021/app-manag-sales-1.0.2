@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { CepsForm } from "../../components/ceps/CepsForm";
 import { NavBar } from "../../components/navbar/Navbar";
-import {ICeps, ICities} from './type/TCeps'
+import { ICeps, ICities } from './type/TCeps'
 import { postRegister } from "../../services/handleService";
 
 import api from "../../services/api/api";
@@ -28,9 +28,7 @@ export function Ceps() {
     };
 
     useEffect(() => {
-
         const getOneCity = async () => {
-
             try {
                 await api.get<ICities>(`on_city/${selectedIdCity}`)
                     .then(response => {
@@ -42,7 +40,6 @@ export function Ceps() {
         }
 
         async function getCities() {
-
             try {
                 await api.get<ICities[]>(`/cities`)
                     .then(response => {

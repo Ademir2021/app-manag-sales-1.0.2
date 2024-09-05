@@ -4,7 +4,6 @@ import { Dashboard } from "../dashboard/Dashboard";
 import { postRegister, getList } from "../../services/handleService";
 import { TProduct, TBrand, TSector, TUnMed, TClasseProd, TGrupoFiscal, TTipoProd, TNcm } from "./type/TProducts"
 import ncmJSON from './NCM.json'
-import api from "../../services/api/api";
 import { ProductValFields } from "./valsFields/ValsFields";
 
 export function FormProduct() {

@@ -1,4 +1,4 @@
-import { HandleContasAPagar } from "../../useCases/contasAPagar/handleContasAPagar"
+import { HandleFinanceiro } from "../utils/financeiro/HandleFinanceiro";
 import { TContaAPagar, TValPago } from "../../useCases/contasAPagar/type/TContasAPagar"
 import { currencyFormat } from '../utils/currentFormat/CurrentFormat';
 import { Logo } from "../logo/Logo";
@@ -33,7 +33,7 @@ function ContasAPagarForm({
     findNameDespesa
 }: Props) {
 
-    const handleContasAPagar = new HandleContasAPagar()
+    const handleContasAPagar = new HandleFinanceiro()
 
     const headerContasPagar =
         <div id="header-contas-receber" className="container">

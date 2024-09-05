@@ -1,4 +1,4 @@
-import { HandleEnsureAuth } from './HandleEnsureAuth';
+import { handleEnsureAuth } from './handleEnsureAuth';
 
 import api from './api/api';
 
@@ -20,7 +20,7 @@ export async function postAuthHandle(route: string, setTokenMessage: any, setHan
     catch (err) {
         // console.log("error occurred !!" + err)
         setTokenMessage(" Erro: 401 - Token Expirado ! ")
-        await HandleEnsureAuth()
+        await handleEnsureAuth()
     }
 };
 
