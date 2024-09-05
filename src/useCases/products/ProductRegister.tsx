@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { ProductForm } from '../../components/products/ProductForm';
 import { Dashboard } from "../dashboard/Dashboard";
-import { postRegister } from "../../services/handleService";
+import { postRegister, getList } from "../../services/handleService";
 import { TProduct, TBrand, TSector, TUnMed, TClasseProd, TGrupoFiscal, TTipoProd, TNcm } from "./type/TProducts"
 import ncmJSON from './NCM.json'
 import api from "../../services/api/api";
@@ -45,79 +45,29 @@ export function FormProduct() {
         const value = e.target.value;
         setProduct(values => ({ ...values, [name]: value }))
     };
-
     useEffect(() => {
-        const getBrands = async () => {
-            try {
-                await api.get<TBrand[]>('brands')
-                    .then(response => {
-                        setBrands(response.data)
-                    })
-            } catch (err) { console.log("err: " + err) }
-        };
-        getBrands()
+        getList('brands', setBrands)
     }, [brands])
 
     useEffect(() => {
-        const getSectors = async () => {
-            try {
-                await api.get<TSector[]>('sectors')
-                    .then(response => {
-                        setSectors(response.data)
-                    })
-            } catch (err) { console.log('err:' + err) }
-        }
-        getSectors()
+       getList('sectors',setSectors)
     }, [sectors])
 
     useEffect(() => {
-        const getUnMeds = async () => {
-            try {
-                await api.get<TUnMed[]>('un_med')
-                    .then(response => {
-                        setUnMeds(response.data)
-                    })
-            } catch (err) { console.log('err:' + err) }
-        }
-        getUnMeds()
+        getList('un_med',setUnMeds)
     }, [unMeds])
 
     useEffect(() => {
-        const getClassesProds = async () => {
-            try {
-                await api.get<TClasseProd[]>('classes_prods')
-                    .then(response => {
-                        setClassesProds(response.data)
-                    })
-            } catch (err) { console.log('err:' + err) }
-        }
-        getClassesProds()
+        getList('classes_prods',setClassesProds)
     }, [classesProds])
 
     useEffect(() => {
-        const getGruposFiscais = async () => {
-            try {
-                await api.get<TGrupoFiscal[]>('grupos_fiscais')
-                    .then(response => {
-                        setGruposFiscais(response.data)
-                    })
-            } catch (err) { console.log('err:' + err) }
-        }
-        getGruposFiscais()
+        getList('grupos_fiscais',setGruposFiscais)
     }, [gruposFiscais])
 
     useEffect(() => {
-        const getTiposProds = async () => {
-            try {
-                await api.get<TTipoProd[]>('tipos_prods')
-                    .then(response => {
-                        setTiposProds(response.data)
-                    })
-            } catch (err) { console.log('err:' + err) }
-        }
-        getTiposProds()
+   getList('tipos_prods',setTiposProds)
     }, [tiposProds])
-
     useEffect(() => {
         async function getNcms() {
             const ncms = await ncms_.Nomenclaturas;
@@ -125,8 +75,6 @@ export function FormProduct() {
         };
         getNcms();
     }, [ncms_]);
-
-
 
     async function handleSubmit(e: Event) {
         e.preventDefault();

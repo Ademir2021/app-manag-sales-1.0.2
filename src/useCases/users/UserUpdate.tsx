@@ -8,6 +8,7 @@ import api from '../../services/api/api'
 
 import '../../App.css'
 import { Dashboard } from '../dashboard/Dashboard';
+import { postAuthHandle } from '../../services/handleService';
 
 type TUpdateUser = {
     id: number;
@@ -24,9 +25,9 @@ export function UserUpdate() {
     const [message, setMessage] = useState<any>("")
     const [dropdown, setDropdown] = useState<string>("");
     const { user: isLogged }: any = useContext(AuthContext);
-    const isLoggedParams:number = isLogged[0].id
+    const isLoggedParams: number = isLogged[0].id
     const modalRef = useRef<any>(null);
-    const [, setUsers] = useState<TUpdateUser[]>([])
+    const [users, setUsers] = useState<TUpdateUser[]>([])
     const [user, setUser] = useState<TUpdateUser>({
         id: 0, name: "", username: "", password: "", psw_repeat: ""
     })
@@ -41,7 +42,7 @@ export function UserUpdate() {
     async function registerUser(): Promise<void> {
         await api.post<TUpdateUser[]>('/user', user)
             .then(response => {
-                const res:any = response.data
+                const res: any = response.data
                 setMessage(res[0].msg)
             }).catch(error => console.log(error))
     }
@@ -49,37 +50,21 @@ export function UserUpdate() {
     async function updateUser() {
         await api.put<TUpdateUser>('user_update', user)
             .then(response => {
-                const res:any = response.data
+                const res: any = response.data
                 alert(JSON.stringify(res[0].msg))
                 setAlert(res[0].msg)
             })
             .catch(error => alert(error))
     }
     async function getUsers() {
-        const res: any | undefined = localStorage.getItem('token')
-        const token = JSON.parse(res)
-        try {
-            const headers = {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+        postAuthHandle('users_list', setTokenMessage, setUsers, isLogged)
+        for (let i = 0; users.length > i; i++) {
+            if (users[i].id === isLoggedParams) {
+                user.id = users[i].id
+                user.name = users[i].name
+                user.username = users[i].username
+                setUsers(users)
             }
-           await api.post('users_list', isLogged, { headers })
-                .then(response => {
-                    setTokenMessage("Token Válido !")
-                    const res: TUpdateUser[] = response.data
-                    for (let i = 0; res.length > i; i++) {
-                        if (res[i].id === isLoggedParams) {
-                            user.id = res[i].id
-                            user.name = res[i].name
-                            user.username = res[i].username
-                            setUsers(res)
-                        }
-                    }
-                })
-        } catch (err) {
-            // console.log("error occurred !!" + err)
-            setTokenMessage(" Erro: 401 - Token Expirado ! ")
-            await HandleEnsureAuth()
         }
     };
 
@@ -151,8 +136,8 @@ export function UserUpdate() {
 
     return (
         <>
-        <Dashboard />
-         <div className="text-center"><a href="user_update">{tokenMessage}</a></div>
+            <Dashboard />
+            <div className="text-center"><a href="user_update">{tokenMessage}</a></div>
             <ButtonOnClick
                 onClickHandle={toggleDropdown}
                 text={"Sua conta - Criar/Atualizar/Alterar senha."} />

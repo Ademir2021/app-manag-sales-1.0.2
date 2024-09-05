@@ -7,8 +7,7 @@ import { InputSearch } from "../../components/inputSearch/InputSearch";
 import { Waiting } from "../../components/utils/waiting/Waiting";
 import { Globais } from "../../components/globais/Globais";
 import { AuthContext } from '../../context/auth'
-import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
-import api from '../../services/api/api'
+import { postAuthHandle } from "../../services/handleService";
 
 type TSaleList = {
   id_sale: number;
@@ -22,6 +21,7 @@ type TSaleList = {
 export function ListSales() {
   const { user: isLogged }: any = useContext(AuthContext);
   const [sales, setSales] = useState<TSaleList[]>([]);
+  const [sales_, setSales_] = useState<TSaleList[]>([]);
   const [created_int, setInt] = useState<Date | any>('')
   const [created_end, setEnd] = useState<Date | any>('')
   const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
@@ -37,32 +37,16 @@ export function ListSales() {
   };
 
   const getSales = async () => {
-    const res: any | undefined = localStorage.getItem('token')
-    const token = JSON.parse(res)
-    try {
-      const headers = {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      }
-      await api.post<TSaleList[]>('sale_user', isLogged, { headers })
-        .then(response => {
-          setTokenMessage("Token Válido !")
-          const resp: TSaleList[] = response.data
-          let data_sale: TSaleList[] = []
-          for (let res of resp) {
-            if (res.created_at >= created_int
-              && res.created_at <= created_end)
-              data_sale.push((res))
-          }
-          setSales(data_sale)
-          if (!resp[0].id_sale)
-            alert("Cliente sem Nota")
-        })
-    } catch (err) {
-      // console.log("error occurred !!" + err)
-      setTokenMessage(" Erro: 401 - Token Expirado ! ")
-      await HandleEnsureAuth()
+    postAuthHandle('sale_user', setTokenMessage, setSales, isLogged)
+    let sale_: TSaleList[] = []
+    for (let sale of sales) {
+      if (sale.created_at >= created_int
+        && sale.created_at <= created_end)
+        sale_.push(sale)
     }
+    setSales_(sale_)
+    if (!sales[0].id_sale)
+      alert("Cliente sem Nota")
   };
 
   return (
@@ -76,8 +60,8 @@ export function ListSales() {
         setEnd={setEnd}
         searchHandle={searchSales}
       />
-      {sales.length === 0 ?  <Waiting waiting="Aguardando Notas"/> : (
-        sales.map((sale: TSaleList) => (
+      {sales_.length === 0 ? <Waiting waiting="Aguardando Notas" /> : (
+        sales_.map((sale: TSaleList) => (
           <SalesList
             key={sale.id_sale}
             id={sale.id_sale}

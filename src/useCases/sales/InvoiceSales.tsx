@@ -6,9 +6,8 @@ import { ICeps, ICities } from "../ceps/type/TCeps";
 import { currencyFormat } from "../../components/utils/currentFormat/CurrentFormat";
 import saleJSON from "./sale.json"
 import { TItens } from "../products/type/TProducts";
-import api from "../../services/api/api";
+import { postAuthHandle, getList } from "../../services/handleService";
 import { AuthContext } from '../../context/auth'
-import { postAuthHandle } from "../../services/handleService";
 
 export function InvoiceSales() {
     const { user: isLogged }: any = useContext(AuthContext);
@@ -91,24 +90,12 @@ export function InvoiceSales() {
     }
 
     useEffect(() => {
-        async function getCeps() {
-            try {
-                await api.get(`/ceps`)
-                    .then(response => { setCeps(response.data) })
-            } catch (err) { alert("error occurred !!" + err) }
-        };
-        getCeps()
+        getList('ceps',setCeps)
     }, [ceps])
 
     useEffect(() => {
-        async function getCities() {
-            try {
-                await api.get(`/cities`)
-                    .then(response => { setCities(response.data) })
-            } catch (err) { alert("error occurred !!" + err) }
-        };
-        getCities()
-    }, [sale, cities])
+    getList('cities',setCities)
+    }, [cities])
 
     useEffect(() => {
         function setCep() {

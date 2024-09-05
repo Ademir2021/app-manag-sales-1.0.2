@@ -6,12 +6,12 @@ import { Dashboard } from "../dashboard/Dashboard"
 import { TPerson } from './type/TPerson'
 import { ICeps, ICities } from "../ceps/type/TCeps"
 import { PersonsValFields } from "./valsFields/ValFields"
+import { postAuthHandle, getList } from "../../services/handleService"
 
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api"
 
 import "../../App.css"
-import { postAuthHandle } from "../../services/handleService"
 
 export function PersonUpdate() {
     const { user: isLogged }: any = useContext(AuthContext)
@@ -160,23 +160,11 @@ export function PersonUpdate() {
     };
 
     useEffect(() => {
-        async function getCeps() {
-            try {
-                await api.get(`/ceps`)
-                    .then(response => { setCeps(response.data) })
-            } catch (err) { alert("error occurred !!" + err) }
-        }
-        getCeps()
+        getList('ceps', setCeps)
     }, [ceps])
 
     useEffect(() => {
-        async function getCities() {
-            try {
-                await api.get(`/cities`)
-                    .then(response => { setCities(response.data) })
-            } catch (err) { alert("error occurred !!" + err) }
-        }
-        getCities()
+        getList('cities', setCities)
     }, [cities])
 
     function setCep(idCep: number) {

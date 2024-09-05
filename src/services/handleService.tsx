@@ -2,7 +2,7 @@ import { HandleEnsureAuth } from './HandleEnsureAuth';
 
 import api from './api/api';
 
-export async function postAuthHandle(route: string, setTokenMessage: any, setHandle: any, isLogged:number) {
+export async function postAuthHandle(route: string, setTokenMessage: any, setHandle: any, isLogged: number) {
     const res: any | undefined = localStorage.getItem('token')
     const token: string = JSON.parse(res)
     try {
@@ -13,7 +13,7 @@ export async function postAuthHandle(route: string, setTokenMessage: any, setHan
         await api.post<[]>(route, isLogged, { headers })
             .then(response => {
                 setTokenMessage("Token Válido!")
-                const resp:[] = response.data
+                const resp: [] = response.data
                 setHandle(resp)
             })
     }
@@ -40,4 +40,19 @@ export async function putUpdate(object: any, route: string) {
     return resp
 }
 
+export async function postList(route: string, setHandle: any) {
+    try {
+        await api.post<[]>(route)
+            .then(response => { setHandle(response.data) })
+    } catch (err) { console.log("error occurred !!" + err) }
+};
+
+export async function getList(route: string, setHandle: any) {
+    try {
+        await api.get<[]>(route)
+            .then(response => {
+                setHandle(response.data)
+            })
+    } catch (err) { console.log("err: " + err) }
+};
 

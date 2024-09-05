@@ -4,6 +4,7 @@ import { Dashboard } from "../dashboard/Dashboard";
 import { TPerson} from "./type/TPerson";
 import { ICeps } from "../ceps/type/TCeps";
 import { PersonsValFields } from "./valsFields/ValFields";
+import { getList } from "../../services/handleService";
 
 import api from "../../services/api/api";
 
@@ -56,17 +57,7 @@ export function FormPerson() {
     }
 
     useEffect(() => {
-        async function getCeps() {
-            try {
-                await api.get<ICeps[]>(`/ceps`)
-                    .then(response => {
-                        setCeps(response.data)
-                    })
-            } catch (err) {
-                alert("error occurred !" + err)
-            }
-        };
-        getCeps()
+        getList('ceps',setCeps)
     }, [ceps])
 
     class setNumCeps {

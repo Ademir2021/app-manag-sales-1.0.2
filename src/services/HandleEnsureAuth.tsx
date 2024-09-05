@@ -10,7 +10,6 @@ export async function HandleEnsureAuth() {
         user.username = user_[0].username
         user.password = password_
     }
-
     try {
         await api.post('auth', user)
             .then(response => {

@@ -4,11 +4,9 @@ import { PersonList } from "../../components/persons/PersonList";
 import { Dashboard } from "../dashboard/Dashboard";
 import { TPerson } from './type/TPerson'
 import { ICeps, ICities } from "../ceps/type/TCeps";
-// import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
+import { postAuthHandle, getList } from "../../services/handleService";
 
 import { AuthContext } from '../../context/auth'
-import api from "../../services/api/api";
-import { postAuthHandle } from "../../services/handleService";
 
 export function PersonsList() {
     const { user: isLogged }: any = useContext(AuthContext);
@@ -22,23 +20,11 @@ export function PersonsList() {
     }, [persons])
 
     useEffect(() => {
-        async function getCeps() {
-            try {
-                await api.get<ICeps[]>(`/ceps`)
-                    .then(response => { setCeps(response.data) })
-            } catch (err) { alert("err " + err) }
-        };
-        getCeps()
+        getList('ceps',setCeps)
     }, [ceps])
 
     useEffect(() => {
-        async function getCities() {
-            try {
-                await api.get<ICities[]>(`/cities`)
-                    .then(response => { setCities(response.data) })
-            } catch (err) { alert("err " + err) }
-        };
-        getCities()
+    getList('cities',setCities)
     }, [cities])
 
     function setCep(idCep: number) {

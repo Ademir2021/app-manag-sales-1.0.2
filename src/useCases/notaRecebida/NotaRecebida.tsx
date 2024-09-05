@@ -7,7 +7,7 @@ import { NotaRecebidaItemForm } from "../../components/notaRecebida/NotaRecebida
 import { NotaRecebidaValsPagoForm } from "../../components/notaRecebida/NotarecebidaValsPagoForm";
 import { NotaRecebidaContaAPagarForm } from "../../components/notaRecebida/NotaRecebidaContaAPagarForm";
 import { NotaRecebidaEnviarForm } from "../../components/notaRecebida/NotaRecebidaEnviarForm";
-import { postRegister } from "../../services/handleService";
+import { postList, postRegister } from "../../services/handleService";
 
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api";
@@ -88,16 +88,9 @@ export function NotaRecebida() {
         setContaAPagar(values => ({ ...values, [name]: value }))
     };
     useEffect(() => {
-        async function getProducts() {
-            try {
-                await api.post<TProduct[]>('products_list')
-                    .then(response => {
-                        setProducts(response.data)
-                    })
-            } catch (err) { console.log("error occurred !" + err) }
-        }
-        getProducts()
+        postList('products_list',setProducts)
     }, [products]);
+
     const sumItems = () => {
         let sum = 0
         for (let item_ of notaRecebida.items) {

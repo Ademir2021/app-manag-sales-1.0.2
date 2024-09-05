@@ -2,15 +2,13 @@ import { useState, useEffect, useRef, useContext } from "react"
 import ncmJSON from './NCM.json'
 import { FormatDate } from "../../components/utils/formatDate";
 import { TProduct, TSector, TBrand, TClasseProd, TGrupoFiscal, TTipoProd, TUnMed, TNcm } from "./type/TProducts";
-import { postRegister, putUpdate } from "../../services/handleService";
+import { postAuthHandle, postRegister, putUpdate, getList } from "../../services/handleService";
 import { ProductFormUpdate } from "../../components/products/ProductFormUpdate";
 import { ProductList } from "../../components/products/ProductList";
-import { HandleEnsureAuth } from "../../services/HandleEnsureAuth";
 import { AuthContext } from '../../context/auth'
 import { currencyFormat } from '../../components/utils/currentFormat/CurrentFormat';
 import { Dashboard } from "../dashboard/Dashboard";
 import { HandleProducts } from "./HandleProduct";
-import api from '../../services/api/api';
 import "../../App.css"
 import { ProductValFields } from "./valsFields/ValsFields";
 
@@ -75,77 +73,29 @@ export function ProductUpdate() {
     };
 
     useEffect(() => {
-        const getBrands = async () => {
-            try {
-                await api.get<TBrand[]>('brands')
-                    .then(response => {
-                        setBrands(response.data)
-                    })
-            } catch (err) { console.log("err: " + err) }
-        };
-        getBrands()
+        getList('brands', setBrands)
     }, [brands])
 
     useEffect(() => {
-        const getSectors = async () => {
-            try {
-                await api.get<TSector[]>('sectors')
-                    .then(response => {
-                        setSectors(response.data)
-                    })
-            } catch (err) { console.log('err:' + err) }
-        }
-        getSectors()
+       getList('sectors',setSectors)
     }, [sectors])
 
     useEffect(() => {
-        const getUnMeds = async () => {
-            try {
-                await api.get<TUnMed[]>('un_med')
-                    .then(response => {
-                        setUnMeds(response.data)
-                    })
-            } catch (err) { console.log('err:' + err) }
-        }
-        getUnMeds()
+        getList('un_med',setUnMeds)
     }, [unMeds])
 
     useEffect(() => {
-        const getClassesProds = async () => {
-            try {
-                await api.get<TClasseProd[]>('classes_prods')
-                    .then(response => {
-                        setClassesProds(response.data)
-                    })
-            } catch (err) { console.log('err:' + err) }
-        }
-        getClassesProds()
+        getList('classes_prods',setClassesProds)
     }, [classesProds])
 
     useEffect(() => {
-        const getGruposFiscais = async () => {
-            try {
-                await api.get<TGrupoFiscal[]>('grupos_fiscais')
-                    .then(response => {
-                        setGruposFiscais(response.data)
-                    })
-            } catch (err) { console.log('err:' + err) }
-        }
-        getGruposFiscais()
+        getList('grupos_fiscais',setGruposFiscais)
     }, [gruposFiscais])
 
     useEffect(() => {
-        const getTiposProds = async () => {
-            try {
-                await api.get<TTipoProd[]>('tipos_prods')
-                    .then(response => {
-                        setTiposProds(response.data)
-                    })
-            } catch (err) { console.log('err:' + err) }
-        }
-        getTiposProds()
+   getList('tipos_prods',setTiposProds)
     }, [tiposProds])
-
+    
     useEffect(() => {
         async function getNcms() {
             const ncms = await ncms_.Nomenclaturas;
@@ -175,27 +125,7 @@ export function ProductUpdate() {
     }
 
     useEffect(() => {
-        async function getProducts() {
-            const res: any | undefined = localStorage.getItem('token')
-            const token = JSON.parse(res)
-            try {
-                const headers = {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                }
-                await api.post<TProduct[]>('products_list', { headers })
-                    .then(response => {
-                        setTokenMessage("Token Válido !")
-                        setProducts(response.data)
-                    })
-
-            } catch (err) {
-                console.log("error occurred !!" + err)
-                setTokenMessage(" Erro: 401 - Token Expirado ! ")
-                await HandleEnsureAuth()
-            }
-        }
-        getProducts();
+        postAuthHandle('products_list',setTokenMessage,setProducts,isLogged)
     }, [products, isLoggedParams]);
 
 

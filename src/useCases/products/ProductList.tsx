@@ -5,10 +5,10 @@ import { ProductList } from "../../components/products/ProductList";
 import { currencyFormat } from "../../components/utils/currentFormat/CurrentFormat";
 import { Dashboard } from "../dashboard/Dashboard";
 import { HandleProducts } from "./HandleProduct";
-import api from "../../services/api/api";
+import { postList, getList } from "../../services/handleService";
 
 export function ProductsList() {
-    const handleProducts:HandleProducts = new HandleProducts();
+    const handleProducts: HandleProducts = new HandleProducts();
     const [products, setproducts] = useState<TProduct[]>([]);
     const [brands, setBrands] = useState<TBrand[]>([]);
     const [sectors, setSectors] = useState<TSector[]>([]);
@@ -17,88 +17,34 @@ export function ProductsList() {
     const [gruposFiscais, setGruposFiscais] = useState<TGrupoFiscal[]>([])
     const [tiposProds, setTiposProds] = useState<TTipoProd[]>([])
 
-    useEffect(()=>{
-        async function getProducts() {
-            try {
-                await api.post<TProduct[]>('products_list')
-                    .then(response => { setproducts(response.data)})
-            } catch (err) { console.log("error occurred !!" + err) }
-        };
-        getProducts();
-    },[products]);
+    useEffect(() => {
+        postList('products_list', setproducts)
+    }, [products]);
 
     useEffect(() => {
-        const getBrands = async () => {
-            try {
-                await api.get<TBrand[]>('brands')
-                    .then(response => {
-                        setBrands(response.data)
-                    })
-            } catch (err) { console.log("err: " + err) }
-        };
-        getBrands()
+        getList('brands', setBrands)
     }, [brands])
 
     useEffect(() => {
-        const getSectors = async () => {
-            try {
-                await api.get<TSector[]>('sectors')
-                    .then(response => {
-                        setSectors(response.data)
-                    })
-            } catch (err) { console.log('err:' + err) }
-        }
-        getSectors()
+       getList('sectors',setSectors)
     }, [sectors])
 
     useEffect(() => {
-        const getUnMeds = async () => {
-            try {
-                await api.get<TUnMed[]>('un_med')
-                    .then(response => {
-                        setUnMeds(response.data)
-                    })
-            } catch (err) { console.log('err:' + err) }
-        }
-        getUnMeds()
+        getList('un_med',setUnMeds)
     }, [unMeds])
 
     useEffect(() => {
-        const getClassesProds = async () => {
-            try {
-                await api.get<TClasseProd[]>('classes_prods')
-                    .then(response => {
-                        setClassesProds(response.data)
-                    })
-            } catch (err) { console.log('err:' + err) }
-        }
-        getClassesProds()
+        getList('classes_prods',setClassesProds)
     }, [classesProds])
 
     useEffect(() => {
-        const getGruposFiscais = async () => {
-            try {
-                await api.get<TGrupoFiscal[]>('grupos_fiscais')
-                    .then(response => {
-                        setGruposFiscais(response.data)
-                    })
-            } catch (err) { console.log('err:' + err) }
-        }
-        getGruposFiscais()
+        getList('grupos_fiscais',setGruposFiscais)
     }, [gruposFiscais])
 
     useEffect(() => {
-        const getTiposProds = async () => {
-            try {
-                await api.get<TTipoProd[]>('tipos_prods')
-                    .then(response => {
-                        setTiposProds(response.data)
-                    })
-            } catch (err) { console.log('err:' + err) }
-        }
-        getTiposProds()
+   getList('tipos_prods',setTiposProds)
     }, [tiposProds])
-    
+
     return (
         <>
             <Dashboard />
@@ -114,7 +60,7 @@ export function ProductsList() {
                         name={product.descric_product}
                         val_max={currencyFormat(product.val_max_product)}
                         val_min={currencyFormat(product.val_min_product)}
-                        brand={handleProducts.nameBrands(product.fk_brand,brands)}
+                        brand={handleProducts.nameBrands(product.fk_brand, brands)}
                         sector={handleProducts.nameSector(product.fk_sector, sectors)}
                         un_med={handleProducts.nameUnMeds(product.fk_un_med, unMeds)}
                         bar_code={product.bar_code}
