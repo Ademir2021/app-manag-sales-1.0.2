@@ -32,7 +32,7 @@ function ControlledCarousel() {
           <Carousel.Item interval={800}>
       <a href='contact'>
             <div id="carousel-item2">
-              <h5>Como prefere receber a sua COMPRA</h5>
+              <h5>Como prefere receber a sua COMPRA!</h5>
               <dd>Retire na loja ou despachamos até sua localidade</dd><br></br>
               <button className='btn btn-primary' onClick={() => { window.location.replace('contact') }}>Fale conosco</button>
               </div>

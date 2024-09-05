@@ -18,8 +18,6 @@ export function InvoiceSales() {
     const [itens, setItens] = useState<TItens[]>([]);
     const [persons, setPersons] = useState<TPerson[]>([])
     const [sale, setSale] = useState<any>(saleJSON);
-    const [userLoggedId, setUserLoggedId] = useState(0)
-    const [userLoggedUsername, setUserLoggedUsername] = useState("")
     const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
     const [typePay, setTypePay] = useState("")
     const [installments, setInstallments] = useState<number | any>('Credito a vista')
@@ -40,8 +38,8 @@ export function InvoiceSales() {
             for (let person of persons) {
                 if ( person.id_person === idPerson) {
                     sale.filial = person.fk_name_filial;
-                    sale.user.user_id = userLoggedId;
-                    sale.user.user_name = userLoggedUsername;
+                    sale.user.user_id = person.fk_id_user;
+                    sale.user.user_name = ''
                     sale.person.fk_name_pers = person.id_person;
                     sale.person.name_pers = person.name_pers;
                     sale.person.cpf_pers = person.cpf_pers;
@@ -76,7 +74,7 @@ export function InvoiceSales() {
             }, 6000)
         }
         getSale()
-    }, [persons, userLoggedUsername, userLoggedId, sale, tokenMessage, typePay]);
+    }, [persons, sale, tokenMessage, typePay]);
 
     function calcInstallments() {
         if (installments === 'Credito a vista')

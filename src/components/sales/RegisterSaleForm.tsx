@@ -2,6 +2,7 @@ import { currencyFormat } from '../utils/currentFormat/CurrentFormat';
 
 import '../global-module.css'
 import './SaleForm.css'
+import { TProduct } from '../../useCases/products/type/TProducts';
 
 type Props = {
   children: string | number | readonly string[] | undefined | any;
@@ -10,7 +11,7 @@ type Props = {
   handleDelete: any;
   handleSaveUpdate: any;
   handleSearchItem: any;
-  products: Array<object>;
+  products: TProduct[];
   item: string | number;
   statusBtnSaveUpdate: "Salvar Item" | "Atualizar Item";
   statusBtnSaleSubmit: "Iniciar Pedido" | "Faturar Pedido";
@@ -67,7 +68,7 @@ export function RegisterSaleForm({
             </span>
 
             <datalist id="data-itens">
-              <select>{products.map((product:number|string|any) => (
+              <select>{products.map((product:TProduct) => (
                 <option key={product.id_product}>
                   {product.descric_product}</option>))}
               </select>

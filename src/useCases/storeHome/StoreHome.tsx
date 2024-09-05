@@ -1,13 +1,15 @@
 import { useState, useEffect, SetStateAction } from 'react';
 import { NavBar } from "../../components/navbar/Navbar";
 import { TProduct, TItem, TItens, TBrand, TSector, TUnMed } from '../products/type/TProducts';
-import api from '../../services/api/api'
 import { ListItens } from '../../components/storeHome/ListItens';
 import { Header } from '../../components/storeHome/Header';
 import { FooterHomePage } from './FooterHome';
 import { SearchItens } from '../../components/storeHome/SearchItens';
 import { currencyFormat } from '../../components/utils/currentFormat/CurrentFormat';
 import ControlledCarousel from '../../components/carousel/ControlledCarousel';
+import { getList } from '../../services/handleService';
+
+import api from '../../services/api/api'
 
 export function StoreHome() {
     const [id, setId] = useState<number>(1);
@@ -37,8 +39,7 @@ export function StoreHome() {
                     return sectors[i]
                 }
             }
-        }
-
+        };
         async function getProducts() {
             try {
                 await api.post<TProduct[]>('products_list')
@@ -57,7 +58,6 @@ export function StoreHome() {
             } catch (err) { console.log("error occurred !" + err) }
         }
         getProducts()
-
     }, [flgItens, selectSector, sectors])
 
     useEffect(() => {
@@ -143,46 +143,16 @@ export function StoreHome() {
         handleProducts()
     }
 
-    async function getBrands() {
-        try {
-            await api.get<TBrand[]>('/brands')
-                .then(response => {
-                    setBrand(response.data);
-                });
-        } catch (err) {
-            console.log("err" + err);
-        }
-    };
     useEffect(() => {
-        getBrands()
+        getList('brands', setBrand)
     }, [])
 
     useEffect(() => {
-        async function getSectors() {
-            try {
-                await api.get<TSector[]>('/sectors')
-                    .then(response => {
-                        setSector(response.data);
-                    });
-            } catch (err) {
-                console.log("err" + err);
-            }
-        };
-        getSectors()
+        getList('sectors', setSector)
     }, [sectors])
 
     useEffect(() => {
-        async function getUniMeds() {
-            try {
-                await api.get<TUnMed[]>('/un_meds')
-                    .then(response => {
-                        setUniMeds(response.data);
-                    });
-            } catch (err) {
-                console.log("err" + err);
-            }
-        };
-        getUniMeds()
+        getList('un_meds', setUniMeds)
     }, [uniMeds])
 
     function nameBrands(idBrand: number) {

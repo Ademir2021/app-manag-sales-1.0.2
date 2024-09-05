@@ -4,6 +4,7 @@ import { Itens } from "../../components/sales/Itens";
 import { TProduct, TItens } from "../products/type/TProducts";
 import { currencyFormat } from "../../components/utils/currentFormat/CurrentFormat";
 import { Dashboard } from "../dashboard/Dashboard";
+import { postList } from "../../services/handleService";
 import api from "../../services/api/api";
 
 export function RegisterSale() {
@@ -28,15 +29,7 @@ export function RegisterSale() {
     };
 
     useEffect(() => {
-        async function getProducts() {
-            try {
-                await api.post<TProduct[]>('products_list')
-                    .then(response => {
-                        setProducts(response.data)
-                    })
-            } catch (err) { console.log("error occurred !" + err) }
-        }
-        getProducts()
+        postList('products_list',setProducts)
     }, [products]);
 
     function updateListProduct(item: TItens) {
