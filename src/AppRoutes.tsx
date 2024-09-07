@@ -23,7 +23,6 @@ import { PersonUpdate } from "./useCases/persons/PersonUpdate";
 import { PersonsList } from './useCases/persons/PersonList';
 import { AuthProvider, AuthContext } from "./context/auth";
 import { Logout } from "./components/utils/logout/Logout";
-import { BackHome } from './components/utils/backHome/BackHome';
 import { Ceps } from "./useCases/ceps/Ceps";
 import { ContactsList } from "./useCases/contacts/ContactsList";
 import { CookieWarnings } from "./useCases/storeHome/CookieWarnings";
@@ -36,10 +35,9 @@ import { NotaRecebida } from "./useCases/notaRecebida/NotaRecebida";
 import { ContasAPagar } from "./useCases/contasAPagar/ContasAPagar";
 import { ContasAPagarRegister } from "./useCases/contasAPagar/ContasAPagarRegister";
 import { PagarValor } from "./useCases/contasAPagar/PagarValor";
-
+import { Error404 } from "./components/utils/errors/Error404";
 
 export function AppRoutes() {
-
     const Private = ({ children }: any) => {
         const { authenticated, loading }: any = useContext(AuthContext)
         if (loading) {
@@ -94,7 +92,7 @@ export function AppRoutes() {
                     <Route path="/contas_pagar" element={<Private><ContasAPagar /></Private>} />
                     <Route path="/contas_pagar_register" element={<Private><ContasAPagarRegister /></Private>} />
                     <Route path="/pagar_valor" element={<Private><PagarValor /></Private>} />
-                    <Route path="*" element={<><BackHome /><strong>Error 404: <label>Endereço URL inválido</label></strong><br /></>} />
+                    <Route path="*" Component={Error404} />
                 </Routes>
             </AuthProvider>
         </Router>
