@@ -5,6 +5,7 @@ import { ContasAPagarForm } from "../../components/contasAPagar/ContasAPagarForm
 
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api"
+import { getList } from "../../services/handleService"
 
 function ContasAPagar() {
     const [msg, setMsg] = useState('')
@@ -24,15 +25,7 @@ function ContasAPagar() {
     }, [msg])
 
     useEffect(() => {
-        const getDespesas = async () => {
-            try {
-                await api.get<TDespesa[]>('despesas')
-                    .then(response => {
-                        setDespesas(response.data)
-                    })
-            } catch (err) { console.log("err: " + err) }
-        };
-        getDespesas()
+        getList('despesas',setDespesas)
     }, [despesas])
 
     function findNameDespesa(id:number){
@@ -47,13 +40,13 @@ function ContasAPagar() {
             try {
                 await api.get<TContaAPagar[]>('contas_pagar')
                     .then(response => {
-                        const contas_: TContaAPagar | any = []
+                        const contas__: TContaAPagar | any = []
                         const contas: TContaAPagar[] = response.data
                         for (let conta of contas) {
                             if (conta.saldo > 0 || conta.recebimento == 0)
-                                contas_.push(conta)
+                                contas__.push(conta)
                         }
-                        setContasAPagar(contas_)
+                        setContasAPagar(contas__)
                     })
             } catch (err) { console.log("err: " + err) }
         };
@@ -61,17 +54,7 @@ function ContasAPagar() {
     }, [])
 
     useEffect(() => {
-        async function getValsPagos() {
-            try {
-                await api.get<TValPago[]>('vals_pagos')
-                    .then(response => {
-                        const resp: TValPago[] = response.data
-                        setValsPagos_(resp)
-                    })
-            } catch (err) { console.log("err: " + err) }
-
-        };
-        getValsPagos()
+        getList('vals_pagos', setValsPagos_)
     }, [valsPagos__])
 
     const updateContaPagar = async (conta: TContaAPagar) => {
