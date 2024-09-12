@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { CaixaMovListComp } from "../../components/caixaMov/CaixaMovList";
 import { TCaixaMov } from "./type/TCaixaMov";
-import api from "../../services/api/api";
 import { TDespesa, TValPago } from "../contasAPagar/type/TContasAPagar";
 import { TValsRecebidos } from "../contasAReceber/type/TContasAReceber";
+import { getList, postList } from "../../services/handleService";
 
 export function CaixaMovList() {
     const [caixaMov, setCaixaMov] = useState<TCaixaMov[]>([])
@@ -12,54 +12,19 @@ export function CaixaMovList() {
     const [valsRecebidos, setValsRecebidos] = useState<TValsRecebidos[]>([])
 
     useEffect(() => {
-        async function getCaixaMov() {
-            try {
-                await api.post<TCaixaMov[]>('caixa_movs')
-                    .then(response => {
-                        setCaixaMov(response.data)
-                    })
-            } catch (err) { console.log("err: " + err) }
-        };
-        getCaixaMov();
+        postList('caixa_movs', setCaixaMov)
     }, [caixaMov]);
 
     useEffect(() => {
-        const getDespesas = async () => {
-            try {
-                await api.get<TDespesa[]>('despesas')
-                    .then(response => {
-                        setDespesas(response.data)
-                    })
-            } catch (err) { console.log("err: " + err) }
-        };
-        getDespesas()
+        getList('despesas', setDespesas)
     }, [despesas])
 
     useEffect(() => {
-        async function getValsPagos() {
-            try {
-                await api.get<TValPago[]>('vals_pagos')
-                    .then(response => {
-                        const resp: TValPago[] = response.data
-                        setValsPagos(resp)
-                    })
-            } catch (err) { console.log("err: " + err) }
-
-        };
-        getValsPagos()
+        getList('vals_pagos', setValsPagos)
     }, [valsPagos])
 
     useEffect(() => {
-        async function getValsRecebidos() {
-            try {
-                await api.get<TValsRecebidos[]>('vals_recebidos')
-                    .then(response => {
-                        setValsRecebidos(response.data)
-                    })
-            } catch (err) { console.log("err: " + err) }
-
-        };
-        getValsRecebidos()
+        getList('vals_recebidos', setValsRecebidos)
     }, [valsRecebidos])
 
     function findNameMovCaixaDebito(id: number) {
@@ -67,15 +32,15 @@ export function CaixaMovList() {
             if (val.id_val === id)
                 for (let despesa of despesas)
                     if (val.fk_despesa === despesa.id)
-                        if(despesa.name)
-                        return despesa.name
+                        if (despesa.name)
+                            return despesa.name
     }
 
     function findNameMovCaixaCredito(id: number) {
         for (let valRecebido of valsRecebidos)
             if (valRecebido.id_val === id)
-                if(valRecebido.descricao)
-                return valRecebido.descricao
+                if (valRecebido.descricao)
+                    return valRecebido.descricao
     }
 
     function findVendaMovCaixaCredito(id: number) {

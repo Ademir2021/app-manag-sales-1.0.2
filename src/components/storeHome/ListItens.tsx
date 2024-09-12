@@ -24,7 +24,7 @@ export function ListItens(props: Props) {
             <div className='main-itens'>
                 <img className='itens-img' src={props.item_img} alt="Aguardando Item !"></img>
                 <ul style={{ color: 'textGray' }}>
-                    <li><b>ITEM</b> {props.id}</li>
+                    <li><b>Código Item</b> { '00' + props.id}</li>
                     <li>{props.descric}</li>
                     <div style={{color:'gray'}}>
                     {<li><b>{props.amount}</b> <i>{props.unMed} no Carrinho</i></li>}
