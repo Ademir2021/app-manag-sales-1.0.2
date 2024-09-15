@@ -15,7 +15,9 @@ type Props = {
     submitContasAReceberRegister: any
     submitInserirValor: any
     submitfluxoDeCaixa: any
-    saldo:number
+    saldo: number
+    printValorRecebido: any
+    token:string
 }
 
 export function ContasAreceberForm({
@@ -29,6 +31,8 @@ export function ContasAreceberForm({
     submitInserirValor,
     submitfluxoDeCaixa,
     saldo,
+    printValorRecebido,
+    token
 }: Props) {
 
     const handleContasAReceber = new HandleFinanceiro()
@@ -39,21 +43,22 @@ export function ContasAreceberForm({
         </div>
 
     const sumbit = <div className="mb-1">
-            <button style={{marginLeft:"0px", borderRadius:'0px'}}
-                className="btn btn-primary"
-                onClick={submitContasAReceberRegister}
-            >Emitir título</button>
-            <button style={{marginLeft:"1px", borderRadius:'0px'}}
-                className="btn btn-primary"
-                onClick={submitInserirValor}
-            >Inserir valor</button>
-            <button style={{marginLeft:"1px", borderRadius:'0px'}}
-                className="btn btn-primary"
-                onClick={submitfluxoDeCaixa}
-            >Fluxo de caixa</button>
-            <div style={{marginLeft:"12px", borderRadius:'0px'}}
-            ><b>Saldo = </b>{currencyFormat(saldo)}</div>
-        </div>
+        <div>{token}</div>
+        <button style={{ marginLeft: "0px", borderRadius: '0px' }}
+            className="btn btn-primary"
+            onClick={submitContasAReceberRegister}
+        >Emitir título</button>
+        <button style={{ marginLeft: "1px", borderRadius: '0px' }}
+            className="btn btn-primary"
+            onClick={submitInserirValor}
+        >Inserir valor</button>
+        <button style={{ marginLeft: "1px", borderRadius: '0px' }}
+            className="btn btn-primary"
+            onClick={submitfluxoDeCaixa}
+        >Fluxo de caixa</button>
+        <div style={{ marginLeft: "12px", borderRadius: '0px' }}
+        ><b>Saldo = </b>{currencyFormat(saldo)}</div>
+    </div>
 
     const inputReceberValor = <div>
         <input
@@ -65,61 +70,61 @@ export function ContasAreceberForm({
             onChange={handleChangeValor}
         />
         <input
-        min={0}
-        max={999}
-        type="number"
-        id="input-valor"
-        placeholder="Desconto"
-        onChange={ handleChangeDesconto}
-    />
+            min={0}
+            max={999}
+            type="number"
+            id="input-valor"
+            placeholder="Desconto"
+            onChange={handleChangeDesconto}
+        />
     </div>
 
     const listaContasReceber = <table className='table bg-light mt-1'>
-            <thead>
-                <tr>
-                    <th id="center">ID</th>
-                    <td>Tipo</td>
-                    <td id="center">Pagador</td>
-                    <td id="center">Origem</td>
-                    <td>Emissão</td>
-                    <td>Valor</td>
-                    <td>Vencimento</td>
-                    <td>Juros</td>
-                    <td>Multa</td>
-                    <td>Desconto</td>
-                    <td>Saldo</td>
-                    <td>Pagamento</td>
-                    <td>Recebimento</td>
-                    <td>Observação</td>
-                    <td>Receber</td>
+        <thead>
+            <tr>
+                <th id="center">ID</th>
+                <td>Tipo</td>
+                <td id="center">Pagador</td>
+                <td id="center">Origem</td>
+                <td>Emissão</td>
+                <td>Valor</td>
+                <td>Vencimento</td>
+                <td>Juros</td>
+                <td>Multa</td>
+                <td>Desconto</td>
+                <td>Saldo</td>
+                <td>Pagamento</td>
+                <td>Recebimento</td>
+                <td>Observação</td>
+                <td>Receber</td>
+            </tr>
+        </thead>
+        <tbody>
+            {contasAReceber.map((conta: TContaAreceber) => (
+                <tr key={conta.id_conta}>
+                    <th id="center">{conta.id_conta}</th>
+                    <td>{conta.tipo}</td>
+                    <td id="center">{conta.fk_pagador}</td>
+                    <td id="center">{conta.fk_venda}</td>
+                    <td>{handleContasAReceber.formatDate(conta.emissao)}</td>
+                    <td>{parseFloat(conta.valor).toFixed(3)}</td>
+                    <td>{handleContasAReceber.formatDate(conta.vencimento)}</td>
+                    <td>{parseFloat(conta.juros).toFixed(3)}</td>
+                    <td>{parseFloat(conta.multa).toFixed(3)}</td>
+                    <td>{parseFloat(conta.desconto).toFixed(3)}</td>
+                    <td>{parseFloat(conta.saldo).toFixed(2)}</td>
+                    <td>{conta.pagamento !== null ? handleContasAReceber.formatDate(conta.pagamento) : null}</td>
+                    <td>{parseFloat(conta.recebimento).toFixed(2)}</td>
+                    <td>{conta.observacao}</td>
+                    <td><button
+                        type="button"
+                        className="btn btn-primary"
+                        onClick={() => receberValor(conta)}
+                    >Receber</button></td>
                 </tr>
-            </thead>
-            <tbody>
-                {contasAReceber.map((conta: TContaAreceber) => (
-                    <tr key={conta.id_conta}>
-                        <th id="center">{conta.id_conta}</th>
-                        <td>{conta.tipo}</td>
-                        <td id="center">{conta.fk_pagador}</td>
-                        <td id="center">{conta.fk_venda}</td>
-                        <td>{handleContasAReceber.formatDate(conta.emissao)}</td>
-                        <td>{parseFloat(conta.valor).toFixed(3)}</td>
-                        <td>{handleContasAReceber.formatDate(conta.vencimento)}</td>
-                        <td>{parseFloat(conta.juros).toFixed(3)}</td>
-                        <td>{parseFloat(conta.multa).toFixed(3)}</td>
-                        <td>{parseFloat(conta.desconto).toFixed(3)}</td>
-                        <td>{parseFloat(conta.saldo).toFixed(2)}</td>
-                        <td>{conta.pagamento !== null ? handleContasAReceber.formatDate(conta.pagamento) : null}</td>
-                        <td>{parseFloat(conta.recebimento).toFixed(2)}</td>
-                        <td>{conta.observacao}</td>
-                        <td><button
-                            type="button"
-                            className="btn btn-primary"
-                            onClick={() => receberValor(conta)}
-                        >Receber</button></td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
+            ))}
+        </tbody>
+    </table>
 
     const listaValoresRecebidos =
         <table className='table bg-light mt-1'>
@@ -143,19 +148,20 @@ export function ContasAreceberForm({
                     <td>{valRec.valor}</td>
                     <td>{handleContasAReceber.formatDate(valRec.data_recebimento)}</td>
                     <td>{valRec.descricao}</td>
+                    <td><button className="btn btn-primary" onClick={() => printValorRecebido(valRec)}>Recibo</button></td>
                 </tr>
             ))}</tbody>
         </table>
     return (
-            <div className="container">
-                <div className="mt-2"><Logo/></div>
-                <hr></hr>
-                {sumbit}
-                {headerContasReceber}
-                {<div>{msg}</div>}
-                {inputReceberValor}
-                {listaContasReceber}
-                {listaValoresRecebidos}
-            </div>
+        <div className="container">
+            <div className="mt-2"><Logo /></div>
+            <hr></hr>
+            {sumbit}
+            {headerContasReceber}
+            {<div>{msg}</div>}
+            {inputReceberValor}
+            {listaContasReceber}
+            {listaValoresRecebidos}
+        </div>
     )
 }

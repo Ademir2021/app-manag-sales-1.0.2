@@ -5,6 +5,10 @@ import { HandleFinanceiro } from "../../components/utils/financeiro/HandleFinanc
 
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api"
+import { TPerson } from "../persons/type/TPerson"
+import { postAuthHandle } from "../../services/handleService"
+import { FormatDate } from "../../components/utils/formatDate"
+import { currencyFormat } from '../../components/utils/currentFormat/CurrentFormat';
 
 function ContasAReceber() {
     const [msg, setMsg] = useState('')
@@ -120,7 +124,7 @@ function ContasAReceber() {
         valsRecebidos.push(valRecebido)
         await registerValRecebido(valRecebido)
     }
-    console.log(contasAReceber)
+    // console.log(contasAReceber)
     async function somaValsRecebidos(conta: TContaAreceber) {
         let valRec: any = 0
         let soma = 0
@@ -172,8 +176,49 @@ function ContasAReceber() {
             return 0
     }
 
+    const [persons, setPersons] = useState<TPerson[]>([])
+    const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
+    useEffect(() => {
+        postAuthHandle('persons_user', setTokenMessage, setPersons, isLogged)
+    }, [persons])
+
+    function findPerson(id: number) {
+        for (let pers of persons)
+            if (pers.id_person === id) {
+                return [pers.name_pers, pers.cpf_pers]
+            }
+    }
+
+    function printValorRecebido(valRec: TValsRecebidos) {
+        const recibo = {
+            id: 0, conta: 0, venda: 0, user: 0, valor: 0, data_rec: '',
+            descricao: '', id_cliente: 0, nome_cliente: '', cpf: ''
+        }
+        for (let val of valsRecebidos_) {
+            if (val.id_val === valRec.id_val) {
+                recibo.id = valRec.id_val
+                recibo.conta = valRec.fk_conta
+                recibo.venda = valRec.fk_venda
+                recibo.venda = valRec.fk_user
+                recibo.valor  = valRec.valor
+                recibo.data_rec = FormatDate(valRec.data_recebimento)
+                recibo.descricao = valRec.descricao
+                recibo.id_cliente = valRec.fk_person
+                const pers = findPerson(valRec.fk_person)
+                if (pers)
+                    recibo.nome_cliente = pers[0]
+                if (pers)
+                    recibo.cpf = pers[1]
+                localStorage.setItem("recibo_val_rec", JSON.stringify(recibo))
+                window.location.replace('recibo_val_rec')
+            }
+        }
+    }
+
     return (
+        <>
             <ContasAreceberForm
+                token={tokenMessage}
                 contasAReceber={contasAReceber}
                 valoresRecebidos={valsRecebidos_}
                 receberValor={valor > 0 ? handleSumbit : () => { setMsg('Informe um novo valor') }}
@@ -188,7 +233,9 @@ function ContasAReceber() {
                 submitInserirValor={() => { window.location.assign("receber_valor") }}
                 submitfluxoDeCaixa={() => { window.location.assign("caixa_mov") }}
                 saldo={sumSaldoAReceber()}
+                printValorRecebido={printValorRecebido}
             />
+        </>
     )
 }
 
