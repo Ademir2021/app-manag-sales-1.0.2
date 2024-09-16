@@ -137,6 +137,7 @@ export function ContasAreceberForm({
                     <td>Recebido</td>
                     <td>Pagamento</td>
                     <td>Descrição</td>
+                    <td>Recibo</td>
                 </tr>
             </thead>
             <tbody>{valoresRecebidos.map((valRec: TValsRecebidos) => (

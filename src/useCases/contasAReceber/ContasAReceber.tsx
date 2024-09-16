@@ -195,30 +195,25 @@ function ContasAReceber() {
         postAuthHandle('sale_user', setTokenMessage, setSales, isLogged)
     }, [sales])
 
-    function findPerson(id: number, id_: number, id__: number) {
-        for (let pers of persons) {
-            if (pers.id_person === id) {
+    function findPerson(id_pers: number, id_conta: number, id_venda: number) {
+        for (let pers of persons)
+            if (pers.id_person === id_pers) {
                 return [pers.id_person, pers.name_pers, pers.cpf_pers]
             }
-        }
-        for (let conta of contasAReceber) {
-            if (conta.id_conta === id_) {
-                for (let per of persons) {
-                    if (per.id_person === conta.fk_pagador) {
-                        return [per.id_person, per.name_pers, per.cpf_pers]
+        for (let conta of contasAReceber)
+            if (conta.id_conta === id_conta) {
+                for (let pers of persons)
+                    if (pers.id_person === conta.fk_pagador) {
+                        return [pers.id_person, pers.name_pers, pers.cpf_pers]
                     }
-                }
             }
-        }
-        for (let sale of sales) {
-            if (sale.id_sale === id__) {
-                for (let per_ of persons) {
-                    if (per_.id_person == sale.fk_name_pers) {
-                        return [per_.id_person, per_.name_pers, per_.cpf_pers]
+        for (let sale of sales)
+            if (sale.id_sale === id_venda) {
+                for (let pers of persons)
+                    if (pers.id_person == sale.fk_name_pers) {
+                        return [pers.id_person, pers.name_pers, pers.cpf_pers]
                     }
-                }
             }
-        }
     }
 
     function printValorRecebido(valRec: TValsRecebidos) {
@@ -236,7 +231,7 @@ function ContasAReceber() {
                 recibo.data_rec = FormatDate(valRec.data_recebimento)
                 recibo.descricao = valRec.descricao
                 const pers = findPerson(valRec.fk_person, valRec.fk_conta, valRec.fk_venda)
-                if(pers)
+                if (pers)
                     recibo.id_cliente = pers[0]
                 if (pers)
                     recibo.nome_cliente = pers[1]
