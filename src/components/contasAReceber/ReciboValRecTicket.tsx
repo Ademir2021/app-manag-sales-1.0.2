@@ -31,7 +31,6 @@ export function ReciboValRecticket({ recibo }: Props) {
                     <div>Título {recibo?.conta}</div>
                     <div>Venda {recibo?.venda}</div>
                     <div>User {recibo?.user}</div>
-                    {/* <div>Data Recebimento {recibo?.data_rec}</div> */}
                     <div>Descrição {recibo?.descricao}</div>
                     <hr></hr>
                     <b>Pagador</b>
@@ -41,7 +40,7 @@ export function ReciboValRecticket({ recibo }: Props) {
                     <hr></hr>
                     <dd>
                         {"Comprovante emitido por " + Globais.company + 
-                        ' no ato do recebimento pelo Cliente/Pagador em Caso de dúvidas '
+                        ' no ato do pagamento pelo Cliente/Pagador em Caso de dúvidas '
                         + 'entre em contato pelo Tel: (44) 98852-1033.' }
                     </dd>
                     <br />

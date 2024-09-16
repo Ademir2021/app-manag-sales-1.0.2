@@ -8,7 +8,6 @@ import api from "../../services/api/api"
 import { TPerson } from "../persons/type/TPerson"
 import { postAuthHandle } from "../../services/handleService"
 import { FormatDate } from "../../components/utils/formatDate"
-import { currencyFormat } from '../../components/utils/currentFormat/CurrentFormat';
 
 function ContasAReceber() {
     const [msg, setMsg] = useState('')
@@ -199,7 +198,7 @@ function ContasAReceber() {
                 recibo.id = valRec.id_val
                 recibo.conta = valRec.fk_conta
                 recibo.venda = valRec.fk_venda
-                recibo.venda = valRec.fk_user
+                recibo.user = valRec.fk_user
                 recibo.valor  = valRec.valor
                 recibo.data_rec = FormatDate(valRec.data_recebimento)
                 recibo.descricao = valRec.descricao
