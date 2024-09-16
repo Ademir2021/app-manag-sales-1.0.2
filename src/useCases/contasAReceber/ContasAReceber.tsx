@@ -9,6 +9,15 @@ import { TPerson } from "../persons/type/TPerson"
 import { postAuthHandle } from "../../services/handleService"
 import { FormatDate } from "../../components/utils/formatDate"
 
+type TSaleList = {
+    id_sale: number;
+    created_at: Date | any;
+    fk_name_pers: number;
+    val_rec: number;
+    disc_sale: number;
+    total_sale: number
+};
+
 function ContasAReceber() {
     const [msg, setMsg] = useState('')
     const [valor, setValor] = useState(0)
@@ -18,6 +27,9 @@ function ContasAReceber() {
     const [valsRecebidos_, setValsRecebidos_] = useState<TValsRecebidos[]>([])
     const [valsRecebidos] = useState<TValsRecebidos[]>([])
     const { user: isLogged }: any = useContext(AuthContext);
+    const [persons, setPersons] = useState<TPerson[]>([])
+    const [sales, setSales] = useState<TSaleList[]>([]);
+    const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
 
     useEffect(() => {
         setTimeout(() => {
@@ -175,17 +187,38 @@ function ContasAReceber() {
             return 0
     }
 
-    const [persons, setPersons] = useState<TPerson[]>([])
-    const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
     useEffect(() => {
         postAuthHandle('persons_user', setTokenMessage, setPersons, isLogged)
     }, [persons])
 
-    function findPerson(id: number) {
-        for (let pers of persons)
+    useEffect(() => {
+        postAuthHandle('sale_user', setTokenMessage, setSales, isLogged)
+    }, [sales])
+
+    function findPerson(id: number, id_: number, id__: number) {
+        for (let pers of persons) {
             if (pers.id_person === id) {
-                return [pers.name_pers, pers.cpf_pers]
+                return [pers.id_person, pers.name_pers, pers.cpf_pers]
             }
+        }
+        for (let conta of contasAReceber) {
+            if (conta.id_conta === id_) {
+                for (let per of persons) {
+                    if (per.id_person === conta.fk_pagador) {
+                        return [per.id_person, per.name_pers, per.cpf_pers]
+                    }
+                }
+            }
+        }
+        for (let sale of sales) {
+            if (sale.id_sale === id__) {
+                for (let per_ of persons) {
+                    if (per_.id_person == sale.fk_name_pers) {
+                        return [per_.id_person, per_.name_pers, per_.cpf_pers]
+                    }
+                }
+            }
+        }
     }
 
     function printValorRecebido(valRec: TValsRecebidos) {
@@ -199,15 +232,16 @@ function ContasAReceber() {
                 recibo.conta = valRec.fk_conta
                 recibo.venda = valRec.fk_venda
                 recibo.user = valRec.fk_user
-                recibo.valor  = valRec.valor
+                recibo.valor = valRec.valor
                 recibo.data_rec = FormatDate(valRec.data_recebimento)
                 recibo.descricao = valRec.descricao
-                recibo.id_cliente = valRec.fk_person
-                const pers = findPerson(valRec.fk_person)
+                const pers = findPerson(valRec.fk_person, valRec.fk_conta, valRec.fk_venda)
+                if(pers)
+                    recibo.id_cliente = pers[0]
                 if (pers)
-                    recibo.nome_cliente = pers[0]
+                    recibo.nome_cliente = pers[1]
                 if (pers)
-                    recibo.cpf = pers[1]
+                    recibo.cpf = pers[2]
                 localStorage.setItem("recibo_val_rec", JSON.stringify(recibo))
                 window.location.replace('recibo_val_rec')
             }
