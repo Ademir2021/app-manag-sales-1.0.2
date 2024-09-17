@@ -1,45 +1,49 @@
+import { TSaleList } from "../../useCases/sales/type/TSale"
+import { Globais } from "../globais/Globais"
+import { Waiting } from "../utils/waiting/Waiting"
+import { FormatDate } from '../utils/formatDate/index';
+import { currencyFormat } from '../utils/currentFormat/CurrentFormat';
+
 type Props = {
-    id: number;
-    create: Date | any;
-    name: string | number;
-    total_prod: string | number;
-    disc_sale: string | number;
-    total_note: string | number;
-    issueNote: any;
+    sales: TSaleList[]
 }
 
-export function SalesList(props: Props) {
+export function SalesList({ sales }: Props) {
 
     const NFeStatus = <img src="img/NFe/status/autorizada.ico" alt="img NFe autorizada"></img>
 
+    const thead = <thead>
+        <tr>
+            <th className='text-center'>Nota</th>
+            <th className="text-center">NFe</th>
+            <th className="text-center">Status</th>
+            <th>Emissão</th>
+            <th>Cliente</th>
+            <th>T-Prod</th>
+            <th>Desc.</th>
+            <th>T-Nota</th>
+            <th>Imprimir</th>
+        </tr>
+    </thead>
+
     return (
         <table className='table bg-light mt-1 container'>
-        <thead>
-            <tr>
-                <th className='text-center'>NOTA</th>
-                <th className="text-center">NFe</th>
-                <th className="text-center">STATUS</th>
-                <th className='text-center'>EMISSÃO</th>
-                <th className='text-center'>CLIENTE</th>
-                <th className='text-center'>T.PROD</th>
-                <th className='text-center'>DESC.</th>
-                <th className="text-center">T.NOTA</th>
-                <th className="text-center">IMPRIMIR</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr key={props.id}>
-                <th className='text-center'>{props.id}</th>
-                <th className="text-center">{props.id}</th>
-                <th className="text-center">{NFeStatus}</th>
-                <td className='text-center'>{props.create}</td>
-                <td className='text-center'>{props.name}</td>
-                <td className='text-center'>{props.total_prod}</td>
-                <td className='text-center'>{props.disc_sale}</td>
-                <td className='text-center'>{props.total_note}</td>
-                <td className='text-center'>{props.issueNote}</td>
-            </tr>
-        </tbody>
-    </table>
+            {sales.length === 0 ? <Waiting waiting="Aguardando Notas" /> : thead}
+            <tbody>
+                {sales.map((sale: TSaleList) => (
+                    <tr key={sale.id_sale}>
+                        <th className='text-center'>{sale.id_sale}</th>
+                        <th className="text-center">{sale.id_sale}</th>
+                        <th className="text-center">{NFeStatus}</th>
+                        <td>{FormatDate(sale.created_at)}</td>
+                        <td>{sale.fk_name_pers}</td>
+                        <td>{currencyFormat(sale.val_rec)}</td>
+                        <td>{currencyFormat(sale.disc_sale)}</td>
+                        <td>{currencyFormat(sale.total_sale)}</td>
+                        <td><a href={Globais.URL_NOTE + '/' + sale.id_sale}>Imprimir</a></td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
     )
 }

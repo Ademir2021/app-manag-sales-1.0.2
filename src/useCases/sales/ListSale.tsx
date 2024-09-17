@@ -1,11 +1,7 @@
 import { useState, useContext } from "react";
-import { FormatDate } from "../../components/utils/formatDate";
 import { SalesList } from "../../components/sales/SaleList";
-import { currencyFormat } from "../../components/utils/currentFormat/CurrentFormat";
 import { Dashboard } from "../dashboard/Dashboard";
 import { InputSearch } from "../../components/inputSearch/InputSearch";
-import { Waiting } from "../../components/utils/waiting/Waiting";
-import { Globais } from "../../components/globais/Globais";
 import { AuthContext } from '../../context/auth'
 import { postAuthHandle } from "../../services/handleService";
 import { TSaleList } from "./type/TSale";
@@ -52,19 +48,9 @@ export function ListSales() {
         setEnd={setEnd}
         searchHandle={searchSales}
       />
-      {sales_.length === 0 ? <Waiting waiting="Aguardando Notas" /> : (
-        sales_.map((sale: TSaleList) => (
-          <SalesList
-            key={sale.id_sale}
-            id={sale.id_sale}
-            create={FormatDate(sale.created_at)}
-            name={sale.fk_name_pers}
-            total_prod={currencyFormat(sale.val_rec)}
-            disc_sale={currencyFormat(sale.disc_sale)}
-            total_note={currencyFormat(sale.total_sale)}
-            issueNote={<a href={Globais.URL_NOTE + '/' + sale.id_sale}>Imprimir</a>}
-          />
-        )))}
+      <SalesList
+      sales={sales_}
+      />
     </>
   )
 }
