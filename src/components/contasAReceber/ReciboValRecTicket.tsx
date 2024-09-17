@@ -23,20 +23,20 @@ export function ReciboValRecticket({ recibo }: Props) {
                     <b>R$ {valor}</b>
                     <hr></hr>
                     <b>Favorecido</b>
-                    <p>{Globais.company}</p>
-                    <p>CNPJ  {Globais.CNPJ}</p>
+                    <dd>{Globais.company}</dd>
+                    <dd><b>CNPJ</b> {Globais.CNPJ}</dd>
                     <hr></hr>
-                    <b>Referencias</b>
-                    <div>ID {recibo?.id}</div>
-                    <div>Título {recibo?.conta}</div>
-                    <div>Venda {recibo?.venda}</div>
-                    <div>User {recibo?.user}</div>
-                    <div>Descrição {recibo?.descricao}</div>
+                    <b>Referências do valor</b>
+                    <dd><b>ID</b> {recibo?.id}</dd>
+                    <dd><b>Título</b> {recibo?.conta}</dd>
+                    <dd><b>Venda</b> {recibo?.venda}</dd>
+                    <dd><b>User</b> {recibo?.user}</dd>
+                    <dd><b>Descrição</b> {recibo?.descricao}</dd>
                     <hr></hr>
-                    <b>Pagador</b>
-                    <div>ID Cliente {recibo?.id_cliente}</div>
-                    <div>Cliente {recibo?.nome_cliente}</div>
-                    <div>Cpf {recibo?.cpf}</div>
+                    <b>Cliente/Pagador</b>
+                    <dd><b>ID</b> {recibo?.id_cliente}</dd>
+                    <dd><b>Nome</b> {recibo?.nome_cliente}</dd>
+                    <dd><b>CPF</b> {recibo?.cpf}</dd>
                     <hr></hr>
                     <dd>
                         {"Comprovante emitido por " + Globais.company + 
