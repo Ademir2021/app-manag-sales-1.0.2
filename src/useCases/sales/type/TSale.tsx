@@ -25,3 +25,12 @@ export type TSale = {
     "dinheiro":number
     "itens": []
 }
+
+export type TSaleList = {
+    id_sale: number;
+    created_at: Date | any;
+    fk_name_pers: number;
+    val_rec: number;
+    disc_sale: number;
+    total_sale: number
+  };

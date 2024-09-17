@@ -8,15 +8,7 @@ import { Waiting } from "../../components/utils/waiting/Waiting";
 import { Globais } from "../../components/globais/Globais";
 import { AuthContext } from '../../context/auth'
 import { postAuthHandle } from "../../services/handleService";
-
-type TSaleList = {
-  id_sale: number;
-  created_at: Date | any;
-  fk_name_pers: number;
-  val_rec: number;
-  disc_sale: number;
-  total_sale: number
-};
+import { TSaleList } from "./type/TSale";
 
 export function ListSales() {
   const { user: isLogged }: any = useContext(AuthContext);

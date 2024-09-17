@@ -2,21 +2,12 @@ import { useEffect, useState, useContext } from "react"
 import { ContasAreceberForm } from "../../components/contasAReceber/ContasAReceberForm"
 import { TContaAreceber, TValsRecebidos } from "./type/TContasAReceber"
 import { HandleFinanceiro } from "../../components/utils/financeiro/HandleFinanceiro"
-
-import { AuthContext } from '../../context/auth'
-import api from "../../services/api/api"
 import { TPerson } from "../persons/type/TPerson"
 import { postAuthHandle } from "../../services/handleService"
 import { FormatDate } from "../../components/utils/formatDate"
-
-type TSaleList = {
-    id_sale: number;
-    created_at: Date | any;
-    fk_name_pers: number;
-    val_rec: number;
-    disc_sale: number;
-    total_sale: number
-};
+import { TSaleList } from "../sales/type/TSale"
+import { AuthContext } from '../../context/auth'
+import api from "../../services/api/api"
 
 function ContasAReceber() {
     const [msg, setMsg] = useState('')
@@ -135,7 +126,7 @@ function ContasAReceber() {
         valsRecebidos.push(valRecebido)
         await registerValRecebido(valRecebido)
     }
-    // console.log(contasAReceber)
+
     async function somaValsRecebidos(conta: TContaAreceber) {
         let valRec: any = 0
         let soma = 0
