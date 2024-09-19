@@ -5,18 +5,20 @@ import { ContasAPagarForm } from "../../components/contasAPagar/ContasAPagarForm
 
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api"
-import { getList } from "../../services/handleService"
+import { getList, postAuthHandle } from "../../services/handleService"
 
 function ContasAPagar() {
     const [msg, setMsg] = useState('')
     const [valor, setValor] = useState(0)
     const [desconto, setDesconto] = useState(0)
-    const handleContasAPagar= new HandleFinanceiro()
+    const handleContasAPagar = new HandleFinanceiro()
     const [contasAPagar, setContasAPagar] = useState<TContaAPagar[]>([])
+    const [contasAPagar_, setContasAPagar_] = useState<TContaAPagar[]>([])
     const [valsPagos_, setValsPagos_] = useState<TValPago[]>([])
     const [valsPagos__] = useState<TValPago[]>([])
     const [despesas, setDespesas] = useState<TDespesa[]>([])
     const { user: isLogged }: any = useContext(AuthContext);
+    const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
 
     useEffect(() => {
         setTimeout(() => {
@@ -25,33 +27,30 @@ function ContasAPagar() {
     }, [msg])
 
     useEffect(() => {
-        getList('despesas',setDespesas)
+        getList('despesas', setDespesas)
     }, [despesas])
 
-    function findNameDespesa(id:number){
-        for (let despesa of despesas){
-            if(despesa.id === id)
+    function findNameDespesa(id: number) {
+        for (let despesa of despesas) {
+            if (despesa.id === id)
                 return despesa.name
         }
     }
 
     useEffect(() => {
         async function getContasAPagar() {
-            try {
-                await api.get<TContaAPagar[]>('contas_pagar')
-                    .then(response => {
-                        const contas__: TContaAPagar | any = []
-                        const contas: TContaAPagar[] = response.data
-                        for (let conta of contas) {
-                            if (conta.saldo > 0 || conta.recebimento == 0)
-                                contas__.push(conta)
-                        }
-                        setContasAPagar(contas__)
-                    })
-            } catch (err) { console.log("err: " + err) }
-        };
-        getContasAPagar()
-    }, [])
+            postAuthHandle('contas_pagar_list', setTokenMessage, setContasAPagar_, isLogged)
+            const contas_: TContaAPagar[] = []
+            for (let conta of contasAPagar_)
+                if (conta.saldo > 0 || conta.recebimento == 0) {
+                    contas_.push(conta)
+                    setContasAPagar(contas_)
+                }
+        }
+        if (contasAPagar.length === 0) {
+            getContasAPagar()
+        }
+    }, [contasAPagar_])
 
     useEffect(() => {
         getList('vals_pagos', setValsPagos_)
@@ -66,7 +65,7 @@ function ContasAPagar() {
     }
 
     useEffect(() => {
-        function calcContasAReceber() {
+        function calcContasAPagar() {
             for (let contaAPagar of contasAPagar) {
                 const venc_original = new Date(contaAPagar.vencimento).getTime();
                 const diaPagamento = new Date().getTime()
@@ -84,7 +83,7 @@ function ContasAPagar() {
                 contaAPagar.saldo = saldo.toFixed(3)
             }
         }
-        calcContasAReceber();
+        calcContasAPagar();
     }, [contasAPagar])
 
     async function registerValPago(valPago: TValPago) {
@@ -106,7 +105,7 @@ function ContasAPagar() {
             data_recebimento: "",
             descricao: "",
             fk_person: 0,
-            fk_despesa:0
+            fk_despesa: 0
         }
         valPago.id_val = id++
         valPago.fk_conta = conta.id_conta
@@ -125,7 +124,7 @@ function ContasAPagar() {
         valsPagos__.push(valPago)
         await registerValPago(valPago)
     }
-    console.log(contasAPagar)
+
     async function somaValsPago(conta: TContaAPagar) {
         let valRec: any = 0
         let soma = 0
@@ -137,7 +136,7 @@ function ContasAPagar() {
         return soma + valor
     }
 
-    const receberValores = async (conta: TContaAPagar) => {
+    const pagarValores = async (conta: TContaAPagar) => {
         for (let contaAPagar of contasAPagar) {
             if (contaAPagar.id_conta === conta.id_conta) {
                 const recebimento = await somaValsPago(conta)
@@ -162,7 +161,7 @@ function ContasAPagar() {
     function handleSumbit(conta: TContaAPagar) {
         setMsg('')
         valsPagos(conta)
-        receberValores(conta)
+        pagarValores(conta)
         setValor(0)
     }
 
@@ -177,23 +176,23 @@ function ContasAPagar() {
             return 0
     }
     return (
-            <ContasAPagarForm
-                contasAPagar={contasAPagar}
-                valoresPagos={valsPagos_}
-                pagarValor={valor > 0 ? handleSumbit : () => { setMsg('Informe um novo valor') }}
-                handleChangeValor={(e: any) => {
-                    setValor(parseFloat(e.target.value))
-                }}
-                handleChangeDesconto={(e: any) => {
-                    setDesconto(parseFloat(e.target.value))
-                }}
-                msg={msg}
-                submitContasAPagarRegister={() => { window.location.assign("/contas_pagar_register") }}
-                submitInserirValor={() => { window.location.assign("pagar_valor") }}
-                submitfluxoDeCaixa={() => { window.location.assign("caixa_mov") }}
-                saldo={sumSaldoAPagar()}
-                findNameDespesa={findNameDespesa}
-            />
+        <ContasAPagarForm
+            contasAPagar={contasAPagar}
+            valoresPagos={valsPagos_}
+            pagarValor={valor > 0 ? handleSumbit : () => { setMsg('Informe um novo valor') }}
+            handleChangeValor={(e: any) => {
+                setValor(parseFloat(e.target.value))
+            }}
+            handleChangeDesconto={(e: any) => {
+                setDesconto(parseFloat(e.target.value))
+            }}
+            msg={msg}
+            submitContasAPagarRegister={() => { window.location.assign("/contas_pagar_register") }}
+            submitInserirValor={() => { window.location.assign("pagar_valor") }}
+            submitfluxoDeCaixa={() => { window.location.assign("caixa_mov") }}
+            saldo={sumSaldoAPagar()}
+            findNameDespesa={findNameDespesa}
+        />
     )
 }
 

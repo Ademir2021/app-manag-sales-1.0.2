@@ -40,7 +40,9 @@ function ContasAReceber() {
             }
         setContasAReceber_(contas_)
     }
-    getContasAReceber()
+    if(contasAReceber_.length === 0){
+        getContasAReceber()
+    }
     }, [contasAReceber])
 
     useEffect(()=>{
