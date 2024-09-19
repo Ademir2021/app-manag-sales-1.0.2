@@ -162,8 +162,8 @@ export function ContasAreceberForm({
             {headerContasReceber}
             {<div>{msg}</div>}
             {checkAdminPrivilege() === '2' ? inputReceberValor : <div>Contas em aberto do Cliente</div>}
-            {listaContasReceber}
-            {listaValoresRecebidos}
+            { contasAReceber.length > 0  ? listaContasReceber: <h1>Cliente sem Título para Pagar !</h1> }
+            { valoresRecebidos.length > 0 ? listaValoresRecebidos: null }
         </div>
     )
 }
