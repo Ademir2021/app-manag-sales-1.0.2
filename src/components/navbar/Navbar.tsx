@@ -141,6 +141,24 @@ export function NavBar() {
                                             href="/users_list">Usuários</a></li>
                                     </ul>
                                 </li>
+
+                                <li className="nav-item dropdown">
+                                    <a className="nav-link dropdown-toggle"
+                                        role="button"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false">Financeiro</a>
+                                    <ul className="dropdown-menu" id="nav-">
+                                        <li>{checkAdminPrivilege() === privilAdmin ?
+                                            <a className="dropdown-item nav-link"
+                                                href="/contas_receber">Contas a receber</a> :
+                                            <a className="dropdown-item nav-link"
+                                                href="/contas_receber">Consultar financeiro</a>}</li>
+                                        <li>{checkAdminPrivilege() === privilAdmin ?
+                                            <a className="dropdown-item nav-link"
+                                                href="/contas_pagar">Contas a pagar</a> :
+                                          null }</li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                     </div>
