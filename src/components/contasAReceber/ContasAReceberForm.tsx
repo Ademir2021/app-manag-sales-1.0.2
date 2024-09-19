@@ -4,6 +4,7 @@ import { currencyFormat } from '../utils/currentFormat/CurrentFormat';
 import { Logo } from "../logo/Logo"
 
 import './ContasAReceber.css'
+import { checkAdminPrivilege } from "../utils/checksUserLogged/ChecksUserLogged";
 
 type Props = {
     contasAReceber: TContaAreceber[]
@@ -17,7 +18,7 @@ type Props = {
     submitfluxoDeCaixa: any
     saldo: number
     printValorRecebido: any
-    token:string
+    token: string
 }
 
 export function ContasAreceberForm({
@@ -116,11 +117,11 @@ export function ContasAreceberForm({
                     <td>{conta.pagamento !== null ? handleContasAReceber.formatDate(conta.pagamento) : null}</td>
                     <td>{parseFloat(conta.recebimento).toFixed(2)}</td>
                     <td>{conta.observacao}</td>
-                    <td><button
+                    <td>{checkAdminPrivilege() === "2" ? <button
                         type="button"
                         className="btn btn-primary"
                         onClick={() => receberValor(conta)}
-                    >Receber</button></td>
+                    >Receber</button> : null}</td>
                 </tr>
             ))}
         </tbody>
@@ -157,10 +158,10 @@ export function ContasAreceberForm({
         <div className="container">
             <div className="mt-2"><Logo /></div>
             <hr></hr>
-            {sumbit}
+            {checkAdminPrivilege() === '2' ? sumbit : null}
             {headerContasReceber}
             {<div>{msg}</div>}
-            {inputReceberValor}
+            {checkAdminPrivilege() === '2' ? inputReceberValor : <div>Contas em aberto do Cliente</div>}
             {listaContasReceber}
             {listaValoresRecebidos}
         </div>

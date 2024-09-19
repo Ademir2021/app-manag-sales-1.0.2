@@ -15,8 +15,10 @@ function ContasAReceber() {
     const [desconto, setDesconto] = useState(0)
     const handleContasAReceber = new HandleFinanceiro()
     const [contasAReceber, setContasAReceber] = useState<TContaAreceber[]>([])
-    const [valsRecebidos_, setValsRecebidos_] = useState<TValsRecebidos[]>([])
+    const [contasAReceber_, setContasAReceber_] = useState<TContaAreceber[]>([])
     const [valsRecebidos] = useState<TValsRecebidos[]>([])
+    const [valsRecebidos_, setValsRecebidos_] = useState<TValsRecebidos[]>([])
+    const [valsRecebidos__, setValsRecebidos__] = useState<TValsRecebidos[]>([])
     const { user: isLogged }: any = useContext(AuthContext);
     const [persons, setPersons] = useState<TPerson[]>([])
     const [sales, setSales] = useState<TSaleList[]>([]);
@@ -30,35 +32,28 @@ function ContasAReceber() {
 
     useEffect(() => {
         async function getContasAReceber() {
-            try {
-                await api.get<TContaAreceber[]>('contas_receber')
-                    .then(response => {
-                        const contas_: TContaAreceber | any = []
-                        const contas: TContaAreceber[] = response.data
-                        for (let conta of contas) {
-                            if (conta.saldo > 0 || conta.recebimento == 0)
-                                contas_.push(conta)
-                        }
-                        setContasAReceber(contas_)
-                    })
-            } catch (err) { console.log("err: " + err) }
-        };
-        getContasAReceber()
-    }, [])
+        postAuthHandle('contas_receber_list', setTokenMessage, setContasAReceber, isLogged)
+        const contas_: TContaAreceber | any = []
+        for (let conta of contasAReceber)
+            if (conta.saldo > 0 || conta.recebimento == 0){
+                    contas_.push(conta)
+            }
+        setContasAReceber_(contas_)
+    }
+    getContasAReceber()
+    }, [contasAReceber])
 
-    useEffect(() => {
-        async function getValsRecebidos() {
-            try {
-                await api.get<TValsRecebidos[]>('vals_recebidos')
-                    .then(response => {
-                        const resp: TValsRecebidos[] = response.data
-                        setValsRecebidos_(resp)
-                    })
-            } catch (err) { console.log("err: " + err) }
-
-        };
+    useEffect(()=>{
+        async function  getValsRecebidos() {
+              postAuthHandle('vals_recebidos_list', setTokenMessage, setValsRecebidos__, isLogged)
+              const vals:TValsRecebidos[] = []
+              for (let val of valsRecebidos__)
+                    if(val.fk_user)
+                    vals.push(val)
+                setValsRecebidos_(vals)
+        }
         getValsRecebidos()
-    }, [valsRecebidos])
+    },[valsRecebidos__])
 
     const updateContaReceber = async (conta: TContaAreceber) => {
         await api.put<TContaAreceber>('contas_receber', conta)
@@ -236,9 +231,10 @@ function ContasAReceber() {
 
     return (
         <>
+        {/* <p>{JSON.stringify(contasAReceber_)}</p> */}
             <ContasAreceberForm
                 token={tokenMessage}
-                contasAReceber={contasAReceber}
+                contasAReceber={contasAReceber_}
                 valoresRecebidos={valsRecebidos_}
                 receberValor={valor > 0 ? handleSumbit : () => { setMsg('Informe um novo valor') }}
                 handleChangeValor={(e: any) => {
