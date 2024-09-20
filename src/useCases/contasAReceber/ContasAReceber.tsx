@@ -166,12 +166,12 @@ function ContasAReceber() {
 
     function sumSaldoAReceber() {
         let saldo: number | any = 0
-        if (contasAReceber) {
-            for (let contaReceber_ of contasAReceber)
+        if (contasAReceber_) {
+            for (let contaReceber_ of contasAReceber_)
                 saldo += parseFloat(contaReceber_.saldo)
             return saldo
         }
-        else if (!contasAReceber)
+        else if (!contasAReceber_)
             return 0
     }
 
