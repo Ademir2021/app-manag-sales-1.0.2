@@ -32,30 +32,30 @@ function ContasAReceber() {
 
     useEffect(() => {
         async function getContasAReceber() {
-        postAuthHandle('contas_receber_list', setTokenMessage, setContasAReceber, isLogged)
-        const contas_: TContaAreceber | any = []
-        for (let conta of contasAReceber)
-            if (conta.saldo > 0 || conta.recebimento == 0){
+            await postAuthHandle('contas_receber_list', setTokenMessage, setContasAReceber, isLogged)
+            const contas_: TContaAreceber | any = []
+            for (let conta of contasAReceber)
+                if (conta.saldo > 0 || conta.recebimento == 0) {
                     contas_.push(conta)
-            }
-        setContasAReceber_(contas_)
-    }
-    if(contasAReceber_.length === 0){
-        getContasAReceber()
-    }
+                }
+            setContasAReceber_(contas_)
+        }
+        if (contasAReceber_.length === 0) {
+            getContasAReceber()
+        }
     }, [contasAReceber])
 
-    useEffect(()=>{
-        async function  getValsRecebidos() {
-              postAuthHandle('vals_recebidos_list', setTokenMessage, setValsRecebidos__, isLogged)
-              const vals:TValsRecebidos[] = []
-              for (let val of valsRecebidos__)
-                    if(val.fk_user)
+    useEffect(() => {
+        async function getValsRecebidos() {
+            await postAuthHandle('vals_recebidos_list', setTokenMessage, setValsRecebidos__, isLogged)
+            const vals: TValsRecebidos[] = []
+            for (let val of valsRecebidos__)
+                if (val.fk_user)
                     vals.push(val)
-                setValsRecebidos_(vals)
+            setValsRecebidos_(vals)
         }
         getValsRecebidos()
-    },[valsRecebidos__])
+    }, [valsRecebidos__])
 
     const updateContaReceber = async (conta: TContaAreceber) => {
         await api.put<TContaAreceber>('contas_receber', conta)
@@ -233,7 +233,6 @@ function ContasAReceber() {
 
     return (
         <>
-        {/* <p>{JSON.stringify(contasAReceber_)}</p> */}
             <ContasAreceberForm
                 token={tokenMessage}
                 contasAReceber={contasAReceber_}

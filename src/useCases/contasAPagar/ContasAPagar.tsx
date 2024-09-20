@@ -16,6 +16,7 @@ function ContasAPagar() {
     const [contasAPagar_, setContasAPagar_] = useState<TContaAPagar[]>([])
     const [valsPagos_, setValsPagos_] = useState<TValPago[]>([])
     const [valsPagos__] = useState<TValPago[]>([])
+    const [valsPagos___, setValsPagos___] = useState<TValPago[]>([])
     const [despesas, setDespesas] = useState<TDespesa[]>([])
     const { user: isLogged }: any = useContext(AuthContext);
     const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
@@ -39,7 +40,7 @@ function ContasAPagar() {
 
     useEffect(() => {
         async function getContasAPagar() {
-            postAuthHandle('contas_pagar_list', setTokenMessage, setContasAPagar_, isLogged)
+            await postAuthHandle('contas_pagar_list', setTokenMessage, setContasAPagar_, isLogged)
             const contas_: TContaAPagar[] = []
             for (let conta of contasAPagar_)
                 if (conta.saldo > 0 || conta.recebimento == 0) {
@@ -53,8 +54,16 @@ function ContasAPagar() {
     }, [contasAPagar_])
 
     useEffect(() => {
-        getList('vals_pagos', setValsPagos_)
-    }, [valsPagos__])
+        async function getValsPagos() {
+            await postAuthHandle('vals_pagos_list', setTokenMessage, setValsPagos___, isLogged)
+            const vals: TValPago[] = []
+            for (let val of valsPagos___)
+                if (val.fk_user)
+                    vals.push(val)
+            setValsPagos_(vals)
+        }
+        getValsPagos()
+    }, [valsPagos___])
 
     const updateContaPagar = async (conta: TContaAPagar) => {
         await api.put<TContaAPagar>('contas_pagar', conta)
