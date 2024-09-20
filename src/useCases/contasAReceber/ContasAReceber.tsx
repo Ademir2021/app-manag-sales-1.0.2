@@ -33,7 +33,7 @@ function ContasAReceber() {
     useEffect(() => {
         async function getContasAReceber() {
             await postAuthHandle('contas_receber_list', setTokenMessage, setContasAReceber, isLogged)
-            const contas_: TContaAreceber | any = []
+            const contas_: TContaAreceber[] = []
             for (let conta of contasAReceber)
                 if (conta.saldo > 0 || conta.recebimento == 0) {
                     contas_.push(conta)
@@ -67,7 +67,7 @@ function ContasAReceber() {
 
     useEffect(() => {
         function calcContasAReceber() {
-            for (let contaAReceber of contasAReceber) {
+            for (let contaAReceber of contasAReceber_) {
                 const venc_original = new Date(contaAReceber.vencimento).getTime();
                 const diaPagamento = new Date().getTime()
                 if (venc_original < diaPagamento) { // se vencer calcular juros e multa
@@ -85,7 +85,7 @@ function ContasAReceber() {
             }
         }
         calcContasAReceber();
-    }, [contasAReceber])
+    }, [contasAReceber_])
 
     async function registerValRecebido(valRecebido: TValsRecebidos) {
         await api.post<TValsRecebidos>('val_recebido', valRecebido)
@@ -233,6 +233,7 @@ function ContasAReceber() {
 
     return (
         <>
+        {/* <p>{JSON.stringify(contasAReceber)}</p> */}
             <ContasAreceberForm
                 token={tokenMessage}
                 contasAReceber={contasAReceber_}
