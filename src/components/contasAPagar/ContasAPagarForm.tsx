@@ -1,10 +1,10 @@
 import { HandleFinanceiro } from "../utils/financeiro/HandleFinanceiro";
 import { TContaAPagar, TValPago } from "../../useCases/contasAPagar/type/TContasAPagar"
 import { currencyFormat } from '../utils/currentFormat/CurrentFormat';
-import { Logo } from "../logo/Logo";
+import { checkAdminPrivilege } from "../utils/checksUserLogged/ChecksUserLogged";
+import { NavBar } from "../navbar/Navbar";
 
 import './ContasAPagar.css'
-import { checkAdminPrivilege } from "../utils/checksUserLogged/ChecksUserLogged";
 
 type Props = {
     contasAPagar: TContaAPagar[]
@@ -156,8 +156,7 @@ function ContasAPagarForm({
 
     return (
         <div className="container">
-            <div className="mt-2"><Logo /></div>
-            <hr></hr>
+            <NavBar/>
             {checkAdminPrivilege() == '2' ? sumbit : null}
             {headerContasPagar}
             {<div>{msg}</div>}

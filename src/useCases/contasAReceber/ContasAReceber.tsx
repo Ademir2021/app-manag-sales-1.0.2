@@ -233,7 +233,6 @@ function ContasAReceber() {
 
     return (
         <>
-        {/* <p>{JSON.stringify(contasAReceber)}</p> */}
             <ContasAreceberForm
                 token={tokenMessage}
                 contasAReceber={contasAReceber_}

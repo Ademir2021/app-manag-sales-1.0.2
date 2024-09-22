@@ -1,10 +1,10 @@
 import { HandleFinanceiro } from "../utils/financeiro/HandleFinanceiro";
 import { TContaAreceber, TValsRecebidos } from "../../useCases/contasAReceber/type/TContasAReceber"
 import { currencyFormat } from '../utils/currentFormat/CurrentFormat';
-import { Logo } from "../logo/Logo"
+import { checkAdminPrivilege } from "../utils/checksUserLogged/ChecksUserLogged";
+import { NavBar } from "../navbar/Navbar";
 
 import './ContasAReceber.css'
-import { checkAdminPrivilege } from "../utils/checksUserLogged/ChecksUserLogged";
 
 type Props = {
     contasAReceber: TContaAreceber[]
@@ -156,8 +156,7 @@ export function ContasAreceberForm({
         </table>
     return (
         <div className="container">
-            <div className="mt-2"><Logo /></div>
-            <hr></hr>
+            <NavBar />
             {checkAdminPrivilege() === '2' ? sumbit : null}
             {headerContasReceber}
             {<div>{msg}</div>}
