@@ -11,7 +11,7 @@ export function NavBar() {
     const privilegeShopping = Globais.checksUserLogged;
 
     return (
-        <>
+        <div style={{fontSize:'14px'}}>
             <nav
                 className="navbar navbar-expand-lg "
                 id='nav-nav'
@@ -30,17 +30,15 @@ export function NavBar() {
                         aria-controls="offcanvasNavbar2">
                         <span className="navbar-toggler-icon"> </span>
                     </button>
-                    <div
-                        className="offcanvas offcanvas-end bg-secondary-old"
+                    <div className="offcanvas offcanvas-end bg-secondary-old"
                         id="offcanvasNavbar2"
                         aria-labelledby="offcanvasNavbar2Label">
-                        <div
-                            className="offcanvas-header">
-                            <p
+                        <div className="offcanvas-header">
+                            < span
                                 className="offcanvas-title"
                                 id="offcanvasNavbar2Label" >
                                 <a href={'/contact'}>Fale conosco </a>
-                            </p>
+                            </span>
                             <button
                                 type="button"
                                 className="btn-close btn-close-dark"
@@ -101,7 +99,7 @@ export function NavBar() {
                                         role="button"
                                         data-bs-toggle="dropdown"
                                         aria-expanded="false">Cadastros</a>
-                                    <ul className="dropdown-menu">
+                                    <ul className="dropdown-menu" style={{fontSize:'14px'}}>
                                         <li><a className="dropdown-item nav-link"
                                             href="/form_person">Clientes</a></li>
                                         <li>{checkAdminPrivilege() === privilAdmin ?
@@ -127,7 +125,7 @@ export function NavBar() {
                                         role="button"
                                         data-bs-toggle="dropdown"
                                         aria-expanded="false">Consultar</a>
-                                    <ul className="dropdown-menu" id="nav-">
+                                    <ul className="dropdown-menu" style={{fontSize:'14px'}}>
                                         <li><a className="dropdown-item nav-link"
                                             href="/person_list">Clientes</a></li>
                                         <li><a className="dropdown-item nav-link"
@@ -147,7 +145,7 @@ export function NavBar() {
                                         role="button"
                                         data-bs-toggle="dropdown"
                                         aria-expanded="false">Financeiro</a>
-                                    <ul className="dropdown-menu" id="nav-">
+                                    <ul className="dropdown-menu" style={{fontSize:'14px'}}>
                                         <li>{checkAdminPrivilege() === privilAdmin ?
                                             <a className="dropdown-item nav-link"
                                                 href="/contas_receber">Contas a receber</a> :
@@ -164,8 +162,8 @@ export function NavBar() {
                     </div>
                 </div>
             </nav>
-            <hr></hr>
-            {/* <span id="nav-calendar">{Globais.calendar}</span> */}
-        </>
+            {/* <hr></hr> */}
+            <span id="nav-calendar">{Globais.calendar}</span>
+        </div>
     )
 }
