@@ -16,9 +16,19 @@
 }
 
 #carousel-item1 {
-    background-image: url("/public/img/carousel/banner1.png");
+    background-image: url("/public//img//carousel/banner2_desktop.png");
+    background-size: 1350px;
     color: white;
     padding: 16px;
+}
+
+@media screen and (max-width:768px) {
+    #carousel-item1 {
+        background-image: url("/public/img/carousel/banner1_mobile.png");
+        background-size: 460px;
+        color: white;
+        padding: 16px;
+    }
 }
 
 #carousel-item2 {
