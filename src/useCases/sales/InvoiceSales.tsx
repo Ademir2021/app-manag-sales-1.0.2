@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { InvoiceSalesForm } from '../../components/sales/InvoiceSalesForm';
 import { BackHome } from "../../components/utils/backHome/BackHome";
-import {TPerson } from "../persons/type/TPerson";
+import { TPerson } from "../persons/type/TPerson";
 import { ICeps, ICities } from "../ceps/type/TCeps";
 import { currencyFormat } from "../../components/utils/currentFormat/CurrentFormat";
 import saleJSON from "./sale.json"
@@ -10,7 +10,6 @@ import { postAuthHandle, getList } from "../../services/handleService";
 import { AuthContext } from '../../context/auth'
 
 export function InvoiceSales() {
-    const { user: isLogged }: any = useContext(AuthContext);
     const [ceps, setCeps] = useState<ICeps[]>([])
     const [cities, setCities] = useState<ICities[]>([])
     const [msg, setMsg] = useState<string>('')
@@ -21,7 +20,8 @@ export function InvoiceSales() {
     const [tokenMessage, setTokenMessage] = useState<string>("Usuário Autenticado !")
     const [typePay, setTypePay] = useState("")
     const [installments, setInstallments] = useState<number | any>('Credito a vista')
-    const [idPerson, setIdPerson] = useState<number | any >(0)
+    const [idPerson, setIdPerson] = useState<number | any>(0)
+    const { user: isLogged }: any = useContext(AuthContext);
 
     const handleChange = (e: any) => {
         const name = e.target.name;
@@ -30,13 +30,13 @@ export function InvoiceSales() {
     };
 
     useEffect(() => {
-        postAuthHandle('persons_user',setTokenMessage,setPersons, isLogged)
+        postAuthHandle('persons_user', setTokenMessage, setPersons, isLogged)
     }, [persons])
 
     useEffect(() => {
         function getSale() {
             for (let person of persons) {
-                if ( person.id_person === idPerson) {
+                if (person.id_person === idPerson) {
                     sale.filial = person.fk_name_filial;
                     sale.user.user_id = person.fk_id_user;
                     sale.user.user_name = ''
@@ -54,7 +54,8 @@ export function InvoiceSales() {
                         sale.tItens = sum;
                         setSum(sum);
                     };
-                    sale.tNote = sale.tItens - sale.disc_sale;
+                    // sale.tNote = sale.tItens - sale.disc_sale;
+                    sale.tNote = sale.tItens
                     calcInstallments()
                     const resItens: any | undefined = localStorage.getItem('i');
                     if (resItens) {
@@ -77,28 +78,32 @@ export function InvoiceSales() {
     }, [persons, sale, tokenMessage, typePay]);
 
     function calcInstallments() {
+
+        const payVal: number = sale.tNote
+        const tNote: number = sale.tNote
+
         if (installments === 'Credito a vista')
-            sale.paySale = sale.tNote
+            sale.paySale = payVal
         else if (installments == 2)
-            sale.paySale = sale.tNote + sale.tNote * 3 / 100
+            sale.paySale = payVal + tNote * 3 / 100
         else if (installments == 3)
-            sale.paySale = sale.tNote + sale.tNote * 6 / 100
+            sale.paySale = payVal + tNote * 6 / 100
         else if (installments == 4)
-            sale.paySale = sale.tNote + sale.tNote * 9 / 100
+            sale.paySale = payVal + tNote * 9 / 100
     }
 
     useEffect(() => {
-        getList('ceps',setCeps)
+        getList('ceps', setCeps)
     }, [ceps])
 
     useEffect(() => {
-    getList('cities',setCities)
+        getList('cities', setCities)
     }, [cities])
 
     useEffect(() => {
         function setCep() {
             for (let cep of ceps) {
-                if (cep.id_cep === sale.person.address.fk_cep){
+                if (cep.id_cep === sale.person.address.fk_cep) {
                     sale.person.address.num_cep = cep.num_cep
                     sale.person.address.uf = cep.uf
                 }
@@ -110,7 +115,7 @@ export function InvoiceSales() {
     useEffect(() => {
         async function setCity() {
             for (let citie of cities) {
-                if (citie.id_city === sale.person.address.fk_cep){
+                if (citie.id_city === sale.person.address.fk_cep) {
                     sale.person.address.name_city = citie.name_city
                 }
             }
@@ -181,7 +186,6 @@ export function InvoiceSales() {
 
     return (
         <>
-        {/* <p>{JSON.stringify(idPerson)}</p> */}
             <InvoiceSalesForm
                 token={tokenMessage}
                 backHomeInvoice={<BackHome />}
