@@ -84,7 +84,7 @@ export function InvoiceSalesForm({
               <dd>Sub-total = {currencyFormat(children.tItens)}</dd>
               <dd>Desconto = {currencyFormat(children.disc_sale)}</dd>
               <dd> Total da nota = {currencyFormat(children.tNote)}</dd>
-              <dd>Valor a pagar = {currencyFormat(children.paySale)}</dd>
+              <dd>Valor a pagar = {currencyFormat(children.paySale - children.disc_sale)}</dd>
             </div>
             <select onChange={e => idPerson(parseInt(e.target.value))} id='persons'>
               <option>Selecione o Cliente</option>

@@ -54,8 +54,7 @@ export function InvoiceSales() {
                         sale.tItens = sum;
                         setSum(sum);
                     };
-                    // sale.tNote = sale.tItens - sale.disc_sale;
-                    sale.tNote = sale.tItens
+                    sale.tNote = sale.tItens - sale.disc_sale;
                     calcInstallments()
                     const resItens: any | undefined = localStorage.getItem('i');
                     if (resItens) {
@@ -78,18 +77,15 @@ export function InvoiceSales() {
     }, [persons, sale, tokenMessage, typePay]);
 
     function calcInstallments() {
-
-        const payVal: number = sale.tNote
-        const tNote: number = sale.tNote
-
+        const payVal: number = parseFloat(sale.tItens)
         if (installments === 'Credito a vista')
             sale.paySale = payVal
         else if (installments == 2)
-            sale.paySale = payVal + tNote * 3 / 100
+            sale.paySale = payVal + payVal * 3 / 100
         else if (installments == 3)
-            sale.paySale = payVal + tNote * 6 / 100
+            sale.paySale = payVal + payVal * 6 / 100
         else if (installments == 4)
-            sale.paySale = payVal + tNote * 9 / 100
+            sale.paySale = payVal + payVal * 9 / 100
     }
 
     useEffect(() => {
