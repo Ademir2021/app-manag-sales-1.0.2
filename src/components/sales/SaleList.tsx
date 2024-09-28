@@ -37,9 +37,9 @@ export function SalesList({ sales }: Props) {
                         <th className="text-center">{NFeStatus}</th>
                         <td>{FormatDate(sale.created_at)}</td>
                         <td>{sale.fk_name_pers}</td>
-                        <td>{currencyFormat(sale.val_rec)}</td>
-                        <td>{currencyFormat(sale.disc_sale)}</td>
                         <td>{currencyFormat(sale.total_sale)}</td>
+                        <td>{currencyFormat(sale.disc_sale)}</td>
+                        <td>{currencyFormat(sale.val_rec)}</td>
                         <td><a href={Globais.URL_NOTE + '/' + sale.id_sale}>Imprimir</a></td>
                     </tr>
                 ))}
