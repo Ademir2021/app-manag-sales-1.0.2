@@ -192,7 +192,7 @@ export function StoreHome() {
         fk_sector:0
     }
 
-    const subject = "Com base nos dados informado nehum item foi localizado. Tente novamente!"
+    const subject = "Com base em sua pesquisa item não localizado. Tente novamente!"
 
     function filterItens(e:Event){
         e.preventDefault()
