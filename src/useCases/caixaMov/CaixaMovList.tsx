@@ -53,10 +53,6 @@ export function CaixaMovList() {
                             return val.fk_venda
     }
 
-    function setSaldoAtual() {
-            return caixaMov.length - caixaMov.length
-    }
-
     return (
         <>
             <CaixaMovListComp
@@ -65,7 +61,8 @@ export function CaixaMovList() {
                 findNameMovCaixaCredito={findNameMovCaixaCredito}
                 findVendaMovCaixaCredito={findVendaMovCaixaCredito}
             />
-            <><p className="container"><b>Saldo atual =</b> R$ {caixaMov.length > 0 ? currencyFormat(caixaMov[setSaldoAtual()].saldo) : 0}</p></>
+            <p className="container"><b>Saldo atual = </b>
+            R${caixaMov.length > 0 ? currencyFormat(caixaMov[0].saldo) : 0}</p>
         </>
     )
 }
