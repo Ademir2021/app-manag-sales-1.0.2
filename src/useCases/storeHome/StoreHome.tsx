@@ -7,9 +7,16 @@ import { FooterHomePage } from './FooterHome';
 import { SearchItens } from '../../components/storeHome/SearchItens';
 import { currencyFormat } from '../../components/utils/currentFormat/CurrentFormat';
 import ControlledCarousel from '../../components/carousel/ControlledCarousel';
-import { getList } from '../../services/handleService';
-
+import { FilterItens } from '../../components/storeHome/FilterItens';
+import { getList, getListQuery } from '../../services/handleService';
 import api from '../../services/api/api'
+
+type TProdListQuery = {
+    id_product:number
+    descric_product:string
+    fk_brand:number
+    fk_sector:number
+}
 
 export function StoreHome() {
     const [id, setId] = useState<number>(1);
@@ -176,6 +183,23 @@ export function StoreHome() {
         }
     }
 
+    const [descricProd, setDescricProd] = useState<any>(null)
+
+    const prod:TProdListQuery = {
+        id_product:0,
+        descric_product:descricProd,
+        fk_brand:0,
+        fk_sector:0
+    }
+
+    const subject = "Com base nos dados informado nehum item foi localizado. Tente novamente!"
+
+    function filterItens(e:Event){
+        e.preventDefault()
+        setlistProd([])
+        getListQuery('product_list_query', setlistProd, {params:prod})
+    }
+
     return (
         <>
             <Header
@@ -186,12 +210,17 @@ export function StoreHome() {
             <SearchItens
                 selectSector={(e: { target: { value: SetStateAction<string> } }) => setSelectSector(e.target.value)}
                 sectors={sectors}
-                messageItems={""}
+                messageItems={''}
                 products={products}
                 descric={item.descric}
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
             />
+            <FilterItens
+            onSubmit={filterItens}
+            handleChange={(e: { target: { value: SetStateAction<string> } }) => setDescricProd(e.target.value)}
+            />
+            {listProd.length === 0 ? <p className='container'>{subject}</p>:null}
             {selectSector === "Todos" ? <ControlledCarousel /> : null}
             {(listProd.map((item: TProduct) => (
                 <ListItens

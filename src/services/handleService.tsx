@@ -56,3 +56,12 @@ export async function getList(route: string, setHandle: any) {
     } catch (err) { console.log("err: " + err) }
 };
 
+export async function getListQuery(route: string, setHandle: any, param: any) {
+    try {
+        await api.get<[]>(route, param)
+            .then(response => {
+                setHandle(response.data)
+            })
+    } catch (err) { console.log("err: " + err) }
+};
+

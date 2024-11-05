@@ -1,0 +1,24 @@
+#filter-main {
+    margin-left: 16px;
+    width: 96%;
+    border: solid grey 1px;
+    border-radius: 12px;
+    padding: 8px;
+    margin-top: -20px;
+    margin-bottom: 5px;
+    color: blue;
+}
+
+#filter-input {
+    width: 70%;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+#filter-button {
+    width: 23%;
+    padding: 8px;
+    margin-left: 6px;
+    border-radius: 12px;
+}
