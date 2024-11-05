@@ -2,7 +2,6 @@ import { useEffect, useState, useContext } from "react"
 import { TContaAPagar, TDespesa, TValPago } from "./type/TContasAPagar"
 import { HandleFinanceiro } from "../../components/utils/financeiro/HandleFinanceiro"
 import { ContasAPagarForm } from "../../components/contasAPagar/ContasAPagarForm"
-
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api"
 import { getList, postAuthHandle } from "../../services/handleService"
