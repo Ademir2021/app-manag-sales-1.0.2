@@ -192,8 +192,6 @@ export function StoreHome() {
         fk_sector:0
     }
 
-    const subject = "Com base em sua pesquisa item não localizado. Tente novamente!"
-
     function filterItens(e:Event){
         e.preventDefault()
         setlistProd([])
@@ -219,8 +217,8 @@ export function StoreHome() {
             <FilterItens
             onSubmit={filterItens}
             handleChange={(e: { target: { value: SetStateAction<string> } }) => setDescricProd(e.target.value)}
+            listProd={listProd}
             />
-            {listProd.length === 0 ? <p className='container'>{subject}</p>:null}
             {selectSector === "Todos" ? <ControlledCarousel /> : null}
             {(listProd.map((item: TProduct) => (
                 <ListItens
