@@ -34,6 +34,8 @@ export function UserRecoverPass() {
       .then(response => {
         const res:any = response.data
         setMessage(res[0].msg)
+        if(!res[0].msg)
+        setMessage("Acesse sua caixa de e-mail para recuperar a senha.")
       }).catch(error => console.log(error))
   }
 
