@@ -37,6 +37,7 @@ import { ContasAPagarRegister } from "./useCases/contasAPagar/ContasAPagarRegist
 import { PagarValor } from "./useCases/contasAPagar/PagarValor";
 import { Error404 } from "./components/utils/errors/Error404";
 import { ReciboValRc } from "./useCases/contasAReceber/ReciboValRec";
+import { UserRecoverPass } from "./useCases/users/UserRecoverPass";
 
 export function AppRoutes() {
     const Private = ({ children }: any) => {
@@ -64,6 +65,7 @@ export function AppRoutes() {
                     <Route path="/login" Component={UserLogin} />
                     <Route path="/logout" Component={Logout} />
                     <Route path="/register" Component={UserRegister} />
+                    <Route path="/user_recover_pass" Component={UserRecoverPass} />
                     <Route path="/contact" Component={Contacts} />
                     <Route path="/cookies" Component={CookieWarnings} />
                     <Route path="/dashboardefault" element={<Private><DashboardDefault /></Private>} />
