@@ -26,7 +26,8 @@ export function PagSeguroCard() {
     const [sale, setSale_] = useState<any>(saleJSON);
     const [numNote, setNumNote] = useState(0)
     // const [error, setError] = useState("")
-    const paySale:number = sale.paySale
+    const payment = sale.paySale - sale.dinheiro - sale.disc_sale
+    const paySale:number = payment
 
     useEffect(() => {
         const getSale = () => {
@@ -72,7 +73,7 @@ export function PagSeguroCard() {
         obj.charges[0].description = "Compras Online"
         obj.charges[0].payment_method.installments = parseInt(sale.installments)
         obj.charges[0].payment_method.holder.tax_id = sale.person.cpf_pers
-        obj.charges[0].amount.value = sale.paySale.toFixed(2).replace(/[.]/g, '')
+        obj.charges[0].amount.value = payment.toFixed(2).replace(/[.]/g, '')
         obj.charges[0].payment_method.card.encrypted = encrypted
         arrayItems(pagSeguroCard)
         setPagSeguroCard(pagSeguroCard)
@@ -180,13 +181,14 @@ export function PagSeguroCard() {
 
     return (
         <>
+        {/* {JSON.stringify(pagSeguroCard)} */}
             <PagSeguroCardForm
                 handleSubmit={handleSubmitCard}
                 handleChange={handleChange}
                 paidSucess={paidSucess}
                 err={err}
                 paid={paid !== 0 ? paid : null}
-                paySale={paySale}
+                paySale={payment}
                 URLNoteSubmit={numNote}
             >
                 {card}

@@ -39,7 +39,7 @@ export function InvoiceSales() {
                 if (person.id_person === idPerson) {
                     sale.filial = person.fk_name_filial;
                     sale.user.user_id = person.fk_id_user;
-                    sale.user.user_name = ''
+                    sale.user.user_name = isLogged[0].username
                     sale.person.fk_name_pers = person.id_person;
                     sale.person.name_pers = person.name_pers;
                     sale.person.cpf_pers = person.cpf_pers;

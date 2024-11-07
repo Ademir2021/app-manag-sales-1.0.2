@@ -43,7 +43,14 @@ export function InvoiceSalesForm({
         <div className="main-global">
           <div className='main-global-form'>
             <label>{message}</label>
-            <dd>Parcelar Crédito\Cartão</dd>
+            <dd><b>Cliente</b></dd>
+            <select onChange={e => idPerson(parseInt(e.target.value))} id='persons'>
+              <option>Selecione o Cliente</option>
+              {persons.map((pers: TPerson) => (
+                <option key={pers.id_person}>{pers.id_person}-{pers.name_pers}</option>
+              ))}
+            </select>
+            <dd><b>Parcelar Crédito\Cartão</b></dd>
             <select onChange={e => installments(e.target.value)} id='installments'>
               <option>Credito a vista</option>
               <option>2</option>
@@ -86,12 +93,6 @@ export function InvoiceSalesForm({
               <dd> Total da nota = {currencyFormat(children.tNote)}</dd>
               <dd>Valor a pagar = {currencyFormat(children.paySale - children.disc_sale)}</dd>
             </div>
-            <select onChange={e => idPerson(parseInt(e.target.value))} id='persons'>
-              <option>Selecione o Cliente</option>
-              {persons.map((pers: TPerson) => (
-                <option key={pers.id_person}>{pers.id_person}-{pers.name_pers}</option>
-              ))}
-            </select>
             <dd>Telefone = {children.person.phone_pers}</dd>
             <dd>CPF = {children.person.cpf_pers}</dd>
             <dd>Endereço = {children.person.address.address_pers}</dd>

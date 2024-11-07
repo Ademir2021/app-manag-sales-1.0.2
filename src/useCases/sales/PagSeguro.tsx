@@ -20,9 +20,10 @@ export function PagSeguro() {
     const valueQrCode: number = qrcodePagSeguro.qr_codes[0].amount.value
     const barCodeBoleto = boletoPagSeguro.charges[0].payment_method.boleto.barcode
     const barCodeBoletoFormated = boletoPagSeguro.charges[0].payment_method.boleto.formatted_barcode
-    const paySale = sale.paySale
     const [numNote, setNumNote] = useState(0)
     const [error, setError] = useState("")
+    const payment = sale.paySale - sale.dinheiro - sale.disc_sale
+    const paySale:number = payment
 
     useEffect(() => {
         const getSale = () => {
@@ -34,6 +35,7 @@ export function PagSeguro() {
         };
         getSale()
     }, [sale]);
+
 
     function arrayItems(obj: Object | any) {
         for (let i = 0; sale.itens.length > i; i++) {
@@ -72,7 +74,7 @@ export function PagSeguro() {
         let expiration_date_qrcode = new Date();
         expiration_date_qrcode.setHours(time.getHours() + 48);
         getPagSeguro(pagSeguroPix)
-        pagSeguroPix.qr_codes[0].amount.value = sale.paySale.toFixed(2).replace(/[.]/g, '')
+        pagSeguroPix.qr_codes[0].amount.value = payment.toFixed(2).replace(/[.]/g, '')
         pagSeguroPix.qr_codes[0].expiration_date = expiration_date_qrcode
         pagSeguroPix.notification_urls = ["https://meusite.com/notificacoes"]
         setMessagesSucess('Aponte sua Camera para o QrCorde')
@@ -92,7 +94,7 @@ export function PagSeguro() {
         getPagSeguro(pagSeguroBoleto)
         pagSeguroBoleto.charges[0].reference_id = sale.user.user_id
         pagSeguroBoleto.charges[0].description = "Compra On-line"
-        pagSeguroBoleto.charges[0].amount.value = sale.paySale.toFixed(2).replace(/[.]/g, '')
+        pagSeguroBoleto.charges[0].amount.value = payment.toFixed(2).replace(/[.]/g, '')
         pagSeguroBoleto.charges[0].amount.currency = "BRL"
         pagSeguroBoleto.charges[0].payment_method.type = "BOLETO"
         pagSeguroBoleto.charges[0].payment_method.boleto.due_date = boletoDueDate()
@@ -189,6 +191,7 @@ export function PagSeguro() {
 
     return (
         <>
+        {/* {JSON.stringify(pagSeguroPix)} */}
             <PagSeguroForm
                 handleBoleto={handleBoleto}
                 datavenc={getboletoDueDate}
@@ -200,7 +203,7 @@ export function PagSeguro() {
                 payPix={valueQrCode !== 0 ? currencyFormat(paySale) : 'R$ 0,00'} /** utilizado valor da sale, o retorno não separa casa decimal !! */
                 qrCodeGeneratedSuccessfully={messagesSucess}
                 URLNoteSubmit={numNote}
-                paySale={sale.paySale}
+                paySale={payment}
                 error={error}
             >
             </PagSeguroForm>

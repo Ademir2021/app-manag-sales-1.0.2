@@ -1,19 +1,21 @@
 #invoice-header{
-    color: black;
+    color: auto;
     margin-top: 8px;
     font-size: small;
 }
 
 #installments{
-    padding: 6px;
-    margin: 12px;
-    margin-inline: 18px;
+    padding: 2px;
+    margin: 5px;
+    margin-inline: 20px;
     font-size: small;
+    color: auto;
 }
 
 #persons{
-    padding: 6px;
-    margin:12px;
-    margin-inline: 1px;
+    padding: 2px;
+    margin:5px;
+    margin-inline:20px;
     font-size: small;
+    color:auto;
 }
