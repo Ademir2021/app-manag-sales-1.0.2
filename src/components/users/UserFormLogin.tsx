@@ -39,9 +39,9 @@ export function UserFormLogin({
                             value={children.password || "" }
                             onChange={handleChange}
                             />
+                        <div><a id='text-recover' href='/user_recover_pass'>Esqueceu a senha?</a></div>
                         <button  onClick={handleSubmit} >Entrar</button>
                         <a href='/register'>{'Não tem Login'}</a>
-                        <b><a href='/user_recover_pass'>Esqueceu a senha?</a></b>
                        <UserHome/>
                     </form>
                 </fieldset>

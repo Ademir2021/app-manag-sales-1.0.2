@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     margin-top: 1rem;
-     border: white solid 1px;
+    border: white solid 1px;
     width: 100%;
     height: center;
 }
@@ -41,4 +41,15 @@
     font-size: 12px;
     text-decoration: none;
     padding-top: 12px;
+}
+
+#text-recover {
+    color: blue;
+    margin-left: 10rem;
+    font-size: small;
+    text-decoration:underline;
+}
+
+#text-recover:hover {
+    color: gray;
 }
