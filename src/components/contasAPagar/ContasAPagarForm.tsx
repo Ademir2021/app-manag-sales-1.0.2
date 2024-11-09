@@ -155,8 +155,9 @@ function ContasAPagarForm({
     </table>
 
     return (
+        <>
+        <div className="container"><NavBar/></div>
         <div className="container">
-            <NavBar/>
             {checkAdminPrivilege() == '2' ? sumbit : null}
             {headerContasPagar}
             {<div>{msg}</div>}
@@ -164,6 +165,7 @@ function ContasAPagarForm({
             {contasAPagar.length > 0 ? listaContasPagar : null}
             {valoresPagos.length > 0 ? listaValoresPago: null}
         </div>
+        </>
     )
 }
 

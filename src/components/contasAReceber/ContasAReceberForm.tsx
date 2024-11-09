@@ -155,8 +155,9 @@ export function ContasAreceberForm({
             ))}</tbody>
         </table>
     return (
+        <>
+            <div className="container"><NavBar /></div>
         <div className="container">
-            <NavBar />
             {checkAdminPrivilege() === '2' ? sumbit : null}
             {headerContasReceber}
             {<div>{msg}</div>}
@@ -164,5 +165,6 @@ export function ContasAreceberForm({
             { contasAReceber.length > 0  ? listaContasReceber: <h1>Cliente sem Título para Pagar !</h1> }
             { valoresRecebidos.length > 0 ? listaValoresRecebidos: null }
         </div>
+        </>
     )
 }
