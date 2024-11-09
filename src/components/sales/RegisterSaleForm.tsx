@@ -45,27 +45,15 @@ export function RegisterSaleForm({
       <div className="container-sale">
         <div className="main-sale">
           <div className='main-sale-register' >
-            <div className='text-center'>
-            </div>
+            <div id='pdv-title'>PDV/Store</div>
             <label>{alert}</label>
             <label>{message}</label>
             <img src={item_img} alt={children.descric}></img>
-
-            <p style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}>
-              {item}
-            </p>
-
-            <span style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}>
+            <p id='descric-item'>{item}</p>
+            <label>Valor Unitário</label>
+            <div id='val-item'>
               {currencyFormat(parseFloat(children.valor))}
-            </span>
+            </div>
 
             <datalist id="data-itens">
               <select>{products.map((product:TProduct) => (
@@ -73,16 +61,17 @@ export function RegisterSaleForm({
                   {product.descric_product}</option>))}
               </select>
             </datalist>
-
+                <label>Código de Barras/Produto</label>
             <input
               type="search"
               list="data-itens"
               name="descric"
               value={children.descric}
-              placeholder='Digite um produto ou código de barras'
+              placeholder='Código de barras/Produto'
               required
               onChange={handleChange}
             />
+            <label>Quantidade</label>
             <input
               type="number"
               name="amount"
@@ -93,7 +82,7 @@ export function RegisterSaleForm({
               onChange={handleChange}
               required
             />
-            <div className='text-center p-2'>{totalItens}</div>
+            <div id='sub-total' >{totalItens}</div>
             <button className='btn btn-primary' onClick={handleSaveUpdate}>{statusBtnSaveUpdate}</button>
             <button className='btn btn-primary' onClick={handleSubmit}>{statusBtnSaleSubmit}</button>
             <button className='btn btn-danger' onClick={handleDelete}>Deletar Item</button>

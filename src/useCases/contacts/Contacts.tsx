@@ -59,7 +59,7 @@ export function Contacts() {
 
     return (
         <>
-            <NavBar />
+           <div className="container"><NavBar /></div>
             <ContactForm
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}

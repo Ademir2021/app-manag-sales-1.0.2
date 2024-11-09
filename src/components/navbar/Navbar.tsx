@@ -54,11 +54,11 @@ export function NavBar() {
                                         <a className="nav-link"
                                             aria-current="page"
                                             href="/dashboardefault">
-                                            <b>Painel</b></a> :
+                                            <b>Painel de Controle</b></a> :
                                         <a
                                             className="nav-link"
                                             aria-current="page"
-                                            href="/store"><b>Home</b>
+                                            href="/store"><b>Home/Store</b>
                                         </a>}
                                 </li>
 
@@ -66,18 +66,18 @@ export function NavBar() {
                                     {checksUserLogged() === privilegeShopping ?
                                         <a className="nav-link"
                                             aria-current="page"
-                                            href="/pe">Carrinho</a> :
+                                            href="/pe">Carrinho/Logar</a> :
                                         <a className="nav-link"
                                             aria-current="page"
-                                            href="/pe">Carrinho</a>}
+                                            href="/pe">Carrinho/Alterar</a>}
                                 </li>
 
                                 <li className="nav-item">
                                     {checksUserLogged() === privilegeShopping ?
                                         <a className="nav-link"
-                                            href='/register'>Criar conta</a> :
+                                            href='/register'><>Não tem conta?/</><b>Cadastre-se</b></a> :
                                         <a className="nav-link"
-                                            href='/user_update'>Sua conta</a>}
+                                            href='/user_update'>Sua Conta/Alterar</a>}
                                 </li>
 
                                 <li className="nav-item">
@@ -87,10 +87,11 @@ export function NavBar() {
                                             href='/logout'>Sair</a>}
                                 </li>
                                 <li className="nav-item">
-                                    {checksUserLogged() === privilegeShopping ?
-                                        <a className="nav-link" href="/sale">Compras</a> :
+                                   <b>{checksUserLogged() === privilegeShopping ?
+                                       <a className="nav-link"
+                                       href="/sale">PDV/Logar</a> :
                                         <a className="nav-link"
-                                            href="/sale">Suas compras</a>}
+                                            href="/sale">PDV/Comprar</a>}</b>
                                 </li>
 
                                 <li className="nav-item dropdown">
