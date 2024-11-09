@@ -39,13 +39,13 @@ export function ContasAreceberForm({
     const handleContasAReceber = new HandleFinanceiro()
 
     const headerContasReceber =
-        <div id="header-contas-receber" className="container">
+        <div id="header-contas-receber">
             Contas a receber - Títulos em aberto.
         </div>
 
     const sumbit = <div className="mb-1">
         <div>{token}</div>
-        <button style={{ marginLeft: "0px", borderRadius: '0px' }}
+        <button style={{ marginLeft: "1px", borderRadius: '0px' }}
             className="btn btn-primary"
             onClick={submitContasAReceberRegister}
         >Emitir título</button>
@@ -156,8 +156,8 @@ export function ContasAreceberForm({
         </table>
     return (
         <>
-            <div className="container"><NavBar /></div>
-        <div className="container">
+        <NavBar />
+        <div>
             {checkAdminPrivilege() === '2' ? sumbit : null}
             {headerContasReceber}
             {<div>{msg}</div>}

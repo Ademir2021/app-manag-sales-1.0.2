@@ -37,13 +37,13 @@ function ContasAPagarForm({
     const handleContasAPagar = new HandleFinanceiro()
 
     const headerContasPagar =
-        <div id="header-contas-receber" className="container">
+        <div id="header-contas-receber">
             Contas a Pagar - Em aberto.
         </div>
 
     const sumbit =
         <div className="mb-1">
-            <button style={{ marginLeft: "0px", borderRadius: '0px' }}
+            <button style={{ marginLeft: "1px", borderRadius: '0px' }}
                 className="btn btn-primary"
                 onClick={submitContasAPagarRegister}
             >Emitir título</button>
@@ -156,8 +156,8 @@ function ContasAPagarForm({
 
     return (
         <>
-        <div className="container"><NavBar/></div>
-        <div className="container">
+        <NavBar/>
+        <div>
             {checkAdminPrivilege() == '2' ? sumbit : null}
             {headerContasPagar}
             {<div>{msg}</div>}
