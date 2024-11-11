@@ -18,7 +18,7 @@ export function Header(props: Props) {
             <a className='header-home-sub-total'>
                 {props.subtotal}</a>
             {<a href={"/contact"} className='header-contact'>Fale Conosco {Globais.phone}</a>}
-            <div id='header-frete'> | Frete grátis e rápido!</div>
+            <div id='header-frete'>Frete grátis!</div>
         </div>
     )
 }
