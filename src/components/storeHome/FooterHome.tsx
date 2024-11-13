@@ -25,7 +25,7 @@ export function FooterHome() {
                 <hr></hr>
                 <div id='header-channel'>
                     <div id='header-channel-left'>
-                        <b>Controle compras</b>
+                        <b>Controlar compras</b>
                         <a href='invoice_sales'>Compras verificar</a>
                         <a href='contact'>Garantia dúvidas</a>
                         <a href='pe'>Conferir carrinho</a>
@@ -33,7 +33,7 @@ export function FooterHome() {
                     <div id='header-channel-center'>
                     <b>Facilidades</b>
                         <a href='pagsegurocard'>Formas para pagar</a>
-                        <a href='form_person'>Cadastro de pessoas</a>
+                        <a href='form_person'>Cadastrar clientes</a>
                         <a href='user_update'>Sua conta</a>
                     </div>
                     <div id='header-channel-right'>

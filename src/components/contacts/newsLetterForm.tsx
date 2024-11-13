@@ -12,8 +12,9 @@ export function NewsLetterForm({
     handleChange }: Props) {
 
     return (
+        <>
         <form id='form-newsLetter' >
-            <h2>Receba boletins de notícias !</h2>
+            <label>Receba boletins de notícias !</label>
             <input
                 id='input-newsLetter'
                 type="email"
@@ -29,5 +30,6 @@ export function NewsLetterForm({
                 onClick={handleSubmit}
             >Enviar</button>
         </form>
+        </>
     )
 }

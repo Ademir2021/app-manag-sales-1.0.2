@@ -87,7 +87,13 @@ a:hover {
     height: center;
     font-size: 16px;
     line-height: 1.9;
-    color: blue;
+    color:rgb(56, 54, 54);
+}
+@media screen and (max-width:768px) {
+    #header-channel {
+        font-size: 0.8rem;
+        line-height: 2.4;
+    }
 }
 
 #header-channel-left {
