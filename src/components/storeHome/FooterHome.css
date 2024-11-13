@@ -4,14 +4,14 @@ p a {
 
 footer {
     background-color: rgb(196, 194, 194);
-    color:black;
+    color: black;
     padding: 12px;
     /* margin: 3px; */
     border-radius: 3px;
 }
 
-a:hover{
-    color:black;
+a:hover {
+    color: black;
 }
 
 .social-icons {
@@ -35,7 +35,7 @@ a:hover{
 .btn-top {
     width: 36px;
     height: 36px;
-    float:right;
+    float: right;
     border: gray solid 1px;
     border-radius: 12px;
     margin: 0px;
@@ -52,11 +52,11 @@ a:hover{
     height: 38px;
 }
 
-
-.footer-delivery{
+.footer-delivery {
     width: 100%;
 }
-.footer-payment{
+
+.footer-payment {
     cursor: pointer;
     border: 8px solid white;
     border-radius: 2px;
@@ -65,19 +65,48 @@ a:hover{
 }
 
 /* @media screen and (max-width:768px) {} */
-
 .maps {
     width: 100%;
-   border-radius: 2px;
-   border: 8px solid white;
-   background-color: white;
+    border-radius: 2px;
+    border: 8px solid white;
+    background-color: white;
 }
 
-.text-footer{
+.text-footer {
     width: 100%;
     border-radius: 4px;
-    padding: 12px;
     font-size: 12px;
-    font-family:Arial, Helvetica, sans-serif;
-    background-color:white;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+}
+
+#header-channel {
+    display: flex;
+    justify-content: center;
+    margin: 1%;
+    height: center;
+    font-size: 16px;
+    line-height: 1.9;
+    color: blue;
+}
+
+#header-channel-left {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 16rem;
+}
+
+#header-channel-center {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 16rem;
+}
+
+#header-channel-right {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 11rem;
 }

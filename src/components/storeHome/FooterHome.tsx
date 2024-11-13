@@ -18,21 +18,33 @@ export function FooterHome() {
                     <a target="_blank" href="https://github.com/Ademir2021"><img className="social-icons" src="img//social//github.ico" alt='Icon Github'></img></a>
                     {/* <a target="_blank" href="https://twitter.com/AdemirDeveloper"><img className="social-icons" src="img//social//twitter.png"></img></a> */}
                 </p>
-        
+
                 <p>Loja on-line | Fácil de comprar - Rapidez e segurança em suas compras</p>
 
-                <dd>CANAIS DE ACESSO</dd>
-                <a href='contact'>Garantia dos produtos - </a>
-                <a href='invoice_sales'>Checkout de compras - </a>
-                <a href='pagsegurocard'>Pague com Cartão PIX ou Boleto - </a>
-                <a href='pe'>Carrinho de compras - </a>
-                <a href='form_person'>Cadastro de Clientes - </a>
-                <a href='sale'>Conferir Checkout - </a>
-                <a href={"contact"}>Fale conosco - </a>
-                <a href='contacts_list'>Postagens</a>
-
+                <strong>CANAIS DE ACESSO</strong>
+                <hr></hr>
+                <div id='header-channel'>
+                    <div id='header-channel-left'>
+                        <b>Controle compras</b>
+                        <a href='invoice_sales'>Compras verificar</a>
+                        <a href='contact'>Garantia dúvidas</a>
+                        <a href='pe'>Conferir carrinho</a>
+                    </div>
+                    <div id='header-channel-center'>
+                    <b>Facilidades</b>
+                        <a href='pagsegurocard'>Formas para pagar</a>
+                        <a href='form_person'>Cadastro de pessoas</a>
+                        <a href='user_update'>Sua conta</a>
+                    </div>
+                    <div id='header-channel-right'>
+                    <b>Comunicação</b>
+                        <a href='sale'>PDV comprar</a>
+                        <a href={"contact"}>Fale conosco</a>
+                        <a href='contacts_list'>Acesso a posts</a>
+                    </div>
+                </div>
                 <p><a href="#"><img src="img/btn-top.png" className="btn-top" alt="Topo"></img></a></p>
-                <a href='contact'>Consulte nossas formas de entrega</a>
+                {/* <a href='contact'>Consulte nossas formas de entrega</a> */}
                 <NewsLetter />
                 {/* Google Maps */}
                 <div className="maps">
