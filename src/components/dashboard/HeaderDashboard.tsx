@@ -10,11 +10,10 @@ export function HeaderDashboard(props: Props) {
                 <hr></hr>
                 <strong>Sua Conta de acesso</strong>
                 <dd>Gerencie suas compras em nosso E-commerce !</dd>
-                <hr></hr>
-                <div><b>Olá </b>{(props.name)}</div>
-                <div><b>Usuário </b>{props.username} </div>
-
-            <div className=" mt-2">
+                <b>Usuário logado</b>
+                <dd><b>Olá, </b>{(props.name)}</dd>
+                <><b>Usuário, </b>{props.username}</>
+            <div className=" mt-3">
                 <button
                 onClick={() => { window.location.replace("sale") }}
                 className="btn btn-primary">Checkout</button>

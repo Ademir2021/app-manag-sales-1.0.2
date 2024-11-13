@@ -6,8 +6,6 @@ import './cookies.css'
 
 export function FooterHome() {
     return (
-        <>
-            <hr></hr>
             <footer className='text-center'>
                 <p id="cookies"></p>
                 <p>
@@ -74,6 +72,5 @@ export function FooterHome() {
 
                 </div>
             </footer>
-        </>
     )
 }

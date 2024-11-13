@@ -3,10 +3,9 @@ p a {
 }
 
 footer {
-    background-color: rgb(196, 194, 194);
+    background-color: rgb(247, 245, 245);
     color: black;
     padding: 12px;
-    /* margin: 3px; */
     border-radius: 3px;
 }
 
