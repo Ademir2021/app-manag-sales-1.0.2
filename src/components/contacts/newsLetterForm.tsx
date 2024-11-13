@@ -14,7 +14,7 @@ export function NewsLetterForm({
     return (
         <>
         <form id='form-newsLetter' >
-            <label>Receba boletins de notícias !</label>
+            <dd>Receba boletins de notícias !</dd>
             <input
                 id='input-newsLetter'
                 type="email"
