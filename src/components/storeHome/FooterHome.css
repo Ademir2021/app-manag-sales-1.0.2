@@ -85,14 +85,23 @@ a:hover {
     margin: 1%;
     height: center;
     font-size: 16px;
-    line-height: 1.9;
+    line-height: 3;
     color:rgb(56, 54, 54);
 }
 @media screen and (max-width:768px) {
     #header-channel {
         font-size: 0.8rem;
-        line-height: 2.4;
     }
+}
+
+#header-channel-title{
+    color: rgb(4, 4, 85);
+    margin-bottom: -8px;
+}
+@media screen and (max-width:768px){
+#header-channel-title{
+    font-size: 14px
+}
 }
 
 #header-channel-left {
@@ -113,5 +122,5 @@ a:hover {
     display: flex;
     flex-direction: column;
     text-align: left;
-    width: 11rem;
+    width: 12rem;
 }

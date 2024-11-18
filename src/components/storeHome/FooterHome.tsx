@@ -22,24 +22,27 @@ export function FooterHome() {
                 <strong>CANAIS DE ACESSO</strong>
                 <hr></hr>
                 <div id='header-channel'>
-                    <div id='header-channel-left'>
-                        <b>Controlar compras</b>
-                        <a href='invoice_sales'>Compras verificar</a>
-                        <a href='contact'>Garantia dúvidas</a>
-                        <a href='pe'>Conferir carrinho</a>
+                <div id='header-channel-left'>
+                        <b id='header-channel-title'>Acesso as Compras</b>
+                        <a href='pe'>Carrinho de Compras</a>
+                        <a href='invoice_sales'>Finalizar Compras</a>
+                        <a href='contact'>Garantia Dúvidas</a>
                     </div>
                     <div id='header-channel-center'>
-                    <b>Facilidades</b>
-                        <a href='pagsegurocard'>Formas para pagar</a>
-                        <a href='form_person'>Cadastrar clientes</a>
-                        <a href='user_update'>Sua conta</a>
+                    <b id='header-channel-title'>Formas para Pagar</b>
+                        <a href='pagsegurocard'>Cartão Débito/Crédito</a>
+                        <a href='pagcredloja'>Crediário Loja</a>
+                        <a href='pagseguro'>PIX</a>
+                        <a href='pagseguro'>Boleto</a>
                     </div>
                     <div id='header-channel-right'>
-                    <b>Comunicação</b>
-                        <a href='sale'>PDV comprar</a>
-                        <a href={"contact"}>Fale conosco</a>
-                        <a href='contacts_list'>Acesso a posts</a>
+                    <b id='header-channel-title'>Comunicação</b>
+                        <a href='sale'>PDV de Compras</a>
+                        <a href={"contact"}>Fale Conosco</a>
+                        <a href='user_update'>Sua Conta</a>
+                        <a href='contacts_list'>Acesso a Posts</a>
                     </div>
+             
                 </div>
                 <p><a href="#"><img src="img/btn-top.png" className="btn-top" alt="Topo"></img></a></p>
                 {/* <a href='contact'>Consulte nossas formas de entrega</a> */}
