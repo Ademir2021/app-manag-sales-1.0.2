@@ -2,9 +2,9 @@ import { useEffect, useState, useContext } from "react"
 import { TContaAPagar, TDespesa, TValPago } from "./type/TContasAPagar"
 import { HandleFinanceiro } from "../../components/utils/financeiro/HandleFinanceiro"
 import { ContasAPagarForm } from "../../components/contasAPagar/ContasAPagarForm"
+import { getList, postAuthHandle } from "../../services/handleService"
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api"
-import { getList, postAuthHandle } from "../../services/handleService"
 
 function ContasAPagar() {
     const [msg, setMsg] = useState('')
@@ -133,7 +133,7 @@ function ContasAPagar() {
         await registerValPago(valPago)
     }
 
-    async function somaValsPago(conta: TContaAPagar) {
+    function somaValsPago(conta: TContaAPagar) {
         let valRec: any = 0
         let soma = 0
         for (let valRecebido of valsPagos_) {
