@@ -94,7 +94,7 @@ function ContasAPagar() {
         calcContasAPagar();
     }, [contasAPagar])
 
-    async function registerValPago(valPago: TValPago) {
+    const registerValPago = async (valPago: TValPago) => {
         await api.post<TValPago>('val_pago', valPago)
             .then(response => {
                 console.log(response.data)
