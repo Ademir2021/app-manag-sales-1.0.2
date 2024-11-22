@@ -168,7 +168,7 @@ function ContasAPagar() {
 
     function handleSumbit(conta: TContaAPagar) {
         setMsg('')
-        valsPagos(conta)
+            valsPagos(conta)
         pagarValores(conta)
         setValor(0)
     }
