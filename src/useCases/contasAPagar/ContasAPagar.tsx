@@ -102,7 +102,7 @@ function ContasAPagar() {
             .catch(error => console.log((error)))
     }
 
-    async function valsPagos(conta: TContaAPagar) {
+    function valsPagos(conta: TContaAPagar) {
         let id = 1
         let valPago: TValPago = {
             id_val: 0,
@@ -130,7 +130,7 @@ function ContasAPagar() {
         valPago.descricao = findNameDespesa(conta.fk_despesa)
         valPago.fk_person = 0
         valsPagos__.push(valPago)
-        await registerValPago(valPago)
+        registerValPago(valPago)
     }
 
     function somaValsPago(conta: TContaAPagar) {
@@ -166,9 +166,9 @@ function ContasAPagar() {
         }
     }
 
-    function handleSumbit(conta: TContaAPagar) {
+    const handleSumbit = (conta: TContaAPagar) => {
         setMsg('')
-            valsPagos(conta)
+        valsPagos(conta)
         pagarValores(conta)
         setValor(0)
     }
