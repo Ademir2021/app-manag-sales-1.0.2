@@ -30,6 +30,8 @@ export type TSaleList = {
     id_sale: number;
     created_at: Date | any;
     fk_name_pers: number;
+    fk_name_filial?:number
+    fk_name_user?:number
     val_rec: number;
     disc_sale: number;
     total_sale: number

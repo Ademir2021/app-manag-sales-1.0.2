@@ -38,6 +38,7 @@ import { PagarValor } from "./useCases/contasAPagar/PagarValor";
 import { Error404 } from "./components/utils/errors/Error404";
 import { ReciboValRc } from "./useCases/contasAReceber/ReciboValRec";
 import { UserRecoverPass } from "./useCases/users/UserRecoverPass";
+import { HandleNFe } from "./useCases/nfe/HandleNFe";
 
 export function AppRoutes() {
     const Private = ({ children }: any) => {
@@ -96,6 +97,7 @@ export function AppRoutes() {
                     <Route path="/contas_pagar_register" element={<Private><ContasAPagarRegister /></Private>} />
                     <Route path="/pagar_valor" element={<Private><PagarValor /></Private>} />
                     <Route path="/recibo_val_rec" element={<Private><ReciboValRc/></Private>} />
+                    <Route path="nfe" element={<Private><HandleNFe/></Private>}/>
                     <Route path="*" Component={Error404} />
                 </Routes>
             </AuthProvider>
