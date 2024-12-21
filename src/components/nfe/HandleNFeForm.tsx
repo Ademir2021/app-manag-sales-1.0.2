@@ -109,7 +109,7 @@ function HandleNFeForm(
 
                         <tr key={sale.id_sale}>
                             <th className='text-center'>{sale.id_sale}</th>
-                            <th className="text-center">{sale.id_sale}</th>
+                            <th className="text-center">{sale.id_nfe}</th>
                             <th className="text-center">{sale.fk_name_filial}</th>
                             <td>{sale.fk_name_pers}</td>
                             <td>{findPerson(sale.fk_name_pers)}</td>
@@ -125,7 +125,7 @@ function HandleNFeForm(
                                 <button
                                     onClick={() => (gerarNFe(sale))}
                                     className="btn btn-primary"
-                                >Emitir NFE</button>
+                                >Emitir</button>
                             </td>
                         </tr>
                     ))}
