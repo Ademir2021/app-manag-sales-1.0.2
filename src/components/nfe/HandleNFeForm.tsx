@@ -8,11 +8,20 @@ type Props = {
     findPerson: any // função findPerson
     children: string | number | readonly string[] | undefined | any
     handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined
-    handleSubmit: any
-    handleClear:any
+    handleSubmit: any // função listar Notas
+    handleClear: any // Funcção limpar lista de notas
+    gerarNFe: any // Funcção para gerar NFe
 }
 
-function HandleNFeForm({ sales, findPerson, handleChange, handleSubmit, handleClear }: Props) {
+function HandleNFeForm(
+    {
+        sales,
+        findPerson,
+        handleChange,
+        handleSubmit,
+        handleClear,
+        gerarNFe
+    }: Props) {
 
     // const NFeStatus = <img src="img/NFe/status/autorizada.ico" alt="img NFe autorizada"></img>
 
@@ -74,7 +83,7 @@ function HandleNFeForm({ sales, findPerson, handleChange, handleSubmit, handleCl
     const thead = <thead>
         <tr>
             <th className='text-center'>Nota</th>
-            <th className="text-center">NF</th>
+            <th className="text-center">NFe</th>
             <th className="text-center">Filial</th>
             <th>Cliente</th>
             <th>Nome</th>
@@ -86,6 +95,7 @@ function HandleNFeForm({ sales, findPerson, handleChange, handleSubmit, handleCl
             <th>Situação</th>
             <th>Chave</th>
             <th>Protocolo</th>
+            <th>Emitir NFe</th>
         </tr>
     </thead>
 
@@ -96,6 +106,7 @@ function HandleNFeForm({ sales, findPerson, handleChange, handleSubmit, handleCl
                 {sales.length === 0 ? <Waiting waiting="Aguardando Notas" /> : thead}
                 <tbody>
                     {sales.map((sale: TSaleList) => (
+
                         <tr key={sale.id_sale}>
                             <th className='text-center'>{sale.id_sale}</th>
                             <th className="text-center">{sale.id_sale}</th>
@@ -103,13 +114,19 @@ function HandleNFeForm({ sales, findPerson, handleChange, handleSubmit, handleCl
                             <td>{sale.fk_name_pers}</td>
                             <td>{findPerson(sale.fk_name_pers)}</td>
                             <td>{FormatDate(sale.created_at)}</td>
-                            <td>{'doc'}</td>
+                            <td>{sale.doc_nfe ? sale.doc_nfe : 'null'}</td>
                             <td>{currencyFormat(sale.created_at)}</td>
                             <td>{currencyFormat(sale.total_sale)}</td>
                             <td>{'email'}</td>
-                            <td>{'sit'}</td>
-                            <td>{'ch'}</td>
-                            <td>{'protocolo'}</td>
+                            <td>{sale.situacao_nfe ? sale.situacao_nfe : 'null'}</td>
+                            <td>{sale.chave_nfe ? sale.chave_nfe : 'null'}</td>
+                            <td>{sale.protocolo_nfe ? sale.protocolo_nfe : 'null'}</td>
+                            <td>
+                                <button
+                                    onClick={() => (gerarNFe(sale))}
+                                    className="btn btn-primary"
+                                >Emitir NFE</button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

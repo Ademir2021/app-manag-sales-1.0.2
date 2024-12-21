@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { HandleNFeForm } from "../../components/nfe/HandleNFeForm";
 import { AuthContext } from '../../context/auth'
-import { postAuthHandle } from "../../services/handleService";
+import { postAuthHandle, putUpdate } from "../../services/handleService";
 import { TSaleList } from "../sales/type/TSale";
 import { TPerson } from "../persons/type/TPerson";
 
@@ -110,6 +110,15 @@ function HandleNFe() {
         setSaleAutorizada(sales_)
     }
 
+    async function handleGerarNFe(sale:TSaleList){
+       const resp = await putUpdate(sale, 'gerar_nfe')
+       console.log(resp)
+    }
+
+    function gerarNFe(sale:TSaleList){
+        handleGerarNFe(sale)
+    }
+
     return (
         <>
             {/* <p>{JSON.stringify(nfeStatus)}</p> */}
@@ -119,6 +128,7 @@ function HandleNFe() {
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
                 handleClear={hanndleClear}
+                gerarNFe={gerarNFe}
             >
                 {nfeStatus}
             </HandleNFeForm>

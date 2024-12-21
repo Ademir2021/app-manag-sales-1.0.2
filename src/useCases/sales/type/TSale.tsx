@@ -35,4 +35,9 @@ export type TSaleList = {
     val_rec: number;
     disc_sale: number;
     total_sale: number
+    id_nfe?:number
+    doc_nfe?:string
+    situacao_nfe?:string
+    chave_nfe?:string
+    protocolo_nfe?:string
   };
