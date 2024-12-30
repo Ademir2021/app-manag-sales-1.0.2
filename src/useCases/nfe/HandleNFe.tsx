@@ -6,14 +6,14 @@ import { TSaleList } from "../sales/type/TSale";
 import { TPerson } from "../persons/type/TPerson";
 
 type INFeStatus = {
-    nfe_autorizada: string
-    nfe_impressa: string
-    nfe_em_aberto: string
-    nfe_cancelada: string
-    nfe_inutilizada: string
-    nfe_denegada: string
-    nfe_com_problema: string
-    nfe_enviada: string
+    nfe_autorizada: boolean
+    nfe_impressa: boolean
+    nfe_em_aberto: boolean
+    nfe_cancelada: boolean
+    nfe_inutilizada: boolean
+    nfe_denegada: boolean
+    nfe_com_problema: boolean
+    nfe_enviada: boolean
 }
 
 function HandleNFe() {
@@ -26,63 +26,56 @@ function HandleNFe() {
     const [sales_autorizada, setSaleAutorizada] = useState<TSaleList[]>([])
 
     const [nfeStatus, setNFeStatus] = useState<INFeStatus>({
-        nfe_autorizada: '',
-        nfe_impressa: '',
-        nfe_em_aberto: '',
-        nfe_cancelada: '',
-        nfe_com_problema: '',
-        nfe_denegada: '',
-        nfe_enviada: '',
-        nfe_inutilizada: ''
+        nfe_autorizada: false,
+        nfe_impressa: false,
+        nfe_em_aberto: false,
+        nfe_cancelada: false,
+        nfe_com_problema: false,
+        nfe_denegada: false,
+        nfe_enviada: false,
+        nfe_inutilizada: false,
     })
 
-    function clearNfeStatus(){
+    function clearNfeStatus() {
         const nfeStatus_: INFeStatus = {
-            nfe_autorizada: '',
-            nfe_impressa: '',
-            nfe_em_aberto: '',
-            nfe_cancelada: '',
-            nfe_com_problema: '',
-            nfe_denegada: '',
-            nfe_enviada: '',
-            nfe_inutilizada: ''
+            nfe_autorizada: false,
+            nfe_impressa: false,
+            nfe_em_aberto: false,
+            nfe_cancelada: false,
+            nfe_com_problema: false,
+            nfe_denegada: false,
+            nfe_enviada: false,
+            nfe_inutilizada: false
         }
         setNFeStatus(nfeStatus_)
     }
 
     const handleChange = (e: any) => {
         const name = e.target.name
-        const value = e.target.value
+        const value = e.target.checked
         setNFeStatus(values => ({ ...values, [name]: value }))
     }
 
     const getSales = async () => {
         await postAuthHandle('sale_user', setTokenMessage, setSales, isLogged)
-        if (sales_autorizada.length == 0) {
+        if (sales_autorizada.length === 0) {
             for (let sale of sales)
-                if (nfeStatus.nfe_autorizada === 'on') {
-                    if (sale.fk_name_pers === 1) {
+                if (nfeStatus.nfe_autorizada === true)
+                    if (sale.chave_nfe !== null)
                         sales_autorizada.push(sale)
+
+            for (let sale of sales)
+                if (nfeStatus.nfe_em_aberto === true)
+                    if (sale.chave_nfe === null) {
+                        sales_autorizada.push(sale)
+
+                        if (sales_autorizada.length !== 0) {
+                            const sales_: TSaleList[] = []
+                            setSales(sales_)
+                        }
+                        clearNfeStatus()
                     }
-                };
-            for (let sale of sales)
-                if (nfeStatus.nfe_cancelada === 'on') {
-                    if (sale.fk_name_pers === 2) {
-                        sales_autorizada.push(sale)
-                    };
-                };
-            for (let sale of sales)
-                if (nfeStatus.nfe_em_aberto === 'on') {
-                    if (sale.fk_name_pers) {
-                        sales_autorizada.push(sale)
-                    };
-                };
         }
-        else if (sales_autorizada.length !== 0) {
-            const sales_: TSaleList[] = []
-            setSales(sales_)
-        }
-        clearNfeStatus()
     };
 
     const getPersons = async () => {
@@ -103,19 +96,19 @@ function HandleNFe() {
         getSales()
     }
 
-    function hanndleClear(e:Event){
+    function hanndleClear(e: Event) {
         e.preventDefault()
         const sales_: TSaleList[] = []
         clearNfeStatus()
         setSaleAutorizada(sales_)
     }
 
-    async function handleGerarNFe(sale:TSaleList){
-       const resp = await putUpdate(sale, 'gerar_nfe')
-       console.log(resp)
+    async function handleGerarNFe(sale: TSaleList) {
+        const resp = await putUpdate(sale, 'gerar_nfe')
+        console.log(resp)
     }
 
-    function gerarNFe(sale:TSaleList){
+    function gerarNFe(sale: TSaleList) {
         handleGerarNFe(sale)
     }
 
