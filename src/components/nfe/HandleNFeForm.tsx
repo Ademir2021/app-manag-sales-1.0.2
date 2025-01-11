@@ -9,8 +9,8 @@ type Props = {
     children: string | number | readonly string[] | undefined | any
     handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined
     handleSubmit: any // função listar Notas
-    handleClear: any // Funcção limpar lista de notas
-    gerarNFe: any // Funcção para gerar NFe
+    handleClear: any // Função limpar lista de notas
+    gerarNFe: any // Função para gerar NFe
 }
 
 function HandleNFeForm(
@@ -106,7 +106,6 @@ function HandleNFeForm(
                 {sales.length === 0 ? <Waiting waiting="Aguardando Notas" /> : thead}
                 <tbody>
                     {sales.map((sale: TSaleList) => (
-
                         <tr key={sale.id_sale}>
                             <th className='text-center'>{sale.id_sale}</th>
                             <th className="text-center">{sale.id_nfe}</th>
@@ -121,11 +120,10 @@ function HandleNFeForm(
                             <td>{sale.situacao_nfe ? sale.situacao_nfe : 'null'}</td>
                             <td>{sale.chave_nfe ? sale.chave_nfe : 'null'}</td>
                             <td>{sale.protocolo_nfe ? sale.protocolo_nfe : 'null'}</td>
-                            <td>
-                                <button
+                            <td>{!sale.protocolo_nfe ? <button
                                     onClick={() => (gerarNFe(sale))}
                                     className="btn btn-primary"
-                                >Emitir</button>
+                                >Emitir</button>:null}
                             </td>
                         </tr>
                     ))}

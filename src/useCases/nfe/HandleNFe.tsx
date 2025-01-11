@@ -57,8 +57,11 @@ function HandleNFe() {
     }
 
     const getSales = async () => {
-        await postAuthHandle('sale_user', setTokenMessage, setSales, isLogged)
-        if (sales_autorizada.length === 0) {
+
+        if (sales_autorizada) {
+
+            await postAuthHandle('sale_user', setTokenMessage, setSales, isLogged)
+
             for (let sale of sales)
                 if (nfeStatus.nfe_autorizada === true)
                     if (sale.chave_nfe !== null)
@@ -73,7 +76,7 @@ function HandleNFe() {
                             const sales_: TSaleList[] = []
                             setSales(sales_)
                         }
-                        clearNfeStatus()
+                        // clearNfeStatus()
                     }
         }
     };
@@ -114,7 +117,7 @@ function HandleNFe() {
 
     return (
         <>
-            {/* <p>{JSON.stringify(nfeStatus)}</p> */}
+            <p>{JSON.stringify(nfeStatus)}</p>
             <HandleNFeForm
                 sales={sales_autorizada}
                 findPerson={findPerson}
