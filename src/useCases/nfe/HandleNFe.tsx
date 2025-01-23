@@ -117,7 +117,7 @@ function HandleNFe() {
 
     return (
         <>
-            <p>{JSON.stringify(nfeStatus)}</p>
+            {/* <p>{JSON.stringify(nfeStatus)}</p> */}
             <HandleNFeForm
                 sales={sales_autorizada}
                 findPerson={findPerson}

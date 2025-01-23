@@ -103,14 +103,14 @@ export function ProductForm({
 
     return (
         <>
-            {nav}
             <div className="container-global">
                 <fieldset className="main-global">
+            {nav}
                     <form className="main-global-form">
                         {menu === 'geral' ? <span className='m-3'>Cadastrar Produto</span> : null}
                         {menu === 'fiscal' ? <><span className='m-3'>Situação fiscal do Produto</span><br /></> : null}
-                        <label>{alert}</label>
-                        <label>{message}</label>
+                        {alert ? <label>{alert}</label> : null}
+                        {message ? <label>{message}</label> : null }
                         {menu === 'fiscal' ? fiscal : null}
                         {menu === "geral" ? geral : null}
                     </form>

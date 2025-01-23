@@ -1,4 +1,4 @@
-export function PersonsValFields(person: any) {
+export function PersonsValFields(person: any, setAlert_: any) {
     const info = "Digite o: "
     let msg = ''
     if (person.name_pers === "") { msg += info + "Nome completo\n" };
@@ -8,7 +8,7 @@ export function PersonsValFields(person: any) {
     if (person.num_address === "") { msg += info + "Número do Endereço\n" };
     if (person.fk_name_filial === 0) { msg += info + "Informe o num loja\n" };
     if (msg !== '') {
-        alert(msg)
+        setAlert_(msg)
         return false;
     };
     return true;

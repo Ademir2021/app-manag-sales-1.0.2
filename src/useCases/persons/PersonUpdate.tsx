@@ -15,6 +15,7 @@ import "../../App.css"
 
 export function PersonUpdate() {
     const { user: isLogged }: any = useContext(AuthContext)
+    const [alert_, setAlert_] = useState<string>('')
     const [persons, setPersons] = useState<TPerson[]>([])
     const [ceps, setCeps] = useState<ICeps[]>([])
     const [cities, setCities] = useState<ICities[]>([])
@@ -97,14 +98,14 @@ export function PersonUpdate() {
 
     async function handleSubmit(e: Event) {
         e.preventDefault();
-        if (PersonsValFields(person)) {
+        if (PersonsValFields(person, setAlert_)) {
             listUpdate(person); // Atualiza o CEP do Cliente !!
             person.cpf_pers = person.cpf_pers.replace(/[..-]/g, '')
             person.phone_pers = person.phone_pers.replace(/[()-]/g, '')
             person.cnpj = person.cnpj.replace(/[../-]/g, '')
             person.rg = person.rg.replace(/[..-]/g, '')
             if (person.fk_cep === undefined) {
-                alert('Digite um CEP Válido')
+                setAlert_('Digite um CEP Válido')
             } else {
                 await api.post<any[]>('person', person)
                     .then(response => {
@@ -114,19 +115,19 @@ export function PersonUpdate() {
                     })
                     .catch(error => alert(error));
             }
-        } else { alert("Digite um novo Usuário") }
+        } else { setAlert_("Digite um novo Usuário") }
     }
 
     async function handleUpdate(e: Event) {
         e.preventDefault();
-        if (PersonsValFields(person)) {
+        if (PersonsValFields(person, setAlert_)) {
             listUpdate(person); //Atualiza o CEP do Cliente
             person.cpf_pers = person.cpf_pers.replace(/[..-]/g, '')
             person.phone_pers = person.phone_pers.replace(/[()-]/g, '')
             person.cnpj = person.cnpj.replace(/[../-]/g, '')
             person.rg = person.rg.replace(/[..-]/g, '')
             if (person.fk_cep === undefined) {
-                alert('Digite um CEP Válido')
+                setAlert_('Digite um CEP Válido')
             } else {
                 await api.put<any[]>('person_update', person)
                     .then(response => {
@@ -140,7 +141,7 @@ export function PersonUpdate() {
     async function handleDelete(e: Event) {
         e.preventDefault()
         clearFields()
-        alert("Insira um novo Cliente !!")
+        setAlert_("Insira um novo Cliente !!")
     }
 
     function toggleDropdown(): void {
@@ -202,7 +203,7 @@ export function PersonUpdate() {
                 close={closeDropdown}
                 className={dropdown}
                 modalRef={modalRef}
-                alert=""
+                alert={alert_}
                 message=""
             >
                 {person}

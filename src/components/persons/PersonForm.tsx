@@ -124,8 +124,8 @@ export function PersonForm({
                         <option>{'Pessoa-Fisica'}</option>
                         <option>{'Pessoa-Juridica'}</option>
                     </select>
-                    <label>{alert}</label>
-                    <label>{message}</label>
+                    {alert ? <label>{alert}</label> : null}
+                    {message ? <label>{message}</label> : null}
                     <dd>Nome</dd>
                     <input className=""
                         type="text"

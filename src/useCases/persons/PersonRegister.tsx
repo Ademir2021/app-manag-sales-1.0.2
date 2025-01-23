@@ -16,6 +16,7 @@ export function FormPerson() {
         cnpj:'',inscricao:'',fantasia:'',limit_cred:800,fk_grupo:1
     })
 
+    const [alert_, setAlert_] = useState<string>('')
     const [ceps, setCeps] = useState<ICeps[]>([])
     const res: any = localStorage.getItem('u')
     const [userIdLogged] = useState(JSON.parse(res))
@@ -29,7 +30,7 @@ export function FormPerson() {
 
     async function handleSubmit(e: Event) {
         e.preventDefault();
-        if (PersonsValFields(person)) {
+        if (PersonsValFields(person, setAlert_)) {
             if(person.cpf_pers == ''){
                 person.cpf_pers = '0'
             }
@@ -80,8 +81,8 @@ export function FormPerson() {
             <PersonForm
                 handleSubmit={handleSubmit}
                 handleChange={handleChange}
-                alert="."
-                message="."
+                alert={alert_}
+                message=""
             >
                 {person}
             </PersonForm>

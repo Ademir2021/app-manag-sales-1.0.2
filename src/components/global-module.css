@@ -18,12 +18,24 @@
     width: 360px;
 }
 
+@media screen and (max-width:768px) {
+    .main-global {
+        font-size: 12px;
+    }
+}
+
 .main-global-form input {
     margin: 7px;
     width: 18rem;
     height: 2.5rem;
     float: center;
     margin: 3px 20px;
+}
+
+@media screen and (max-width:768px) {
+    .main-global-form input {
+        height: 28px;
+    }
 }
 
 .main-global-form button {

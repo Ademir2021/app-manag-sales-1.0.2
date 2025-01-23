@@ -52,7 +52,6 @@
     height: 200px;
 }
 
-
 @media screen and (max-width:768px) {
     .main-sale {
         width: 410px;
