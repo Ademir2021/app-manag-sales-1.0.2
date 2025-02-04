@@ -2,6 +2,11 @@
     display: contents;
 }
 
+.checkbox-label {
+margin-left:4px;
+font-size:small;
+}
+
 .search-items-img {
     background-color: white;
     border-radius: 12px;

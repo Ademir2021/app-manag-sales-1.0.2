@@ -33,6 +33,8 @@ export function StoreHome() {
     const [uniMeds, setUniMeds] = useState<TUnMed[]>([])
     const [selectSector, setSelectSector] = useState<string>("Todos")
     const [flgItens, setFlgItens] = useState<boolean>(false)
+    const [checkSearch, setCheckSearch] = useState<boolean>(false)
+
     const handleChange = (e: any) => {
         const name = e.target.name;
         const value = e.target.value;
@@ -213,12 +215,16 @@ export function StoreHome() {
                 descric={item.descric}
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
+                checkSearch={(e: boolean | any) => setCheckSearch(e.target.checked)}
+                checkedSearch={checkSearch}
             />
+            { checkSearch ?
             <FilterItens
             onSubmit={filterItens}
             handleChange={(e: { target: { value: SetStateAction<string> } }) => setDescricProd(e.target.value)}
             listProd={listProd}
             />
+            : null }
             {selectSector === "Todos" ? <ControlledCarousel /> : null}
             {(listProd.map((item: TProduct) => (
                 <ListItens
@@ -235,6 +241,7 @@ export function StoreHome() {
                     itemParameter={item}
                     unMed={nameUniMeds(item.fk_un_med)}
                 />
+                
             )))}
             <FooterHomePage />
         </>

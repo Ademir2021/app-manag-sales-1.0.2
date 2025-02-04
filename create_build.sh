@@ -1,4 +1,4 @@
-#bin/bash
+#!/bin/bash
 echo "Iniciando Build do projeto"
 npm run build
 echo 'Removendo build OLD'

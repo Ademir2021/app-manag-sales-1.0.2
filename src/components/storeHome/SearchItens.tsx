@@ -4,17 +4,27 @@ import './SearchItens.css'
 
 type Props = {
     handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
-    handleSubmit: React.FormEvent<HTMLFormElement> | undefined | any ;
+    handleSubmit: React.FormEvent<HTMLFormElement> | undefined | any;
     descric: string;
     messageItems: string;
     selectSector: React.ChangeEventHandler<HTMLSelectElement> | undefined;
     sectors: TSector[]
     products: TProduct[]
+    checkSearch: boolean | any
+    checkedSearch: boolean
 }
 
 export function SearchItens(props: Props) {
     return (
-            <section className="search-item-main">
+        <section className="search-item-main">
+            <div>
+                <input
+                    type='checkbox'
+                    onChange={props.checkSearch}
+                />
+                <label className="checkbox-label">{props.checkedSearch ? 'Nome' : 'Categoria'}</label>
+            </div>
+            {!props.checkedSearch ?
                 <form onSubmit={props.handleSubmit} className="d-flex mt-1 mt-lg-0" role="search">
                     <datalist id='data-itens' ><select>{props.products.map((product: TProduct) => (
                         <option key={product.id_product}>
@@ -30,12 +40,13 @@ export function SearchItens(props: Props) {
                         placeholder="Do que você precisa ?" aria-label="Search"
                         list='data-itens' name='descric' value={props.descric}
                         style={{ backgroundColor: 'white' }}
-                        onChange={props.handleChange}/>
+                        onChange={props.handleChange} />
                     <button className="btn-search" type="submit">
                         <img src='img/icons8-pesquisar.png'
                             className='search-items-img'></img></button>
                 </form>
-                <strong className='search-items-message'>{props.messageItems}</strong>
-            </section>
+                : null}
+            <strong className='search-items-message'>{props.messageItems}</strong>
+        </section>
     )
 }
