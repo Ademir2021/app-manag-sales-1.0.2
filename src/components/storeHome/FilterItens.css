@@ -1,27 +1,9 @@
 #filter-main {
-    width: 88%;
-    left: auto;
-    justify-content: center;
-    margin-left: 16px;
-    border: solid gainsboro 1px;
-    border-radius: 8px;
-    padding: 8px;
-    margin-top: -24px;
-    margin-bottom: 5px;
-    color: gray;
-    font-size: small;
+     margin-top: -28px;
+    margin-bottom: 32px;
 }
 
-#filter-input {
-    width: 70%;
-    padding:8px;
-    border-radius: 8px;
-    font-size: 12px;
-}
-
-#filter-button {
-    width: 23%;
-    padding: 8px;
-    margin-left: 5px;
-    border-radius: 12px;
+#filter-subject{
+    color: red;
+    font-size: 11px;
 }

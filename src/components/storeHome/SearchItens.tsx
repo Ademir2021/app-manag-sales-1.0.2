@@ -22,7 +22,7 @@ export function SearchItens(props: Props) {
                     type='checkbox'
                     onChange={props.checkSearch}
                 />
-                <label className="checkbox-label">{props.checkedSearch ? 'Nome' : 'Categoria'}</label>
+                <label className="checkbox-label">{props.checkedSearch ? 'Desmarcar para voltar pesquisa por Setor.' : 'Marcar a opção para pesquisar por Nome.'}</label>
             </div>
             {!props.checkedSearch ?
                 <form onSubmit={props.handleSubmit} className="d-flex mt-1 mt-lg-0" role="search">
@@ -36,8 +36,8 @@ export function SearchItens(props: Props) {
                             <option key={sector.id_sector}>
                                 {sector.name_sector}</option>))}
                     </select>
-                    <input className="search-item-input" type="search"
-                        placeholder="Do que você precisa ?" aria-label="Search"
+                    <input className='search-item-input' type="search"
+                        placeholder="Do que você precisa" aria-label="Search"
                         list='data-itens' name='descric' value={props.descric}
                         style={{ backgroundColor: 'white' }}
                         onChange={props.handleChange} />

@@ -1,9 +1,10 @@
 import './FilterItens.css'
+import './SearchItens.css'
 
 type Props = {
     onSubmit: any
     handleChange: any
-    listProd:any
+    listProd: any
 }
 
 export function FilterItens({
@@ -15,22 +16,26 @@ export function FilterItens({
     const subject = "Com base em sua pesquisa item não localizado. Tente novamente!"
     return (
         <>
-            <div className="containerxx">
-                <div id='filter-main'>
-                    <b>Filtrar por nome</b>
-                    {listProd.length === 0 ? <dd>{subject}</dd>:null}
-                    <form >
-                        <input
-                            id='filter-input'
-                            placeholder="Pesquisar produto"
-                            onChange={handleChange}
-                        />
-                        <button
-                            id='filter-button'
-                            onClick={onSubmit}
-                        >Buscar</button>
-                    </form>
-                </div>
+            <div
+                className="search-item-main"
+                id='filter-main'
+            >
+                {listProd.length === 0 ? <span id='filter-subject'>{subject}</span> : null}
+                <form
+                    className="d-flex mt-1 mt-lg-0"
+                >
+                    <input
+                        className='search-item-input'
+                        placeholder="Pesquisar na loja"
+                        aria-label="Search"
+                        onChange={handleChange}
+                    />
+                    <button
+                        className='btn-search'
+                        onClick={onSubmit}
+                    ><img src='img/icons8-pesquisar.png'
+                        className='search-items-img'></img></button>
+                </form>
             </div>
         </>
     )
