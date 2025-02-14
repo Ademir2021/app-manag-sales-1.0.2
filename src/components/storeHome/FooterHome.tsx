@@ -5,9 +5,23 @@ import './FooterHome.css'
 import './cookies.css'
 
 export function FooterHome() {
+
+    const linkApp = 'https://drive.google.com/file/d/1cxKaXyg9uOfaqpu_eS8lRSgp4jhAY12G/view?usp=drive_link'
+
     return (
             <footer className='text-center'>
                 <p id="cookies"></p>
+                <div style={{fontSize:'12px', margin:'2px'}}>Baixe nosso App-Store.</div >
+                <a
+                href={linkApp}
+                hrefLang='pt-br'
+                target='_black'
+                >
+                <img
+                src='img/android_downl_app.png'
+                alt='Baixar nosso aplicativo para Android'
+                style={{marginBottom:'18px', borderRadius:'12px'}}
+                ></img></a>
                 <p>
                     <div><dd>SIGA-NOS</dd></div>
                     <a target="_blank" href="https://www.facebook.com/profile.php?id=61568577861214&sk=about"><img className="social-icons" src="img/social/facebook.ico" alt='Icon Facebook'></img></a>
