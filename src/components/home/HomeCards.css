@@ -1,18 +1,16 @@
 #home-container-cards {
     display: inline-block;
-    vertical-align: top;
     max-width: 100%;
-    /* margin: 0 auto; */
-    padding: 0 8px;
-    width: 19%;
-    min-width: 23px;
+    padding: 0 1px;
+    width: 25%;
+    min-width: 200px;
 }
 
 @media screen and (max-width:768px) {
     #home-container-cards {
         padding: 0 1px;
-        width: 25%;
-        min-width: 210px;
+        width: 50%;
+        min-width: 191px;
     }
 }
 
