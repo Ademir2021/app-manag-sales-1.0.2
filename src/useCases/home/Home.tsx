@@ -22,7 +22,7 @@ export function Home() {
         comments: "Solicitação de contato"
     });
 
-    const [msg, setMsg] = useState<string>('Solicitar contato');
+    const [msg, setMsg] = useState<string>('');
     const [msgFileds, setMsgFields] = useState<string>('');
 
     const handleChange = (e: any) => {

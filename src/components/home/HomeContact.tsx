@@ -20,8 +20,11 @@ export function HomeContact({
             <form id="home-form">
                 <div id='home-form-input'>
                     <div id='home-form-label'>
+                        <p>Contato</p>
+                        <div style={{fontSize:'12px'}}>
                         <b>{msg}</b>
                         <dd>{msgFields}</dd>
+                        </div>
                         <label>*Nome</label>
                         <input
                             type='text'
@@ -51,7 +54,7 @@ export function HomeContact({
                             className='btn btn-primary'
                             type="submit"
                             onClick={handleSubmit}
-                        >Enviar contato</button>
+                        >Enviar</button>
                     </div>
                 </div>
             </form>
