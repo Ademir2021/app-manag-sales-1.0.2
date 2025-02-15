@@ -20,11 +20,9 @@ export function HomeContact({
             <form id="home-form">
                 <div id='home-form-input'>
                     <div id='home-form-label'>
-                        <p>Contato</p>
-                        <div style={{fontSize:'12px'}}>
-                        <b>{msg}</b>
-                        <dd>{msgFields}</dd>
-                        </div>
+                        <h4>Envie seu contato</h4>
+                        <dd>{msg}</dd>
+                        <label>{msgFields}</label>
                         <label>Nome</label>
                         <input
                             type='text'

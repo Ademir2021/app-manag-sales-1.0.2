@@ -1,8 +1,6 @@
 #home-main-container {
-    background-color: rgb(230, 228, 238);
-    color:rgb(14, 13, 13);
-    padding: 1px;
-    margin: 1px;
+    padding: 0px;
+    margin: 0px;
 }
 
 #home-main {
@@ -14,19 +12,17 @@
 #home-header {
     display: flex;
     justify-content: center;
-    /* align-items: center; */
-    padding: 100px;
     background-image: url("/public/img/carousel/banner4.png");
 }
 
 @media screen and (max-width:768px) {
     #home-header{
-        padding: 80px;
+        padding: 0px;
     }
 }
 
 #home-header-btn{
-    border-radius: 2px;
+    border-radius: 0px;
     padding: 12px;
 }
 
@@ -38,8 +34,7 @@
 }
 
 #home-div1 {
-    padding: 18px;
-    font-size: 18px;
+    padding: 16px;
 }
 
 #home-div2 {
@@ -49,6 +44,12 @@
 
 #home-cards {
     padding: 12px;
+    margin-top: 0px;
+}
+@media screen and (max-width:768px) {
+    #home-cards {
+       margin-top:-39px;
+    }
 }
 
 #home-cards-title {
@@ -102,7 +103,7 @@
 #home-repo-img-content{
     padding: 2px;
     margin-top: 6px;
-    font-size: small;
+    font-size: 16px;
 }
 
 #home-store-main{

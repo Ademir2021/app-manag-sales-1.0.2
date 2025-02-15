@@ -3,11 +3,6 @@
     margin: 2px;
 }
 
-.nav-link:hover {
-    color: rgb(34, 34, 147);
-    padding: 1px;
-}
-
 #nav-nav {
     background: white;
 }
@@ -24,6 +19,5 @@
 }
 
 #nav-btn-login{
-    border-radius: 18px;
-    color:black;
+    border: none;
 }

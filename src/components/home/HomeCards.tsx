@@ -19,7 +19,7 @@ export function HomeCards(props: Props) {
                         className="btn btn-primary p-2"
                         id="home-cards-btn"
                         onClick={props.onClick}
-                        >Contratar</button>
+                        >+ Informações.</button>
                 </div>
             </div>
     )

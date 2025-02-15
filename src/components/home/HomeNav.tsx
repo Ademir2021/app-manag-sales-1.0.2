@@ -65,11 +65,11 @@ export function HomeNav() {
                                         <a className="nav-link"
                                             aria-current="page"
                                             href="contact">
-                                            <b>Suporte</b></a> :
+                                            Suporte</a> :
                                         <a
                                             className="nav-link"
                                             aria-current="page"
-                                            href="contact"><b>Suporte</b>
+                                            href="contact">Suporte
                                         </a>}
                                 </li>
                                 
@@ -83,11 +83,11 @@ export function HomeNav() {
                                                 type='submit'
                                                 onClick={HomeRegister}
                                                 >
-                                            <b>Inscreva-se</b></button></a> :
+                                            Inscreva-se</button></a> :
                                         <a
                                             className="nav-link"
                                             aria-current="page"
-                                            href="user_update"><b>Sua conta</b>
+                                            href="user_update">Sua conta
                                         </a>}
                                 </li>
 
@@ -101,11 +101,11 @@ export function HomeNav() {
                                             id="nav-btn-login"
                                             type="submit"
                                             onClick={HomeLogin}
-                                            ><b>Entrar</b></button></a> :
+                                            >Entrar</button></a> :
                                         <a
                                             className="nav-link"
                                             aria-current="page"
-                                            href="logout"><b>Sair</b>
+                                            href="logout">Sair
                                         </a>}
                                 </li>
 
@@ -120,7 +120,7 @@ export function HomeNav() {
                                     <a className="nav-link dropdown-toggle"
                                         role="button"
                                         data-bs-toggle="dropdown"
-                                        aria-expanded="false"><b>Soluções</b></a>
+                                        aria-expanded="false">Soluções</a>
                                     <ul className="dropdown-menu" id="nav-">
                                         <li><a className="dropdown-item nav-link"
                                             href="/hire">Contratar</a></li>
