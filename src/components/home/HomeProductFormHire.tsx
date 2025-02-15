@@ -20,17 +20,17 @@ export function HomeProductFormHire({
             <div id='home-pfh-container'>
                 <div id='home-pfh-main'>
                     <div id='home-pfh-content'>
-                        <h1>Formulário de adesão</h1>
+                        <h1>Formulário de cadastro.</h1>
                         <p><b>Centro Informática </b> - CNPJ 18 069 383 0001 10</p>
-                        <hr></hr>
-                        <p><b>Informe os dados da sua empresa !</b></p>
+               
                     </div>
 
                     <div id='home-pfh-form'>
+                        <h4>Preencha o formulário.</h4>
                         <form>
                             <div id='home-pfh-label'>
                                 <div id='home-pfh-input'>
-                                    <label><b>* </b>Nome fantasia</label>
+                                    <label>Nome fantasia</label>
                                     <input
                                     placeholder='Nome fantasia'
                                     required
@@ -39,7 +39,7 @@ export function HomeProductFormHire({
                                     value={children.fantasia || ''}
                                     onChange={handleChange}
                                     />
-                                    <label><b>* </b>Razão social</label>
+                                    <label>Razão social</label>
                                     <input
                                     placeholder='Razão social'
                                     required
@@ -48,7 +48,7 @@ export function HomeProductFormHire({
                                     value={children.rsocial || ''}
                                     onChange={handleChange}
                                     />
-                                    <label><b>* </b>CNPJ</label>
+                                    <label>CNPJ</label>
                                     <InputMask
                                      mask="99.999.999.9999-99"
                                      mask-selectonfocus="true"
@@ -62,7 +62,7 @@ export function HomeProductFormHire({
                                     value={children.cnpj || ''}
                                     onChange={handleChange}
                                     />
-                                    <label><b>* </b>Inscrição estadual</label>
+                                    <label>Inscrição estadual</label>
                                     <input
                                     placeholder='Inscrição estadual'
                                     required
@@ -71,7 +71,7 @@ export function HomeProductFormHire({
                                     value={children.iestadual || ''}
                                     onChange={handleChange}
                                     />
-                                    <label><b>* </b>Telefone</label>
+                                    <label>Telefone</label>
                                     <input
                                     placeholder='Telefone da empresa'
                                     required
@@ -80,7 +80,7 @@ export function HomeProductFormHire({
                                     value={children.phone || ''}
                                     onChange={handleChange}
                                     />
-                                    <label><b>* </b>Email</label>
+                                    <label>Email</label>
                                     <input
                                     placeholder='Email da empresa'
                                     required
@@ -89,7 +89,7 @@ export function HomeProductFormHire({
                                     value={children.email || ''}
                                     onChange={handleChange}
                                     />
-                                    <label><b>* </b>Endereço</label>
+                                    <label>Endereço</label>
                                     <input
                                     placeholder='Endereço da empresa'
                                     required
@@ -98,7 +98,7 @@ export function HomeProductFormHire({
                                     value={children.endereco || ''}
                                     onChange={handleChange}
                                     />
-                                    <label><b>* </b>Número</label>
+                                    <label>Número</label>
                                     <input
                                     placeholder='Número do endereço da empresa'
                                     required
@@ -107,7 +107,7 @@ export function HomeProductFormHire({
                                     value={children.numero || ''}
                                     onChange={handleChange}
                                     />
-                                    <label><b>* </b>Cidade</label>
+                                    <label>Cidade</label>
                                     <input
                                     placeholder='Cidade da empresa'
                                     required
@@ -116,7 +116,7 @@ export function HomeProductFormHire({
                                     value={children.cidade || ''}
                                     onChange={handleChange}
                                     />
-                                    <label><b>* </b>Estado</label>
+                                    <label>Estado</label>
                                     <input
                                     placeholder='UF de sua empresa'
                                     required
@@ -125,7 +125,7 @@ export function HomeProductFormHire({
                                     value={children.uf || ''}
                                     onChange={handleChange}
                                     />
-                                    <label><b>* </b>CEP</label>
+                                    <label>CEP</label>
                                     <input
                                     placeholder='CEP da cidade de sua empresa'
                                     required

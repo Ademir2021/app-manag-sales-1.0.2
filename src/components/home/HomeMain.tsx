@@ -6,11 +6,11 @@ import './HomeMain.css'
 export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields }: PropsHomeContact) {
 
     const cards = [
-        { id: 1, item: "NFe", descric: "Emissão de NFe modelo 55 e 65", content: 'Permite ao cliente efetuar o controle e a emissão de documentos fiscais' },
-        { id: 2, item: "NFCe", descric: "Emissor de Nota fiscal consumidor eletrônica (NFCe)", content: 'Permite ao cliente de forma simples a emissão e a manutenção da NFCe das vendas' },
-        { id: 3, item: "CHECKOUT DE VENDAS", descric: "Integração com Cartão, PIX e Boleto", content: 'Permite a integração de seus  sistemas e a realização de  vendas on-line, e que o cliente possa efetuar seus pagamentos de forma segura.' },
-        { id: 4, item: "API REST", descric: "Integração de seu sistema com outras tecnologias", content: 'Permite o sistema do cliente possa se integrar a outros sistemas ou a micros-serviços para troca de dados' },
-        { id: 5, item: "ERP", descric: "Sistema Integrado de Vendas", content: 'Permite ao cliente a automação de seus processos na empresa como: Vendas/Financeiro/Caixa/Estoque/Notas e muito mais ...' }
+        { id: 1, item: "Emissor NFe", descric: " Emissor modelo 55 e 65", content: 'Permite ao cliente efetuar o controle e a emissão de documentos fiscais' },
+        { id: 2, item: "Emissor NFCe", descric: "Emissor de Nota fiscal (NFCe)", content: 'Permite ao cliente de forma simples a emissão e a manutenção da NFCe' },
+        { id: 3, item: "Checkout de Vendas", descric: "Integração com Cartão, PIX e Boleto", content: 'Permite a integração de seus  sistemas e a realização de  vendas on-line, e que o cliente possa efetuar seus pagamentos de forma segura.' },
+        { id: 4, item: "API Rest, Micro serviços", descric: "Integração de seu sistema com outras tecnologias", content: 'Permite o sistema do cliente possa se integrar a outros sistemas ou a micros-serviços para troca de dados' },
+        { id: 5, item: "ERP - Sistema de Gestão", descric: "Sistema Integrado de Vendas", content: 'Permite ao cliente a automação de seus processos na empresa como: Vendas/Financeiro/Caixa/Estoque/Notas e muito mais ...' }
     ]
 
     return (

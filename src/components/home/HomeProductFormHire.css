@@ -1,60 +1,56 @@
 #home-pfh-container {
-    background-color: black;
-    color: white;
-    padding: 1px;
-    margin: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(230, 228, 238);
+    color: rgb(14, 13, 13);
+    padding: 16px;
+    margin: 16px;
+    border-radius: 6px;
+    border: 1px solid gray;
 }
 
 #home-pfh-main {
     display: flex;
-    padding: 1px;
-    width: 100%;
 }
 
 @media screen and (max-width:768px) {
     #home-pfh-main {
         display: inline;
+        font-size: 12px;
     }
 }
 
 #home-pfh-content {
-    background-color: rgb(29, 27, 27);
-    border: 0px solid gray;
-    color: white;
-    padding: 28px;
     width: 100%;
-    /* margin: 12px; */
+    margin: 12px;
 }
 
 #home-pfh-form {
-    background-color: white;
-    border: 1px solid gray;
-    color:black;
-    padding: 28px;
+    padding: 1px;
     width: 100%;
-    margin:1px
+    margin:12px;
 }
 
 #home-pfh-input input {
     display: flex;
-    margin-inline: 12px;
+    margin-inline: -2px;
     height: 36px;
-    width: 80%;
-    border-radius: 8px;
+    width: 320px;
+    border-radius: 6px;
 }
 
 #home-pfh-label label {
-    margin-top: 16px;
+    margin-top: 6px;
 }
 
 #home-pfh-button {
-    margin: 12px;
-    color: whitesmoke;
+    margin: 1px;
 }
 
 #home-pfh-send-msg{
-    font-size: large;
+    font-size: 12px;
     margin-top: 12px;
     margin-inline: 12px;
-    color: green;
+    color: red;
 }

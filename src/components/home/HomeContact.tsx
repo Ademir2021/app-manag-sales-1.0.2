@@ -25,7 +25,7 @@ export function HomeContact({
                         <b>{msg}</b>
                         <dd>{msgFields}</dd>
                         </div>
-                        <label>*Nome</label>
+                        <label>Nome</label>
                         <input
                             type='text'
                             name='name'
@@ -33,7 +33,7 @@ export function HomeContact({
                             onChange={handleChange}
                             placeholder='Seu nome'
                         ></input>
-                        <label>*Email</label>
+                        <label>Email</label>
                         <input
                             type='email'
                             name='email'
@@ -41,7 +41,7 @@ export function HomeContact({
                             onChange={handleChange}
                             placeholder='Seu endereço de Email'
                         ></input>
-                        <label>*Telefone</label>
+                        <label>Telefone</label>
                         <input
                             type='text'
                             name='phone'

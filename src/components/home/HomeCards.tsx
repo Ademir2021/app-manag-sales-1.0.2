@@ -12,7 +12,7 @@ export function HomeCards(props: Props) {
     return (
             <div id='home-container-cards'>
                 <div id='home-main-cards'>
-                        <h1><b>{props.id}{props.item}</b></h1>
+                        <span><b>{props.item}</b></span>
                         <p><b>{props.descric}</b></p>
                         <p>{props.content}</p>
                         <button
