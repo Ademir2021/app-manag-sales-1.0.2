@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { HomeProductFormHire } from "../../components/home/HomeProductFormHire";
 import { postRegister } from "../../services/handleService";
+import { HomeForm } from '../../components/home/HomeForm';
 
 interface TContact {
     created_at?: Date | any;
@@ -14,7 +14,7 @@ interface TContact {
 export function HomeProductHire() {
 
     const [sendHire, setSendHire] = useState<boolean>(false)
-    const [sendMsg, setSendMsg] = useState<String>("Aguardando o envio dos dados da empresa !!")
+    const [sendMsg, setSendMsg] = useState<String>("Aguardando...")
 
     const [hire, setHire] = useState({
         fantasia: '',
@@ -74,13 +74,13 @@ export function HomeProductHire() {
 
     return (
         <>
-            <HomeProductFormHire
+            <HomeForm
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
                 sendMsg={sendMsg}
             >
                 {hire}
-            </HomeProductFormHire>
+            </HomeForm>
         </>
     )
 }

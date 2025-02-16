@@ -1,6 +1,6 @@
 import InputMask from "react-input-mask";
 import { HomeNav } from './HomeNav'
-import './HomeProductFormHire.css'
+import './css/styles.css'
 
 type Props ={
     children: React.ChangeEventHandler<HTMLInputElement> | undefined | any;
@@ -9,7 +9,7 @@ type Props ={
     sendMsg:String;
 }
 
-export function HomeProductFormHire({
+export function HomeForm({
     children,
     handleChange,
     handleSubmit,
@@ -17,19 +17,19 @@ export function HomeProductFormHire({
     return (
         <>
             <HomeNav />
-            <div id='home-pfh-container'>
-                <div id='home-pfh-main'>
-                    <div id='home-pfh-content'>
+            <div id='container'>
+                <div id='main'>
+                    <div id='content'>
                         <h1>Formulário de cadastro.</h1>
                         <p><b>Centro Informática </b> - CNPJ 18 069 383 0001 10</p>
                
                     </div>
 
-                    <div id='home-pfh-form'>
+                    <div id='form'>
                         <h4>Preencha o formulário.</h4>
                         <form>
-                            <div id='home-pfh-label'>
-                                <div id='home-pfh-input'>
+                            <div id='label'>
+                                <div id='input'>
                                     <label>Nome fantasia</label>
                                     <input
                                     placeholder='Nome fantasia'
@@ -134,9 +134,8 @@ export function HomeProductFormHire({
                                     value={children.cep || ''}
                                     onChange={handleChange}
                                     />
-                                    <dd id='home-pfh-send-msg'>{sendMsg}</dd>
+                                    <dd id='send-msg'>{sendMsg}</dd>
                                     <button
-                                        id='home-pfh-button'
                                         className='btn btn-primary'
                                         type='submit'
                                         onClick={handleSubmit}

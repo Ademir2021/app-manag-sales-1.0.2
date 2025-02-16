@@ -1,7 +1,7 @@
 import { HomeCards } from './HomeCards'
 import { HomeContact, PropsHomeContact } from './HomeContact'
 
-import './HomeMain.css'
+import './css/styles.css'
 
 export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields }: PropsHomeContact) {
 
@@ -15,43 +15,46 @@ export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields 
 
     return (
         <>
-            <div id='home-main-container'>
-                <header id='home-header' className='text-center'>
-                  <a href='#cards'><button id='home-header-btn' className='btn btn-primary'>Desenvolvendo o seu Software</button></a>
+            <div id='container'>
+                <header id='' className='text-center'>
+                    <a href='#cards'><button id='' className='btn btn-primary'
+                    >Desenvolvendo o seu Software</button></a>
                 </header>
-                <main id="home-main">
-                    <div id='home-div1'>
+                <main id="main">
+                    {/* Div1 */}
+                    <div>
                         <h1>Faça a sua escolha para o seu <b>Projeto de Software</b> !</h1>
-                        <p><b>- </b>Transformando suas idéias em realidade! Solicite agora mesmo um orçamento personalizado para o seu projeto de software.</p>
-                        <p><b>- </b>Junte-se a uma empresa líder que prioriza qualidade e satisfação do cliente. Com um histórico comprovado de clientes em todo o Brasil, oferecemos :</p>
+                        <p>Transformando suas idéias em realidade! Solicite agora mesmo um orçamento personalizado para o seu projeto de software.</p>
+                        <p>Junte-se a uma empresa líder que prioriza qualidade e satisfação do cliente. Com um histórico comprovado de clientes em todo o Brasil, oferecemos :</p>
                         <div>
-                            <dd><b>+ </b>Integração NFe com o seu sistema.</dd>
-                            <dd><b>+ </b>Emissor de NFCe das vendas de varejo.</dd>
-                            <dd><b>+ </b>Checkout Cartão\Pix e Boleto.</dd>
-                            <dd><b>+ </b>Sistema de Gestão Integrada ERP.</dd>
-                            <dd><b>+ </b>Desenvolvimento Web.</dd>
-                            <dd><b>+ </b>API Rest.</dd>
-                            <dd><b>+ </b>Soluções para Authenticação e WebToken.</dd>
+                            <dd>Integração NFe com o seu sistema.</dd>
+                            <dd>Emissor de NFCe das vendas de varejo.</dd>
+                            <dd>Checkout Cartão\Pix e Boleto.</dd>
+                            <dd>Sistema de Gestão Integrada ERP.</dd>
+                            <dd>Desenvolvimento Web.</dd>
+                            <dd>API Rest.</dd>
+                            <dd>Soluções para Authenticação e WebToken.</dd>
                         </div>
                     </div>
-                    <HomeContact
-                        children={children}
-                        handleChange={handleChange}
-                        handleSubmit={handleSubmit}
-                        msg={msg}
-                        msgFields={msgFields}
-                    />
-
-                    <div id='cards'></div>
-
+                    {/* Div2 */}
+                    <div>
+                        <HomeContact
+                            children={children}
+                            handleChange={handleChange}
+                            handleSubmit={handleSubmit}
+                            msg={msg}
+                            msgFields={msgFields}
+                        />
+                    </div>
                 </main>
-                    <div id='home-cards'>
+
+                <div id=''>
                     <a href='#cards-in'><button className='btn btn-primary p-2'><b>+ </b>Soluções para sua empresa</button></a>
-                    <div id='home-cards-title'
+                    <div id=''
                     >Aqui temos a solução que você precisa !</div>
-                    <div id='home-cards-content'
+                    <div id=''
                     >Aqui o cliente encontra produtos de Software na medida de suas necessidades. Utilizamos métodologias ágeis de desenvolvovimento, com isto garantimos entregas rápidas e continua.</div>
-                    <div id='cards-in'></div>
+                    <div id=''></div>
                     {(cards.map((card: any) => (
                         <HomeCards
                             key={card.id}
@@ -62,61 +65,60 @@ export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields 
                             onClick={() => (window.location.assign("/hire"))}
                         />
                     )))}
-                    <div id='home-div2'>
+                    <div id=''>
+
+                        <div id=''>
+                            <div>
+                                <button
+                                    className='btn btn-primary'
+                                    id=''
+                                    onClick={() => (window.location.assign("https://github.com/Ademir2021"))}
+                                ><b>{'#'} </b>Descarregar demo dos módulos [.git, .zip]</button>
+                                <p
+                                    id=''
+                                >Descarregue demo de nossos módulos no gitHub do desenvolvedor,  utilize o git clone ou zip ! em caso de  dúvidas entre em contato através de nossos canais de atendimento.</p>
+                            </div>
+                            <div>
+                                <img
+                                    src='img/code_NFe.png'
+                                    id=''
+                                    alt='Exemplo de código node'
+                                ></img>
+                                <p
+                                    id=''
+                                >Saiba mais sobre nosso padrão de qualidade em codificação !</p>
+                            </div>
+                        </div>
+
                         <hr></hr>
-                        
-                            <div id='demo-repo-main'>
-                                <div>
-                                    <button
-                                        className='btn btn-primary'
-                                        id='home-repo-btn'
-                                        onClick={() => (window.location.assign("https://github.com/Ademir2021"))}
-                                    ><b>{'#'} </b>Descarregar demo dos módulos [.git, .zip]</button>
-                                    <p
-                                        id='home-repo-btn-content'
-                                    >Descarregue demo de nossos módulos no gitHub do desenvolvedor,  utilize o git clone ou zip ! em caso de  dúvidas entre em contato através de nossos canais de atendimento.</p>
-                                </div>
+
+                        <div id=''>
+                            <div>
+                                <button
+                                    className='btn btn-primary'
+                                    id=''
+                                    onClick={() => (window.location.assign("/store"))}
+                                >@ Acessar nossa loja on-line</button>
+                                <p
+                                    id='home-store-btn-content'
+                                >Faça suas compras em nossa loja on-line, tudo que é comprado em uma loja fisica vc adquire aqui com uma nova experiência, tudo de forma segura e garantida.</p>
+                            </div>
+                            <div>
                                 <div>
                                     <img
-                                        src='img/code_NFe.png'
-                                        id='home-repo-img'
-                                        alt='Exemplo de código node'
+                                        src='img/site-store.png'
+                                        id=''
+                                        alt='Site de compras'
                                     ></img>
                                     <p
-                                        id='home-repo-img-content'
-                                    >Saiba mais sobre nosso padrão de qualidade em codificação !</p>
-                                </div>
-                            </div>
-
-                            <hr></hr>
-
-                            <div id='home-store-main'>
-                                <div>
-                                    <button
-                                        className='btn btn-primary'
-                                        id='home-store-btn'
-                                        onClick={() => (window.location.assign("/store"))}
-                                    >@ Acessar nossa loja on-line</button>
-                                    <p
-                                        id='home-store-btn-content'
-                                    >Faça suas compras em nossa loja on-line, tudo que é comprado em uma loja fisica vc adquire aqui com uma nova experiência, tudo de forma segura e garantida.</p>
-                                </div>
-                                <div>
-                                    <div>
-                                        <img
-                                            src='img/site-store.png'
-                                            id='home-store-img'
-                                            alt='Site de compras'
-                                        ></img>
-                                        <p
-                                            id='home-store-img-content'
-                                        >Site oficial, sua loja fisica em um formato on-line.</p>
-                                    </div>
+                                        id=''
+                                    >Site oficial, sua loja fisica em um formato on-line.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>    
+                </div>
+            </div>
         </>
     )
 }

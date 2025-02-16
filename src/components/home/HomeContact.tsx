@@ -1,4 +1,4 @@
-import './HomeContact.css'
+import './css/styles.css'
 
 export type PropsHomeContact = {
     children: React.ChangeEventHandler<HTMLInputElement> | undefined | any;
@@ -17,9 +17,9 @@ export function HomeContact({
 
     return (
         <>
-            <form id="home-form">
-                <div id='home-form-input'>
-                    <div id='home-form-label'>
+            <form id="contact-form">
+                <div id='contact-form-input'>
+                    <div id='contact-form-label'>
                         <h4>Envie seu contato</h4>
                         <dd>{msg}</dd>
                         <label>{msgFields}</label>
@@ -48,7 +48,7 @@ export function HomeContact({
                             placeholder='Seu Telefone'
                         ></input>
                         <button
-                            id='home-form-button'
+                            id='contact-button'
                             className='btn btn-primary'
                             type="submit"
                             onClick={handleSubmit}

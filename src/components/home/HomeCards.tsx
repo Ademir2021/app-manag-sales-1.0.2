@@ -1,4 +1,4 @@
-import "./HomeCards.css"
+import './css/styles.css'
 
 type Props = {
     id:number;
@@ -10,14 +10,13 @@ type Props = {
 
 export function HomeCards(props: Props) {
     return (
-            <div id='home-container-cards'>
-                <div id='home-main-cards'>
+            <div id='container-cards'>
+                <div id='main-cards'>
                         <span><b>{props.item}</b></span>
                         <p><b>{props.descric}</b></p>
                         <p>{props.content}</p>
                         <button
                         className="btn btn-primary p-2"
-                        id="home-cards-btn"
                         onClick={props.onClick}
                         >+ Informações.</button>
                 </div>
