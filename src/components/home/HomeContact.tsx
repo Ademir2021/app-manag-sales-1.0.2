@@ -4,8 +4,8 @@ export type PropsHomeContact = {
     children: React.ChangeEventHandler<HTMLInputElement> | undefined | any;
     handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined | any;
     handleSubmit: any
-    msg:String
-    msgFields:String
+    msg: String
+    msgFields: String
 }
 
 export function HomeContact({
@@ -13,49 +13,43 @@ export function HomeContact({
     handleChange,
     handleSubmit,
     msg,
-    msgFields}:PropsHomeContact) {
+    msgFields }: PropsHomeContact) {
 
     return (
-        <>
-            <form id="contact-form">
-                <div id='contact-form-input'>
-                    <div id='contact-form-label'>
-                        <h4>Envie seu contato</h4>
-                        <dd>{msg}</dd>
-                        <label>{msgFields}</label>
-                        <label>Nome</label>
-                        <input
-                            type='text'
-                            name='name'
-                            value={children.name}
-                            onChange={handleChange}
-                            placeholder='Seu nome'
-                        ></input>
-                        <label>Email</label>
-                        <input
-                            type='email'
-                            name='email'
-                            value={children.email}
-                            onChange={handleChange}
-                            placeholder='Seu endereço de Email'
-                        ></input>
-                        <label>Telefone</label>
-                        <input
-                            type='text'
-                            name='phone'
-                            value={children.phone}
-                            onChange={handleChange}
-                            placeholder='Seu Telefone'
-                        ></input>
-                        <button
-                            id='contact-button'
-                            className='btn btn-primary'
-                            type="submit"
-                            onClick={handleSubmit}
-                        >Enviar</button>
-                    </div>
-                </div>
-            </form>
-        </>
+        <form id='form'>
+            <h4>Envie seu contato</h4>
+            <dd>{msg}</dd>
+            <label>{msgFields}</label>
+            <label>Nome</label>
+            <input
+                type='text'
+                name='name'
+                value={children.name}
+                onChange={handleChange}
+                placeholder='Seu nome'
+            ></input>
+            <label>Email</label>
+            <input
+                type='email'
+                name='email'
+                value={children.email}
+                onChange={handleChange}
+                placeholder='Seu endereço de Email'
+            ></input>
+            <label>Telefone</label>
+            <input
+                type='text'
+                name='phone'
+                value={children.phone}
+                onChange={handleChange}
+                placeholder='Seu Telefone'
+            ></input>
+            <button
+            id='mt12'
+                className='btn btn-primary'
+                type="submit"
+                onClick={handleSubmit}
+            >Enviar</button>
+        </form>
     )
 }

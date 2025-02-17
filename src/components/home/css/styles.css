@@ -1,8 +1,72 @@
+#header{
+    background-image: url('/public/img/carousel/banner4.png');
+    padding:12px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
 #container{
     padding: 6px;
     margin: 6px;
+    color: rgb(28, 28, 39);
 }
 #main{
     display: flex;
     flex-direction: row;
+    margin-bottom: 18px;
 }
+@media screen and (max-width:768px){
+    #main{
+        flex-direction: column;
+    }
+}
+#form{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    padding: 12px;
+}
+#prospecting-form{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 12px;
+
+}
+#mt12{
+    margin-top: 12px;
+}
+#bg-white{
+    background-color: #fff;
+}
+#img{
+    position: relative;
+    right: 5px;
+    width: 400px;
+    height: 300px;
+    border-radius: 3px;
+}
+
+#container-cards {
+    display: inline-block;
+    max-width: 100%;
+    min-width: 194px;
+    width: 50%;
+ }
+ #main-cards {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     margin-right: 12px;
+     margin-left: auto;
+     box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
+     background-color:#fff;
+     color:gray;
+     border-radius: 4px;
+     margin-top: 6px;
+     padding:5px;
+     gap: 3px;
+ }
+ #main-cards:hover{
+    box-shadow: 4px 4px 4px 4px rgb(58, 58, 87);
+ }

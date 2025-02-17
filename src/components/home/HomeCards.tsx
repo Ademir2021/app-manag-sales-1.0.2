@@ -12,11 +12,11 @@ export function HomeCards(props: Props) {
     return (
             <div id='container-cards'>
                 <div id='main-cards'>
-                        <span><b>{props.item}</b></span>
-                        <p><b>{props.descric}</b></p>
+                        <b>{props.item}</b>
+                        <p>{props.descric}</p>
                         <p>{props.content}</p>
                         <button
-                        className="btn btn-primary p-2"
+                        className="btn btn-primary mb-3"
                         onClick={props.onClick}
                         >+ Informações.</button>
                 </div>
