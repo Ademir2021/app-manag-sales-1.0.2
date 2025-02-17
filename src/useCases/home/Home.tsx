@@ -31,12 +31,17 @@ export function Home() {
         setContacts(values => ({ ...values, [name]: value }))
     };
 
+    setTimeout(()=>{
+        setMsg('')
+        setMsgFields('')
+    },3000)
+
     function contactValFields(contact: TContact) {
         let msg = ""
-        msg += 'Por favor !! '
-        if (contact.name === "") { msg += "digite seu nome completo |\n" };
-        if (contact.email === "") { msg += "digite seu email | \n" };
-        if (contact.phone === "") { msg += "digite seu telefone\n" };
+        msg += 'Por favor digite seu '
+        if (contact.name === "") { msg += "nome completo,\n" };
+        if (contact.email === "") { msg += "email,\n" };
+        if (contact.phone === "") { msg += "telefone\n" };
         if (msg !== "") {
              setMsgFields(msg)
             return false;

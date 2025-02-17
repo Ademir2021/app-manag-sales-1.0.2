@@ -19,7 +19,7 @@ export function HomeContact({
         <form id='form'>
             <h4>Envie seu contato</h4>
             <dd>{msg}</dd>
-            <label>{msgFields}</label>
+            <div id='msg'>{msgFields}</div>
             <label>Nome</label>
             <input
                 type='text'

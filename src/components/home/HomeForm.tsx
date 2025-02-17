@@ -129,7 +129,9 @@ export function HomeForm({
                             value={children.cep || ''}
                             onChange={handleChange}
                         />
+                        <div id='msg'>
                         <dd id='mt12'>{sendMsg}</dd>
+                        </div>
                         <button
                             className='btn btn-primary'
                             type='submit'
