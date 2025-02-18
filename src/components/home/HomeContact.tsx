@@ -45,8 +45,7 @@ export function HomeContact({
                 placeholder='Seu Telefone'
             ></input>
             <button
-            id='mt12'
-                className='btn btn-primary'
+                className='btn btn-primary mt-2'
                 type="submit"
                 onClick={handleSubmit}
             >Enviar</button>
