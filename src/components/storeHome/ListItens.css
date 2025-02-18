@@ -1,30 +1,28 @@
 .container-itens {
    display: inline-block;
    vertical-align: top;
-   max-width: 900%;
-   margin: 0 auto;
-   padding: 0 2px;
-   width: 25%;
+   max-width: 100%;
+   margin: 5px;
+   padding: 2px;
+   width: 24%;
    min-width: 194px;
 }
 .main-itens {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     width: 100%;
-    margin-right: auto;
-    margin-left: auto;
-    /* border: 1px rgb(196, 206, 196) solid; */
-    background-color:white;
+    margin-right: 16px;
+    margin-left: 2px;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
+    background-color:#fff;
     border-radius: 4px;
-    /* margin-top: 2px; */
-    /* margin-bottom: 1px; */
-    padding: 0px 1px 0px 0px;
+    margin-top: 2px;
+    margin-bottom: 12px;
 }
 .main-itens:hover{
-    background-color: rgb(246, 247, 253);
-     /* border: 1px rgb(226, 221, 221) solid; */
+    box-shadow: 4px 4px 4px 4px rgb(58, 58, 87);
 }
 
 .itens-img {
@@ -36,10 +34,8 @@
     border:1px solid none;
 }
 .itens-img:hover{
-    max-width: 160%;
-    width: 17rem;
-    height: 18rem;
-    border-radius: 6px;
+    width: 12rem;
+    height: 13rem;
 }
 
 .input-amount{
