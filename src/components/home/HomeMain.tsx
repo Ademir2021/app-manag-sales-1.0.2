@@ -47,7 +47,6 @@ export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields 
                     </div>
                 </main>
 
-            
                 <div id='cards'>
                     <a href='#cards-in'><button className='btn btn-primary p-2'><b>+ </b>Soluções para sua empresa</button></a>
                     <div id='cards-in'>Aqui temos a solução que você precisa.</div>
@@ -62,35 +61,27 @@ export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields 
                             onClick={() => (window.location.assign("/hire"))}
                         />
                     )))}
-                    <div>
-                        <button
-                            className='btn btn-primary'
-                            id='mt12'
-                            onClick={() => (window.location.assign("https://github.com/Ademir2021"))}
-                        ><b>{'#'} </b>Descarregar demo dos módulos [.git, .zip]</button>
-                        <p id='mt12'>Descarregue demo de nossos módulos no gitHub do desenvolvedor,  utilize o git clone ou zip ! em caso de  dúvidas entre em contato através de nossos canais de atendimento.</p>
-                    </div>
-                    <div>
-                        <img
-                            src='img/code_node.png'
-                            id='img'
-                            alt='Exemplo de código node'
-                        ></img>
-                        <p id='font-bold'>Codificação limpa e com padrões de mercado.</p>
-                    </div>
                 </div>
-                <button
-                    className='btn btn-primary'
-                    id='mt12'
-                    onClick={() => (window.location.assign("/store"))}
-                >@ Sistema SAS Loja On-line</button>
-                <p id='mt12'>Nosso APP-Manage-Sale é o melhor Sistema SAS para Gestão de sua loja, Completo e Seguro.</p>
-                <p>Sistema APP-Manage-Sale, Vesão Web e para Android.</p>
-                <img src='img/site-store.png'
-                    id='img'
-                    alt='Site de compras'
-                ></img>
-                <div id='font-bold'>Sistema SAS para Gestão e Vendas On-line.</div>
+                {/* Fim dos cards **/}
+
+                <div id='container-dev' >
+                    <button
+                        className='btn btn-primary'
+                        id='mt18'
+                        onClick={() => (window.location.assign("https://github.com/Ademir2021"))}
+                    >{'#'} Descarregar demo dos módulos [.git, .zip]</button>
+                    <p id='mt18'>Descarregue demos no gitHub do desenvolvedor. <br />Utilize o git clone ou zip ! em caso de  dúvidas entre em contato através de nossos canais de atendimento.</p>
+                    <img src='img/code_node.png' id='img' alt='Exemplo de código node'></img>
+                    <p id='font-bold'>Codificação limpa e com padrões de mercado.</p>
+
+                    <button className='btn btn-primary' id='mt18'
+                        onClick={() => (window.location.assign("/store"))}
+                    >@ Sistema SAS Loja On-line</button>
+                    <p id='mt18'>Nosso APP-Manage-Sale é o melhor Sistema SAS para Gestão de sua loja, Completo e Seguro.</p>
+                    <p>Sistema APP-Manage-Sale, Vesão Web e para Android.</p>
+                    <img src='img/site-store.png' id='img' alt='Site de compras'></img>
+                    <div id='font-bold'>Sistema SAS para Gestão e Vendas On-line.</div>
+                </div>
             </div>
 
         </>
