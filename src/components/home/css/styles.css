@@ -39,6 +39,11 @@
 #bg-white{
     background-color: #fff;
 }
+#font-bold{
+    font-style: oblique;
+    color: black;
+    margin-top: 1px;
+}
 #img{
     position: relative;
     right: 5px;

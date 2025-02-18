@@ -68,32 +68,29 @@ export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields 
                             id='mt12'
                             onClick={() => (window.location.assign("https://github.com/Ademir2021"))}
                         ><b>{'#'} </b>Descarregar demo dos módulos [.git, .zip]</button>
-                        <p
-                            id='mt12'
-                        >Descarregue demo de nossos módulos no gitHub do desenvolvedor,  utilize o git clone ou zip ! em caso de  dúvidas entre em contato através de nossos canais de atendimento.</p>
+                        <p id='mt12'>Descarregue demo de nossos módulos no gitHub do desenvolvedor,  utilize o git clone ou zip ! em caso de  dúvidas entre em contato através de nossos canais de atendimento.</p>
                     </div>
                     <div>
                         <img
-                            src='img/code_NFe.png'
+                            src='img/code_node.png'
                             id='img'
                             alt='Exemplo de código node'
                         ></img>
-                        <p
-                            id=''
-                        >Saiba mais sobre nosso padrão de qualidade em codificação !</p>
+                        <p id='font-bold'>Codificação limpa e com padrões de mercado.</p>
                     </div>
                 </div>
                 <button
                     className='btn btn-primary'
                     id='mt12'
                     onClick={() => (window.location.assign("/store"))}
-                >@ Acessar nossa loja on-line</button>
-                <p id='mt12'>Faça suas compras em nossa loja on-line, tudo que é comprado em uma loja fisica vc adquire aqui com uma nova experiência, tudo de forma segura e garantida.</p>
+                >@ Sistema SAS Loja On-line</button>
+                <p id='mt12'>Nosso APP-Manage-Sale é o melhor Sistema SAS para Gestão de sua loja, Completo e Seguro.</p>
+                <p>Sistema APP-Manage-Sale, Vesão Web e para Android.</p>
                 <img src='img/site-store.png'
                     id='img'
                     alt='Site de compras'
                 ></img>
-                <p id='mt12'>Site oficial, sua loja fisica em um formato on-line.</p>
+                <div id='font-bold'>Sistema SAS para Gestão e Vendas On-line.</div>
             </div>
 
         </>
