@@ -10,13 +10,14 @@ function ControlledCarousel() {
     setIndex(selectedIndex);
   };
 
+
   return (
     <>
       <div id='carousel-div'>
         <Carousel
           prevIcon=''
           nextIcon=''
-          variant='dark'
+          variant='' //dark
           activeIndex={index}
           onSelect={handleSelect}>
           <Carousel.Item interval={800}>

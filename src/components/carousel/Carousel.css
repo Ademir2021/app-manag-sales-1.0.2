@@ -11,14 +11,14 @@
 }
 
 #carousel-div {
-    background-color: white;
-    color: white;
+    background-color: #fff;
+    color: #fff;
 }
 
 #carousel-item1 {
     background-image: url("/public//img//carousel/banner2_desktop.png");
     background-size: 1350px;
-    color: white;
+    color: #fff;
     padding: 16px;
 }
 
@@ -26,19 +26,19 @@
     #carousel-item1 {
         background-image: url("/public/img/carousel/banner1_mobile.png");
         background-size: 426px;
-        color: white;
+        color: #fff;
         padding: 16px;
     }
 }
 
 #carousel-item2 {
     background-image: url("/public/img/carousel/banner2.png");
-    color:white;
+    color:#fff;
     padding: 16px;
 }
 
 #carousel-item3 {
     background-image: url("/public/img/carousel/banner3.png");
-    color: white;
+    color: #fff;
     padding: 16px;
 }
