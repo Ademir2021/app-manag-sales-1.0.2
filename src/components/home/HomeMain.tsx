@@ -20,12 +20,12 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
     ]
 
     const btnText = <button id='btn-list' onClick={() => !vText ? setVText(true) : setVText(false)}>
-            {!vText ? '[ + ] ' : '[ - ] '}
-        <>sobre o assunto</>
-        <>
+            {!vText ? '+ ' : '- '}
+        <>Informações</>
+        {/* <> */}
             {/* {!vText && <FiChevronUp title='Up' size={32} id='icon-seta'/>} */}
             {/* {vText && <FiChevronDown title='Down' size={32} id='icon-seta' />} */}
-        </>
+        {/* </> */}
     </button>
 
     const text = <div id='v-text'>
