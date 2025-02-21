@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { HomeCards } from './HomeCards'
 import { HomeContact, PropsHomeContact } from './HomeContact'
 import { FiChevronUp, FiChevronDown } from 'react-icons/fi'
+import { IconType } from "react-icons";
 
 import './css/styles.css'
 
 
-export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields }: PropsHomeContact) {
+const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: PropsHomeContact) => {
 
     const [vText, setVText] = useState(false)
 
@@ -19,11 +20,12 @@ export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields 
     ]
 
     const btnText = <button id='btn-list' onClick={() => !vText ? setVText(true) : setVText(false)}>
-        <div>Saiba mais sobre o assunto</div>
-        <div id='icon-seta'>
-            {!vText && <FiChevronUp size={32} />}
-            {vText && <FiChevronDown size={32} />}
-        </div>
+            {!vText ? '[ + ] ' : '[ - ] '}
+        <>sobre o assunto</>
+        <>
+            {/* {!vText && <FiChevronUp title='Up' size={32} id='icon-seta'/>} */}
+            {/* {vText && <FiChevronDown title='Down' size={32} id='icon-seta' />} */}
+        </>
     </button>
 
     const text = <div id='v-text'>
@@ -103,3 +105,5 @@ export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields 
         </>
     )
 }
+
+export  {HomeMain}
