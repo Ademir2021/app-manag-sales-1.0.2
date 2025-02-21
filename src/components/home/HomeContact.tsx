@@ -17,8 +17,8 @@ export function HomeContact({
 
     return (
         <form id='form'>
-            <h4>Envie seu contato</h4>
-            <dd>{msg}</dd>
+            <b>Envie seu contato</b>
+            {msg && <dd>{msg}</dd>}
             <div id='msg'>{msgFields}</div>
             <label>Nome</label>
             <input

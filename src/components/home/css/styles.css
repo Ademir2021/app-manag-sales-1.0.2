@@ -1,50 +1,59 @@
-#header{
+#header {
     background-image: url('/public/img/carousel/banner5.png');
-    padding:110px;
+    padding: 110px;
     border-radius: 3px;
     width: 100%;
     margin-bottom: 12px;
 }
-#container{
+
+#container {
     padding: 6px;
     margin: 6px;
     color: rgb(99, 98, 98);
 }
-#main{
+
+#main {
     display: flex;
     flex-direction: row;
     margin-bottom: 18px;
 }
-@media screen and (max-width:768px){
-    #main{
+
+@media screen and (max-width:768px) {
+    #main {
         flex-direction: column;
     }
 }
-#form{
+
+#form {
     display: flex;
     flex-direction: column;
     width: 200px;
     padding: 12px;
 }
-#prospecting-form{
+
+#prospecting-form {
     display: flex;
     flex-direction: column;
     width: 90%;
     padding: 12px;
 
 }
-#mt18{
+
+#mt18 {
     margin-top: 18px;
 }
-#bg-white{
+
+#bg-white {
     background-color: #fff;
 }
-#font-bold{
+
+#font-bold {
     font-style: oblique;
     color: black;
     margin-top: 1px;
 }
-#img{
+
+#img {
     position: relative;
     right: 5px;
     width: 400px;
@@ -58,51 +67,68 @@
     max-width: 100%;
     min-width: 194px;
     width: 50%;
- }
- #main-cards {
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: center;
-     margin-right: 12px;
-     margin-left: auto;
-     box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
-     background-color:#fff;
-     color:gray;
-     border-radius: 4px;
-     margin-top: 6px;
-     padding:5px;
-     gap: 3px;
- }
- #main-cards:hover{
-    box-shadow: 4px 4px 4px 4px rgb(58, 58, 87);
- }
- #msg{
-    font-size: 12px;
-    color:red
- }
+}
 
- #container-dev{
+#main-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    margin-left: auto;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    color: gray;
+    border-radius: 4px;
+    margin-top: 6px;
+    padding: 5px;
+    gap: 3px;
+}
+
+#main-cards:hover {
+    box-shadow: 4px 4px 4px 4px rgb(58, 58, 87);
+}
+
+#msg {
+    font-size: 12px;
+    color: red
+}
+
+#container-dev {
     display: flex;
     padding: 1%;
     flex-direction: column;
     align-items: center;
     text-align: center;
- }
-#btn-list{
-    display:flex;
+}
+
+#btn-list {
+    display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 960px;
     background-color: gainsboro;
-    color:blue;
+    color: blue;
 }
-#icon-seta{
+
+@media screen and (max-width:768px) {
+    #btn-list {
+        width: 100%;
+    }
+}
+
+#icon-seta {
     position: relative;
-    left:18%;
+    left: 42%;
     color: white;
 }
-#v-text{
-    padding: 3px;
+
+@media screen and (max-width:768px) {
+    #icon-seta {
+        left: 34%;
+    }
+}
+
+#v-text {
     margin-top: 6px;
 }

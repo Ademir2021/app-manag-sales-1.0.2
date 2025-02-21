@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { HomeCards } from './HomeCards'
 import { HomeContact, PropsHomeContact } from './HomeContact'
-import { FiChevronUp, FiChevronDown } from 'react-icons/fi'
-import { IconType } from "react-icons";
+// import * as fi  from 'react-icons/fi'
+import * as Icon  from 'phosphor-react';
+import { HomeIcons } from './HomeIcons';
 
 import './css/styles.css'
-
 
 const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: PropsHomeContact) => {
 
@@ -20,17 +20,20 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
     ]
 
     const btnText = <button id='btn-list' onClick={() => !vText ? setVText(true) : setVText(false)}>
-            {!vText ? '+ ' : '- '}
         <>Informações</>
-        {/* <> */}
-            {/* {!vText && <FiChevronUp title='Up' size={32} id='icon-seta'/>} */}
-            {/* {vText && <FiChevronDown title='Down' size={32} id='icon-seta' />} */}
-        {/* </> */}
+        <div id='icon-seta'>
+            { !vText &&
+        <HomeIcons title='UP' icon={<Icon.CaretUp size={28}/>}/>
+            }
+            { vText &&
+        <HomeIcons title='Down' icon={<Icon.CaretDown size={28}/>}/>
+            }
+        </div>
     </button>
 
     const text = <div id='v-text'>
         <p>Transformando suas idéias em realidade! Solicite agora mesmo um orçamento personalizado para o seu projeto de software.</p>
-        <p>Junte-se a uma empresa líder que prioriza qualidade e satisfação do cliente. Com um histórico comprovado de clientes em todo o Brasil, temos soluções para:</p>
+        <p>Junte-se a uma empresa líder que prioriza qualidade e satisfação do cliente. Com um histórico comprovado de clientes em todo o Brasil, < br /> temos soluções para:</p>
         <div>
             <dd>Integrar NFe com o seu sistema.</dd>
             <dd>Emissor de NFCe das vendas de varejo.</dd>
