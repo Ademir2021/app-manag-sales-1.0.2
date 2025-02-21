@@ -1,9 +1,14 @@
+import React, { useState } from 'react';
 import { HomeCards } from './HomeCards'
 import { HomeContact, PropsHomeContact } from './HomeContact'
+import { FiChevronUp, FiChevronDown } from 'react-icons/fi'
 
 import './css/styles.css'
 
+
 export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields }: PropsHomeContact) {
+
+    const [vText, setVText] = useState(false)
 
     const cards = [
         { id: 1, item: "Emissor NFe", descric: " Emissor modelo 55 e 65", content: 'Permite ao cliente efetuar o controle e a emissão de documentos fiscais' },
@@ -12,6 +17,28 @@ export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields 
         { id: 4, item: "API Rest, Micro serviços", descric: "Integração de seu sistema com outras tecnologias", content: 'Permite o sistema do cliente possa se integrar a outros sistemas ou a micros-serviços para troca de dados' },
         { id: 5, item: "ERP Sistema de Gestão", descric: "Sistema Integrado de Vendas", content: 'Permite ao cliente a automação dos processos na empresa  Vendas, Financeiro, Fluxo de caixa, estoque, emissão de notas e muito mais.' }
     ]
+
+    const btnText = <button id='btn-list' onClick={() => !vText ? setVText(true) : setVText(false)}>
+        <div>Saiba mais sobre o assunto</div>
+        <div id='icon-seta'>
+            {!vText && <FiChevronUp size={32} />}
+            {vText && <FiChevronDown size={32} />}
+        </div>
+    </button>
+
+    const text = <div id='v-text'>
+        <p>Transformando suas idéias em realidade! Solicite agora mesmo um orçamento personalizado para o seu projeto de software.</p>
+        <p>Junte-se a uma empresa líder que prioriza qualidade e satisfação do cliente. Com um histórico comprovado de clientes em todo o Brasil, temos soluções para:</p>
+        <div>
+            <dd>Integrar NFe com o seu sistema.</dd>
+            <dd>Emissor de NFCe das vendas de varejo.</dd>
+            <dd>Checkout Cartão\Pix e Boleto.</dd>
+            <dd>Sistema de Gestão Integrada ERP.</dd>
+            <dd>Desenvolvimento Web.</dd>
+            <dd>API REST, json/XML.</dd>
+            <dd>Soluções para Authenticação e WebToken.</dd>
+        </div>
+    </div>
 
     return (
         <>
@@ -23,19 +50,9 @@ export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields 
                 <main id="main">
                     <div>
                         <h1>Faça a sua escolha para o seu <b>Projeto de Software</b> !</h1>
-                        <p>Transformando suas idéias em realidade! Solicite agora mesmo um orçamento personalizado para o seu projeto de software.</p>
-                        <p>Junte-se a uma empresa líder que prioriza qualidade e satisfação do cliente. Com um histórico comprovado de clientes em todo o Brasil, oferecemos :</p>
-                        <div>
-                            <dd>Integração NFe com o seu sistema.</dd>
-                            <dd>Emissor de NFCe das vendas de varejo.</dd>
-                            <dd>Checkout Cartão\Pix e Boleto.</dd>
-                            <dd>Sistema de Gestão Integrada ERP.</dd>
-                            <dd>Desenvolvimento Web.</dd>
-                            <dd>API Rest.</dd>
-                            <dd>Soluções para Authenticação e WebToken.</dd>
-                        </div>
+                        {btnText}
+                        {vText && text}
                     </div>
-
                     <div>
                         <HomeContact
                             children={children}
@@ -46,7 +63,6 @@ export function HomeMain({ children, handleChange, handleSubmit, msg, msgFields 
                         />
                     </div>
                 </main>
-
                 <div id='cards'>
                     <a href='#cards-in'><button className='btn btn-primary p-2'><b>+ </b>Soluções para sua empresa</button></a>
                     <div id='cards-in'>Aqui temos a solução que você precisa.</div>

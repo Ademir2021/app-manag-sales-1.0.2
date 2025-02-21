@@ -4,8 +4,8 @@ export type PropsHomeContact = {
     children: React.ChangeEventHandler<HTMLInputElement> | undefined | any;
     handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined | any;
     handleSubmit: any
-    msg: String
-    msgFields: String
+    msg: string
+    msgFields: string
 }
 
 export function HomeContact({

@@ -89,3 +89,20 @@
     align-items: center;
     text-align: center;
  }
+#btn-list{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: gainsboro;
+    color: gray;
+}
+#icon-seta{
+    position: relative;
+    left:18%;
+    color: white;
+}
+#v-text{
+    padding: 3px;
+    margin-top: 6px;
+}
