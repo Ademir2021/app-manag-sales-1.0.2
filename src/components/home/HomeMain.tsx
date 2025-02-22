@@ -48,7 +48,7 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
         <>
             <div id='container'>
                 <header id='header' className='text-center'>
-                    <a href='#cards'><button id='' className='btn btn-primary'
+                    <a href='#cards'><button id='btn-header' className='btn btn-primary'
                     >Desenvolvendo o seu Software</button></a>
                 </header>
                 <main id="main">

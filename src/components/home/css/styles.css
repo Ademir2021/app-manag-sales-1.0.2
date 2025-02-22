@@ -7,8 +7,14 @@
 }
 @media screen and (max-width:768px) {
     #header{
-        padding: 79px;
+        width: 100%;
+        padding: 50px;
     }
+}
+#btn-header{
+    padding: 12px;
+    width: 330px;
+    border-radius: 130px 2px 130px 2px;
 }
 
 #container {
