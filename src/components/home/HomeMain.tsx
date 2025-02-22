@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { HomeCards } from './HomeCards'
 import { HomeContact, PropsHomeContact } from './HomeContact'
-// import * as fi  from 'react-icons/fi'
-import * as Icon  from 'phosphor-react';
+import * as Icon from 'phosphor-react';
 import { HomeIcons } from './HomeIcons';
 
 import './css/styles.css'
@@ -22,11 +21,11 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
     const btnText = <button id='btn-list' onClick={() => !vText ? setVText(true) : setVText(false)}>
         <>Informações</>
         <div id='icon-seta'>
-            { !vText &&
-        <HomeIcons title='UP' icon={<Icon.CaretUp size={28}/>}/>
+            {!vText &&
+                <HomeIcons title='UP' icon={<Icon.CaretUp size={28} />} />
             }
-            { vText &&
-        <HomeIcons title='Down' icon={<Icon.CaretDown size={28}/>}/>
+            {vText &&
+                <HomeIcons title='Down' icon={<Icon.CaretDown size={28} />} />
             }
         </div>
     </button>
@@ -109,4 +108,4 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
     )
 }
 
-export  {HomeMain}
+export { HomeMain }
