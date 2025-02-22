@@ -33,15 +33,15 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
     const text = <div id='v-text'>
         <p>Transformando suas idéias em realidade! Solicite agora mesmo um orçamento personalizado para o seu projeto de software.</p>
         <p>Junte-se a uma empresa líder que prioriza qualidade e satisfação do cliente. Com um histórico comprovado de clientes em todo o Brasil, < br /> temos soluções para:</p>
-        <div>
-            <dd>Integrar NFe com o seu sistema.</dd>
-            <dd>Emissor de NFCe das vendas de varejo.</dd>
-            <dd>Checkout Cartão\Pix e Boleto.</dd>
-            <dd>Sistema de Gestão Integrada ERP.</dd>
-            <dd>Desenvolvimento Web.</dd>
-            <dd>API REST, json/XML.</dd>
-            <dd>Soluções para Authenticação e WebToken.</dd>
-        </div>
+        <ul>
+            <li>Integrar NFe com o seu sistema.</li>
+            <li>Emissor de NFCe das vendas de varejo.</li>
+            <li>Checkout Cartão\Pix e Boleto.</li>
+            <li>Sistema de Gestão Integrada ERP.</li>
+            <li>Desenvolvimento Web.</li>
+            <li>API REST, json/XML.</li>
+            <li>Soluções para Authenticação e WebToken.</li>
+        </ul>
     </div>
 
     return (
