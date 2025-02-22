@@ -19,7 +19,7 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
     ]
 
     const btnText = <button id='btn-list' onClick={() => !vText ? setVText(true) : setVText(false)}>
-        <>Informações</>
+        <b>Informações</b>
         <div id='icon-seta'>
             {!vText &&
                 <HomeIcons title='UP' icon={<Icon.CaretUp size={28} />} />
