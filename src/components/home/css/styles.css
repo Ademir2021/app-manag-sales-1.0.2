@@ -5,6 +5,11 @@
     width: 100%;
     margin-bottom: 12px;
 }
+@media screen and (max-width:768px) {
+    #header{
+        padding: 79px;
+    }
+}
 
 #container {
     padding: 6px;
