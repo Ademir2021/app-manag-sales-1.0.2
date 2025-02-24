@@ -11,11 +11,11 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
     const [vText, setVText] = useState(false)
 
     const cards = [
-        { id: 1, item: "Emissor NFe", descric: " Emissor modelo 55 e 65", content: 'Permite ao cliente efetuar o controle e a emissão de documentos fiscais' },
-        { id: 2, item: "Emissor NFCe", descric: "Emissor de Nota fiscal (NFCe)", content: 'Permite ao cliente de forma simples a emissão e a manutenção da NFCe' },
+        { id: 1, item: "Emissor NFe", descric: "Modelo 55 e 65", content: 'Emissão e controle da NFe' },
+        { id: 2, item: "Emissor NFCe", descric: 'EvoFácil emissor NFECe', content:"Emite a NFCe para o pequeno varejo" },
         { id: 3, item: "Checkout de Vendas", descric: "Integração com Cartão, PIX e Boleto", content: 'Permite a integração de seus  sistemas e a realização de  vendas on-line, e que o cliente possa efetuar seus pagamentos de forma segura.' },
-        { id: 4, item: "API Rest, Micro serviços", descric: "Integração de seu sistema com outras tecnologias", content: 'Permite o sistema do cliente possa se integrar a outros sistemas ou a micros-serviços para troca de dados' },
-        { id: 5, item: "ERP Sistema de Gestão", descric: "Sistema Integrado de Vendas", content: 'Permite ao cliente a automação dos processos na empresa  Vendas, Financeiro, Fluxo de caixa, estoque, emissão de notas e muito mais.' }
+        { id: 4, item: "API REST e Micro Serviço", descric: "Integração de seu sistema com outras tecnologias", content: 'Permite o sistema do cliente possa se integrar a outros sistemas ou a micros-serviços para troca de dados' },
+        { id: 5, item: "AC-Sor Sistema de Gestão", descric: "Sistema Integrado de Vendas", content: 'Permite ao cliente a automação dos processos na empresa  Vendas, Financeiro, Fluxo de caixa, estoque, emissão de notas e muito mais.' }
     ]
 
     const btnText = <button id='btn-list' onClick={() => !vText ? setVText(true) : setVText(false)}>
@@ -34,13 +34,13 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
         <p>Transformando suas idéias em realidade! Solicite agora mesmo um orçamento personalizado para o seu projeto de software.</p>
         <p>Junte-se a uma empresa líder que prioriza qualidade e satisfação do cliente. Com um histórico comprovado de clientes em todo o Brasil, < br /> temos soluções para:</p>
         <ul>
-            <li>Integrar NFe com o seu sistema.</li>
-            <li>Emissor de NFCe das vendas de varejo.</li>
-            <li>Checkout Cartão\Pix e Boleto.</li>
-            <li>Sistema de Gestão Integrada ERP.</li>
-            <li>Desenvolvimento Web.</li>
+            <li>Integrar NFe com o seu sistema de gestão.</li>
+            <li>Integrar NFCe para simples emissão no pequeno varejo.</li>
+            <li>Checkout cartão, PIX e boleto.</li>
+            <li>Sistema integrado para gestão ERP.</li>
+            <li>Desenvolvimento de sistemas SAAS e sites para Web.</li>
             <li>API REST, json/XML.</li>
-            <li>Soluções para Authenticação e WebToken.</li>
+            <li>Implementação de Middleware e web-token.</li>
         </ul>
     </div>
 
