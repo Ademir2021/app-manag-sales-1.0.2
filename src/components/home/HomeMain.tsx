@@ -68,9 +68,12 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
                     </div>
                 </main>
                 <div id='cards'>
-                    <a href='#cards-in'><button className='btn btn-primary p-2'><b>+ </b>Soluções para sua empresa</button></a>
-                    <div id='cards-in'>Aqui temos a solução que você precisa.</div>
-                    <div>O cliente encontra produtos de Software na medida de suas necessidades. Utilizamos métodologias ágeis de desenvolvovimento, com isto garantimos entregas rápidas e continua.</div>
+                    <a href='#cards-in'><button className='btn btn-primary p-2 mb-3'><b>+ </b>Soluções para sua empresa</button></a>
+                    <h1 id='cards-in'>A solução que você precisa !!</h1>
+                    <h2>O cliente encontra aqui o <b>Produtos de Software</b> com à medida necessária.<br/>
+                    Utilizamos métodologias ágeis de desenvolvovimento, com isto garantimos entregas rápidas e continua.</h2>
+                    <hr></hr>
+                    <dd>Escolha o card que melhor te atenda...</dd>
                     {(cards.map((card: any) => (
                         <HomeCards
                             key={card.id}
