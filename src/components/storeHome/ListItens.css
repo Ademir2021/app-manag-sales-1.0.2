@@ -27,15 +27,16 @@
 
 .itens-img {
     margin-top: 6px;
-    max-width: 100%;
-    width: 10rem;
-    height: 11rem;
-    border-radius: 6px;
+    max-height: 96%;
+    max-width: 96%;
+    height: auto;
+    width: auto;
+    border-radius: 2px;
     border:1px solid none;
 }
 .itens-img:hover{
-    width: 12rem;
-    height: 13rem;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .input-amount{
