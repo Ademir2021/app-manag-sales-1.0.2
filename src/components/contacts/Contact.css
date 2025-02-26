@@ -1,22 +1,21 @@
 #form-newsLetter{
-    padding:12px;
-    border-radius:6px;
-    border:0px solid gray
+    padding:3px;
+    border-radius: 3px;
+    background-color: #d9d9e4;
 }
 
 #input-newsLetter{
-    border: solid gray 1px;
-    font-Size:16px;
-    width: 80%;
-    height: 46px;
-    border-radius: 12px 0px 0px 12px;
+    font-size:16px;
+    border-radius:16px 1px 1px 16px;
+    height: 36px;
 }
 
 #button-newsLetter{
-    background-color: rgb(200, 193, 193);
-    border: solid gray 2px;
-    width: 20%;
-    height:48px;
-    border-radius: 0px 12px 12px 0px;
-    color: black;
+    margin: 2px;
+    border-radius: 0px 1px 8px 0px;
+    color: #fff;
+}
+#ico-email{
+    margin: 3px;
+    color:#516480;
 }
