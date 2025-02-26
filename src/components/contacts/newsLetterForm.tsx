@@ -14,11 +14,12 @@ export function NewsLetterForm({
 
     return (
         <>
-        <form id='form-newsLetter' >
+        <div id='form-newsLetter'>
             <span id='ico-email'>
-                <Icon.ArrowElbowRight size={36} />
-                <>Informe-se</>
+                <Icon.Envelope size={32} />
+                <> Informe-se em nossa Newsletter</>
             </span>
+        <form >
             <input
                 id='input-newsLetter'
                 type="email"
@@ -27,14 +28,15 @@ export function NewsLetterForm({
                 placeholder="Registre aqui seu e-mail ..."
                 required
                 onChange={handleChange}
-            />
+                />
             <button
                 id='button-newsLetter'
                 className='btn btn-primary mb-2'
                 type="submit"
                 onClick={handleSubmit}
-            >Registrar</button>
+                >Enviar</button>
         </form>
+                </div>
         </>
     )
 }
