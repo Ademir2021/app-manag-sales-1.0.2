@@ -1,4 +1,6 @@
 import { NewsLetter } from '../../useCases/contacts/newsLetter'
+import * as Icon from 'phosphor-react';
+// import { HomeIcons } from '../home/HomeIcons';
 import { Globais } from '../globais/Globais'
 
 import './FooterHome.css'
@@ -58,7 +60,7 @@ export function FooterHome() {
                     </div>
              
                 </div>
-                <p><a href="#"><img src="img/btn-top.png" className="btn-top" alt="Topo"></img></a></p>
+                <p><a href='#' className='btn-top'><Icon.CaretUp size={32} /></a></p>
                 {/* <a href='contact'>Consulte nossas formas de entrega</a> */}
                 <NewsLetter />
                 {/* Google Maps */}

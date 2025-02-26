@@ -163,7 +163,6 @@ export function NavBar() {
                     </div>
                 </div>
             </nav>
-            {/* <hr></hr> */}
             <span id="nav-calendar">{Globais.calendar}</span>
         </div>
     )

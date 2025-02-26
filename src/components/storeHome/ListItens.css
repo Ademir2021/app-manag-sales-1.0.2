@@ -16,13 +16,14 @@
     margin-right: 16px;
     margin-left: 2px;
     box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
-    background-color:#fff;
+    background-color:#e1e6e9;
     border-radius: 4px;
     margin-top: 2px;
     margin-bottom: 12px;
 }
 .main-itens:hover{
     box-shadow: 4px 4px 4px 4px rgb(58, 58, 87);
+    background-color:#abbdc5
 }
 
 .itens-img {
