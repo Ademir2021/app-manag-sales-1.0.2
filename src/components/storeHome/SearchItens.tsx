@@ -17,12 +17,14 @@ type Props = {
 export function SearchItens(props: Props) {
     return (
         <section className="search-item-main">
-            <div>
+            <div className='checkbox-label'>
                 <input
                     type='checkbox'
                     onChange={props.checkSearch}
                 />
-                <label className="checkbox-label">{props.checkedSearch ? 'Desmarcar para voltar pesquisa por Setor.' : 'Marcar a opção para pesquisar por Nome.'}</label>
+                {props.checkedSearch ?
+                    ' Pesquisar por nome' :
+                    ' Pesquisar por setor'}
             </div>
             {!props.checkedSearch ?
                 <form onSubmit={props.handleSubmit} className="d-flex mt-1 mt-lg-0" role="search">
