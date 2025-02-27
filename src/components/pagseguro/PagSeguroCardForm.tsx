@@ -1,9 +1,9 @@
 import React from "react";
 import { currencyFormat } from "../utils/currentFormat/CurrentFormat";
 import { Globais } from "../globais/Globais";
+import { NavBar } from "../navbar/Navbar";
 
 import './css/styles.css'
-import { NavBar } from "../navbar/Navbar";
 
 type PropsPagSeguroCardForm = {
     children: any | string | number | readonly string[] | undefined
@@ -31,8 +31,8 @@ export function PagSeguroCardForm({
         <>
             <NavBar />
             <hr></hr>
-            <div className="container">
-                <form className="main">
+            <div className="container-card">
+                <form className="form-card">
                     <input
                         type="hidden"
                         name="public_key"
