@@ -8,17 +8,11 @@
 }
 
 .search-items-img {
-    background-color: #fff;
-    border-radius: 12px;
     position: relative;
     right: 18%;
-    top: 1%;
-    width: auto;
-    height: auto;
-}
-
-.search-items-img:hover {
-    background-color: #eff3f5;
+    top: 5px;
+    width: 26px;
+    height: 26px;
 }
 
 .search-items-message {
@@ -47,7 +41,7 @@
     font-size: 16px;
     border-radius: 0px 6px 6px 0px;
     width: 100%;
-    height: auto;
+    height: 36px;
     border: solid 1px gray;
 }
 
