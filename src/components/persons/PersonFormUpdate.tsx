@@ -118,6 +118,8 @@ const grupo = <>
  <label>{"1-Cliente 2-Fornecedor 3-Transportadora 4-Geral"}</label>
     <input className=""
         type="number"
+        min={1}
+        max={4}
         name="fk_grupo"
         placeholder='Informe número do grupo'
         value={children.fk_grupo || ''}
