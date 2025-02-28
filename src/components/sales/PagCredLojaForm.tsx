@@ -51,22 +51,24 @@ export function PagCredLojaForm({
     return (
         <>
         <hr></hr>
-            <div className="container text-center">
-                <h1>Finalizar compra</h1>
-                <button className="btn btn-primary m-3"
+            <div id="container-invoice">
+                <div id='form-invoice'>
+                <h1 className="text-center">Finalizar compra</h1>
+                <button className="btn btn-primary p-2"
                     onClick={handleSubmit}
                 >Finalizar compra</button>
-                <button className="btn btn-primary m-3"
+                <button className="btn btn-primary p-2 mt-3"
                     onClick={toGoBackInvoiceSale}
                 >Modificar forma de pagamento</button>
-                <h1 className="p-1">Forma de pagamento</h1>
-                <dd><b>Em dinheiro: </b>{currencyFormat(dinheiro)}</dd>
-                <b>Crediario Loja:</b>
-                {listDuplicatas}
+                {dinheiro > 0 || duplicatas.length > 0 ? <h1 className="mt-2">Forma de pagamento</h1>:<h1>Nada à pagar no momento</h1>}
+                {dinheiro > 0 && <dd><b>Em dinheiro: </b>{currencyFormat(dinheiro)}</dd>}
+                {duplicatas.length > 0 && <b>Crediario Loja:</b>}
+                {duplicatas.length > 0 && listDuplicatas}
                 <>{URLNoteSubmit ? <button
-                    className="btn btn-primary"
-                    onClick={() => { window.location.replace(Globais.URL_NOTE + '/' + URLNoteSubmit) }}>Imprimir</button> : null}</>
+                    className="btn btn-primary p-2 mt-3"
+                    onClick={() => { window.location.replace(Globais.URL_NOTE + '/' + URLNoteSubmit) }}>Imprimir compra</button> : null}</>
             </div>
+                </div>       
         </>
     )
 }
