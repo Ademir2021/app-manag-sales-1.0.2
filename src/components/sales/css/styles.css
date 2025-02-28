@@ -1,0 +1,43 @@
+#container-invoice{
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+}
+#form-invoice{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    /* border: solid rgb(204, 185, 185) 1px; */
+    width: 90%;
+    height: 100%;
+    padding: 3px;
+}
+#form-invoice input{
+    border: solid 1px rgb(235, 223, 223);
+    width: 160px;
+    height: 36px;
+    margin: 6px;
+}
+
+#form-invoice label{
+    margin-top:16px;
+    font-size: 12px;
+}
+
+/* #form-invoice-input-number{
+    width: 160px;
+} */
+
+#data-invoice{
+    display: flex;
+    flex-direction: column;
+    color:gray;
+    padding: 16px;
+}
+#val-invoice{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    color:blue;
+    gap: 7px;
+}

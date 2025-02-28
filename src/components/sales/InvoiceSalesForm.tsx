@@ -3,8 +3,7 @@ import { NavBar } from '../navbar/Navbar';
 import { Globais } from '../globais/Globais';
 import { TPerson } from '../../useCases/persons/type/TPerson';
 
-import '../global-module.css'
-import './InvoiceSalesForm.css'
+import './css/styles.css'
 
 type Props = {
   children: string | number | readonly string[] | undefined | any
@@ -39,18 +38,18 @@ export function InvoiceSalesForm({
   return (
     <div>
       <NavBar />
-      <div className="container-global" >
-        <div className="main-global">
-          <div className='main-global-form'>
-            <label>{message}</label>
-            <dd><b>Cliente</b></dd>
+      <hr></hr>
+      <div id="container-invoice" >
+          <div id='form-invoice'>
+            {message && <label>{message}</label>}
+            <label><b>Cliente</b></label>
             <select onChange={e => idPerson(parseInt(e.target.value))} id='persons'>
               <option>Selecione o Cliente</option>
               {persons.map((pers: TPerson) => (
                 <option key={pers.id_person}>{pers.id_person}-{pers.name_pers}</option>
               ))}
             </select>
-            <dd><b>Parcelar Crédito\Cartão</b></dd>
+            <label><b>Parcelar Crédito\Cartão</b></label>
             <select onChange={e => installments(e.target.value)} id='installments'>
               <option>Credito a vista</option>
               <option>2</option>
@@ -82,29 +81,35 @@ export function InvoiceSalesForm({
               disabled
               onChange={handleChange}
             />
-            <button onClick={handleSubmitCard}>Pagar com Cartão</button>
-            <button onClick={handleSubmit}>Pagar com PIX ou BOLETO</button>
-            <button onClick={handleSubmitCred}>Pagar com Crediário Loja</button>
-            <a href='/person_update'>Atualizar de Cadastro</a><a href='invoice_sales'>{token}</a>
-            <span className='load-list-itens' >{loadItens}</span>
-            <div id='invoice-header'>
-              <dd>Sub-total = {currencyFormat(children.tItens)}</dd>
-              <dd>Desconto = {currencyFormat(children.disc_sale)}</dd>
-              <dd> Total da nota = {currencyFormat(children.tNote)}</dd>
-              <dd>Valor a pagar = {currencyFormat(children.paySale - children.disc_sale)}</dd>
+            <button className='btn btn-primary m-1' onClick={handleSubmitCard}>Pagar com Cartão</button>
+            <button className='btn btn-primary m-1'  onClick={handleSubmit}>Pagar com PIX ou BOLETO</button>
+            <button className='btn btn-primary m-1'  onClick={handleSubmitCred}>Pagar com Crediário Loja</button>
+            <div className='text-center m-3'>
+            <a href='/person_update'>Atualizar cadastro</a><br/>
+            <a href='invoice_sales'>{token}</a>
             </div>
-            <dd>Telefone = {children.person.phone_pers}</dd>
-            <dd>CPF = {children.person.cpf_pers}</dd>
-            <dd>Endereço = {children.person.address.address_pers}</dd>
-            <dd>Número = {children.person.address.num_address}</dd>
-            <dd>Bairro = {children.person.address.bairro_pers}</dd>
-            <dd>Cidade = {children.person.address.name_city}</dd>
-            <dd>Estado = {children.person.address.uf}</dd>
-            <dd>CEP = {children.person.address.num_cep}</dd>
-            <dd>Filial = {Globais.company + ' - ' + Globais.CNPJ}</dd>
+            <span className='load-list-itens' >{loadItens}</span>
+            {children.tNote > 0 && <div id='val-invoice'>
+              <label>S-Total: {currencyFormat(children.tItens)}</label>
+              <label>Desc: {currencyFormat(children.disc_sale)}</label>
+              <label>T-Nota: {currencyFormat(children.tNote)}</label>
+              <label>Val-Pagar: {currencyFormat(children.paySale - children.disc_sale)}</label>
+            </div>}
+            {children.person.cpf_pers && <div id='data-invoice'>
+              <hr></hr>
+              <h1>Dados para entrega</h1>
+            <span>Telefone: {children.person.phone_pers}</span>
+            <span>CPF: {children.person.cpf_pers}</span>
+            <span>Endereço: {children.person.address.address_pers}</span>
+            <span>Número: {children.person.address.num_address}</span>
+            <span>Bairro: {children.person.address.bairro_pers}</span>
+            <span>Cidade: {children.person.address.name_city}</span>
+            <span>Estado: {children.person.address.uf}</span>
+            <span>CEP: {children.person.address.num_cep}</span>
+            {/* <span>Filial: {Globais.company + ' - ' + Globais.CNPJ}</span> */}
+            </div>}
           </div>
         </div>
       </div>
-    </div>
   )
 }
