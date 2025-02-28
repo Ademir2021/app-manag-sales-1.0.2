@@ -1,7 +1,7 @@
 import InputMask from 'react-input-mask';
 import { ICities } from '../../useCases/ceps/type/TCeps';
 
-import '../global-module.css'
+import './css/styles.css'
 
 interface Props {
     children: React.ChangeEventHandler<HTMLInputElement> | undefined | any
@@ -27,109 +27,111 @@ export function CepsForm({
 
     return (
         <>
-            <div className="container-global">
-                <fieldset className="main-global">
-                    <form className="main-global-form">
-                        <strong>Cadastro de CEP<a href="form_person">Cadastro de Clientes</a></strong>
-                        <label>{alertCep}</label><br />
-                        <dd>CEP</dd>
-                        <InputMask
-                            mask={"99.999-999"}
-                            type="text"
-                            name="num_cep"
-                            placeholder='CEP de sua cidade - Confirmar/Registrar'
-                            value={children.num_cep || ""}
-                            onChange={handleChange}
-                        />
-                        <dd>Endereço</dd>
-                        <input
-                            type="text"
-                            name="public_place"
-                            placeholder='Logradouro'
-                            value={children.public_place || ""}
-                            onChange={handleChange}
-                        />
-                        <dd>Tipo de Cep</dd>
-                        <input
-                            type="text"
-                            name="type_cep"
-                            placeholder='Tipo de CEP'
-                            value={children.type_cep || ""}
-                            onChange={handleChange}
-                        />
-                        <dd>Número inicial</dd>
-                        <input
-                            type="number"
-                            name="num_initial"
-                            placeholder='Número inicial'
-                            value={children.num_initial || ""}
-                            onChange={handleChange}
-                        />
-                        <dd>Número Final</dd>
-                        <input
-                            type="number"
-                            name="num_final"
-                            placeholder='Número final'
-                            value={children.num_final || ""}
-                            onChange={handleChange}
-                        />
-                        <dd>Complemento</dd>
-                        <input
-                            type="text"
-                            name="complement"
-                            placeholder='Complemento'
-                            value={children.complement || ""}
-                            onChange={handleChange}
-                        />
-                        <label>{message}</label>
-                        <label>
-                            <strong>Selecione um Estado </strong>
-                            <select onChange={e => listUf(e.target.value)}>
-                                <option>{"Selecione um Estado"}</option>
-                                <option>{"AC"}</option>
-                                <option>{"AL"}</option>
-                                <option>{"AP"}</option>
-                                <option>{"AM"}</option>
-                                <option>{"BA"}</option>
-                                <option>{"CE"}</option>
-                                <option>{"DF"}</option>
-                                <option>{"ES"}</option>
-                                <option>{"GO"}</option>
-                                <option>{"MA"}</option>
-                                <option>{"MT"}</option>
-                                <option>{"MS"}</option>
-                                <option>{"MG"}</option>
-                                <option>{"PA"}</option>
-                                <option>{"PB"}</option>
-                                <option>{"PR"}</option>
-                                <option>{"PE"}</option>
-                                <option>{"PI"}</option>
-                                <option>{"RJ"}</option>
-                                <option>{"RN"}</option>
-                                <option>{"RS"}</option>
-                                <option>{"RO"}</option>
-                                <option>{"RR"}</option>
-                                <option>{"SC"}</option>
-                                <option>{"SP"}</option>
-                                <option>{"SE"}</option>
-                                <option>{"TO"}</option>
-                            </select>
-                        </label>
-                        <label>
-                            <strong>Selecione um Município</strong>
-                            <select onChange={e => setSelectedIdCity(e.target.value)}>
-                                <option>Escolha um Municipio</option>
-                                {listCity.map((city: ICities) => (
-                                    <option
-                                        key={city.id_city}
-                                        value={city.id_city}
-                                    >
-                                        {city.name_city}
-                                    </option>))}</select>
-                        </label>
-                        <button onClick={handleSubmit}>Registrar</button>
-                    </form>
-                </fieldset>
+            <hr></hr>
+            <div id="container-cep">
+                <form id="form-cep">
+                    <strong className='text-center'>Cadastro de CEP</strong>
+                    <a href="form_person">Retornar</a>
+                    {alertCep && <label>{alertCep}</label>}
+                    <label>CEP</label>
+                    <InputMask
+                        mask={"99.999-999"}
+                        type="text"
+                        name="num_cep"
+                        placeholder='CEP de sua cidade - Confirmar/Registrar'
+                        value={children.num_cep || ""}
+                        onChange={handleChange}
+                    />
+                    <label>Endereço</label>
+                    <input
+                        type="text"
+                        name="public_place"
+                        placeholder='Logradouro'
+                        value={children.public_place || ""}
+                        onChange={handleChange}
+                    />
+                    <label>Tipo de Cep</label>
+                    <input
+                        type="text"
+                        name="type_cep"
+                        placeholder='Tipo de CEP'
+                        value={children.type_cep || ""}
+                        onChange={handleChange}
+                    />
+                    <label>Número inicial</label>
+                    <input
+                        id='form-cep-input-number'
+                        type="number"
+                        name="num_initial"
+                        placeholder='Número inicial'
+                        value={children.num_initial || ""}
+                        onChange={handleChange}
+                    />
+                    <label>Número Final</label>
+                    <input
+                        id='form-person-input-number'
+                        type="number"
+                        name="num_final"
+                        placeholder='Número final'
+                        value={children.num_final || ""}
+                        onChange={handleChange}
+                    />
+                    <label>Complemento</label>
+                    <input
+                        type="text"
+                        name="complement"
+                        placeholder='Complemento'
+                        value={children.complement || ""}
+                        onChange={handleChange}
+                    />
+                    <label>{message}</label>
+                    <label>
+                        <select onChange={e => listUf(e.target.value)}>
+                            <option>{"Selecione um Estado"}</option>
+                            <option>{"AC"}</option>
+                            <option>{"AL"}</option>
+                            <option>{"AP"}</option>
+                            <option>{"AM"}</option>
+                            <option>{"BA"}</option>
+                            <option>{"CE"}</option>
+                            <option>{"DF"}</option>
+                            <option>{"ES"}</option>
+                            <option>{"GO"}</option>
+                            <option>{"MA"}</option>
+                            <option>{"MT"}</option>
+                            <option>{"MS"}</option>
+                            <option>{"MG"}</option>
+                            <option>{"PA"}</option>
+                            <option>{"PB"}</option>
+                            <option>{"PR"}</option>
+                            <option>{"PE"}</option>
+                            <option>{"PI"}</option>
+                            <option>{"RJ"}</option>
+                            <option>{"RN"}</option>
+                            <option>{"RS"}</option>
+                            <option>{"RO"}</option>
+                            <option>{"RR"}</option>
+                            <option>{"SC"}</option>
+                            <option>{"SP"}</option>
+                            <option>{"SE"}</option>
+                            <option>{"TO"}</option>
+                        </select>
+                    </label>
+                    <label>
+                        <select onChange={e => setSelectedIdCity(e.target.value)}>
+                            <option>Escolha um Municipio</option>
+                            {listCity.map((city: ICities) => (
+                                <option
+                                    key={city.id_city}
+                                    value={city.id_city}
+                                >
+                                    {city.name_city}
+                                </option>))}</select>
+                    </label>
+                    <button
+                        className='btn btn-primary m-2'
+                        onClick={handleSubmit}>Registrar</button>
+                </form>
             </div>
         </>
     )

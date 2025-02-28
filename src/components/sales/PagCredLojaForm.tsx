@@ -50,8 +50,9 @@ export function PagCredLojaForm({
         </>
     return (
         <>
-            <div className="container">
-                <h1 className="text-center">Finalizar compra</h1>
+        <hr></hr>
+            <div className="container text-center">
+                <h1>Finalizar compra</h1>
                 <button className="btn btn-primary m-3"
                     onClick={handleSubmit}
                 >Finalizar compra</button>

@@ -1,0 +1,27 @@
+#container-cep{
+    display: flex;
+    justify-content: center;
+}
+#form-cep{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    /* border: solid rgb(204, 185, 185) 1px; */
+    width: 90%;
+    height: 100%;
+    padding: 3px;
+}
+#form-cep input{
+    border: solid 1px rgb(235, 223, 223);
+    height: 36px;
+    margin: 1px;
+}
+
+#form-cep label{
+    margin-top:16px;
+    font-size: 12px;
+}
+
+#form-cep-input-number{
+    width: 120px;
+}

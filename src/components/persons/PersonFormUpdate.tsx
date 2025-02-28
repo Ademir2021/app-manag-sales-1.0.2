@@ -1,7 +1,7 @@
 import InputMask from "react-input-mask";
-
-import '../global-module.css'
 import { checkAdminPrivilege } from "../utils/checksUserLogged/ChecksUserLogged";
+
+import './css/styles.css'
 
 type Props = {
     children: string | number | readonly string[] | undefined | any
@@ -30,7 +30,7 @@ export function PersonFormUpdate({
 }: Props) {
 
     const naturalPerson = <>
-        <dd>CPF</dd>
+        <label>CPF</label>
         <InputMask
             type="text"
             name="cpf_pers"
@@ -44,7 +44,7 @@ export function PersonFormUpdate({
             onChange={handleChange}
             disabled
         />
-        <dd>RG</dd>
+        <label>RG</label>
         <InputMask
             type="text"
             name="rg"
@@ -60,7 +60,7 @@ export function PersonFormUpdate({
     </>
 
 const legalPerson = <>
-<dd>Nome Fantasia</dd>
+<label>Nome Fantasia</label>
 <input
     type="text"
     name="fantasia"
@@ -68,7 +68,7 @@ const legalPerson = <>
     value={children.fantasia || ""}
     onChange={handleChange}
 />
-<dd>CNPJ</dd>
+<label>CNPJ</label>
 <InputMask
     type="text"
     name="cnpj"
@@ -82,7 +82,7 @@ const legalPerson = <>
     onChange={handleChange}
     disabled
 />
-<dd>Inscrição estadual</dd>
+<label>Inscrição estadual</label>
 <InputMask
     type="text"
     name="inscricao"
@@ -98,8 +98,9 @@ const legalPerson = <>
 </>
 
 const limiteCredito = <>
-<dd>Limite de crédito</dd>
+<label>Limite de crédito</label>
 <InputMask
+id='form-person-input-number'
     type="number"
     name="limit_cred"
     placeholder='Informe o limite para crédito'
@@ -114,9 +115,9 @@ const limiteCredito = <>
 </>
 
 const grupo = <>
-<dd>Informe o grupo</dd>
+<label>Informe o grupo</label>
  <label>{"1-Cliente 2-Fornecedor 3-Transportadora 4-Geral"}</label>
-    <input className=""
+    <input id='form-person-input-number'
         type="number"
         min={1}
         max={4}
@@ -130,12 +131,11 @@ const grupo = <>
 
     return (
         <div ref={modalRef} className={`${className} modal`}>
-            <div className="container-global">
-                <div className="main-global">
-                    <form className="main-global-form">
-                        <strong>Atualização do Cliente</strong>
-                        <label>{alert}</label>
-                        <label>{message}</label>
+            <div id="container-person">
+                    <form id="form-person">
+                        <strong className="text-center mt-3">Atualização do Cliente</strong>
+                        {alert && <label>{alert}</label>}
+                        {message && <label>{message}</label>}
                         <input
                             type="hidden"
                             name="id_person"
@@ -144,7 +144,7 @@ const grupo = <>
                             disabled
                             onChange={handleChange}
                         />
-                        <dd>Nome</dd>
+                        <label>Nome</label>
                         <input
                             type="text"
                             name="name_pers"
@@ -153,7 +153,7 @@ const grupo = <>
                             onChange={handleChange}
                         />
                     {children.cpf_pers === '0' ? legalPerson : naturalPerson}
-                        <dd>Telefone</dd>
+                        <label>Telefone</label>
                         <InputMask
                             type="text"
                             name="phone_pers"
@@ -166,7 +166,7 @@ const grupo = <>
                             value={children.phone_pers || ''}
                             onChange={handleChange}
                         />
-                        <dd>Endereço</dd>
+                        <label>Endereço</label>
                         <input
                             type="text"
                             name="address_pers"
@@ -174,7 +174,7 @@ const grupo = <>
                             placeholder="Seu endereço"
                             onChange={handleChange}
                         />
-                        <dd>Número</dd>
+                        <label>Número</label>
                         <input className=""
                         type="text"
                         name="num_address"
@@ -182,7 +182,7 @@ const grupo = <>
                         placeholder="Número do endereço"
                         onChange={handleChange}
                         />
-                        <dd>Bairro</dd>
+                        <label>Bairro</label>
                         <input
                             type="text"
                             name="bairro_pers"
@@ -190,7 +190,7 @@ const grupo = <>
                             placeholder="Seu bairro"
                             onChange={handleChange}
                         />
-                        <dd>CEP</dd>
+                        <label>CEP</label>
                         <InputMask
                             mask={"99.999-999"}
                             type="text"
@@ -199,7 +199,7 @@ const grupo = <>
                             placeholder="CEP de sua cidade"
                             onChange={handleChange}
                         />
-                        <dd>Cidade</dd>
+                        <label>Cidade</label>
                         <input
                             type="text"
                             name="name_city"
@@ -208,7 +208,7 @@ const grupo = <>
                             disabled
                             onChange={handleChange}
                         />
-                        <dd>Estado</dd>
+                        <label>Estado</label>
                         <input
                             type="text"
                             name="uf"
@@ -235,14 +235,14 @@ const grupo = <>
                         />
                           {checkAdminPrivilege() === "2" ? limiteCredito: null}
                           {checkAdminPrivilege() === "2" ? grupo: null}
-                        <button onClick={handleUpdate} >Atualizar</button>
-                        <button onClick={close}>Sair</button>
-                        <button onClick={handleDelete}>Novo</button>
-                        <button onClick={handleSubmit}>Registrar</button>
+                        <button className="btn btn-primary m-1" onClick={handleUpdate} >Atualizar</button>
+                        <button className="btn btn-danger m-1" onClick={close}>Sair</button>
+                        <button className="btn btn-primary m-1" onClick={handleDelete}>Novo</button>
+                        <button className="btn btn-primary m-1" onClick={handleSubmit}>Registrar</button>
                     </form>
 
                 </div>
             </div>
-        </div>
+
     )
 }

@@ -2,6 +2,8 @@ import { useState } from "react";
 import InputMask from "react-input-mask";
 import { checkAdminPrivilege } from "../utils/checksUserLogged/ChecksUserLogged";
 
+import './css/styles.css'
+
 type Props = {
     children: string | number | readonly string[] | undefined | any
     handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined
@@ -21,11 +23,11 @@ export function PersonForm({
     const [tpPerson, setTpPerson] = useState('Pessoa-Fisica')
 
     const naturalPerson = <>
-        <dd>CPF</dd>
+        <label>CPF</label>
         <InputMask
             type="text"
             name="cpf_pers"
-            placeholder="Seu CPF"
+            placeholder="CPF"
             mask="999.999.999-99"
             mask-selectonfocus="true"
             maxLength={14}
@@ -34,7 +36,7 @@ export function PersonForm({
             value={children.cpf_pers || ""}
             onChange={handleChange}
         />
-        <dd>RG</dd>
+        <label>RG</label>
         <InputMask
             type="text"
             name="rg"
@@ -50,7 +52,7 @@ export function PersonForm({
     </>
 
     const legalPerson = <>
-        <dd>Nome Fantasia</dd>
+        <label>Nome Fantasia</label>
         <input
             type="text"
             name="fantasia"
@@ -58,7 +60,7 @@ export function PersonForm({
             value={children.fantasia || ""}
             onChange={handleChange}
         />
-        <dd>CNPJ</dd>
+        <label>CNPJ</label>
         <InputMask
             type="text"
             name="cnpj"
@@ -71,7 +73,7 @@ export function PersonForm({
             value={children.cnpj || ""}
             onChange={handleChange}
         />
-        <dd>Inscrição estadual</dd>
+        <label>Inscrição estadual</label>
         <InputMask
             type="text"
             name="inscricao"
@@ -87,8 +89,9 @@ export function PersonForm({
     </>
 
     const limiteCredito = <>
-        <dd>Limite de crédito</dd>
+        <label>Limite de crédito</label>
         <InputMask
+            id="form-person-input-number"
             type="number"
             name="limit_cred"
             placeholder='Informe o limite para crédito'
@@ -103,98 +106,101 @@ export function PersonForm({
     </>
 
     const grupo = <>
-    <dd>Informe o grupo</dd>
-     <label>{"1-Cliente 2-Fornecedor 3-Transportadora 4-Geral"}</label>
-        <input className=""
+        <label>Informe o grupo</label>
+        <label>{"1-Cliente 2-Fornecedor 3-Transportadora 4-Geral"}</label>
+        <input id='form-person-input-number'
             type="number"
             name="fk_grupo"
             placeholder='Informe número do grupo'
             value={children.fk_grupo || ''}
             onChange={handleChange}
-            
+
         />
     </>
 
     return (
-        <div className='container-global'>
-            <fieldset className='main-global'>
-                <form className='main-global-form'>
-                    <strong>Cadastro do Cliente<a href="ceps">Seu CEP</a></strong>
-                    <select className="mb-2 mt-2" onChange={(e) => setTpPerson(e.target.value)}>
-                        <option>{'Pessoa-Fisica'}</option>
-                        <option>{'Pessoa-Juridica'}</option>
-                    </select>
-                    {alert ? <label>{alert}</label> : null}
-                    {message ? <label>{message}</label> : null}
-                    <dd>Nome</dd>
-                    <input className=""
-                        type="text"
-                        name="name_pers"
-                        placeholder='Nome'
-                        value={children.name_pers || ""}
-                        onChange={handleChange}
-                    />
-                    {tpPerson === 'Pessoa-Fisica' ? naturalPerson : legalPerson}
-                    <dd>Telefone</dd>
-                    <InputMask className=""
-                        type="text"
-                        name="phone_pers"
-                        placeholder="Telefone"
-                        mask="(99)99999-9999"
-                        mask-selectonfocus="true"
-                        maxLength={14}
-                        autoComplete="off"
-                        maskChar={null}
-                        value={children.phone_pers || ""}
-                        onChange={handleChange}
-                    />
-                    <dd>Endereço</dd>
-                    <input className=""
-                        type="text"
-                        name="address_pers"
-                        placeholder={'Endereço'}
-                        value={children.address_pers || ""}
-                        onChange={handleChange}
-                    />
-                    <dd>Número</dd>
-                    <input className=""
-                        type="text"
-                        name="num_address"
-                        placeholder="Número"
-                        value={children.num_address || ''}
-                        onChange={handleChange}
-                    />
-                    <dd>Bairro</dd>
-                    <input className=""
-                        type="text"
-                        name="bairro_pers"
-                        placeholder={'Bairro'}
-                        value={children.bairro_pers || ""}
-                        onChange={handleChange}
-                    />
-                    <dd>CEP</dd>
-                    <InputMask
-                        mask={"99.999-999"}
-                        type="text"
-                        name="num_cep"
-                        value={children.num_cep || ""}
-                        placeholder="CEP"
-                        onChange={handleChange}
-                    />
-                    <input className=""
-                        type="hidden"
-                        name="fk_name_filial"
-                        placeholder='Filial do cliente'
-                        disabled
-                        value={children.fk_name_filial || ""}
-                        onChange={handleChange}
-                    />
-                    {checkAdminPrivilege() === "2" ? limiteCredito: null}
-                    {checkAdminPrivilege() === "2" ? grupo: null}
-                    <button onClick={handleSubmit}>Registrar</button><br />
-                    <a href='/invoice_sales'>Faturamento <b>clique aqui</b></a>< br />
-                </form>
-            </fieldset>
+        <div id='container-person'>
+            <form id='form-person'>
+                <strong className="text-center p-1">Cadastro do Cliente</strong>
+                <select className="mb-2 mt-2" onChange={(e) => setTpPerson(e.target.value)}>
+                    <option>{'Pessoa-Fisica'}</option>
+                    <option>{'Pessoa-Juridica'}</option>
+                </select>
+                {alert ? <label>{alert}</label> : null}
+                {message ? <label>{message}</label> : null}
+                <label>Nome</label>
+                <input className=""
+                    type="text"
+                    name="name_pers"
+                    placeholder='Nome'
+                    value={children.name_pers || ""}
+                    onChange={handleChange}
+                />
+                {tpPerson === 'Pessoa-Fisica' ? naturalPerson : legalPerson}
+                <label>Telefone</label>
+                <InputMask className=""
+                    type="text"
+                    name="phone_pers"
+                    placeholder="Telefone"
+                    mask="(99)99999-9999"
+                    mask-selectonfocus="true"
+                    maxLength={14}
+                    autoComplete="off"
+                    maskChar={null}
+                    value={children.phone_pers || ""}
+                    onChange={handleChange}
+                />
+                <label>Endereço</label>
+                <input className=""
+                    type="text"
+                    name="address_pers"
+                    placeholder={'Endereço'}
+                    value={children.address_pers || ""}
+                    onChange={handleChange}
+                />
+                <label>Número</label>
+                <input className=""
+                    type="text"
+                    name="num_address"
+                    placeholder="Número"
+                    value={children.num_address || ''}
+                    onChange={handleChange}
+                />
+                <label>Bairro</label>
+                <input className=""
+                    type="text"
+                    name="bairro_pers"
+                    placeholder={'Bairro'}
+                    value={children.bairro_pers || ""}
+                    onChange={handleChange}
+                />
+                <label>CEP</label>
+                <a href="ceps">Consultar cep</a>
+                <InputMask
+                    mask={"99.999-999"}
+                    type="text"
+                    name="num_cep"
+                    value={children.num_cep || ""}
+                    placeholder="CEP"
+                    onChange={handleChange}
+                />
+                <input className=""
+                    type="hidden"
+                    name="fk_name_filial"
+                    placeholder='Filial do cliente'
+                    disabled
+                    value={children.fk_name_filial || ""}
+                    onChange={handleChange}
+                />
+                {checkAdminPrivilege() === "2" ? limiteCredito : null}
+                {checkAdminPrivilege() === "2" ? grupo : null}
+                <button
+                className="btn btn-primary mt-3"
+                    onClick={handleSubmit}>
+                    Registrar</button>
+                <a href='/invoice_sales'>Faturamento <b>clique aqui</b></a>
+            </form>
+
         </div>
     )
 }
