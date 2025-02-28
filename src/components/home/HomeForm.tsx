@@ -17,14 +17,11 @@ export function HomeForm({
     return (
         <>
             <HomeNav />
+            <hr></hr>
             <div id='container'>
-                <div id='main'>
-                    <div>
-                        <h1>Formulário de cadastro.</h1>
-                        <p><b>Centro Informática </b> - CNPJ 18 069 383 0001 10</p>
-                    </div>
+                <div id='main-form'>
+                        <h1 className="text-center">Formulário de adesão</h1>
                     <form id="prospecting-form">
-                        <h4>Preencha o formulário.</h4>
                         <label>Nome fantasia</label>
                         <input
                             placeholder='Nome fantasia'
@@ -50,7 +47,7 @@ export function HomeForm({
                             maxLength={18}
                             autoComplete="off"
                             maskChar={null}
-                            placeholder='CNPJ da empresa'
+                            placeholder='CNPJ'
                             required
                             type='text'
                             name='cnpj'
@@ -68,7 +65,7 @@ export function HomeForm({
                         />
                         <label>Telefone</label>
                         <input
-                            placeholder='Telefone da empresa'
+                            placeholder='Telefone'
                             required
                             type='text'
                             name='phone'
@@ -77,7 +74,7 @@ export function HomeForm({
                         />
                         <label>Email</label>
                         <input
-                            placeholder='Email da empresa'
+                            placeholder='Email'
                             required
                             type='email'
                             name='email'
@@ -86,7 +83,7 @@ export function HomeForm({
                         />
                         <label>Endereço</label>
                         <input
-                            placeholder='Endereço da empresa'
+                            placeholder='Endereço'
                             required
                             type='text'
                             name='endereco'
@@ -95,7 +92,8 @@ export function HomeForm({
                         />
                         <label>Número</label>
                         <input
-                            placeholder='Número do endereço da empresa'
+                            id='form-main-input-number'
+                            placeholder='Número'
                             required
                             type='text'
                             name='numero'
@@ -122,7 +120,7 @@ export function HomeForm({
                         />
                         <label>CEP</label>
                         <input
-                            placeholder='CEP da cidade de sua empresa'
+                            placeholder='CEP'
                             required
                             type='text'
                             name='cep'
@@ -130,18 +128,16 @@ export function HomeForm({
                             onChange={handleChange}
                         />
                         <div id='msg'>
-                        <dd id='mt12'>{sendMsg}</dd>
+                            <dd id='mt12'>{sendMsg}</dd>
                         </div>
                         <button
-                            className='btn btn-primary'
+                            className='btn btn-primary p-2'
                             type='submit'
                             onClick={handleSubmit}
-                        >Enviar dados</button>
+                        >Enviar</button>
                     </form>
                 </div>
             </div>
-
-            <footer>Centro Informática - <b>Phone:</b> +55 (44) 98852-1033</footer>
         </>
     )
 };
