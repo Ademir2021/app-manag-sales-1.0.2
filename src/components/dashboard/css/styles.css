@@ -1,0 +1,27 @@
+#container-dashboard
+{
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+}
+#form-dashboard
+{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    /* border: solid rgb(204, 185, 185) 1px; */
+    width: 100%;
+    height: 100%;
+    padding: 26px;
+}
+#form-dashboard
+ button{
+    height: 48px;
+    margin: 3px;
+}
+
+#form-dashboard
+ label{
+    margin-top:16px;
+    font-size: 12px;
+}

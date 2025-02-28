@@ -18,6 +18,7 @@ export function DashboardDefault() {
         <div className="container">
             <Dashboard />
             <HeaderDashboard
+                privilege={user[0].privilege}
                 name={user[0].name}
                 username={user[0].username}
                 handleLogout={handleLogout}

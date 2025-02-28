@@ -1,27 +1,35 @@
+import './css/styles.css'
+
 type Props = {
-    name:string;
+    privilege: number
+    name: string;
     username: number;
     handleLogout: any;
 }
 
 export function HeaderDashboard(props: Props) {
     return (
-            <div className=" p-3 container" style={{background:'white', color:'black', borderRadius:'12px'}}>
-                <hr></hr>
-                <strong>Sua Conta de acesso</strong>
-                <dd>Gerencie suas compras em nosso E-commerce !</dd>
-                <b>Usuário logado</b>
-                <dd><b>Olá, </b>{(props.name)}</dd>
-                <><b>Usuário, </b>{props.username}</>
-            <div className=" mt-3">
-                <button
-                onClick={() => { window.location.replace("sale") }}
-                className="btn btn-primary">Checkout</button>
+        <>
+            <hr></hr>
+            <div id='container-dashboard'>
+                <div id='form-dashboard'>
+                    <strong>Dashboard / Painel de controle</strong>
+                    <h1>Sua Conta de acesso</h1>
+                    <p>Gerenciar suas compras nunca foi tão fácil.</p>
+                    <label>{props.privilege == 2 ? 'Nome adminstrador' : 'Nome comprador'}</label>
+                    <dd><b>Olá </b>{props.name}</dd>
+                    <label>{props.privilege == 2 ? 'Email admistrador' : 'Email comprador'}</label>
+                    <>{props.username}</>
+                    <button
+                        onClick={() => { window.location.replace("sale") }}
+                        className="btn btn-primary mt-5"
+                    >Checkout de compras</button>
+                    <button
+                        onClick={props.handleLogout}
+                        className='btn btn-primary'
+                    >Sair</button>
+                </div>
             </div>
-            <button
-             onClick={props.handleLogout}
-             className=' mt-2 btn btn-danger'
-             >Sair</button>
-            </div>
+        </>
     )
 }
