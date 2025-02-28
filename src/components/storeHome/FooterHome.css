@@ -55,7 +55,6 @@ a:hover {
     height: 55px;
 }
 
-/* @media screen and (max-width:768px) {} */
 .maps {
     width: 100%;
     border-radius: 2px;
@@ -75,20 +74,20 @@ a:hover {
     display: flex;
     justify-content: center;
     margin: 1%;
-    height: center;
-    font-size: 16px;
-    line-height: 3;
-    color:rgb(56, 54, 54);
+    width: 100%;
+    height: auto;
+    font-size: 14px;
+    line-height: 28px;
 }
 @media screen and (max-width:768px) {
     #header-channel {
-        font-size: 0.8rem;
+        font-size: 12px;
     }
 }
 
 #header-channel-title{
     color: rgb(4, 4, 85);
-    margin-bottom: -8px;
+    margin-bottom:1px;
 }
 @media screen and (max-width:768px){
 #header-channel-title{
@@ -100,19 +99,19 @@ a:hover {
     display: flex;
     flex-direction: column;
     text-align: left;
-    width: 16rem;
+    width: 100%;
 }
 
 #header-channel-center {
     display: flex;
     flex-direction: column;
     text-align: left;
-    width: 16rem;
+    width: 100%;
 }
 
 #header-channel-right {
     display: flex;
     flex-direction: column;
     text-align: left;
-    width: 12rem;
+    width: 100%;
 }

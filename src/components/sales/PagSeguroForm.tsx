@@ -1,10 +1,12 @@
 import { Globais } from '../globais/Globais';
-import '../global-module.css'
+import { NavBar } from '../navbar/Navbar';
 import { currencyFormat } from '../utils/currentFormat/CurrentFormat';
-import { LogoIn } from '../utils/logoIn/LogoIn';
 
-type Props= {
-    children?:any
+
+import './css/styles.css'
+
+type Props = {
+    children?: any
     handleBoleto: any
     handleQrCode: any
     qrcode_img: string
@@ -34,33 +36,32 @@ export function PagSeguroForm({
 }: Props) {
     return (
         <>
-            <div className='container-global'>
-                <div className='main-global'>
-                    <LogoIn />
-                    <p>Pague com BOLETO ou PIX</p>
+            <NavBar />
+            <hr></hr>
+            <div id='container-invoice'>
+                {<form id='form-invoice' >
+                    <h1 className='text-center p-3'>Pague com PIX ou Boleto</h1>
                     <p>{currencyFormat(paySale)}</p>
-                    {<form className='main-global-form' >
-                        <button className='btn btn-primary' onClick={handleBoleto}>Emitir BOLETO</button>
-                        <dd>Informe o melhor vencimento para o boleto</dd>
-                        <input type="date" value={datavenc} onChange={(e) => setInt(e.target.value)} />
-                        {barCodeBoleto !== "" ? <div className='text-center' ><dd>Código de Barras gerado com sucesso !</dd>
-                            <hr></hr>
-                            <dd>{"< CÓDIGO DE BARRAS SEM FORMATAÇÃO />"}</dd>
-                            <strong style={{ fontSize: '10px' }}>{barCodeBoleto}</strong>
-                            <dd>{"< CÓDIGO DE BARRAS FORMATADO />"}</dd>
-                            <strong style={{ fontSize: '10px' }}>{barCodeBoletoFormated}</strong></div> :
-                            <dd>Aguardando código de barras</dd>}
+                    <button className='btn btn-primary' onClick={handleBoleto}>Emitir BOLETO</button>
+                    <label>Informe o melhor vencimento para o boleto</label>
+                    <input type="date" value={datavenc} onChange={(e) => setInt(e.target.value)} />
+                    {barCodeBoleto !== "" ? <div className='text-center' ><label>Código de Barras gerado com sucesso !</label>
                         <hr></hr>
-                        <button className='btn btn-primary' onClick={handleQrCode}>Gerar QR-CODE</button>
-                        {qrcode_img ? <img className='payment-sale-img-qrcode' src={qrcode_img}></img> : null}
-                        <dd><b>PIX</b> {payPix}</dd>
-                        <label>{error}</label>
-                        <>{<label>{qrCodeGeneratedSuccessfully}</label>}</>
-                        <hr></hr>
-                        <>{URLNoteSubmit ? <a href={Globais.URL_NOTE + '/' + URLNoteSubmit}>Emitir Nota</a> : null}</>
-                        <>{URLNoteSubmit ? <a href='/dashboardefault'>Sair</a> : null}</>
-                    </form >}
-                </div>
+                        <label>{"< CÓDIGO DE BARRAS SEM FORMATAÇÃO />"}</label>
+                        <strong style={{ fontSize: '10px' }}>{barCodeBoleto}</strong>
+                        <label>{"< CÓDIGO DE BARRAS FORMATADO />"}</label>
+                        <strong style={{ fontSize: '10px' }}>{barCodeBoletoFormated}</strong></div> :
+                        <label>Aguardando código de barras</label>}
+                    <hr></hr>
+                    <button className='btn btn-primary' onClick={handleQrCode}>Gerar QR-CODE</button>
+                    {qrcode_img ? <img className='payment-sale-img-qrcode' src={qrcode_img}></img> : null}
+                    <label><b>PIX</b> {payPix}</label>
+                    <label>{error}</label>
+                    <>{<label>{qrCodeGeneratedSuccessfully}</label>}</>
+                    <hr></hr>
+                    <>{URLNoteSubmit ? <a href={Globais.URL_NOTE + '/' + URLNoteSubmit}>Emitir Nota</a> : null}</>
+                    <>{URLNoteSubmit ? <a href='/dashboardefault'>Sair</a> : null}</>
+                </form >}
             </div>
         </>
     )

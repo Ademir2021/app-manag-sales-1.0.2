@@ -35,33 +35,32 @@ export function FooterHome() {
 
                 <p>Loja on-line | Fácil de comprar - Rapidez e segurança em suas compras</p>
 
-                <strong>CANAIS DE ACESSO</strong>
+                <p>CANAIS DE ACESSO</p>
                 <hr></hr>
                 <div id='header-channel'>
                 <div id='header-channel-left'>
-                        <b id='header-channel-title'>Acesso as Compras</b>
-                        <a href='pe'>Carrinho de Compras</a>
-                        <a href='invoice_sales'>Finalizar Compras</a>
-                        <a href='contact'>Garantia Dúvidas</a>
+                        <b id='header-channel-title'>Compras</b>
+                        <a href='pe'>Carrinho de compras</a>
+                        <a href='invoice_sales'>Finalizar compras</a>
+                        <a href='contact'>Garantia dúvidas</a>
                     </div>
                     <div id='header-channel-center'>
-                    <b id='header-channel-title'>Formas para Pagar</b>
-                        <a href='pagsegurocard'>Cartão Débito/Crédito</a>
-                        <a href='pagcredloja'>Crediário Loja</a>
+                    <b id='header-channel-title'>Pagamento</b>
+                        <a href='pagsegurocard'>Cartão de crédito</a>
+                        <a href='pagcredloja'>Crediário loja</a>
                         <a href='pagseguro'>PIX</a>
                         <a href='pagseguro'>Boleto</a>
                     </div>
                     <div id='header-channel-right'>
-                    <b id='header-channel-title'>Comunicação</b>
-                        <a href='sale'>PDV de Compras</a>
-                        <a href={"contact"}>Fale Conosco</a>
-                        <a href='user_update'>Sua Conta</a>
-                        <a href='contacts_list'>Acesso a Posts</a>
+                    <b id='header-channel-title'>Canais</b>
+                        <a href='sale'>PDV de compras</a>
+                        <a href={"contact"}>Fale conosco</a>
+                        <a href='user_update'>Sua conta</a>
+                        <a href='contacts_list'>Posts</a>
                     </div>
              
                 </div>
                 <p><a href='#' className='btn-top'><Icon.CaretUp size={32} /></a></p>
-                {/* <a href='contact'>Consulte nossas formas de entrega</a> */}
                 <NewsLetter />
                 {/* Google Maps */}
                 <div className="maps">
