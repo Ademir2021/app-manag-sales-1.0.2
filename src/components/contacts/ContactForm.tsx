@@ -1,7 +1,7 @@
 import { Globais } from '../globais/Globais';
 import InputMask from "react-input-mask";
 
-import '../global-module.css'
+import './css/styles.css'
 
 type Props = {
     children: React.ChangeEventHandler<HTMLInputElement> | undefined | any;
@@ -17,66 +17,65 @@ export function ContactForm({
     msg
 }: Props) {
     return (
-            <div className='container'>
-                <strong className="p-1 text-center">Formulário para contato</strong>
-                <form method="" className="form-control input-contact bg-secondarys">
-
-                    <div className="mb-3">
-                        <div className="form-label">Nome</div>
-                        <input
-                            type="text"
-                            className="form-control"
-                            name="name"
-                            placeholder="Seu nome" required
-                            value={children.name || ""}
-                            onChange={handleChange}
-                        />
+        <>
+            <hr></hr>
+            <div id='container-contact'>
+                <form id='form-contact'>
+                    <div className="p-1 text-center">
+                        <h1>Fale conosco</h1>
+                        <dd><b>Telefone</b> {Globais.phone}</dd>
+                        <label>Suporte, Garantia, Frete, Dúvidas ?</label>
                     </div>
+                    <label>Nome</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        name="name"
+                        placeholder="Seu nome"
+                        required
+                        value={children.name || ""}
+                        onChange={handleChange}
+                    />
+                    <label>Email </label>
+                    <input
+                        type="email"
+                        className="form-control"
+                        name="email"
+                        placeholder="Seu email"
+                        required
+                        value={children.email || ""}
+                        onChange={handleChange}
+                    />
+                    <label>Telefone</label>
+                    <InputMask
+                        mask="(99)99999-9999"
+                        type="text"
+                        className="form-control"
+                        name="phone"
+                        placeholder="Seu telefone"
+                        required
+                        value={children.phone || ""}
+                        onChange={handleChange}
+                    />
                     <div className="mb-3">
-                        <div className="form-label">Email </div>
-                        <input
-                            type="email"
-                            className="form-control"
-                            name="email"
-                            placeholder="Seu email" required
-                            value={children.email || ""}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <div className="form-label">Telefone</div>
-                        <InputMask
-                            mask="(99)99999-9999"
-                            type="text"
-                            className="form-control"
-                            name="phone"
-                            placeholder="Seu telefone" required
-                            value={children.phone || ""}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div style={{ color: 'red' }}><p>{msg}</p></div>
-                    <div className="mb-3">
-                        <div className="form-label">Seu texto</div>
+                        <label>Digite aqui ...</label>
                         <textarea
-                            className="form-control"
                             name="comments"
-                            placeholder="Deixe aqui seus comentários..." required
+                            placeholder="Deixe aqui seus comentários ..."
+                            required
                             value={children.comments || ""}
                             onChange={handleChange}
-                        />
+                            />
                     </div>
-                    <div className="mb-3">
-                        <button
-                            onClick={handleSubmit}
-                            type="submit"
-                            className="btn btn-primary  btn-block"
-                        >Registrar</button>
-                    </div>
+                    {msg && <div id='msg-contact'>{msg}</div>}
+                    <button
+                    id='btn-contact'
+                    onClick={handleSubmit}
+                    type="submit"
+                    className="btn btn-primary"
+                    >Enviar</button>
                 </form>
-                <br></br>
-                <><b>Telefone:</b> {Globais.phone}</>
-                <hr></hr>
             </div>
+        </>
     )
 }
