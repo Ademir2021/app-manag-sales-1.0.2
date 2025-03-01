@@ -1,4 +1,6 @@
-import '../global-module.css'
+// import '../global-module.css'
+
+import '../../index'
 
 export type Props = {
     id_person: number
@@ -24,9 +26,8 @@ export type Props = {
 
 export const PersonList = (props: Props) => {
     return (
-        <div className="container-global" >
-            <div className="main-global">
-                <ul className="main-global-form">
+        <div id="container" >
+                <ul id="main">
                     <li><b>ID</b> {props.id_person}</li>
                     <li><b>Cadastro</b> {props.created_at}</li>
                     <li><b>Alterado</b> {props.updated_at}</li>
@@ -48,6 +49,5 @@ export const PersonList = (props: Props) => {
                     <>{props.update}</>
                 </ul>
             </div>
-        </div>
     )
 }

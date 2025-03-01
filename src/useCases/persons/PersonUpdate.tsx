@@ -209,7 +209,7 @@ export function PersonUpdate() {
                 {person}
             </PersonFormUpdate>
             <Dashboard />
-            <div className="text-center"><a href="person_update">{tokenMessage}</a></div>
+            <div id="text-center"><a href="person_update">{tokenMessage}</a></div>
             {persons.length === 0 ? <p>Carregando...</p> : (
                 persons.map((per: TPerson) => (
                     <PersonList
@@ -233,8 +233,10 @@ export function PersonUpdate() {
                         id_user={per.fk_id_user}
                         filial={per.fk_name_filial}
                         fk_grupo={per.fk_grupo}
-                        update={<button onClick={() =>
-                            listUpdate(per)}>Atualizar</button>}
+                        update={<button
+                            className="btn btn-primary"
+                            id='m-2'
+                            onClick={() => listUpdate(per)}>Atualizar</button>}
                     />
                 )))}
         </>

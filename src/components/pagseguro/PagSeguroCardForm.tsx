@@ -33,7 +33,7 @@ export function PagSeguroCardForm({
             <NavBar />
             <hr></hr>
             <div id="container">
-                <form id="main">
+                <form id="main-card">
                     <input
                         type="hidden"
                         name="public_key"
@@ -98,8 +98,8 @@ export function PagSeguroCardForm({
                             disabled
                         />
                     </div>
-                    {paidSucess || paid ? <label>{paidSucess} {paid}</label> : null}
-                    {err != '!' && <label>{err}</label>}
+                    {paidSucess || paid ? <label id='msg-red'>{paidSucess} {paid}</label> : null}
+                    {err != '!' && <label id="msg-red">{err}</label>}
                     <span>{!URLNoteSubmit ? currencyFormat(paySale) : null}</span>
                     {!URLNoteSubmit ? <button className="btn btn-primary" id='m-2' onClick={handleSubmit}>Pagar</button> : null}
                     {URLNoteSubmit ? <button className="btn btn-primary" id='m-2' onClick={() => { window.location.replace(Globais.URL_NOTE + '/' + URLNoteSubmit) }}>Emitir Nota</button> : null}
