@@ -25,19 +25,24 @@ export function ListItensStore({
 
     const list = itens.map((item: TItens) => (
         <div key={item.id}>
-            <span><b>Item: </b>{item.item}</span>
+            <label><b>Item: </b>{item.item}</label>
             <p><b>Descrição: </b>{item.descric}</p>
             <div id="itensStoreCarButton">
-                <button className="btn btn-primary"
+                <button
+                    className="btn btn-primary"
+                    id='m-2'
                     onClick={() => decrementItemListStore(item)}>-</button>
                 {item.amount}
-                <button className="btn btn-primary"
+                <button
+                    className="btn btn-primary"
+                    id='m-2'
                     onClick={() => incrementItemListStore(item)}>+</button>
                 <button
                     className="btn btn-danger"
+                    id='m-2'
                     onClick={() => { deleteListStore(item) }} >X</button>
             </div>
-            <span><b> Unitário: </b>{currencyFormat(item.valor)}</span>
+            <label><b> Unitário: </b>{currencyFormat(item.valor)}</label>
             <p><b>Total: </b>{currencyFormat(item.tItem)}</p>
             <hr></hr>
         </div>
@@ -45,36 +50,40 @@ export function ListItensStore({
 
     return (
         <>
-            <div id='itensStoreCar'>
-                <a
-                    href='sale'><img
-                        id='itensStoreCarImg'
-                        src="img/car_sale.png"
-                        alt="Carrinho de Compras" />
-                </a>
-                <div className="text-center">
+            <hr></hr>
+            <div
+                id='itens-store-car'>
+                
+                    { itens.length > 0 && <button
+                        className="btn btn-primary"
+                        id='m-2'
+                        onClick={() => window.location.replace("/sale")}
+                    >Encerrar carrinho
+                    </button>}
+
                     {itens.length !== 0 ? messages : null}
-                </div>
-                <div className="text-center">
+            
+                <div id='m-2'>
                     {itens.length !== 0 ? "Quantidade = " + counter_ : null}
                 </div>
-                <div className="text-center">
+                <div id='m-2'>
                     {itens.length !== 0 ? "TItems = " + currencyFormat(subtotal) : null}
                 </div>
-                <div>
-                    {itens.length === 0 ? "O seu Carrinho de compras está vazio" : null}
+                <div id='m-2'>
+                    {itens.length === 0 ? "O seu carrinho de compras está vazio" : null}
                 </div>
             </div>
-            {itens.length === 0 ? <div id='itensStoreCartogoback'><button
+            {itens.length === 0 ? <div id='container'><button
                 className='btn btn-primary'
+                id='m-2'
                 onClick={() => { window.location.replace("/store") }}>Voltar as Compras</button></div> : null}
-            <div className="container-global">
-                <div className="main-global">
-                    <div style={{ fontSize: '14px' }}>
+            <div id="container">
+                <div id="main">
+                    <div>
                         {list}
                     </div>
-                </div >
-            </div >
-            </>
+                </div>
+            </div>
+        </>
     )
 }

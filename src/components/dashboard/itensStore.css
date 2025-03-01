@@ -1,30 +1,30 @@
-#itensStoreCar {
+#itens-store-car {
     display: flex;
     flex-Direction: column;
     align-Items: center;
     margin: 1px;
 }
 
-#itensStoreCarImg {
+/* #itens-store-car-img {
     width: 60px;
     height: 60px;
-}
-#itensStoreCartogoback {
+} */
+/* #itensStoreCartogoback {
     display: flex;
     flex-Direction: column;
     align-Items: center;
     margin: 1px
-}
+} */
 
-#itensStoreCarButton {
+/* #itensStoreCarButton {
     display: inline;
     padding: 0px;
     margin: 0px;
-}
+} */
 
-#itensStoreCarButton button{
+/* #itensStoreCarButton button{
     margin: 1px;
     border-radius: 8px;
     color:white;
     border: 2px solid white;
-}
+} */
