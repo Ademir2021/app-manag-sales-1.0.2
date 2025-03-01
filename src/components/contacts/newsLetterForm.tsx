@@ -1,5 +1,6 @@
-import './Contact.css'
 import * as Icon from 'phosphor-react';
+
+import'./css/styles.css'
 
 type Props = {
     children: React.ChangeEventHandler<HTMLInputElement> | undefined | any;

@@ -18,7 +18,7 @@ export function HomeForm({
         <>
             <HomeNav />
             <hr></hr>
-            <div id='container'>
+            <div id='container-home'>
                 <div id='main-form'>
                         <h1 className="text-center">Formulário de adesão</h1>
                     <form id="prospecting-form">

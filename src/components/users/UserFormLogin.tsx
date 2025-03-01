@@ -1,6 +1,7 @@
 import { LogoIn } from '../utils/logoIn/LogoIn';
 import { UserHome } from './UserHome';
-import './UserFormLogin.css'
+
+import './css/styles.css'
 
 type PropsUserFormLogin = {
     children: string | number | readonly string[] | undefined | any;

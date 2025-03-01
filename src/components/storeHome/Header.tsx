@@ -1,6 +1,6 @@
 import { Globais } from '../globais/Globais';
 
-import './Header.css'
+import './css/header.css'
 
 type Props = {
     counter: number | string;

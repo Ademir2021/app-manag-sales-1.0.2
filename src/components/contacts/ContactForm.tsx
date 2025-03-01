@@ -1,7 +1,6 @@
 import { Globais } from '../globais/Globais';
 import InputMask from "react-input-mask";
 
-// import './css/styles.css'
 import '../../index'
 
 type Props = {

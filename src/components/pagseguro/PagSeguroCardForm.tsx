@@ -3,7 +3,6 @@ import { currencyFormat } from "../utils/currentFormat/CurrentFormat";
 import { Globais } from "../globais/Globais";
 import { NavBar } from "../navbar/Navbar";
 
-// import './css/styles.css'
 import '../../index'
 
 type PropsPagSeguroCardForm = {

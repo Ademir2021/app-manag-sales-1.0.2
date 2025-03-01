@@ -2,14 +2,6 @@
     text-align: center;
 }
 
-#input-valor {
-    width: 40%;
-    padding: 8px;
-    border-radius: 3px;
-    margin-top: 3px;
-    margin-left: 3px;
-}
-
 #header-contas-receber {
     background-color: gray;
     padding: 10px;
@@ -34,17 +26,9 @@ td {
     font-size: 12px;
 }
 
-.list-person {
+/* .list-person{
     font-size: 12px;
     display: flex;
     max-width: 50%;
     justify-content: center;
-}
-
-.list-despesa {
-    font-size: 12px;
-    display: flex;
-    max-width: 50%;
-    justify-content: center;
-    padding: 12px;
-}
+    } */

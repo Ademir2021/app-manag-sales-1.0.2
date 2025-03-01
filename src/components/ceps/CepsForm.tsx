@@ -1,7 +1,7 @@
 import InputMask from 'react-input-mask';
 import { ICities } from '../../useCases/ceps/type/TCeps';
 
-import './css/styles.css'
+import '../../index'
 
 interface Props {
     children: React.ChangeEventHandler<HTMLInputElement> | undefined | any
@@ -28,13 +28,14 @@ export function CepsForm({
     return (
         <>
             <hr></hr>
-            <div id="container-cep">
-                <form id="form-cep">
-                    <strong className='text-center'>Cadastro de CEP</strong>
+            <div id="container">
+                <form id="main">
+                    <strong id='text-center'>Cadastro de CEP</strong>
                     <a href="form_person">Retornar</a>
                     {alertCep && <label>{alertCep}</label>}
                     <label>CEP</label>
                     <InputMask
+                    id='main-input'
                         mask={"99.999-999"}
                         type="text"
                         name="num_cep"
@@ -44,6 +45,7 @@ export function CepsForm({
                     />
                     <label>Endereço</label>
                     <input
+                    id='main-input'
                         type="text"
                         name="public_place"
                         placeholder='Logradouro'
@@ -52,6 +54,7 @@ export function CepsForm({
                     />
                     <label>Tipo de Cep</label>
                     <input
+                    id='main-input'
                         type="text"
                         name="type_cep"
                         placeholder='Tipo de CEP'
@@ -60,7 +63,7 @@ export function CepsForm({
                     />
                     <label>Número inicial</label>
                     <input
-                        id='form-cep-input-number'
+                        id='main-input-number'
                         type="number"
                         name="num_initial"
                         placeholder='Número inicial'
@@ -69,7 +72,7 @@ export function CepsForm({
                     />
                     <label>Número Final</label>
                     <input
-                        id='form-person-input-number'
+                        id='main-input-number'
                         type="number"
                         name="num_final"
                         placeholder='Número final'
@@ -78,6 +81,7 @@ export function CepsForm({
                     />
                     <label>Complemento</label>
                     <input
+                    id='main-input'
                         type="text"
                         name="complement"
                         placeholder='Complemento'
@@ -86,7 +90,9 @@ export function CepsForm({
                     />
                     <label>{message}</label>
                     <label>
-                        <select onChange={e => listUf(e.target.value)}>
+                        <select
+                        id='main-input'
+                        onChange={e => listUf(e.target.value)}>
                             <option>{"Selecione um Estado"}</option>
                             <option>{"AC"}</option>
                             <option>{"AL"}</option>
@@ -118,7 +124,9 @@ export function CepsForm({
                         </select>
                     </label>
                     <label>
-                        <select onChange={e => setSelectedIdCity(e.target.value)}>
+                        <select
+                        id='main-input'
+                        onChange={e => setSelectedIdCity(e.target.value)}>
                             <option>Escolha um Municipio</option>
                             {listCity.map((city: ICities) => (
                                 <option
@@ -129,7 +137,8 @@ export function CepsForm({
                                 </option>))}</select>
                     </label>
                     <button
-                        className='btn btn-primary m-2'
+                        className='btn btn-primary'
+                        id='m-2'
                         onClick={handleSubmit}>Registrar</button>
                 </form>
             </div>

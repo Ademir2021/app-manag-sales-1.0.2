@@ -3,7 +3,7 @@ import { Globais } from "../globais/Globais";
 import { Logo } from "../logo/Logo";
 
 import "../assets/dist/css/bootstrap.min.css"
-import "./Navbar.css"
+import "./css/styles.css"
 
 export function NavBar() {
 

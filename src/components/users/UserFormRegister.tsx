@@ -1,6 +1,8 @@
 import { LogoIn } from "../utils/logoIn/LogoIn";
 import { UserHome } from "./UserHome";
 
+import './css/styles.css'
+
 type PropsUserFormRegister = {
     children: string | number | readonly string[] | undefined | any;
     handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined;

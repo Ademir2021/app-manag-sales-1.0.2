@@ -1,4 +1,4 @@
-import './ContasAPagar.css'
+import './css/styles.css'
 
 type Props = {
     children: any

@@ -1,7 +1,7 @@
 import { currencyFormat } from "../utils/currentFormat/CurrentFormat";
 import { TItens } from "../../useCases/products/type/TProducts";
 
-import './itensStore.css'
+import './css/styles.css'
 
 type Props = {
     itens: TItens[]

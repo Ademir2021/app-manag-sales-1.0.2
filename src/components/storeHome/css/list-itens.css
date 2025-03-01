@@ -26,11 +26,6 @@
     box-shadow: 4px 4px 4px 4px rgb(58, 58, 87);
     background-color:#dae2e6
 }
-/* @media screen and (max-width:768px) {
-    .main-itens{
-        height: 100%;
-    }
-} */
 
 .itens-img {
     margin-top: 6px;

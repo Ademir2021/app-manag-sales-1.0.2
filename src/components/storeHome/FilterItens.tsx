@@ -1,5 +1,5 @@
-import './FilterItens.css'
-import './SearchItens.css'
+import './css/filter-itens.css'
+import './css/search-itens.css'
 
 type Props = {
     onSubmit: any

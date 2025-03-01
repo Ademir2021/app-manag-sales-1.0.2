@@ -2,7 +2,7 @@ import { useState } from "react";
 import InputMask from "react-input-mask";
 import { checkAdminPrivilege } from "../utils/checksUserLogged/ChecksUserLogged";
 
-import '../../index.css'
+import '../../index'
 
 type Props = {
     children: string | number | readonly string[] | undefined | any

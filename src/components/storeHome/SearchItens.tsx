@@ -1,6 +1,6 @@
 import { TProduct, TSector } from '../../useCases/products/type/TProducts'
 
-import './SearchItens.css'
+import './css/search-itens.css'
 
 type Props = {
     handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined;

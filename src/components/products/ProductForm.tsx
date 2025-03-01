@@ -1,8 +1,5 @@
 import { useState } from 'react';
 
-// import '../global-module.css'
-// import './ProductForm.css'
-
 import '../../index'
 
 type Props = {

@@ -1,4 +1,4 @@
-import './ContasAReceber.css'
+import './css/styles.css'
 
 type Props = {
     children: any

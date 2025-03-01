@@ -25,3 +25,9 @@
     margin-top:16px;
     font-size: 12px;
 }
+#itens-store-car {
+    display: flex;
+    flex-Direction: column;
+    align-Items: center;
+    margin: 1px;
+}

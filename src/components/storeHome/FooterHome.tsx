@@ -1,10 +1,9 @@
 import { NewsLetter } from '../../useCases/contacts/newsLetter'
 import * as Icon from 'phosphor-react';
-// import { HomeIcons } from '../home/HomeIcons';
 import { Globais } from '../globais/Globais'
 
-import './FooterHome.css'
-import './cookies.css'
+import './css/footer.css'
+import './css/cookies.css'
 
 export function FooterHome() {
 

@@ -1,4 +1,4 @@
-import './UserFormLogin.css'
+import './css/styles.css'
 
 type PropsUsersFormUpdate = {
     children: string | number | readonly string[] | undefined | any;
@@ -73,11 +73,11 @@ export function UserFormUpdate({
                                     onChange={handleChange}
                                     required
                                 />
-                                <button onClick={handleSubmit} >Registrar</button>
-                                <button onClick={handleUpdate} >Atualizar</button>
-                                <button onClick={handleDelete} >Novo</button>
-                                 <button onClick={close}>Sair</button>
-                                <a href='#'>{'Utilize senhas com números e letras'}</a>
+                                <button id='m-2' onClick={handleSubmit} >Registrar</button>
+                                <button id='m-2' onClick={handleUpdate} >Atualizar</button>
+                                <button id='m2' onClick={handleDelete} >Novo</button>
+                                 <button id='m-2' onClick={close}>Sair</button>
+                                <label id='m-2' >Utilize senhas com números e letras</label>
                                 </form>
                         </fieldset>
                 </div>

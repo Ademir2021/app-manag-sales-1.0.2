@@ -1,9 +1,8 @@
 import { currencyFormat } from '../utils/currentFormat/CurrentFormat';
 import { NavBar } from '../navbar/Navbar';
-// import { Globais } from '../globais/Globais';
 import { TPerson } from '../../useCases/persons/type/TPerson';
 
-import '../../index.css'
+import '../../index'
 
 type Props = {
   children: string | number | readonly string[] | undefined | any

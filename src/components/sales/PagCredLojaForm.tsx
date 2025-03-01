@@ -3,6 +3,8 @@ import { Globais } from "../globais/Globais"
 import { currencyFormat } from "../utils/currentFormat/CurrentFormat"
 import { HandleFinanceiro } from "../utils/financeiro/HandleFinanceiro"
 
+import '../../index'
+
 type Props = {
     duplicatas: TContaAreceber[]
     handleSubmit: any

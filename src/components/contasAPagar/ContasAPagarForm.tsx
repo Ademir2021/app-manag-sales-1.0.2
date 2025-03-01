@@ -4,7 +4,7 @@ import { currencyFormat } from '../utils/currentFormat/CurrentFormat';
 import { checkAdminPrivilege } from "../utils/checksUserLogged/ChecksUserLogged";
 import { NavBar } from "../navbar/Navbar";
 
-import './ContasAPagar.css'
+import './css/styles.css'
 
 type Props = {
     contasAPagar: TContaAPagar[]

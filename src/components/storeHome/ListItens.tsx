@@ -1,6 +1,6 @@
 import { checksUserLogged } from '../utils/checksUserLogged/ChecksUserLogged';
 
-import './ListItens.css'
+import './css/list-itens.css'
 
 type Props = {
     handleItem: any;
