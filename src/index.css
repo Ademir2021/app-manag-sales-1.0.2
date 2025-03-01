@@ -44,9 +44,9 @@ code {
   flex-direction: row;
   justify-content: left;
   /* border: solid 1px rgb(235, 223, 223); */
-  width: 100%;
+  width: 103%;
   height: 100%;
-  gap: 6px;
+  gap: 1px;
 }
 #main-input-number{
   border: solid 1px rgb(235, 223, 223);
