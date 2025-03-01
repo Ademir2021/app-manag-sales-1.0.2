@@ -93,6 +93,7 @@ export function FormProduct() {
                 alert={alert_}
                 message=""
                 listBrand={<select
+                id="main-input"
                     onChange={e => setSelectedIdBrand(e.target.value)}
                 >
                     {brands.map((brand) => (
@@ -104,6 +105,7 @@ export function FormProduct() {
                         </option>))}</select>}
 
                 listSector={<select
+                id='main-input'
                     onChange={e => setSelectedIdSector(e.target.value)}
                 >
                     {sectors.map((sector: TSector) => (
@@ -115,6 +117,7 @@ export function FormProduct() {
                         </option>))}</select>}
 
                 listUn={<select
+                id='main-input-number'
                     onChange={e => setSelectedIdUn(e.target.value)}
                 >
                     {unMeds.map((un: TUnMed) => (
@@ -126,6 +129,7 @@ export function FormProduct() {
                         </option>))}</select>}
 
                 listClasse={<select
+                id="main-input"
                     onChange={e => setSelectedIdClasseProd(e.target.value)}
                 >{classesProds.map((classe: TClasseProd) => (
                     <option
@@ -136,6 +140,7 @@ export function FormProduct() {
                     </option>))}</select>}
 
                 listGrupoFiscal={<select
+                id="main-input"
                     onChange={e => setSelectedIdGrupoFiscal(e.target.value)}
                 >{gruposFiscais.map((grupoFiscal: TGrupoFiscal) => (
                     <option
@@ -146,6 +151,7 @@ export function FormProduct() {
                     </option>))}</select>}
 
                 listTipoProd={<select
+                id='main-input'
                     onChange={e => setSelectdIdTipoProd(e.target.value)}
                 >{tiposProds.map((tipoProd: TTipoProd) => (
                     <option

@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import '../global-module.css'
 
-import './ProductForm.css'
+// import '../global-module.css'
+// import './ProductForm.css'
+
+import '../../index'
 
 type Props = {
     children: React.ChangeEventHandler<HTMLInputElement> | undefined | any;
@@ -38,18 +40,23 @@ export function ProductForm({
     const [menu, setMenu] = useState("geral")
 
     const nav = <>
-        <div className='container mb-3 text-center'>
-            <button className='btn btn-primary m-1'
+        <div>
+            <button
+            className='btn btn-primary'
+            id='m-2'
                 onClick={() => (setMenu('geral'))}
-            >Geral</button>
-            <button className='btn btn-primary m1'
+            >Cadastro do Produto</button>
+            <button
+            className='btn btn-primary'
+            id='m-2'
                 onClick={() => (setMenu('fiscal'))}
-            >Fiscal</button>
+            >Situação Fiscal</button>
         </div>
     </>
 
     const geral = <>
         <input
+        id='main-input'
             type="text"
             name="descric_product"
             placeholder='Descrição do produto'
@@ -57,6 +64,7 @@ export function ProductForm({
             onChange={handleChange}
         />
         <input
+        id='main-input-number'
             type="number"
             name="val_max_product"
             placeholder='Valor máximo'
@@ -64,19 +72,23 @@ export function ProductForm({
             onChange={handleChange}
         />
         <input
+        id='main-input-number'
             type="number"
             name="val_min_product"
             placeholder='Valor minimo'
             value={children.val_min_product || ""}
             onChange={handleChange}
         />
-        <ul>
-            <li className='m-1'>Marca {listBrand}</li>
-            <li className='m-1'>Setor {listSector}</li>
-            <li className='m-1'>Unidade medida {listUn}</li>
-        </ul>
+            <div
+            id='m-2'
+            >
+            {listBrand}
+            {listSector}
+            {listUn}
+            </div>
 
         <input
+        id='main-input'
             type="text"
             name="bar_code"
             placeholder='Código de Barras'
@@ -84,29 +96,35 @@ export function ProductForm({
             onChange={handleChange}
         />
         <input
+        id='main-input'
             type="text"
             name="image"
             placeholder='Imagem'
             value={children.image || ""}
             onChange={handleChange}
         />
-        <button onClick={handleSubmit}>Registrar</button>
+        <button
+        className='btn btn-primary'
+        id='m-2'
+        onClick={handleSubmit}>Registrar</button>
     </>
 
-    const fiscal = <div>
-         <li className='' id='fiscal-classe-select'>Classe {listClasse}</li>
-         <li className='' id='fiscal-classe-select'>Grupo Fiscal {listGrupoFiscal}</li>
-         <li className='' id='fiscal-classe-select'>Tipo de Produto {listTipoProd}</li>
-         <li className='' id='fiscal-classe-select'>Pesquise o NCM do Produto {listNcm}</li>
-         <span className='m-5'>{msgNcm}</span>
+    const fiscal = <div id='m-2'>
+         <div>Classe {listClasse}</div>
+         <div>Grupo Fiscal {listGrupoFiscal}</div>
+         <div>Tipo de Produto {listTipoProd}</div>
+         <div>Pesquise o NCM do Produto {listNcm}</div>
+         <span id='m-2'>{msgNcm}</span>
     </div>
 
     return (
         <>
-            <div className="container-global">
-                <fieldset className="main-global">
+        <hr></hr>
+        <div id='container'>
             {nav}
-                    <form className="main-global-form">
+        </div>
+            <div id="container">
+                    <form id="main">
                         {menu === 'geral' ? <span className='m-3'>Cadastrar Produto</span> : null}
                         {menu === 'fiscal' ? <><span className='m-3'>Situação fiscal do Produto</span><br /></> : null}
                         {alert ? <label>{alert}</label> : null}
@@ -114,7 +132,6 @@ export function ProductForm({
                         {menu === 'fiscal' ? fiscal : null}
                         {menu === "geral" ? geral : null}
                     </form>
-                </fieldset>
             </div>
         </>
     )

@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import './ProductForm.css'
 import '../global-module.css'
+import '../../index'
 
 type Props = {
     children?: string | number | readonly string[] | undefined | any;
