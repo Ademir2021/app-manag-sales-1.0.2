@@ -3,7 +3,7 @@ import { NavBar } from '../navbar/Navbar';
 import { currencyFormat } from '../utils/currentFormat/CurrentFormat';
 
 
-import './css/styles.css'
+import '../../index'
 
 type Props = {
     children?: any
@@ -38,13 +38,18 @@ export function PagSeguroForm({
         <>
             <NavBar />
             <hr></hr>
-            <div id='container-invoice'>
-                {<form id='form-invoice' >
-                    <h1 className='text-center p-3'>Pague com PIX ou Boleto</h1>
+            <div id='container'>
+                {<form id='main' >
+                    <h1 id='text-center'>Pague com PIX ou Boleto</h1>
                     <p>{currencyFormat(paySale)}</p>
                     <button className='btn btn-primary' onClick={handleBoleto}>Emitir BOLETO</button>
                     <label>Informe o melhor vencimento para o boleto</label>
-                    <input type="date" value={datavenc} onChange={(e) => setInt(e.target.value)} />
+                    <input
+                    id='main-input-number'
+                    type="date"
+                    value={datavenc}
+                    onChange={(e) => setInt(e.target.value)}
+                    />
                     {barCodeBoleto !== "" ? <div className='text-center' ><label>Código de Barras gerado com sucesso !</label>
                         <hr></hr>
                         <label>{"< CÓDIGO DE BARRAS SEM FORMATAÇÃO />"}</label>

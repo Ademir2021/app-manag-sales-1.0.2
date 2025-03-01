@@ -51,8 +51,8 @@ export function PagCredLojaForm({
     return (
         <>
         <hr></hr>
-            <div id="container-invoice">
-                <div id='form-invoice'>
+            <div id="container">
+                <div id='main'>
                 <h1 className="text-center">Finalizar compra</h1>
                 <button className="btn btn-primary p-2"
                     onClick={handleSubmit}
@@ -65,7 +65,8 @@ export function PagCredLojaForm({
                 {duplicatas.length > 0 && <b>Crediario Loja:</b>}
                 {duplicatas.length > 0 && listDuplicatas}
                 <>{URLNoteSubmit ? <button
-                    className="btn btn-primary p-2 mt-3"
+                    className="btn btn-primary"
+                    id='m-2'
                     onClick={() => { window.location.replace(Globais.URL_NOTE + '/' + URLNoteSubmit) }}>Imprimir compra</button> : null}</>
             </div>
                 </div>       

@@ -1,7 +1,7 @@
 import InputMask from "react-input-mask";
 import { checkAdminPrivilege } from "../utils/checksUserLogged/ChecksUserLogged";
 
-import './css/styles.css'
+import '../../index'
 
 type Props = {
     children: string | number | readonly string[] | undefined | any
@@ -32,6 +32,7 @@ export function PersonFormUpdate({
     const naturalPerson = <>
         <label>CPF</label>
         <InputMask
+          id='main-input'
             type="text"
             name="cpf_pers"
             placeholder="Seu CPF"
@@ -46,6 +47,7 @@ export function PersonFormUpdate({
         />
         <label>RG</label>
         <InputMask
+        id='main-input'
             type="text"
             name="rg"
             placeholder="Seu RG"
@@ -59,190 +61,201 @@ export function PersonFormUpdate({
         />
     </>
 
-const legalPerson = <>
-<label>Nome Fantasia</label>
-<input
-    type="text"
-    name="fantasia"
-    placeholder="Nome fantasia"
-    value={children.fantasia || ""}
-    onChange={handleChange}
-/>
-<label>CNPJ</label>
-<InputMask
-    type="text"
-    name="cnpj"
-    placeholder="CNPJ da empresa"
-    mask="99.999.999/9999-99"
-    mask-selectonfocus="true"
-    maxLength={18}
-    autoComplete="off"
-    maskChar={null}
-    value={children.cnpj || ""}
-    onChange={handleChange}
-    disabled
-/>
-<label>Inscrição estadual</label>
-<InputMask
-    type="text"
-    name="inscricao"
-    placeholder="Inscrição estadual"
-    mask=""
-    mask-selectonfocus="true"
-    maxLength={10}
-    autoComplete="off"
-    maskChar={null}
-    value={children.inscricao || ""}
-    onChange={handleChange}
-/>
-</>
+    const legalPerson = <>
+        <label>Nome Fantasia</label>
+        <input
+            type="text"
+            name="fantasia"
+            placeholder="Nome fantasia"
+            value={children.fantasia || ""}
+            onChange={handleChange}
+        />
+        <label>CNPJ</label>
+        <InputMask
+            type="text"
+            name="cnpj"
+            placeholder="CNPJ da empresa"
+            mask="99.999.999/9999-99"
+            mask-selectonfocus="true"
+            maxLength={18}
+            autoComplete="off"
+            maskChar={null}
+            value={children.cnpj || ""}
+            onChange={handleChange}
+            disabled
+        />
+        <label>Inscrição estadual</label>
+        <InputMask
+            type="text"
+            name="inscricao"
+            placeholder="Inscrição estadual"
+            mask=""
+            mask-selectonfocus="true"
+            maxLength={10}
+            autoComplete="off"
+            maskChar={null}
+            value={children.inscricao || ""}
+            onChange={handleChange}
+        />
+    </>
 
-const limiteCredito = <>
-<label>Limite de crédito</label>
-<InputMask
-id='form-person-input-number'
-    type="number"
-    name="limit_cred"
-    placeholder='Informe o limite para crédito'
-    mask=""
-    max-selectfucus='true'
-    maxLength={9}
-    autoComplete="off"
-    maskChar={null}
-    value={children.limit_cred || ""}
-    onChange={handleChange}
-/>
-</>
+    const limiteCredito = <>
+        <label>Limite de crédito</label>
+        <InputMask
+            id='main-input-number'
+            type="number"
+            name="limit_cred"
+            placeholder='Informe o limite para crédito'
+            mask=""
+            max-selectfucus='true'
+            maxLength={9}
+            autoComplete="off"
+            maskChar={null}
+            value={children.limit_cred || ""}
+            onChange={handleChange}
+        />
+    </>
 
-const grupo = <>
-<label>Informe o grupo</label>
- <label>{"1-Cliente 2-Fornecedor 3-Transportadora 4-Geral"}</label>
-    <input id='form-person-input-number'
-        type="number"
-        min={1}
-        max={4}
-        name="fk_grupo"
-        placeholder='Informe número do grupo'
-        value={children.fk_grupo || ''}
-        onChange={handleChange}
-        
-    />
-</>
+    const grupo = <>
+        <label>Informe o grupo</label>
+        <label>{"1-Cliente 2-Fornecedor 3-Transportadora 4-Geral"}</label>
+        <input id='main-input-number'
+            type="number"
+            min={1}
+            max={4}
+            name="fk_grupo"
+            placeholder='Informe número do grupo'
+            value={children.fk_grupo || ''}
+            onChange={handleChange}
+
+        />
+    </>
 
     return (
         <div ref={modalRef} className={`${className} modal`}>
-            <div id="container-person">
-                    <form id="form-person">
-                        <strong className="text-center mt-3">Atualização do Cliente</strong>
-                        {alert && <label>{alert}</label>}
-                        {message && <label>{message}</label>}
-                        <input
-                            type="hidden"
-                            name="id_person"
-                            value={children.id_person || ""}
-                            placeholder="ID do cliente"
-                            disabled
-                            onChange={handleChange}
-                        />
-                        <label>Nome</label>
-                        <input
-                            type="text"
-                            name="name_pers"
-                            value={children.name_pers || ""}
-                            placeholder="Seu nome"
-                            onChange={handleChange}
-                        />
+            <div id="container">
+                <form id="main">
+                    <strong className="text-center mt-3">Atualização do Cliente</strong>
+                    {alert && <label>{alert}</label>}
+                    {message && <label>{message}</label>}
+                    <input
+                        id='main-input'
+                        type="hidden"
+                        name="id_person"
+                        value={children.id_person || ""}
+                        placeholder="ID do cliente"
+                        disabled
+                        onChange={handleChange}
+                    />
+                    <label>Nome</label>
+                    <input
+                        id='main-input'
+                        type="text"
+                        name="name_pers"
+                        value={children.name_pers || ""}
+                        placeholder="Seu nome"
+                        onChange={handleChange}
+                    />
                     {children.cpf_pers === '0' ? legalPerson : naturalPerson}
-                        <label>Telefone</label>
-                        <InputMask
-                            type="text"
-                            name="phone_pers"
-                            placeholder="Seu telefone"
-                            mask="(99)99999-9999"
-                            mask-selectonfocus="true"
-                            maxLength={14}
-                            autoComplete="off"
-                            maskChar={null}
-                            value={children.phone_pers || ''}
-                            onChange={handleChange}
-                        />
-                        <label>Endereço</label>
-                        <input
-                            type="text"
-                            name="address_pers"
-                            value={children.address_pers || ''}
-                            placeholder="Seu endereço"
-                            onChange={handleChange}
-                        />
-                        <label>Número</label>
-                        <input className=""
+                    <label>Telefone</label>
+                    <InputMask
+                        id='main-input'
+                        type="text"
+                        name="phone_pers"
+                        placeholder="Seu telefone"
+                        mask="(99)99999-9999"
+                        mask-selectonfocus="true"
+                        maxLength={14}
+                        autoComplete="off"
+                        maskChar={null}
+                        value={children.phone_pers || ''}
+                        onChange={handleChange}
+                    />
+                    <label>Endereço</label>
+                    <input
+                        id='main-input'
+                        type="text"
+                        name="address_pers"
+                        value={children.address_pers || ''}
+                        placeholder="Seu endereço"
+                        onChange={handleChange}
+                    />
+                    <label>Número</label>
+                    <input
+                        id='main-input-number'
                         type="text"
                         name="num_address"
                         value={children.num_address || ''}
                         placeholder="Número do endereço"
                         onChange={handleChange}
-                        />
-                        <label>Bairro</label>
-                        <input
-                            type="text"
-                            name="bairro_pers"
-                            value={children.bairro_pers || ''}
-                            placeholder="Seu bairro"
-                            onChange={handleChange}
-                        />
-                        <label>CEP</label>
-                        <InputMask
-                            mask={"99.999-999"}
-                            type="text"
-                            name="num_cep"
-                            value={children.num_cep || ''}
-                            placeholder="CEP de sua cidade"
-                            onChange={handleChange}
-                        />
-                        <label>Cidade</label>
-                        <input
-                            type="text"
-                            name="name_city"
-                            value={children.name_city || ''}
-                            placeholder="Cidade"
-                            disabled
-                            onChange={handleChange}
-                        />
-                        <label>Estado</label>
-                        <input
-                            type="text"
-                            name="uf"
-                            value={children.uf || ''}
-                            placeholder="Estado"
-                            disabled
-                            onChange={handleChange}
-                        />
-                        <input
-                            type="hidden"
-                            name="fk_name_filial"
-                            value={children.fk_name_filial || ''}
-                            placeholder="Filial do cliente"
-                            disabled
-                            onChange={handleChange}
-                        />
-                        <input
-                            type="hidden"
-                            name="fk_id_user"
-                            value={children.fk_id_user || ''}
-                            placeholder="Usuário do cliente"
-                            disabled
-                            onChange={handleChange}
-                        />
-                          {checkAdminPrivilege() === "2" ? limiteCredito: null}
-                          {checkAdminPrivilege() === "2" ? grupo: null}
-                        <button className="btn btn-primary m-1" onClick={handleUpdate} >Atualizar</button>
-                        <button className="btn btn-danger m-1" onClick={close}>Sair</button>
-                        <button className="btn btn-primary m-1" onClick={handleDelete}>Novo</button>
-                        <button className="btn btn-primary m-1" onClick={handleSubmit}>Registrar</button>
-                    </form>
+                    />
+                    <label>Bairro</label>
+                    <input
+                        id='main-input'
+                        type="text"
+                        name="bairro_pers"
+                        value={children.bairro_pers || ''}
+                        placeholder="Seu bairro"
+                        onChange={handleChange}
+                    />
+                    <label>CEP</label>
+                    <InputMask
+                        id='main-input'
+                        mask={"99.999-999"}
+                        type="text"
+                        name="num_cep"
+                        value={children.num_cep || ''}
+                        placeholder="CEP de sua cidade"
+                        onChange={handleChange}
+                    />
+                    <label>Cidade</label>
+                    <input
+                        id='main-input'
+                        type="text"
+                        name="name_city"
+                        value={children.name_city || ''}
+                        placeholder="Cidade"
+                        disabled
+                        onChange={handleChange}
+                    />
+                    <label>Estado</label>
+                    <input
+                        id='main-input-number'
+                        type="text"
+                        name="uf"
+                        value={children.uf || ''}
+                        placeholder="Estado"
+                        disabled
+                        onChange={handleChange}
+                    />
+                    <input
+                        id='main-input-number'
+                        type="hidden"
+                        name="fk_name_filial"
+                        value={children.fk_name_filial || ''}
+                        placeholder="Filial do cliente"
+                        disabled
+                        onChange={handleChange}
+                    />
+                    <input
+                        id='main-input-number'
+                        type="hidden"
+                        name="fk_id_user"
+                        value={children.fk_id_user || ''}
+                        placeholder="Usuário do cliente"
+                        disabled
+                        onChange={handleChange}
+                    />
+                    {checkAdminPrivilege() === "2" ? limiteCredito : null}
+                    {checkAdminPrivilege() === "2" ? grupo : null}
+                    <button className="btn btn-primary" id='m-2' onClick={handleUpdate} >Atualizar</button>
+                    <button className="btn btn-danger" id='m-2' onClick={close}>Sair</button>
+                    <button className="btn btn-primary" id='m-2' onClick={handleDelete}>Novo</button>
+                    <button className="btn btn-primary" id='m-2' onClick={handleSubmit}>Registrar</button>
+                </form>
 
-                </div>
             </div>
+        </div>
 
     )
 }

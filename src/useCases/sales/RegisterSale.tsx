@@ -232,7 +232,7 @@ export function RegisterSale() {
                 item_img={itemImg}
                 alert=""
                 message=""
-                totalItens={totalItens <= 0 ? '' : "SubTotal " + currencyFormat(totalItens)}
+                totalItens={totalItens <= 0 ? '' : currencyFormat(totalItens)}
                 loadItens={itens.length === 0 ? "Carregando" :
                     <Itens
                         itens={itens}

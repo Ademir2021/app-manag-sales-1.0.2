@@ -1,8 +1,7 @@
 import { currencyFormat } from '../utils/currentFormat/CurrentFormat';
-
-import '../global-module.css'
-import './SaleForm.css'
 import { TProduct } from '../../useCases/products/type/TProducts';
+
+import '../../index.css'
 
 type Props = {
   children: string | number | readonly string[] | undefined | any;
@@ -42,19 +41,17 @@ export function RegisterSaleForm({
 
   return (
     <>
-      <div className="container-sale">
-        <div className="main-sale">
-          <div className='main-sale-register' >
-            <div id='pdv-title'>PDV/Store</div>
-            <label>{alert}</label>
-            <label>{message}</label>
+      <div id="container">
+          <div id='main' >
+            <div>PDV/Store</div>
+            {alert && <label>{alert}</label>}
+            {message &&<label>{message}</label>}
             <img src={item_img} alt={children.descric}></img>
-            <p id='descric-item'>{item}</p>
+            <p>{item}</p>
             <label>Valor Unitário</label>
-            <div id='val-item'>
+            <div>
               {currencyFormat(parseFloat(children.valor))}
             </div>
-
             <datalist id="data-itens">
               <select>{products.map((product:TProduct) => (
                 <option key={product.id_product}>
@@ -63,6 +60,7 @@ export function RegisterSaleForm({
             </datalist>
                 <label>Código de Barras/Produto</label>
             <input
+            id='main-input'
               type="search"
               list="data-itens"
               name="descric"
@@ -73,6 +71,7 @@ export function RegisterSaleForm({
             />
             <label>Quantidade</label>
             <input
+            id='main-input-number'
               type="number"
               name="amount"
               min='1'
@@ -82,15 +81,13 @@ export function RegisterSaleForm({
               onChange={handleChange}
               required
             />
-            <div id='sub-total' >{totalItens}</div>
-            <button className='btn btn-primary' onClick={handleSaveUpdate}>{statusBtnSaveUpdate}</button>
-            <button className='btn btn-primary' onClick={handleSubmit}>{statusBtnSaleSubmit}</button>
-            <button className='btn btn-danger' onClick={handleDelete}>Deletar Item</button>
-            <button className='btn btn-primary' onClick={handleSearchItem}>Buscar Item / Importar Carrinho</button>
-            <div className='p-1'></div>
+            {totalItens && <div>SubTotal {totalItens}</div>}
+            <button className='btn btn-primary' id='m-2' onClick={handleSaveUpdate}>{statusBtnSaveUpdate}</button>
+            <button className='btn btn-primary' id='m-2' onClick={handleSubmit}>{statusBtnSaleSubmit}</button>
+            <button className='btn btn-danger' id='m-2' onClick={handleDelete}>Deletar Item</button>
+            <button className='btn btn-primary' id='m-2' onClick={handleSearchItem}>Buscar Item / Importar Carrinho</button>
           </div>
         </div>
-      </div>
       <div className='text-center p-1'>{loadItens}</div>
     </>
   );

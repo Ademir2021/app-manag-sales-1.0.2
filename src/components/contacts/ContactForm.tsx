@@ -1,7 +1,8 @@
 import { Globais } from '../globais/Globais';
 import InputMask from "react-input-mask";
 
-import './css/styles.css'
+// import './css/styles.css'
+import '../../index'
 
 type Props = {
     children: React.ChangeEventHandler<HTMLInputElement> | undefined | any;
@@ -19,15 +20,16 @@ export function ContactForm({
     return (
         <>
             <hr></hr>
-            <div id='container-contact'>
-                <form id='form-contact'>
-                    <div className="p-1 text-center">
+            <div id='container'>
+                <form id='main'>
+                    <div id="text-center">
                         <h1>Fale conosco</h1>
                         <dd><b>Telefone</b> {Globais.phone}</dd>
                         <label>Suporte, Garantia, Frete, Dúvidas ?</label>
                     </div>
                     <label>Nome</label>
                     <input
+                    id='main-input'
                         type="text"
                         className="form-control"
                         name="name"
@@ -38,6 +40,7 @@ export function ContactForm({
                     />
                     <label>Email </label>
                     <input
+                    id='main-input'
                         type="email"
                         className="form-control"
                         name="email"
@@ -48,6 +51,7 @@ export function ContactForm({
                     />
                     <label>Telefone</label>
                     <InputMask
+                    id='main-input'
                         mask="(99)99999-9999"
                         type="text"
                         className="form-control"
@@ -60,6 +64,7 @@ export function ContactForm({
                     <div className="mb-3">
                         <label>Digite aqui ...</label>
                         <textarea
+                        id='text-area'
                             name="comments"
                             placeholder="Deixe aqui seus comentários ..."
                             required
@@ -67,9 +72,9 @@ export function ContactForm({
                             onChange={handleChange}
                             />
                     </div>
-                    {msg && <div id='msg-contact'>{msg}</div>}
+                    {msg && <div id='msg-red'>{msg}</div>}
                     <button
-                    id='btn-contact'
+                    id='m-2'
                     onClick={handleSubmit}
                     type="submit"
                     className="btn btn-primary"

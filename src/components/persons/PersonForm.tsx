@@ -2,7 +2,7 @@ import { useState } from "react";
 import InputMask from "react-input-mask";
 import { checkAdminPrivilege } from "../utils/checksUserLogged/ChecksUserLogged";
 
-import './css/styles.css'
+import '../../index.css'
 
 type Props = {
     children: string | number | readonly string[] | undefined | any
@@ -25,6 +25,7 @@ export function PersonForm({
     const naturalPerson = <>
         <label>CPF</label>
         <InputMask
+         id="main-input"
             type="text"
             name="cpf_pers"
             placeholder="CPF"
@@ -38,6 +39,7 @@ export function PersonForm({
         />
         <label>RG</label>
         <InputMask
+         id="main-input"
             type="text"
             name="rg"
             placeholder="Seu RG"
@@ -54,6 +56,7 @@ export function PersonForm({
     const legalPerson = <>
         <label>Nome Fantasia</label>
         <input
+         id="main-input"
             type="text"
             name="fantasia"
             placeholder="Nome fantasia"
@@ -62,6 +65,7 @@ export function PersonForm({
         />
         <label>CNPJ</label>
         <InputMask
+         id="main-input"
             type="text"
             name="cnpj"
             placeholder="CNPJ da empresa"
@@ -75,6 +79,7 @@ export function PersonForm({
         />
         <label>Inscrição estadual</label>
         <InputMask
+         id="main-input"
             type="text"
             name="inscricao"
             placeholder="Inscrição estadual"
@@ -91,7 +96,7 @@ export function PersonForm({
     const limiteCredito = <>
         <label>Limite de crédito</label>
         <InputMask
-            id="form-person-input-number"
+             id="main-input-number"
             type="number"
             name="limit_cred"
             placeholder='Informe o limite para crédito'
@@ -108,7 +113,8 @@ export function PersonForm({
     const grupo = <>
         <label>Informe o grupo</label>
         <label>{"1-Cliente 2-Fornecedor 3-Transportadora 4-Geral"}</label>
-        <input id='form-person-input-number'
+        <input
+         id="main-input-number"
             type="number"
             name="fk_grupo"
             placeholder='Informe número do grupo'
@@ -119,17 +125,18 @@ export function PersonForm({
     </>
 
     return (
-        <div id='container-person'>
-            <form id='form-person'>
+        <div id='container'>
+            <form id='main'>
                 <strong className="text-center p-1">Cadastro do Cliente</strong>
-                <select className="mb-2 mt-2" onChange={(e) => setTpPerson(e.target.value)}>
+                <select id='main-input' onChange={(e) => setTpPerson(e.target.value)}>
                     <option>{'Pessoa-Fisica'}</option>
                     <option>{'Pessoa-Juridica'}</option>
                 </select>
                 {alert ? <label>{alert}</label> : null}
                 {message ? <label>{message}</label> : null}
                 <label>Nome</label>
-                <input className=""
+                <input
+                id="main-input"
                     type="text"
                     name="name_pers"
                     placeholder='Nome'
@@ -138,7 +145,8 @@ export function PersonForm({
                 />
                 {tpPerson === 'Pessoa-Fisica' ? naturalPerson : legalPerson}
                 <label>Telefone</label>
-                <InputMask className=""
+                <InputMask
+                 id="main-input"
                     type="text"
                     name="phone_pers"
                     placeholder="Telefone"
@@ -151,7 +159,8 @@ export function PersonForm({
                     onChange={handleChange}
                 />
                 <label>Endereço</label>
-                <input className=""
+                <input
+                 id="main-input"
                     type="text"
                     name="address_pers"
                     placeholder={'Endereço'}
@@ -159,7 +168,8 @@ export function PersonForm({
                     onChange={handleChange}
                 />
                 <label>Número</label>
-                <input className=""
+                <input
+                 id="main-input-number"
                     type="text"
                     name="num_address"
                     placeholder="Número"
@@ -167,7 +177,8 @@ export function PersonForm({
                     onChange={handleChange}
                 />
                 <label>Bairro</label>
-                <input className=""
+                <input
+                 id="main-input"
                     type="text"
                     name="bairro_pers"
                     placeholder={'Bairro'}
@@ -177,6 +188,7 @@ export function PersonForm({
                 <label>CEP</label>
                 <a href="ceps">Consultar cep</a>
                 <InputMask
+                 id="main-input"
                     mask={"99.999-999"}
                     type="text"
                     name="num_cep"
@@ -184,7 +196,8 @@ export function PersonForm({
                     placeholder="CEP"
                     onChange={handleChange}
                 />
-                <input className=""
+                <input
+                 id="main-input"
                     type="hidden"
                     name="fk_name_filial"
                     placeholder='Filial do cliente'
