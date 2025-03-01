@@ -61,8 +61,7 @@ export function ContasAreceberForm({
             id='m-2'
             onClick={submitfluxoDeCaixa}
         >Fluxo de caixa</button>
-        <div style={{ marginLeft: "12px", borderRadius: '0px' }}
-        ><b>Saldo = </b>{currencyFormat(saldo)}</div>
+        <div id="m-2"><b>Saldo à receber </b>{currencyFormat(saldo)}</div>
     </div>
 
     const inputReceberValor = <div>

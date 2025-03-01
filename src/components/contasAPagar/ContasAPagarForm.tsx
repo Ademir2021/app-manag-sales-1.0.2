@@ -43,20 +43,22 @@ function ContasAPagarForm({
 
     const sumbit =
         <div className="mb-1">
-            <button style={{ marginLeft: "1px", borderRadius: '0px' }}
+            <button
                 className="btn btn-primary"
+                id="m-2"
                 onClick={submitContasAPagarRegister}
             >Emitir título</button>
-            <button style={{ marginLeft: "1px", borderRadius: '0px' }}
+            <button
                 className="btn btn-primary"
+                   id="m-2"
                 onClick={submitInserirValor}
             >Pagar</button>
-            <button style={{ marginLeft: "1px", borderRadius: '0px' }}
+            <button
                 className="btn btn-primary"
+                   id="m-2"
                 onClick={submitfluxoDeCaixa}
             >Fluxo de caixa</button>
-            <div style={{ marginLeft: "12px", borderRadius: '0px' }}
-            ><b>Saldo a pagar = </b>{currencyFormat(saldo)}</div>
+            <div id="m-2"><b>Saldo à pagar </b>{currencyFormat(saldo)}</div>
         </div>
 
     const inputPagarValor = <div>
