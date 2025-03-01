@@ -46,12 +46,12 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
 
     return (
         <>
-            <div id='container'>
+            <div id='container-home'>
                 <header id='header' className='text-center'>
                     <a href='#cards'><button id='btn-header' className='btn btn-primary'
                     >Desenvolvendo o seu Software</button></a>
                 </header>
-                <main id="main">
+                <main id="main-home">
                     <div>
                         <h1>Faça a sua escolha para o seu <b>Projeto de Software</b> !</h1>
                         {btnText}
