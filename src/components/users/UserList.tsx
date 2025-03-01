@@ -1,4 +1,4 @@
-import '../global-module.css'
+import '../../index'
 
 export type PropsUsers = {
     id: number;
@@ -12,17 +12,17 @@ export type PropsUsers = {
 
 export const ListUSers = (props: PropsUsers) => {
     return (
-            <div className="container-global">
-                <div className="main-global">
-                    <ul className='main-global-form'>
-                    <li><b>ID</b> {props.id}</li>
-                    <li><b>Criado</b> {props.created_at}</li>
-                    <li><b>Alterado</b> {props.updated_at}</li>
-                    <li><b>Nome</b> {props.name}</li>
-                    <li><b>Email</b> {props.username}</li>
+            <div id="container">
+                    <ul id='main'>
+                        <div id='main-list'>
+                    <div><b>ID</b> {props.id}</div>
+                    <div><b>Criado</b> {props.created_at}</div>
+                    <div><b>Alterado</b> {props.updated_at}</div>
+                    <div><b>Nome</b> {props.name}</div>
+                    <div><b>Email</b> {props.username}</div>
+                        </div>
                     <></>
                     </ul>
                 </div>
-            </div>
     )
 }

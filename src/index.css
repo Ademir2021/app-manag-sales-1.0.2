@@ -96,8 +96,9 @@ code {
   color:red;
 }
 
-ul{
+#main-list{
   font-size: 12px;
-  gap: 2px;
-  margin-left: 12px;
+  margin-bottom: 6px;
+  color: gray;
 }
+

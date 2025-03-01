@@ -103,6 +103,8 @@ export function ProductForm({
             value={children.image || ""}
             onChange={handleChange}
         />
+           {alert && <div id='msg-red'>{alert}</div>}
+           {message && <div id='msg-red'>{message}</div>}
         <button
         className='btn btn-primary'
         id='m-2'
@@ -127,8 +129,6 @@ export function ProductForm({
                     <form id="main">
                         {menu === 'geral' ? <span className='m-3'>Cadastrar Produto</span> : null}
                         {menu === 'fiscal' ? <><span className='m-3'>Situação fiscal do Produto</span><br /></> : null}
-                        {alert ? <label>{alert}</label> : null}
-                        {message ? <label>{message}</label> : null }
                         {menu === 'fiscal' ? fiscal : null}
                         {menu === "geral" ? geral : null}
                     </form>

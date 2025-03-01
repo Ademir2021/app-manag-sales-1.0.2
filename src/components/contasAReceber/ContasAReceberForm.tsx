@@ -5,6 +5,7 @@ import { checkAdminPrivilege } from "../utils/checksUserLogged/ChecksUserLogged"
 import { NavBar } from "../navbar/Navbar";
 
 import './ContasAReceber.css'
+import '../../index'
 
 type Props = {
     contasAReceber: TContaAreceber[]
@@ -45,16 +46,19 @@ export function ContasAreceberForm({
 
     const sumbit = <div className="mb-1">
         <div>{token}</div>
-        <button style={{ marginLeft: "1px", borderRadius: '0px' }}
+        <button
             className="btn btn-primary"
+            id='m-2'
             onClick={submitContasAReceberRegister}
         >Emitir título</button>
-        <button style={{ marginLeft: "1px", borderRadius: '0px' }}
+        <button
             className="btn btn-primary"
+            id='m-2'
             onClick={submitInserirValor}
         >Inserir valor</button>
-        <button style={{ marginLeft: "1px", borderRadius: '0px' }}
+        <button
             className="btn btn-primary"
+            id='m-2'
             onClick={submitfluxoDeCaixa}
         >Fluxo de caixa</button>
         <div style={{ marginLeft: "12px", borderRadius: '0px' }}
@@ -63,18 +67,18 @@ export function ContasAreceberForm({
 
     const inputReceberValor = <div>
         <input
+        id="main-input-number"
             min={0}
             max={999}
             type="number"
-            id="input-valor"
             placeholder="Informe o Valor a receber"
             onChange={handleChangeValor}
         />
         <input
+            id="main-input-number"
             min={0}
             max={999}
             type="number"
-            id="input-valor"
             placeholder="Desconto"
             onChange={handleChangeDesconto}
         />

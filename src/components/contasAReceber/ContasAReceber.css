@@ -2,13 +2,13 @@
     text-align: center;
 }
 
-#input-valor {
+/* #input-valor {
     width: 40%;
     padding: 8px;
     border-radius: 3px;
     margin-top: 3px;
     margin-left: 3px;
-}
+} */
 
 #header-contas-receber {
     background-color: gray;

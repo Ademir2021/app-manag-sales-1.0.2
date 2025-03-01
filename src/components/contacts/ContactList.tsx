@@ -1,6 +1,6 @@
 import { FormatDate } from '../utils/formatDate/index';
 
-import '../global-module.css'
+import '../../index'
 
 export type Props = {
     id?: number
@@ -13,17 +13,17 @@ export type Props = {
 
 export function ContactList(props: Props){
     return(
-        <div className="container-global" >
-        <div className="main-global">
-            <ul className="main-global-form">
-                <li><b>ID</b> {props.id}</li>
-                <li><b>Post</b> {FormatDate(props.created_at)}</li>
-                <li><b>Nome</b> {props.name}</li>
-                <li><b>Email</b> {props.email}</li>
-                <li><b>Telefone</b> {props.phone}</li>
-                <li><b>Assunto</b> {props.comments}</li>
-            </ul>
+        <div id="container">
+            <div id="main">
+                <div id='main-list'>
+                <div><b>ID</b> {props.id}</div>
+                <div><b>Post</b> {FormatDate(props.created_at)}</div>
+                <div><b>Nome</b> {props.name}</div>
+                <div><b>Email</b> {props.email}</div>
+                <div><b>Telefone</b> {props.phone}</div>
+                <div><b>Assunto</b> {props.comments}</div>
+                </div>
+            </div>
         </div>
-    </div>
     )
 }

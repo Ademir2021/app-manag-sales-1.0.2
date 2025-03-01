@@ -25,27 +25,29 @@ export type Props = {
 export const PersonList = (props: Props) => {
     return (
         <div id="container" >
-                <ul id="main">
-                    <li><b>ID</b> {props.id_person}</li>
-                    <li><b>Cadastro</b> {props.created_at}</li>
-                    <li><b>Alterado</b> {props.updated_at}</li>
-                    <li><b>Nome</b> {props.name}</li>
-                    {props.cpf != '0' ? props.cpf != '' ? <li><b>CPF</b> {props.cpf}</li> : null : null}
-                    {props.rg != '0' ? props.rg != '' ? <li><b>RG</b> {props.rg}</li> : null : null}
-                    {props.cnpj != '0' ? props.cnpj != '' ? <li><b>CNPJ</b> {props.cnpj}</li> : null : null}
-                    {props.inscricao != '0' ? props.inscricao != '' ? <li><b>I.EST</b> {props.inscricao}</li> : null : null}
-                    <li><b>Telefone</b> {props.phone}</li>
-                    <li><b>Endereço</b> {props.address}</li>
-                    <li><b>Número</b> {props.num_address}</li>
-                    <li><b>Bairro</b> {props.bairro}</li>
-                    <li><b>CEP</b> {props.num_cep}</li>
-                    <li><b>Cidade</b> {props.name_city}</li>
-                    <li><b>Estado</b> {props.uf}</li>
-                    <li><b>Filial</b> {props.filial}</li>
-                    <li><b>Usuário</b> {props.id_user}</li>
-                    <li><b>Grupo</b> {props.fk_grupo}</li>
+                <div id="main">
+                    <div id='main-list'>
+                    <div><b>ID</b> {props.id_person}</div>
+                    <div><b>Cadastro</b> {props.created_at}</div>
+                    <div><b>Alterado</b> {props.updated_at}</div>
+                    <div><b>Nome</b> {props.name}</div>
+                    {props.cpf != '0' ? props.cpf != '' ? <div><b>CPF</b> {props.cpf}</div> : null : null}
+                    {props.rg != '0' ? props.rg != '' ? <div><b>RG</b> {props.rg}</div> : null : null}
+                    {props.cnpj != '0' ? props.cnpj != '' ? <div><b>CNPJ</b> {props.cnpj}</div> : null : null}
+                    {props.inscricao != '0' ? props.inscricao != '' ? <div><b>I.EST</b> {props.inscricao}</div> : null : null}
+                    <div><b>Telefone</b> {props.phone}</div>
+                    <div><b>Endereço</b> {props.address}</div>
+                    <div><b>Número</b> {props.num_address}</div>
+                    <div><b>Bairro</b> {props.bairro}</div>
+                    <div><b>CEP</b> {props.num_cep}</div>
+                    <div><b>Cidade</b> {props.name_city}</div>
+                    <div><b>Estado</b> {props.uf}</div>
+                    <div><b>Filial</b> {props.filial}</div>
+                    <div><b>Usuário</b> {props.id_user}</div>
+                    <div><b>Grupo</b> {props.fk_grupo}</div>
                     <>{props.update}</>
-                </ul>
+                    </div>
+                </div>
             </div>
     )
 }

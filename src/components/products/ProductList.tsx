@@ -22,24 +22,26 @@ type Props = {
 export function ProductList(props: Props) {
     return (
         <div id="container" >
-                <ul className="main">
-                    <li><b>ID</b> {props.id}</li>
-                    <li><b>Cadastro</b> {props.created_at}</li>
-                    <li><b>Alterado</b> {props.updated_at}</li>
-                    <li><b>Descrição</b> {props.name}</li>
-                    <li><b>Valor máximo</b> {props.val_max}</li>
-                    <li><b>Valor mínimo</b> {props.val_min}</li>
-                    <li><b>Marca</b> {props.brand}</li>
-                    <li><b>Setor</b> {props.sector}</li>
-                    <li><b>Un Medida</b> {props.un_med}</li>
-                    <li><b>Barras</b> {props.bar_code}</li>
-                    <li><b>Imagem</b> {props.image}</li>
-                    <li><b>Classe</b> {props.classe}</li>
-                    <li><b>Grupo Fiscal</b> {props.grupo_fiscal}</li>
-                    <li><b>Tipo Produto</b> {props.tipo_prod}</li>
-                    <li><b>NCM</b> {props.ncm}</li>
+                <div id="main">
+                    <div id='main-list' >
+                    <div><b>ID</b> {props.id}</div>
+                    <div><b>Cadastro</b> {props.created_at}</div>
+                    <div><b>Alterado</b> {props.updated_at}</div>
+                    <div><b>Descrição</b> {props.name}</div>
+                    <div><b>Valor máximo</b> {props.val_max}</div>
+                    <div><b>Valor mínimo</b> {props.val_min}</div>
+                    <div><b>Marca</b> {props.brand}</div>
+                    <div><b>Setor</b> {props.sector}</div>
+                    <div><b>Un Medida</b> {props.un_med}</div>
+                    <div><b>Barras</b> {props.bar_code}</div>
+                    <div><b>Imagem</b> {props.image}</div>
+                    <div><b>Classe</b> {props.classe}</div>
+                    <div><b>Grupo Fiscal</b> {props.grupo_fiscal}</div>
+                    <div><b>Tipo Produto</b> {props.tipo_prod}</div>
+                    <div><b>NCM</b> {props.ncm}</div>
                     <>{props.update}</>
-                </ul>
+                    </div>
+                </div>
             </div>
     )
 }

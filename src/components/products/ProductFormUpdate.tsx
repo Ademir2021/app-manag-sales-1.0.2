@@ -1,7 +1,5 @@
 import { useState } from 'react';
 
-import './ProductForm.css'
-import '../global-module.css'
 import '../../index'
 
 type Props = {
@@ -23,7 +21,7 @@ type Props = {
     listTipoProd: any
     listNcm: any;
     msgNcm: string | undefined;
-    flagRegister:boolean
+    flagRegister: boolean
 }
 
 export function ProductFormUpdate({
@@ -49,18 +47,23 @@ export function ProductFormUpdate({
 }: Props) {
     const [menu, setMenu] = useState("geral")
     const nav = <>
-        <div className='container mb-3 text-center'>
-            <button className='btn btn-primary m-1'
+        <div>
+            <button
+                className='btn btn-primary'
+                id='m-2'
                 onClick={() => (setMenu('geral'))}
-            >Geral</button>
-            <button className='btn btn-primary m1'
+            >Atualizar Produto</button>
+            <button
+                className='btn btn-primary'
+                id='m-2'
                 onClick={() => (setMenu('fiscal'))}
-            >Fiscal</button>
+            >Atualizar Situação fiscal</button>
         </div>
     </>
 
     const geral = <>
         <input
+            id='main-input'
             type="hidden"
             name="id_person"
             value={children.id_product || ''}
@@ -69,6 +72,7 @@ export function ProductFormUpdate({
             onChange={handleChange}
         />
         <input
+            id='main-input'
             type="text"
             name="descric_product"
             value={children.descric_product || ""}
@@ -76,6 +80,7 @@ export function ProductFormUpdate({
             onChange={handleChange}
         />
         <input
+            id='main-input-number'
             type="text"
             name="val_max_product"
             mask-selectonfocus="true"
@@ -86,6 +91,7 @@ export function ProductFormUpdate({
             onChange={handleChange}
         />
         <input
+            id='main-input-number'
             type="text"
             name="val_min_product"
             mask-selectonfocus="true"
@@ -96,12 +102,13 @@ export function ProductFormUpdate({
             placeholder="valor mínimo"
         />
 
-        <ul>
-            <li className='m-1'>Marca {listBrand}</li>
-            <li className='m-1'>Setor {listSector}</li>
-            <li className='m-1'>Unidade medida {listUn}</li>
-        </ul>
+        <div>
+            {listBrand}
+            {listSector}
+            {listUn}
+        </div>
         <input
+            id='main-input'
             type="text"
             name="bar_code"
             value={children.bar_code || ''}
@@ -109,44 +116,49 @@ export function ProductFormUpdate({
             placeholder='código de barras'
         />
         <input
+            id='main-input'
             type="text"
             name="image"
             value={children.image || ''}
             onChange={handleChange}
             placeholder='Imagem'
         />
-        {flagRegister === false ? <button onClick={handleUpdate}>Atualizar</button> : null}
-        {flagRegister !== false ? <button onClick={handleSubmit}>Registrar</button> : null}
-        {flagRegister === false ? <button onClick={handleDelete}>Novo</button> : null}
-        <button onClick={close}>Sair</button>
+        {alert && <div id='msg-red'>{alert}</div>}
+        {alert && <div id='msg-red'>{message}</div>}
+        {flagRegister === false ? <button className='btn btn-primary' id='m-2' onClick={handleUpdate}>Atualizar</button> : null}
+        {flagRegister !== false ? <button className='btn btn-primary' id='m-2' onClick={handleSubmit}>Registrar</button> : null}
+        {flagRegister === false ? <button className='btn btn-primary' id='m-2' onClick={handleDelete}>Novo</button> : null}
+        <button className='btn btn-primary' id='m-2' onClick={close}>Sair</button>
 
     </>
 
     const fiscal = <div>
-        <li className='' id='fiscal-classe-select'>Classe {listClasse}</li>
-        <li className='' id='fiscal-classe-select'>Grupo Fiscal {listGrupoFiscal}</li>
-        <li className='' id='fiscal-classe-select'>Tipo de Produto {listTipoProd}</li>
-        <li className='' id='fiscal-classe-select'>Pesquise o NCM do Produto {listNcm}</li>
-        <span className='m-5'>{msgNcm}</span>
+        <div>Classe {listClasse}</div>
+        <div>Grupo Fiscal {listGrupoFiscal}</div>
+        <div>Tipo de Produto {listTipoProd}</div>
+        <div>Pesquise o NCM do Produto {listNcm}</div>
+        <span id='m-2'>{msgNcm}</span>
     </div>
 
     return (
-    <>
-        <div ref={modalRef} className={`${className} modal`}>
-            <div className="container-global">
-                <div className="main-global" id='fiscal-main'>
-    {nav}
-                    <form className='main-global-form'>
-                    {menu === 'geral' ? <span className='m-3'>Atualizar Produto</span> : null}
+        <>
+            <div ref={modalRef} className={`${className} modal`}>
+    
+                <div id='container'>
+                    <div id='m-2'>
+                    {nav}
+                    </div>
+                </div>
+                <div id="container">
+
+                    <form id='main'>
+                        {menu === 'geral' ? <span className='m-3'>Atualizar Produto</span> : null}
                         {menu === 'fiscal' ? <><span className='m-3'>Situação fiscal do Produto</span><br /></> : null}
-                        <label>{alert}</label>
-                        <label>{message}</label>
                         {menu === 'fiscal' ? fiscal : null}
                         {menu === "geral" ? geral : null}
                     </form>
                 </div>
             </div>
-        </div>
         </>
     )
 }
