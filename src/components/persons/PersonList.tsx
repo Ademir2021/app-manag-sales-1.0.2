@@ -1,5 +1,3 @@
-// import '../global-module.css'
-
 import '../../index'
 
 export type Props = {
