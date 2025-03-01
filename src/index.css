@@ -31,12 +31,16 @@ code {
   height: 36px;
   margin: 6px;
 }
-#main-row input{
-  border: solid 1px rgb(235, 223, 223);
-  width: 60px;
-  height: 36px;
-  margin: 6px;
+#main-inputs-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  /* border: solid 1px rgb(235, 223, 223); */
+  width: 100%;
+  height: 100%;
+  gap: 6px;
 }
+
 #main-input-number{
   border: solid 1px rgb(235, 223, 223);
   width: 28%;

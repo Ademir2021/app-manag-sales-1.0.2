@@ -2,7 +2,6 @@ import { Globais } from '../globais/Globais';
 import { NavBar } from '../navbar/Navbar';
 import { currencyFormat } from '../utils/currentFormat/CurrentFormat';
 
-
 import '../../index'
 
 type Props = {
@@ -42,7 +41,10 @@ export function PagSeguroForm({
                 {<form id='main' >
                     <h1 id='text-center'>Pague com PIX ou Boleto</h1>
                     <p>{currencyFormat(paySale)}</p>
-                    <button className='btn btn-primary' onClick={handleBoleto}>Emitir BOLETO</button>
+                    <button
+                    className='btn btn-primary'
+                    onClick={handleBoleto}>Emitir BOLETO
+                    </button>
                     <label>Informe o melhor vencimento para o boleto</label>
                     <input
                     id='main-input-number'
@@ -58,7 +60,10 @@ export function PagSeguroForm({
                         <strong style={{ fontSize: '10px' }}>{barCodeBoletoFormated}</strong></div> :
                         <label>Aguardando código de barras</label>}
                     <hr></hr>
-                    <button className='btn btn-primary' onClick={handleQrCode}>Gerar QR-CODE</button>
+                    <button
+                    className='btn btn-primary'
+                    onClick={handleQrCode}>Gerar QR-CODE
+                    </button>
                     {qrcode_img ? <img className='payment-sale-img-qrcode' src={qrcode_img}></img> : null}
                     <label><b>PIX</b> {payPix}</label>
                     <label>{error}</label>

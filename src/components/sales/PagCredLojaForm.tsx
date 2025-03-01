@@ -54,10 +54,14 @@ export function PagCredLojaForm({
             <div id="container">
                 <div id='main'>
                 <h1 className="text-center">Finalizar compra</h1>
-                <button className="btn btn-primary p-2"
+                <button
+                    className="btn btn-primary"
+                    id='m-2'
                     onClick={handleSubmit}
                 >Finalizar compra</button>
-                <button className="btn btn-primary p-2 mt-3"
+                <button
+                    className="btn btn-primary"
+                    id="m-2"
                     onClick={toGoBackInvoiceSale}
                 >Modificar forma de pagamento</button>
                 {dinheiro > 0 || duplicatas.length > 0 ? <h1 className="mt-2">Forma de pagamento</h1>:<h1>Nada à pagar no momento</h1>}

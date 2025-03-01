@@ -3,7 +3,8 @@ import { currencyFormat } from "../utils/currentFormat/CurrentFormat";
 import { Globais } from "../globais/Globais";
 import { NavBar } from "../navbar/Navbar";
 
-import './css/styles.css'
+// import './css/styles.css'
+import '../../index'
 
 type PropsPagSeguroCardForm = {
     children: any | string | number | readonly string[] | undefined
@@ -31,8 +32,8 @@ export function PagSeguroCardForm({
         <>
             <NavBar />
             <hr></hr>
-            <div className="container-card">
-                <form className="form-card">
+            <div id="container">
+                <form id="main">
                     <input
                         type="hidden"
                         name="public_key"
@@ -42,6 +43,7 @@ export function PagSeguroCardForm({
                     />
                     {/* {children.holder && <label>{children.holder}</label>} */}
                     <input
+                        id='main-input'
                         type="text"
                         name="holder"
                         onChange={handleChange}
@@ -49,8 +51,9 @@ export function PagSeguroCardForm({
                         placeholder="Nome no cartão"
                         required
                     />
-                      {/* {children.number && <label>{children.number}</label>} */}
+                    {/* {children.number && <label>{children.number}</label>} */}
                     <input
+                        id='main-input'
                         type="text"
                         name="number"
                         onChange={handleChange}
@@ -59,8 +62,9 @@ export function PagSeguroCardForm({
                         required
                     />
 
-                    <div className="input-row" >
+                    <div id="main-inputs-row" >
                         <input
+                            id='main-input-number'
                             type="text"
                             name="ex_month"
                             onChange={handleChange}
@@ -69,6 +73,7 @@ export function PagSeguroCardForm({
                             required
                         />
                         <input
+                            id='main-input-number'
                             type="text"
                             name="ex_year"
                             onChange={handleChange}
@@ -77,6 +82,7 @@ export function PagSeguroCardForm({
                             required
                         />
                         <input
+                            id='main-input-number'
                             type="text"
                             name="secure_code"
                             onChange={handleChange}
@@ -92,14 +98,14 @@ export function PagSeguroCardForm({
                             disabled
                         />
                     </div>
-                    <label>{paidSucess} {paid}</label>
-                    <label>{err !== '!' ? err : null}</label>
+                    {paidSucess || paid ? <label>{paidSucess} {paid}</label> : null}
+                    {err != '!' && <label>{err}</label>}
                     <span>{!URLNoteSubmit ? currencyFormat(paySale) : null}</span>
-                    <>{!URLNoteSubmit ? <button className="btn btn-primary" onClick={handleSubmit}>Pagar</button> : null}</>
-                    <>{URLNoteSubmit ? <button onClick={() => { window.location.replace(Globais.URL_NOTE + '/' + URLNoteSubmit) }}>Emitir Nota</button> : null}</>
-                    <>{URLNoteSubmit ? <button onClick={() => { window.location.replace('dashboardefault') }}>Sair</button> : null}</>
-                    <div className="cards-accepted">
-                        <h1>Cartões aceitos </h1>
+                    {!URLNoteSubmit ? <button className="btn btn-primary" id='m-2' onClick={handleSubmit}>Pagar</button> : null}
+                    {URLNoteSubmit ? <button className="btn btn-primary" id='m-2' onClick={() => { window.location.replace(Globais.URL_NOTE + '/' + URLNoteSubmit) }}>Emitir Nota</button> : null}
+                    {URLNoteSubmit ? <button className="btn btn-primary" id='m-2' onClick={() => { window.location.replace('dashboardefault') }}>Sair</button> : null}
+                    <div>
+                        <h1 id='text-center'>Cartões aceitos </h1>
                         <img src="img/card_pag_bank.png" alt="Cartões aceitos"></img>
                     </div>
                 </form>
