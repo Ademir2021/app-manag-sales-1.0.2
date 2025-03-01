@@ -32,15 +32,13 @@ export function UserFormUpdate({
                     <fieldset className='main-user'>
                     <form  className='main-user-login' >
                             <strong>Sua conta </strong>
-                        <label>{alert}</label>
-                        <label>{message}</label>
                                 <input
                                     type="hidden"
                                     name="ID user"
                                     value={children.id || 0}
                                     disabled
                                     onChange={handleChange}
-                                />
+                                    />
                                 <input
                                     type="text"
                                     name="name"
@@ -48,7 +46,7 @@ export function UserFormUpdate({
                                     placeholder='Seu nome'
                                     onChange={handleChange}
                                     required
-                                />
+                                    />
                                 <input
                                     type="email"
                                     name="username"
@@ -56,7 +54,7 @@ export function UserFormUpdate({
                                     placeholder='seu email'
                                     onChange={handleChange}
                                     required
-                                />
+                                    />
                                 <input
                                     type="password"
                                     name="password"
@@ -64,7 +62,7 @@ export function UserFormUpdate({
                                     placeholder='Digite sua senha'
                                     onChange={handleChange}
                                     required
-                                />
+                                    />
                                 <input
                                     type="password"
                                     name="psw_repeat"
@@ -72,7 +70,9 @@ export function UserFormUpdate({
                                     placeholder='Confirme sua senha'
                                     onChange={handleChange}
                                     required
-                                />
+                                    />
+                                    {alert && <label>{alert}</label>}
+                                    {message && <label>{message}</label>}
                                 <button id='m-2' onClick={handleSubmit} >Registrar</button>
                                 <button id='m-2' onClick={handleUpdate} >Atualizar</button>
                                 <button id='m2' onClick={handleDelete} >Novo</button>
