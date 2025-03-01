@@ -44,7 +44,7 @@ export const PersonList = (props: Props) => {
                     <li><b>Filial</b> {props.filial}</li>
                     <li><b>Usuário</b> {props.id_user}</li>
                     <li><b>Grupo</b> {props.fk_grupo}</li>
-                    <>{props.update}</>
+                    <li>{props.update}</li>
                 </ul>
             </div>
     )
