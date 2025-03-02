@@ -58,14 +58,14 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
     </div>
 
 const textTec = <div id='v-text'>
-<p>Trabalhamos com as melhores Tecnologias do mercado</p>
+<p>Trabalhamos com as melhores tecnologias do mercado</p>
 <p>Integração continua e Qualidade no Desenvolviemento</p>
 <ul>
     <li>Projetos com React e React-native</li>
     <li>Orquestração de projetos com Docker</li>
     <li>Versionamento de projeto com Git-Hub</li>
     <li>Modelagem de banco de dados com Postgres</li>
-    <li>Sistemas seguro com criptografia e Tokerização</li>
+    <li>Sistemas seguro com criptografia e tokerização</li>
     <li>APIs com Typescript e Express</li>
     <li>Componentes para integrar NF-e</li>
 </ul>

@@ -110,9 +110,9 @@
     margin-right: 12px;
     margin-left: auto;
     box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
-    background-color: rgb(71, 77, 88);
-    color: #fff;
-    border-radius: 3px;
+    /* background-color: rgb(71, 77, 88); */
+    /* color: #fff; */
+    /* border-radius: 3px; */
     margin-top: 6px;
     padding:16px;
     gap: 3px;
@@ -168,4 +168,6 @@
 
 #v-text {
     margin-top: 6px;
+    margin: 16px;
+    color: black
 }
