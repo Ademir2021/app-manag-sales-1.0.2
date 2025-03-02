@@ -3,6 +3,7 @@ import { currencyFormat } from "../utils/currentFormat/CurrentFormat";
 import { Globais } from "../globais/Globais";
 import { NavBar } from "../navbar/Navbar";
 
+import './css/styles.css'
 import '../../index'
 
 type PropsPagSeguroCardForm = {
@@ -33,6 +34,10 @@ export function PagSeguroCardForm({
             <hr></hr>
             <div id="container">
                 <form id="main-card">
+            <div>
+                <h1 id='text-center'>Cartões aceitos </h1>
+                <img id='img-band-card' src="img/band_cartao_creditos.png" alt="Cartões aceitos"></img>
+            </div>
                     <input
                         type="hidden"
                         name="public_key"
@@ -103,10 +108,7 @@ export function PagSeguroCardForm({
                     {!URLNoteSubmit ? <button className="btn btn-primary" id='m-2' onClick={handleSubmit}>Pagar</button> : null}
                     {URLNoteSubmit ? <button className="btn btn-primary" id='m-2' onClick={() => { window.location.replace(Globais.URL_NOTE + '/' + URLNoteSubmit) }}>Emitir Nota</button> : null}
                     {URLNoteSubmit ? <button className="btn btn-primary" id='m-2' onClick={() => { window.location.replace('dashboardefault') }}>Sair</button> : null}
-                    <div>
-                        <h1 id='text-center'>Cartões aceitos </h1>
-                        <img src="img/card_pag_bank.png" alt="Cartões aceitos"></img>
-                    </div>
+
                 </form>
             </div>
         </>

@@ -5,7 +5,7 @@ import { TProduct, TItens } from "../products/type/TProducts";
 import { currencyFormat } from "../../components/utils/currentFormat/CurrentFormat";
 import { Dashboard } from "../dashboard/Dashboard";
 import { postList } from "../../services/handleService";
-import api from "../../services/api/api";
+// import api from "../../services/api/api";
 
 export function RegisterSale() {
     const [product, setProduct] = useState<TItens>(
@@ -18,7 +18,7 @@ export function RegisterSale() {
     const [totalItens, setTotalItens] = useState<number>(0)
     const [statusBtnSaleSubmit, setStatusBtnSaleSubmit] = useState<"Iniciar Pedido" | "Faturar Pedido">("Iniciar Pedido");
     const [statusBtnSaveUpdate, setStatusBtnSaveUpdate] = useState<"Salvar Item" | "Atualizar Item">("Salvar Item");
-    const [itemImg, setIemImg] = useState<string>('./img/car_sale.png');
+    const [itemImg, setIemImg] = useState<string>('');
     const [itenStorage, setItenStorage] = useState<TItens[]>([]);
     const [statuStore, setStatuStore] = useState<boolean>(false)
 
@@ -43,7 +43,7 @@ export function RegisterSale() {
         product.tItem = item.amount * item.valor;
         product.image = item.image;
         if (product.image === null) {
-            setIemImg('./img/car_sale.png')
+            setIemImg('')
         } else {
             findProducts();
         }
@@ -64,7 +64,7 @@ export function RegisterSale() {
                 product.valor = prod.val_max_product;
                 product.tItem = product.valor * product.amount;
                 if (prod.image === null) {
-                    setIemImg('./img/car_sale.png')
+                    setIemImg('')
                 } else {
                     setIemImg("./img/img_itens/" + prod.image);
                 }
@@ -185,7 +185,7 @@ export function RegisterSale() {
         setStatusBtnSaleSubmit("Iniciar Pedido");
         setEditId(null);
         setPreco(0);
-        setIemImg('./img/car_sale.png')
+        setIemImg('')
     };
 
     function searchItem(e: Event) {

@@ -49,10 +49,8 @@ a:hover {
 
 .footer-payment {
     cursor: pointer;
-    border: 8px solid white;
-    border-radius: 2px;
     width: 320px;
-    height: 55px;
+    height: 46px;
 }
 
 .maps {

@@ -43,10 +43,10 @@ export function RegisterSaleForm({
     <>
       <div id="container">
           <div id='main' >
-            <div>PDV/Store</div>
+            <label id='m-2'>PDV - Checkout de Compras</label>
             {alert && <label>{alert}</label>}
             {message &&<label>{message}</label>}
-            <img src={item_img} alt={children.descric}></img>
+            { item_img && <img src={item_img} alt='Aguardando Item'></img>}
             <p>{item}</p>
             <label>Valor Unitário</label>
             <div>
