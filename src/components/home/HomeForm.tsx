@@ -20,10 +20,11 @@ export function HomeForm({
             <hr></hr>
             <div id='container-home'>
                 <div id='main-form'>
-                        <h1 className="text-center">Formulário de adesão</h1>
+                        <h1 className="text-center">Formulário</h1>
                     <form id="prospecting-form">
                         <label>Nome fantasia</label>
                         <input
+                        id='main-input'
                             placeholder='Nome fantasia'
                             required
                             type='text'
@@ -33,6 +34,7 @@ export function HomeForm({
                         />
                         <label>Razão social</label>
                         <input
+                         id='main-input'
                             placeholder='Razão social'
                             required
                             type='text'
@@ -42,6 +44,7 @@ export function HomeForm({
                         />
                         <label>CNPJ</label>
                         <InputMask
+                         id='main-input'
                             mask="99.999.999.9999-99"
                             mask-selectonfocus="true"
                             maxLength={18}
@@ -56,6 +59,7 @@ export function HomeForm({
                         />
                         <label>Inscrição estadual</label>
                         <input
+                         id='main-input'
                             placeholder='Inscrição estadual'
                             required
                             type='text'
@@ -65,6 +69,7 @@ export function HomeForm({
                         />
                         <label>Telefone</label>
                         <input
+                         id='main-input'
                             placeholder='Telefone'
                             required
                             type='text'
@@ -74,6 +79,7 @@ export function HomeForm({
                         />
                         <label>Email</label>
                         <input
+                         id='main-input'
                             placeholder='Email'
                             required
                             type='email'
@@ -83,6 +89,7 @@ export function HomeForm({
                         />
                         <label>Endereço</label>
                         <input
+                         id='main-input'
                             placeholder='Endereço'
                             required
                             type='text'
@@ -92,7 +99,7 @@ export function HomeForm({
                         />
                         <label>Número</label>
                         <input
-                            id='form-main-input-number'
+                            id='main-input-number'
                             placeholder='Número'
                             required
                             type='text'
@@ -102,6 +109,7 @@ export function HomeForm({
                         />
                         <label>Cidade</label>
                         <input
+                         id='main-input'
                             placeholder='Cidade da empresa'
                             required
                             type='text'
@@ -111,6 +119,7 @@ export function HomeForm({
                         />
                         <label>Estado</label>
                         <input
+                         id='main-input'
                             placeholder='UF de sua empresa'
                             required
                             type='text'
@@ -120,6 +129,7 @@ export function HomeForm({
                         />
                         <label>CEP</label>
                         <input
+                         id='main-input'
                             placeholder='CEP'
                             required
                             type='text'
@@ -128,10 +138,11 @@ export function HomeForm({
                             onChange={handleChange}
                         />
                         <div id='msg'>
-                            <dd id='mt12'>{sendMsg}</dd>
+                            {sendMsg && <dd id='msg-red'>{sendMsg}</dd>}
                         </div>
                         <button
-                            className='btn btn-primary p-2'
+                            className='btn btn-primary'
+                            id='m-2'
                             type='submit'
                             onClick={handleSubmit}
                         >Enviar</button>

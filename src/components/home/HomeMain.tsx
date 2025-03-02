@@ -14,9 +14,9 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
     const cards = [
         { id: 1, item: "Emissor NFe", descric: "Modelo 55 e 65", content: 'Emissão e controle da NFe' },
         { id: 2, item: "Emissor NFCe", descric: 'EvoFácil emissor NFECe', content: "Emite a NFCe para o pequeno varejo" },
-        { id: 3, item: "Checkout de Vendas", descric: "Integração com Cartão, PIX e Boleto", content: 'Permite a integração de seus  sistemas e a realização de  vendas on-line, e que o cliente possa efetuar seus pagamentos de forma segura.' },
-        { id: 4, item: "API REST e Micro Serviço", descric: "Integração de seu sistema com outras tecnologias", content: 'Permite o sistema do cliente possa se integrar a outros sistemas ou a micros-serviços para troca de dados' },
-        { id: 5, item: "AC-Sor Sistema de Gestão", descric: "Sistema Integrado de Vendas", content: 'Permite ao cliente a automação dos processos na empresa  Vendas, Financeiro, Fluxo de caixa, estoque, emissão de notas e muito mais.' }
+        { id: 3, item: "Checkout de Vendas", descric: "Integração com Cartão, PIX e Boleto", content: 'Integração de sistemas e a realização de  vendas on-line, e que o cliente possa efetuar seus pagamentos de forma segura.' },
+        { id: 4, item: "API REST e Micro Serviço", descric: "Integração de seu sistema com outras tecnologias", content: 'Micros-serviços para troca de dados' },
+        { id: 5, item: "AC-Sor Sistema de Gestão", descric: "Sistema Integrado de Vendas", content: 'Automação dos processos na empresa  Vendas, Financeiro, Fluxo de caixa, estoque, emissão de notas e muito mais.' }
     ]
 
     const btnSol = <button id='btn-list' onClick={() => !vText ? setVText(true) : setVText(false)}>

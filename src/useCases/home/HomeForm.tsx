@@ -14,7 +14,7 @@ interface TContact {
 export function HomeProductHire() {
 
     const [sendHire, setSendHire] = useState<boolean>(false)
-    const [sendMsg, setSendMsg] = useState<String>("Aguardando...")
+    const [sendMsg, setSendMsg] = useState<String>("")
 
     const [hire, setHire] = useState({
         fantasia: '',
