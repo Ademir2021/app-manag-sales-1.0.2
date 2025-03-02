@@ -1,3 +1,4 @@
+import '../../index'
 import './css/styles.css'
 
 export type PropsHomeContact = {
@@ -17,35 +18,39 @@ export function HomeContact({
 
     return (
         <form id='form'>
-            <b>Envie seu contato</b>
-            {msg && <dd>{msg}</dd>}
-            <div id='msg'>{msgFields}</div>
+            <h1 id='text-center' >Inscreva-se</h1>
             <label>Nome</label>
             <input
+            id='main-input'
                 type='text'
                 name='name'
                 value={children.name}
                 onChange={handleChange}
                 placeholder='Seu nome'
-            ></input>
+                ></input>
             <label>Email</label>
             <input
+            id='main-input'
                 type='email'
                 name='email'
                 value={children.email}
                 onChange={handleChange}
                 placeholder='Seu endereço de Email'
-            ></input>
+                ></input>
             <label>Telefone</label>
             <input
+            id='main-input'
                 type='text'
                 name='phone'
                 value={children.phone}
                 onChange={handleChange}
                 placeholder='Seu Telefone'
-            ></input>
+                ></input>
+            {msgFields && <div id='msg-red'>{msgFields}</div>}
+                {msg && <div id='msg-red'>{msg}</div>}
             <button
-                className='btn btn-primary mt-2'
+                className='btn btn-primary'
+                id='m-2'
                 type="submit"
                 onClick={handleSubmit}
             >Enviar</button>
