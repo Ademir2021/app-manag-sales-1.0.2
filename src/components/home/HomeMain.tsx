@@ -66,8 +66,8 @@ const textTec = <div id='v-text'>
     <li>Versionamento de projeto com Git-Hub</li>
     <li>Modelagem de banco de dados com Postgres</li>
     <li>Sistemas seguro com criptografia e Tokerização</li>
-    <li></li>
-    <li>Implementação de Middleware e web-token.</li>
+    <li>APIs com Typescript e Express</li>
+    <li>Componentes para integrar NF-e</li>
 </ul>
 </div>
 
