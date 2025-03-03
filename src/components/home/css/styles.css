@@ -148,7 +148,7 @@
 
 @media screen and (max-width:768px) {
     #btn-list {
-        width: 100%;
+        width: 400px;
     }
 }
 
@@ -160,12 +160,13 @@
 
 @media screen and (max-width:768px) {
     #icon-seta {
-        left: 34%;
+        left: 136px;
     }
 }
 
 #v-text {
-    margin-top: 6px;
-    margin: 16px;
-    color: black
+    /* margin-top: 6px; */
+    margin: 4px;
+    font-size: medium;
+    color: gray
 }
