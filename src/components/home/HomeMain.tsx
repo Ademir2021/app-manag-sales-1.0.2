@@ -46,7 +46,7 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
 
     const textSol = <div id='v-text'>
         <p>Transformando suas idéias em realidade! Solicite agora mesmo um orçamento personalizado para o seu projeto de software.</p>
-        <p>Junte-se a uma empresa líder que prioriza qualidade e satisfação do cliente. Com um histórico comprovado de clientes em todo o Brasil, < br /> temos soluções para:</p>
+        <p>Junte-se a uma empresa líder que prioriza qualidade e satisfação do cliente. Com um histórico comprovado de clientes em todo o Brasil.</p>
         <ul>
             <li>AC-Sor Sistemas integrado de gestão.</li>
             <li>EvoFácil Sistema emissor de NFCe.</li>
@@ -59,8 +59,8 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
     </div>
 
 const textTec = <div id='v-text'>
-<p>Trabalhamos com as melhores tecnologias do mercado</p>
-<p>Integração continua e Qualidade no Desenvolviemento</p>
+<p>Trabalhamos com as melhores tecnologias do mercado.</p>
+<p>Integração continua e qualidade no desenvolviemento.</p>
 <ul>
     <li>Biblioteca ReactJs, Sistemas SAAS.</li>
     <li>Framework ReactJs-native, APP Android e IOS.</li>
