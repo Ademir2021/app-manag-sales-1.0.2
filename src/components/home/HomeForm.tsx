@@ -21,7 +21,7 @@ export function HomeForm({
             <div id='container-home'>
                 <div id='main-form'>
                     <h1>Formulário</h1>
-                        <label className="text-center">Preencha o formulário para receber um contato da nossa equipe</label>
+                        <label className="text-center">Preencha o formulário e receba um contato da nossa equipe</label>
                     <form id="prospecting-form">
                         <input
                         id='main-input'
