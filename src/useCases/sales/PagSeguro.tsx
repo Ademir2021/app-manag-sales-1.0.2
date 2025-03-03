@@ -25,6 +25,8 @@ export function PagSeguro() {
     const payment = sale.paySale - sale.dinheiro - sale.disc_sale
     const paySale:number = payment
 
+    const msgPay = 'Sem compras para pagar'
+
     useEffect(() => {
         const getSale = () => {
             const sale_store_res = localStorage.getItem('sl');
@@ -138,7 +140,7 @@ export function PagSeguro() {
                 registerPagSeguroPix()
             }
         } else {
-            setError("Sem Venda no momento")
+            setError(msgPay)
         }
     };
 
@@ -152,7 +154,7 @@ export function PagSeguro() {
                 }
             }
         } else {
-            setError("Não a venda no momento")
+            setError(msgPay)
         }
     };
 

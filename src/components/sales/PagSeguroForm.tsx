@@ -3,6 +3,7 @@ import { NavBar } from '../navbar/Navbar';
 import { currencyFormat } from '../utils/currentFormat/CurrentFormat';
 
 import '../../index'
+import './css/styles.css'
 
 type Props = {
     children?: any
@@ -64,13 +65,13 @@ export function PagSeguroForm({
                     className='btn btn-primary'
                     onClick={handleQrCode}>Gerar QR-CODE
                     </button>
-                    {qrcode_img ? <img className='payment-sale-img-qrcode' src={qrcode_img}></img> : null}
+                    {qrcode_img ? <img id='img-qrcode' src={qrcode_img} alt='Aguarde o qrcode'></img> : null}
                     <label><b>PIX</b> {payPix}</label>
-                    <label>{error}</label>
-                    <>{<label>{qrCodeGeneratedSuccessfully}</label>}</>
+                    <label id='msg-red'>{error}</label>
+                    <label>{qrCodeGeneratedSuccessfully}</label>
                     <hr></hr>
-                    <>{URLNoteSubmit ? <a href={Globais.URL_NOTE + '/' + URLNoteSubmit}>Emitir Nota</a> : null}</>
-                    <>{URLNoteSubmit ? <a href='/dashboardefault'>Sair</a> : null}</>
+                    {URLNoteSubmit ? <a href={Globais.URL_NOTE + '/' + URLNoteSubmit}>Emitir Nota</a> : null}
+                    {URLNoteSubmit ? <a href='/dashboardefault'>Sair</a> : null}
                 </form >}
             </div>
         </>

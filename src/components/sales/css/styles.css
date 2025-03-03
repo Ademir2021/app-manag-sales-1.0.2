@@ -1,6 +1,9 @@
 #center {
     text-align: center;
 }
+#img-qrcode{
+    padding: 12px;
+}
 
 thead {
     padding: 0px;

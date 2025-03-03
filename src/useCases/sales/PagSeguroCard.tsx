@@ -29,6 +29,8 @@ export function PagSeguroCard() {
     const payment = sale.paySale - sale.dinheiro - sale.disc_sale
     const paySale:number = payment
 
+    const msgPay = 'Sem compras para pagar'
+
     useEffect(() => {
         const getSale = () => {
             const sale_store_res = localStorage.getItem('sl');
@@ -139,13 +141,13 @@ export function PagSeguroCard() {
         localStorage.removeItem('encrypted')
         localStorage.removeItem('card')
         setPaidSucess("Valor pago com sucesso")
-        card.public_key = ""
-        card.holder = ""
-        card.number = ""
-        card.ex_year = ""
-        card.ex_month = ""
-        card.secure_code = ""
-        card.encrypted = ""
+        // card.public_key = ""
+        // card.holder = ""
+        // card.number = ""
+        // card.ex_year = ""
+        // card.ex_month = ""
+        // card.secure_code = ""
+        // card.encrypted = ""
     }
 
     function handleSubmitCard(e: any) {
@@ -158,7 +160,7 @@ export function PagSeguroCard() {
                 }
             }
         } else {
-            setErr('Sem compras para pagar !')
+            setErr(msgPay)
         }
     }
 

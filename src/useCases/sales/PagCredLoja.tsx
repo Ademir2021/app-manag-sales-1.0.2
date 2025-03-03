@@ -103,7 +103,7 @@ export function PagCredLoja() {
             sale.duplicatas = []
             setSendSale(true)
         } else {
-            alert('Venda já foi enviada')
+            alert('Sua compra já foi enviada')
         }
     }
 
