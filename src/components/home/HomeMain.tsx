@@ -65,7 +65,7 @@ const textTec = <div id='v-text'>
     <li>Biblioteca ReactJs, Sistemas SAAS.</li>
     <li>Framework ReactJs-native, APP Android e IOS.</li>
     <li>Docker, container e orquestração</li>
-    <li>GitHub versionamento e compartilhamento.</li>
+    <li>GitHub, versionamento e compartilhamento.</li>
     <li>PostgreSQL, banco de dados relacional</li>
     <li>TypeScript, interface e tipagem.</li>
     <li>JAVA, desktops e APIs.</li>
@@ -123,7 +123,7 @@ const textTec = <div id='v-text'>
                         onClick={() => (window.location.assign("https://github.com/Ademir2021"))}
                     >{'#'} Descarregar demo dos módulos [.git, .zip]</button>
                     <p id='mt18'>Descarregue demos no gitHub do desenvolvedor. <br />Utilize o git clone ou zip ! em caso de  dúvidas entre em contato através de nossos canais de atendimento.</p>
-                    <img src='img/code_node.png' id='img' alt='Exemplo de código node'></img>
+                    <img src='img/code_NFe.png' id='img' alt='Exemplo de código node'></img>
                     <p id='font-bold'>Codificação limpa e com padrões de mercado.</p>
 
                     <button className='btn btn-primary' id='mt18'

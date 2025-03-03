@@ -20,9 +20,9 @@ export function HomeForm({
             <hr></hr>
             <div id='container-home'>
                 <div id='main-form'>
-                        <h1 className="text-center">Formulário</h1>
+                    <h1>Formulário</h1>
+                        <label className="text-center">Preencha o formulário para receber um contato da nossa equipe</label>
                     <form id="prospecting-form">
-                        <label>Nome fantasia</label>
                         <input
                         id='main-input'
                             placeholder='Nome fantasia'
@@ -32,7 +32,6 @@ export function HomeForm({
                             value={children.fantasia || ''}
                             onChange={handleChange}
                         />
-                        <label>Razão social</label>
                         <input
                          id='main-input'
                             placeholder='Razão social'
@@ -42,7 +41,6 @@ export function HomeForm({
                             value={children.rsocial || ''}
                             onChange={handleChange}
                         />
-                        <label>CNPJ</label>
                         <InputMask
                          id='main-input'
                             mask="99.999.999.9999-99"
@@ -57,7 +55,6 @@ export function HomeForm({
                             value={children.cnpj || ''}
                             onChange={handleChange}
                         />
-                        <label>Inscrição estadual</label>
                         <input
                          id='main-input'
                             placeholder='Inscrição estadual'
@@ -67,7 +64,6 @@ export function HomeForm({
                             value={children.iestadual || ''}
                             onChange={handleChange}
                         />
-                        <label>Telefone</label>
                         <input
                          id='main-input'
                             placeholder='Telefone'
@@ -77,7 +73,6 @@ export function HomeForm({
                             value={children.phone || ''}
                             onChange={handleChange}
                         />
-                        <label>Email</label>
                         <input
                          id='main-input'
                             placeholder='Email'
@@ -87,7 +82,6 @@ export function HomeForm({
                             value={children.email || ''}
                             onChange={handleChange}
                         />
-                        <label>Endereço</label>
                         <input
                          id='main-input'
                             placeholder='Endereço'
@@ -97,7 +91,6 @@ export function HomeForm({
                             value={children.endereco || ''}
                             onChange={handleChange}
                         />
-                        <label>Número</label>
                         <input
                             id='main-input-number'
                             placeholder='Número'
@@ -107,27 +100,24 @@ export function HomeForm({
                             value={children.numero || ''}
                             onChange={handleChange}
                         />
-                        <label>Cidade</label>
                         <input
                          id='main-input'
-                            placeholder='Cidade da empresa'
+                            placeholder='Cidade'
                             required
                             type='text'
                             name='cidade'
                             value={children.cidade || ''}
                             onChange={handleChange}
                         />
-                        <label>Estado</label>
                         <input
-                         id='main-input'
-                            placeholder='UF de sua empresa'
+                         id='main-input-number'
+                            placeholder='UF'
                             required
                             type='text'
                             name='uf'
                             value={children.uf || ''}
                             onChange={handleChange}
                         />
-                        <label>CEP</label>
                         <input
                          id='main-input'
                             placeholder='CEP'

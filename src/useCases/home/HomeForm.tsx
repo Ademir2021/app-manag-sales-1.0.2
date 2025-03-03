@@ -63,12 +63,12 @@ export function HomeProductHire() {
             if (sendHire === false) {
                 postRegister(contacts, "contact")
                 setSendHire(true)
-                setSendMsg("Dados da empresa enviado com sucesso.")
+                setSendMsg("Dados enviado com sucesso")
             } else {
-                setSendMsg("Os dados da empresa já foram enviados.")
+                setSendMsg("Dados já foram enviados")
             }
         } else {
-            setSendMsg('Por favor, Informe o CNPJ da sua empresa.')
+            setSendMsg('Informe o CNPJ')
         }
     }
 

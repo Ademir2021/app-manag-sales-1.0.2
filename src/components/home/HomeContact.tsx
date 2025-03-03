@@ -19,7 +19,6 @@ export function HomeContact({
     return (
         <form id='form'>
             <h1 id='text-center' >Inscreva-se</h1>
-            <label>Nome</label>
             <input
             id='main-input'
                 type='text'
@@ -28,7 +27,6 @@ export function HomeContact({
                 onChange={handleChange}
                 placeholder='Seu nome'
                 ></input>
-            <label>Email</label>
             <input
             id='main-input'
                 type='email'
@@ -37,7 +35,6 @@ export function HomeContact({
                 onChange={handleChange}
                 placeholder='Seu endereço de Email'
                 ></input>
-            <label>Telefone</label>
             <input
             id='main-input'
                 type='text'

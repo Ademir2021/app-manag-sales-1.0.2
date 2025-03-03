@@ -88,10 +88,12 @@
 
 #img {
     margin-bottom: 3px;
-    width: 400px;
-    height: 306px;
+    border-radius: 3px;
+    /* width: 400px;
+    height: 336px; */
 
 }
+
 
 #container-cards {
     display: inline-block;
