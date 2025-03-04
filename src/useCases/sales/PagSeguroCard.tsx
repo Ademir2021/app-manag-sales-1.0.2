@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react"
 import { PagSeguroCardForm } from "../../components/pagseguro/PagSeguroCardForm";
 import pagSeguroCard_JSON from "./pagSeguroCard.json";
-import cardRequest_JSON from "./cardRequest.json"
+// import cardRequest_JSON from "./cardRequest.json"
 import saleJSON from "./sale.json"
+import { TCardRequest } from "./type/TSale";
+
 import api from './../../services/api/api';
 
 export function PagSeguroCard() {
     const [card, setCard] = useState({
         public_key: "??", holder: "", number: "",
-        ex_month: "", ex_year: "", secure_code: "", encrypted: "??"
+        ex_month: "", ex_year: "", secure_code: "", encrypted: ""
     });
     const handleChange = (e: any) => {
         const name = e.target.name;
@@ -20,16 +22,21 @@ export function PagSeguroCard() {
     const [err, setErr] = useState<string>("!")
     const [encrypted, setEncripted] = useState("!")
     const [pagSeguroCard, setPagSeguroCard] = useState(pagSeguroCard_JSON);
-    const [, setCardRequest] = useState(cardRequest_JSON)
+    // const [cardRequest, setCardRequest] = useState<TCardRequest>()
     const [paidSucess, setPaidSucess] = useState<string | number>("")
+
     const [paid, setPaid] = useState(0)
     const [sale, setSale_] = useState<any>(saleJSON);
     const [numNote, setNumNote] = useState(0)
-    // const [error, setError] = useState("")
     const payment = sale.paySale - sale.dinheiro - sale.disc_sale
-    const paySale:number = payment
+    const paySale: number = payment
 
+    /* Mensagem na Tela **/
     const msgPay = 'Sem compras para pagar'
+    const msgTaxId = 'CPF ou CNPJ inválido'
+    const msgCard = 'Cartão recusado, verifique os dados.'
+    const msgErr = 'Erro de comunicação, tente novamente'
+    const msgSucess = 'Valor pago com sucesso.'
 
     useEffect(() => {
         const getSale = () => {
@@ -81,41 +88,52 @@ export function PagSeguroCard() {
         setPagSeguroCard(pagSeguroCard)
     };
 
-    useEffect(() => {
-        async function publicKeyPagSeguro() {
-            try {
-                await api.get("publickey")
-                    .then(response => {
-                        setPublicKey(response.data)
-                        card.public_key = response.data.public_key
-                    })
-            } catch (err) {
-                setErr("error occurred !!" + err)
-            }
-        };
-        publicKeyPagSeguro() // Gera chave
-    }, [publicKey, card])
+    async function publicKeyPagSeguro() {
+        try {
+            await api.get("publickey")
+                .then(response => {
+                    setPublicKey(response.data)
+                    card.public_key = response.data.public_key
+                })
+        } catch (err) {
+            setErr(msgErr)
+            // console.log("error" + err)
+        }
+    };
 
     useEffect(() => {
-       
+        publicKeyPagSeguro() // Gera chave
+    }, [publicKey])
+
+    useEffect(() => {
         const encrypted_: any | undefined = localStorage.getItem('encrypted')
         if (encrypted_ !== null) {
             setEncripted(JSON.parse(encrypted_))
             getPargSeguroCard(pagSeguroCard)
         }
-    
-    },[encrypted])
+    }, [encrypted])
 
+    async function registerPagSeguroCard() {
+        if (encrypted !== "!") {
+            await api.post<TCardRequest>("card", pagSeguroCard)
+                .then(response => {
+                    const res: TCardRequest = response.data
+                    if (res.charges) {
+                        setPaid(res.charges[0].amount.summary.paid)
+                        if (JSON.stringify(res.charges[0].status)) {
+                            setErr(msgCard)
+                        }
+                    }
+                    if (res.error_messages) {
+                        setErr(msgTaxId)
+                    }
+                }).catch(error =>
+                    setErr(msgErr)
+                    // console.log(error)
+                )
+        };
+    }
     useEffect(() => {
-        async function registerPagSeguroCard() {
-            if (encrypted !== "!") {
-                await api.post("card", pagSeguroCard)
-                    .then(response => {
-                        setCardRequest(response.data)
-                        setPaid(response.data.charges[0].amount.summary.paid)
-                    }).catch(error => setErr(JSON.stringify(error)))
-            };
-        }
         if (paid === 0) {
             registerPagSeguroCard() // Registra o pagamento
         }
@@ -123,10 +141,10 @@ export function PagSeguroCard() {
             clearFieldCard()
         }
         if (paid !== 0 && flagSales === false) {
-            registerSale()
+            registerSale() // Se paid for maior que 0 gera a nota.
             setFlagSales(true)
         }
-    }, [pagSeguroCard, encrypted, paid])
+    }, [encrypted, paid, flagSales])
 
     async function registerSale() {
         await api.post('sale_register', sale)
@@ -134,13 +152,13 @@ export function PagSeguroCard() {
                 const res = response.data
                 setNumNote(res)
             })
-            .catch(error => setErr((JSON.stringify(error))));
+            .catch(error => console.log(error));
     };
 
     function clearFieldCard() {
         localStorage.removeItem('encrypted')
         localStorage.removeItem('card')
-        setPaidSucess("Valor pago com sucesso")
+        setPaidSucess(msgSucess)
         // card.public_key = ""
         // card.holder = ""
         // card.number = ""
@@ -164,26 +182,25 @@ export function PagSeguroCard() {
         }
     }
 
+    function clearSaleStorage() {
+        if (paid !== 0 && flagSales === true) {
+            setTimeout(() => {
+                localStorage.removeItem('sl');
+                localStorage.removeItem('i');
+                localStorage.removeItem('p');
+                localStorage.removeItem('c');
+                localStorage.removeItem('t');
+                localStorage.removeItem('s');
+                localStorage.removeItem('id');
+            }, 2000);
+        }
+    };
     useEffect(() => {
-        function clearSaleStorage() {
-            if (paid !== 0 && flagSales === true ) {
-                setTimeout(() => {
-                    localStorage.removeItem('sl');
-                    localStorage.removeItem('i');
-                    localStorage.removeItem('p');
-                    localStorage.removeItem('c');
-                    localStorage.removeItem('t');
-                    localStorage.removeItem('s');
-                    localStorage.removeItem('id');
-                }, 2000);
-            }
-        };
         clearSaleStorage()
     }, [paid, flagSales])
 
     return (
         <>
-        {/* {JSON.stringify(pagSeguroCard)} */}
             <PagSeguroCardForm
                 handleSubmit={handleSubmitCard}
                 handleChange={handleChange}

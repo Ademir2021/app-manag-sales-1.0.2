@@ -11,10 +11,10 @@ type PropsPagSeguroCardForm = {
     handleChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
     handleSubmit: any;
     paidSucess: string | number
-    paid: number | null
+    paid: number | null | undefined
     paySale: number
     URLNoteSubmit: number
-    err: string
+    err: string | undefined | any
 }
 
 export function PagSeguroCardForm({

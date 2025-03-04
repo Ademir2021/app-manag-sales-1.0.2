@@ -107,5 +107,12 @@
             "media": "",
             "type": ""
         }
-    ]
+    ],
+    "error_messages": [
+        {
+          "code": "",
+          "description": "",
+          "parameter_name": ""
+        }
+      ]
 }
