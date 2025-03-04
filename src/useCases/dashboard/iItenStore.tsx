@@ -40,7 +40,7 @@ export function ItenStore() {
                 if (itens[i].id === item_.id) {
                     itens.splice(i, 1);
                     localStorage.setItem("p", JSON.stringify(itens));
-                    setMessages(item_.descric + ', foi removido com sucesso !');
+                    setMessages(item_.descric + ', foi removido com sucesso.');
                     let res_counter = localStorage.getItem('c');
                     if (res_counter !== null) {
                         const counter = JSON.parse(res_counter)

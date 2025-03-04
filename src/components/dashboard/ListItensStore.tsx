@@ -1,6 +1,7 @@
 import { currencyFormat } from "../utils/currentFormat/CurrentFormat";
 import { TItens } from "../../useCases/products/type/TProducts";
 
+import '../../index'
 import './css/styles.css'
 
 type Props = {
@@ -53,30 +54,39 @@ export function ListItensStore({
             <hr></hr>
             <div
                 id='itens-store-car'>
-                
-                    { itens.length > 0 && <button
+                <div id="main">
+                    <form id='main'>
+                        <label>Quantidade de items comprados</label>
+                        <input
+                            id="main-input-number"
+                            placeholder="Quantidade"
+                            value={counter_}
+                            disabled
+                        />
+                        <label>Total dos items comprados</label>
+                        <input
+                            id="main-input-number"
+                            placeholder="Total dos Items"
+                            value={currencyFormat(subtotal)}
+                            disabled
+                        />
+                        {itens.length !== 0 && <label id='msg-red'>{messages}</label>}
+                    </form>
+                    {itens.length > 0 && <button
                         className="btn btn-primary"
-                        id='m-2'
                         onClick={() => window.location.replace("/sale")}
-                    >Encerrar carrinho
+                    >Finalizar carrinho
                     </button>}
+                </div>
 
-                    {itens.length !== 0 ? messages : null}
-            
-                <div id='m-2'>
-                    {itens.length !== 0 ? "Quantidade = " + counter_ : null}
-                </div>
-                <div id='m-2'>
-                    {itens.length !== 0 ? "TItems = " + currencyFormat(subtotal) : null}
-                </div>
                 <div id='m-2'>
                     {itens.length === 0 ? "O seu carrinho de compras está vazio" : null}
                 </div>
             </div>
-            {itens.length === 0 ? <div id='container'><button
+            {itens.length === 0 && <div id='container'><button
                 className='btn btn-primary'
                 id='m-2'
-                onClick={() => { window.location.replace("/store") }}>Voltar as Compras</button></div> : null}
+                onClick={() => { window.location.replace("/store") }}>Voltar as Compras</button></div>}
             <div id="container">
                 <div id="main">
                     <div>
