@@ -40,7 +40,6 @@ export function InvoiceSalesForm({
       <hr></hr>
       <div id="container" >
           <div id='main'>
-            {message && <label>{message}</label>}
             <label><b>Cliente</b></label>
             <select id='main-input' onChange={e => idPerson(parseInt(e.target.value))}>
               <option>Selecione o Cliente</option>
@@ -83,6 +82,7 @@ export function InvoiceSalesForm({
               disabled
               onChange={handleChange}
             />
+             {message && <label id='msg-red'>{message}</label>}
             <button className='btn btn-primary' id='m-2' onClick={handleSubmitCard}>Pagar com Cartão</button>
             <button className='btn btn-primary' id='m-2' onClick={handleSubmit}>Pagar com PIX ou BOLETO</button>
             <button className='btn btn-primary' id='m-2' onClick={handleSubmitCred}>Pagar com Crediário Loja</button>
@@ -108,7 +108,6 @@ export function InvoiceSalesForm({
             <span>Cidade: {children.person.address.name_city}</span>
             <span>Estado: {children.person.address.uf}</span>
             <span>CEP: {children.person.address.num_cep}</span>
-            {/* <span>Filial: {Globais.company + ' - ' + Globais.CNPJ}</span> */}
             </div>}
           </div>
         </div>

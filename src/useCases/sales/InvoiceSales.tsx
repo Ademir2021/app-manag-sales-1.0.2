@@ -23,6 +23,12 @@ export function InvoiceSales() {
     const [idPerson, setIdPerson] = useState<number | any>(0)
     const { user: isLogged }: any = useContext(AuthContext);
 
+    const msgDesc = "Desconto não autorizado."
+    const msgNoItem = "Nenhum item comprado no momento."
+    const msgValItem = "O valor está diferente do total na nota " + sale.paySale + '.'
+    const msgOkPe = "O pedido já foi enviado."
+    const msgSendPe = "Enviando pedido, aguardem ..."
+
     const handleChange = (e: any) => {
         const name = e.target.name;
         const value = e.target.value;
@@ -33,46 +39,46 @@ export function InvoiceSales() {
         postAuthHandle('persons_user', setTokenMessage, setPersons, isLogged)
     }, [persons])
 
-    useEffect(() => {
-        function getSale() {
-            for (let person of persons) {
-                if (person.id_person === idPerson) {
-                    sale.filial = person.fk_name_filial;
-                    sale.user.user_id = person.fk_id_user;
-                    sale.user.user_name = isLogged[0].username
-                    sale.person.fk_name_pers = person.id_person;
-                    sale.person.name_pers = person.name_pers;
-                    sale.person.cpf_pers = person.cpf_pers;
-                    sale.person.phone_pers = person.phone_pers;
-                    sale.person.address.address_pers = person.address_pers;
-                    sale.person.address.num_address = person.num_address;
-                    sale.person.address.bairro_pers = person.bairro_pers;
-                    sale.person.address.fk_cep = person.fk_cep;
-                    const resSum: any | undefined = localStorage.getItem('s');
-                    if (resSum) {
-                        const sum: number = JSON.parse(resSum);
-                        sale.tItens = sum;
-                        setSum(sum);
-                    };
-                    sale.tNote = sale.tItens - sale.disc_sale;
-                    calcInstallments()
-                    const resItens: any | undefined = localStorage.getItem('i');
-                    if (resItens) {
-                        const itens: TItens[] = JSON.parse(resItens);
-                        setItens(itens);
-                    }
-                    setInstallments(installments)
-                    installments !== 'Credito a vista' ? sale.installments = parseInt(installments) :
-                        setInstallments(1)
-                    sale.duplicatas = []
+    function getSale() {
+        for (let person of persons) {
+            if (person.id_person === idPerson) {
+                sale.filial = person.fk_name_filial;
+                sale.user.user_id = person.fk_id_user;
+                sale.user.user_name = isLogged[0].username
+                sale.person.fk_name_pers = person.id_person;
+                sale.person.name_pers = person.name_pers;
+                sale.person.cpf_pers = person.cpf_pers;
+                sale.person.phone_pers = person.phone_pers;
+                sale.person.address.address_pers = person.address_pers;
+                sale.person.address.num_address = person.num_address;
+                sale.person.address.bairro_pers = person.bairro_pers;
+                sale.person.address.fk_cep = person.fk_cep;
+                const resSum: any | undefined = localStorage.getItem('s');
+                if (resSum) {
+                    const sum: number = JSON.parse(resSum);
+                    sale.tItens = sum;
+                    setSum(sum);
+                };
+                sale.tNote = sale.tItens - sale.disc_sale;
+                calcInstallments()
+                const resItens: any | undefined = localStorage.getItem('i');
+                if (resItens) {
+                    const itens: TItens[] = JSON.parse(resItens);
+                    setItens(itens);
                 }
+                setInstallments(installments)
+                installments !== 'Credito a vista' ? sale.installments = parseInt(installments) :
+                    setInstallments(1)
+                sale.duplicatas = []
             }
-            setTimeout(() => {
-                if (sale.person.fk_name_pers === 0) {
-                    window.location.replace(typePay);
-                }
-            }, 6000)
         }
+        setTimeout(() => {
+            if (sale.person.fk_name_pers === 0) {
+                window.location.replace(typePay);
+            }
+        }, 6000)
+    }
+    useEffect(() => {
         getSale()
     }, [persons, sale, tokenMessage, typePay]);
 
@@ -127,10 +133,10 @@ export function InvoiceSales() {
             totalNote += sum
             totalNote -= sale.disc_sale;
             if (limitDesc) {
-                setMsg("Desconto não autorizado !")
+                setMsg(msgDesc)
             } else {
                 if (totalNote === 0) {
-                    setMsg("Nenhum item no momento !")
+                    setMsg(msgNoItem)
                 } else {
                     if (payment >= sale.tNote) {
                         setMsg("Valor á pagar " + currencyFormat(payment))
@@ -139,13 +145,12 @@ export function InvoiceSales() {
                             window.location.replace(typePay)
                         }, 2000);
                     } else {
-                        setMsg("Valor diferente do total da nota ! "
-                            + sale.paySale)
+                        setMsg(msgValItem)
                     }
                 }
             }
         } else {
-            setMsg("Pedido já foi enviado !")
+            setMsg(msgOkPe)
         }
     };
 
@@ -156,7 +161,7 @@ export function InvoiceSales() {
                 localStorage.setItem("sl", JSON.stringify(sale))
             }
         else {
-            setMsg("Enviando pedido... ")
+            setMsg(msgSendPe)
         }
     };
 
