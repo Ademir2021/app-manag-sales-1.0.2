@@ -12,8 +12,6 @@ function ControlledCarousel() {
 
 
   return (
-    <>
-      <div id='carousel-div'>
         <Carousel
           prevIcon=''
           nextIcon=''
@@ -53,8 +51,6 @@ function ControlledCarousel() {
           {/* <Carousel.Caption>
           </Carousel.Caption> */}
         </Carousel>
-      </div>
-    </>
   )
 }
 

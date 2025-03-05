@@ -3,18 +3,6 @@
     height: 100%;
 }
 
-@media screen and (max-width:768px) {
-    .carousel-img-banner {
-        width: 100%;
-        height: 100%;
-    }
-}
-
-#carousel-div {
-    background-color: #fff;
-    color: #fff;
-}
-
 #carousel-item1 {
     background-image: url("/public//img//carousel/banner1_desktop.png");
     background-size: 100%;
