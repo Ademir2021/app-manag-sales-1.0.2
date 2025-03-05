@@ -12,7 +12,7 @@ type PropsPagSeguroCardForm = {
     handleSubmit: any;
     paidSucess: string | number
     paid: number | null | undefined
-    paySale: number
+    paySale: number | any
     URLNoteSubmit: number
     err: string | undefined | any
 }
@@ -104,7 +104,7 @@ export function PagSeguroCardForm({
                     </div>
                     {paidSucess || paid ? <label id='msg-red'>{paidSucess} {paid}</label> : null}
                     {err != '!' && <label id="msg-red">{err}</label>}
-                    <span>{!URLNoteSubmit ? currencyFormat(paySale) : null}</span>
+                    <label>{!URLNoteSubmit ? currencyFormat(paySale) : null}</label>
                     {!URLNoteSubmit ? <button className="btn btn-primary" id='m-2' onClick={handleSubmit}>Pagar</button> : null}
                     {URLNoteSubmit ? <button className="btn btn-primary" id='m-2' onClick={() => { window.location.replace(Globais.URL_NOTE + '/' + URLNoteSubmit) }}>Emitir Nota</button> : null}
                     {URLNoteSubmit ? <button className="btn btn-primary" id='m-2' onClick={() => { window.location.replace('dashboardefault') }}>Sair</button> : null}
