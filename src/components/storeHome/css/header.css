@@ -1,6 +1,6 @@
 .header-home{
     border-radius: 3px 3px 0px 0px;
-    background-color:black
+    background-color:rgb(48, 48, 48)
 }
 
 .header-home-carrinho {
@@ -43,6 +43,6 @@
 
 #header-frete{
     display: inline;
-    color: gray;
-    font-size: small;
+    color: green;
+    font-size: 12px;
 }
