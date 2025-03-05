@@ -37,6 +37,7 @@ export function PagSeguroCard() {
     const msgCard = 'Cartão recusado, verifique os dados.'
     const msgErr = 'Erro de comunicação, tente novamente'
     const msgSucess = 'Valor pago com sucesso.'
+    const msgSendFields = "Por favor, preencha todos os campos corretamente."
 
     useEffect(() => {
         const getSale = () => {
@@ -168,17 +169,33 @@ export function PagSeguroCard() {
         // card.encrypted = ""
     }
 
+    function filedsCard() {
+        if (
+            card.holder != '' &&
+            card.number != '' &&
+            card.ex_year != '' &&
+            card.ex_month != '' &&
+            card.secure_code != ''
+        ) {
+            return true
+        } else {
+            setErr(msgSendFields)
+        }
+    }
+
     function handleSubmitCard(e: any) {
         e.preventDefault();
-        if (paySale !== 0) {
-            if (paid === 0) {
-                if (card.public_key !== "??") {
-                    localStorage.setItem('card', JSON.stringify(card))
-                    window.location.replace("/pagsegurocard")
+        if(filedsCard() == true){
+            if (paySale !== 0) {
+                if (paid === 0) {
+                    if (card.public_key !== "??") {
+                        localStorage.setItem('card', JSON.stringify(card))
+                        window.location.replace("/pagsegurocard")
+                    }
                 }
+            } else {
+                setErr(msgPay)
             }
-        } else {
-            setErr(msgPay)
         }
     }
 
