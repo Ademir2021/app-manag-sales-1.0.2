@@ -24,7 +24,7 @@ function ControlledCarousel() {
             <a href='form_person'>
             <div id="carousel-item1">
               <h2>Realize suas compras aqui</h2>
-              <dd>Produtos com até 10% de desconto</dd><br></br>
+              <p>Produtos com até 10% de desconto</p>
               <button className='btn btn-primary' onClick={() => { window.location.replace('form_person') }}>Cadastre-se</button>
             </div>
             </a>
@@ -34,7 +34,7 @@ function ControlledCarousel() {
       <a href='contact'>
             <div id="carousel-item2">
               <h5>Como prefere receber a sua COMPRA</h5>
-              <dd>Retire na loja ou despachamos até sua localidade</dd><br></br>
+              <p>Retire na loja ou despachamos até sua localidade</p>
               <button className='btn btn-primary' onClick={() => { window.location.replace('contact') }}>Fale conosco</button>
               </div>
            </a> 
@@ -44,7 +44,7 @@ function ControlledCarousel() {
             <a href='register'>
             <div id='carousel-item3'>
               <h2><>Acesso rápido e seguro</></h2>
-              <dd>Web -Token + confiança para suas compras</dd><br></br>
+              <p>WEB-token, confiança durante as suas compras</p>
               <button className='btn btn-primary' onClick={() => { window.location.replace('register') }}>Criar conta</button>
             </div>
             </a>
