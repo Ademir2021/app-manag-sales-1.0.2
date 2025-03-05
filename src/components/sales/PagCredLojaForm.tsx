@@ -11,6 +11,7 @@ type Props = {
     toGoBackInvoiceSale: any
     URLNoteSubmit: any
     dinheiro: number
+    msg:string
 }
 
 export function PagCredLojaForm({
@@ -18,7 +19,8 @@ export function PagCredLojaForm({
         duplicatas,
         toGoBackInvoiceSale,
         URLNoteSubmit,
-        dinheiro
+        dinheiro,
+        msg
     }: Props) {
 
     const handleContasAReceber = new HandleFinanceiro()
@@ -56,6 +58,7 @@ export function PagCredLojaForm({
             <div id="container">
                 <div id='main'>
                 <h1 className="text-center">Crediário Loja</h1>
+                {msg && <div id='msg-red'>{msg}</div>}
                 <button
                     className="btn btn-primary"
                     id='m-2'

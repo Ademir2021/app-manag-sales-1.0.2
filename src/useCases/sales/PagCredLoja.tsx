@@ -10,17 +10,21 @@ export function PagCredLoja() {
     const [sendSale, setSendSale] = useState<boolean>(false)
     const [numNote, setNumNote] = useState(0)
     const [sale, setSale] = useState(sale_JSON);
+    const [msg, setMsg] = useState('')
 
+    const msgSendSale = 'Sua compra já foi enviada.'
+    const msgNoShopping = 'Sem compras para pagar.'
+
+    const getSale = () => {
+        const sale_store_res = localStorage.getItem('sl');
+        if (sale_store_res) {
+            const sales = JSON.parse(sale_store_res)
+
+            setSale(sales)
+            handleInstallments(sales)
+        }
+    };
     useEffect(() => {
-        const getSale = () => {
-            const sale_store_res = localStorage.getItem('sl');
-            if (sale_store_res) {
-                const sales = JSON.parse(sale_store_res)
-
-                setSale(sales)
-                handleInstallments(sales)
-            }
-        };
         getSale()
     }, [])
 
@@ -98,18 +102,21 @@ export function PagCredLoja() {
     };
 
     const handleSubmit = () => {
-        if (sendSale === false) {
-            registerSale()
-            sale.duplicatas = []
-            setSendSale(true)
+        if (sale.dinheiro != 0 || sale.duplicatas.length > 0) {
+            if (sendSale === false) {
+                registerSale()
+                sale.duplicatas = []
+                setSendSale(true)
+            } else {
+                setMsg(msgSendSale)
+            }
         } else {
-            alert('Sua compra já foi enviada')
+            setMsg(msgNoShopping)
         }
     }
 
     return (
         <>
-            {/* <p>{JSON.stringify(sale.paySale)}</p> */}
             <NavBar />
             <PagCredLojaForm
                 handleSubmit={handleSubmit}
@@ -117,6 +124,7 @@ export function PagCredLoja() {
                 toGoBackInvoiceSale={() => { window.location.replace('invoice_sales') }}
                 URLNoteSubmit={numNote}
                 dinheiro={sale.dinheiro}
+                msg={msg}
             />
         </>
     )

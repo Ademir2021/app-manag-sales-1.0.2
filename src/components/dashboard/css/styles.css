@@ -27,8 +27,10 @@
 }
 #itens-store-car {
     display: flex;
+    margin: 18px;
+    border-radius: 12px;
     flex-Direction: column;
     align-Items: center;
-    margin-top: -16px;
-    background-color: #fff;
+    background-color: rgb(224, 224, 233);
+    color:blue;
 }

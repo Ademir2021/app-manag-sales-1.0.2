@@ -56,14 +56,14 @@ export function ListItensStore({
                 id='itens-store-car'>
                 <div id="main">
                     <form id='main'>
-                        <label>Quantidade de items comprados</label>
+                        <label>Quantidade de items</label>
                         <input
                             id="main-input-number"
                             placeholder="Quantidade"
                             value={counter_}
                             disabled
                         />
-                        <label>Total dos items comprados</label>
+                        <label>Total dos items</label>
                         <input
                             id="main-input-number"
                             placeholder="Total dos Items"
