@@ -36,7 +36,10 @@ export function PagSeguroCardForm({
                 <form id="main-card">
             <div>
                 <h1 id='text-center'>Cartões aceitos </h1>
-                <img id='img-band-card' src="img/band_cartao_creditos.png" alt="Cartões aceitos"></img>
+                <img
+                id='img-band-card'
+                src="img/band_cartao_creditos.png"
+                alt="Cartões aceitos"></img>
             </div>
                     <input
                         type="hidden"
@@ -45,7 +48,6 @@ export function PagSeguroCardForm({
                         value={children.public_key || ""}
                         disabled
                     />
-                    {/* {children.holder && <label>{children.holder}</label>} */}
                     <input
                         id='main-input'
                         type="text"
@@ -55,7 +57,6 @@ export function PagSeguroCardForm({
                         placeholder="Nome no cartão"
                         required
                     />
-                    {/* {children.number && <label>{children.number}</label>} */}
                     <input
                         id='main-input'
                         type="text"
@@ -103,7 +104,7 @@ export function PagSeguroCardForm({
                         />
                     </div>
                     {paidSucess || paid ? <label id='msg-red'>{paidSucess} {paid}</label> : null}
-                    {err != '!' && <label id="msg-red">{err}</label>}
+                    {err != '' && <label id="msg-red">{err}</label>}
                     <label id='msg-green'>{!URLNoteSubmit ? currencyFormat(paySale) : null}</label>
                     {!URLNoteSubmit ? <button className="btn btn-primary" id='m-2' onClick={handleSubmit}>Pagar</button> : null}
                     {URLNoteSubmit ? <button className="btn btn-primary" id='m-2' onClick={() => { window.location.replace(Globais.URL_NOTE + '/' + URLNoteSubmit) }}>Emitir Nota</button> : null}
