@@ -39,7 +39,13 @@ export function PagSeguroCard() {
     const msgErr = 'Erro de comunicação, tente novamente'
     const msgSucess = 'Valor pago com sucesso.'
     const msgSendFields = "Por favor, preencha todos os campos corretamente."
-    const valPayCard = "Parcelado em " + sale.installments + " X de " + currencyFormat(paySale/sale.installments)
+    const valPayCard = "Parcelado em " + sale.installments + " parcelas de " + currencyFormat(paySale/sale.installments)
+
+    useEffect(()=>{
+        setTimeout(()=>{
+            setErr('')
+        },4000)
+    },[err])
 
     useEffect(() => {
         const getSale = () => {
@@ -226,7 +232,9 @@ export function PagSeguroCard() {
                 paidSucess={paidSucess}
                 err={err}
                 paid={paid !== 0 ? paid : null}
-                paySale={sale.installments !== 1 ? valPayCard : 'Valor a pagar ' + currencyFormat(paySale)}
+                paySale={sale.installments !== 1 ?
+                    valPayCard :
+                    'Valor a pagar ' + currencyFormat(paySale)}
                 URLNoteSubmit={numNote}
             >
                 {card}
