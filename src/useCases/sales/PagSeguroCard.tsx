@@ -32,7 +32,7 @@ export function PagSeguroCard() {
     const msgErr = 'Erro de comunicação, tente novamente'
     const msgSucess = 'Valor pago com sucesso.'
     const msgSendFields = "Por favor, preencha todos os campos corretamente."
-    const valPayCard = "Parcelado em " + sale.installments + " parcelas de " + currencyFormat(paySale / sale.installments)
+    const valPayCard = "Pagamento em " + sale.installments + " parcelas de " + currencyFormat(paySale / sale.installments)
 
     const handleChange = (e: any) => {
         const name = e.target.name;
