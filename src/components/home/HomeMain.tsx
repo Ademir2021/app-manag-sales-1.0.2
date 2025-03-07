@@ -96,7 +96,7 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
                             alt='EvoFácil'
                             />
                             <img
-                            src='img/logo_lojavirtual.png'
+                            src='img/logo_reactjs.png'
                             alt='Loja Online'
                             style={{borderRadius:'16px'}}
                             />
