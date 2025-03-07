@@ -153,13 +153,16 @@
 }
 @media screen and  (max-width:768px) {
     #img-logo {
-        width: 65px;
-        height: 65px;
+        width: 64px;
+        height: 64px;
         gap: 120px;
     }
 }
 #img_card{
-    width: 36px;
-    height: 36px;
+    width: 56px;
+    height: 56px;
+    background-color: #f0f4f5;
+    padding: 8px;
+    border-radius: 12px;
 }
 
