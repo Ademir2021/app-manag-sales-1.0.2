@@ -117,10 +117,10 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
                 </main>
                 <div id='cards'>
                     <hr></hr>
-                    <a href='#cards-in'><button className='btn btn-primary p-2 mb-3'><b>+ </b>Soluções para sua empresa</button></a>
-                    <p id='cards-in'>A solução que você precisa!</p>
-                    <label>O cliente encontra aqui o <b>Produtos de Software</b> com à medida necessária.
-                        Utilizamos métodologias ágeis de desenvolvovimento, com isto garantimos entregas rápidas e continua.</label>
+                    <a href='#cards-in'><button className='btn btn-primary p-2 mb-3'>Soluções para sua empresa</button></a>
+                    {/* <p id='cards-in'>A solução que você precisa!</p> */}
+                    <dd>Aqui o cliente encontra o <b>Produtos de Software</b> com à medida necessária.
+                        Utilizamos métodologias ágeis de desenvolvovimento, com isto garantimos entregas rápidas e continua.</dd>
 
                     {(cards.map((card: any) => (
                         <HomeCards
@@ -141,15 +141,15 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
                         className='btn btn-primary'
                         id='mt18'
                         onClick={() => (window.location.assign("https://github.com/Ademir2021"))}
-                    >{'#'} Descarregar demo dos módulos [.git, .zip]</button>
-                    <p id='mt18'>Descarregue demos no gitHub do desenvolvedor. <br />Utilize o git clone ou zip ! em caso de  dúvidas entre em contato através de nossos canais de atendimento.</p>
+                    >Downloads</button>
+                    <p id='font-bold'>Baixe aqui uma copia de nossas aplicações</p>
                     <img src='img/code_NFe.png' id='img' alt='Exemplo de código node'></img>
                     <p id='font-bold'>Codificação limpa e com padrões de mercado.</p>
 
                     <button className='btn btn-primary' id='mt18'
                         onClick={() => (window.location.assign("/store"))}
-                    >@ Sistema SAS Loja On-line</button>
-                    <p id='mt18'>Nosso APP-Manage-Sale é o melhor Sistema SAS para Gestão de sua loja, Completo e Seguro.</p>
+                    >Sistema SAAS Loja On-line</button>
+                    <p id='mt18'>APP-Manage-Sale, o melhor Sistema SAAS para Gestão de loja online.</p>
                     <p>Sistema APP-Manage-Sale, Vesão Web e para Android.</p>
                     <img src='img/site-store.png' id='img' alt='Site de compras'></img>
                     <div id='font-bold'>Sistema SAS para Gestão e Vendas On-line.</div>
