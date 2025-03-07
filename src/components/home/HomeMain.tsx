@@ -13,11 +13,11 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
     const [vTec, setVTec] = useState(false)
 
     const cards = [
-        { id: 1, item: "Emissor NFe", descric: "Modelo 55 e 65", content: 'Emissão e controle da NFe' },
-        { id: 2, item: "Emissor NFCe", descric: 'EvoFácil emissor NFECe', content: "Emite a NFCe empresa do simples" },
-        { id: 3, item: "Checkout de Vendas", descric: "Cartão, PIX e Boleto", content: 'Integração de sistemas para  vendas on-line' },
-        { id: 4, item: "API REST e Micro Serviço", descric: "Comunicação entre sistemas", content: 'Micro - Serviços com estruturas json/XML' },
-        { id: 5, item: "AC-Sor Sistema de Gestão", descric: "Sistema Integrado de Vendas", content: 'Automação dos processos na empresa com,  Vendas, Financeiro, Fluxo de caixa, estoque, emissão de notas e muito mais.' }
+        { id: 1, item: "Emissor NFe", descric: "Modelo 55 e 65", content: 'Emissão e controle da NFe', img:'img/logo_acsor.png', },
+        { id: 2, item: "Emissor NFCe", descric: 'EvoFácil emissor NFECe', content: "Emite a NFCe empresa do simples",img:'img/logo_evofacil.png', },
+        { id: 3, item: "Checkout de Vendas", descric: "Cartão, PIX e Boleto", content: 'Integração de sistemas para  vendas on-line',img:'img/logo_reactjs.png', },
+        { id: 4, item: "API REST e Micro Serviço", descric: "Comunicação entre sistemas", content: 'Micro - Serviços com estruturas json/XML',img:'img/logo_reactjs.png', },
+        { id: 5, item: "AC-Sor Sistema de Gestão", descric: "Sistema Integrado de Vendas", content: 'Automação dos processos na empresa com,  Vendas, Financeiro, Fluxo de caixa, estoque, emissão de notas e muito mais.',img:'img/logo_acsor.png', }
     ]
 
     const btnSol = <button id='btn-list' onClick={() => !vText ? setVText(true) : setVText(false)}>
@@ -88,20 +88,22 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
                         {vTec && textTec}
                         <div id='v-img-logo'>
                             <img
+                            id='img-logo'
                             src='img/logo_acsor.png'
                             alt='AC-Sor'
                             />
                             <img
+                             id='img-logo'
                             src='img/logo_evofacil.png'
                             alt='EvoFácil'
                             />
                             <img
+                             id='img-logo'
                             src='img/logo_reactjs.png'
                             alt='Loja Online'
                             style={{borderRadius:'16px'}}
                             />
                         </div>
-                            <hr></hr>
                     </div>
                     <div>
                         <HomeContact
@@ -123,6 +125,7 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
                         <HomeCards
                             key={card.id}
                             id={card.id}
+                            img={card.img}
                             item={card.item}
                             descric={card.descric}
                             content={card.content}

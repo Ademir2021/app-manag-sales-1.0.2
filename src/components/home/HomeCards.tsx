@@ -5,6 +5,7 @@ type Props = {
     item: String
     descric: string
     content:String
+    img:string
     onClick:any
 }
 
@@ -12,6 +13,7 @@ export function HomeCards(props: Props) {
     return (
             <div id='container-cards'>
                 <div id='main-cards'>
+                        <img id='img_card' src={props.img} />
                         <b>{props.item}</b>
                         <p>{props.descric}</p>
                         <p>{props.content}</p>

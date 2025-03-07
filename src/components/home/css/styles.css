@@ -143,17 +143,23 @@
 }
 #v-img-logo {
     display: flex;
-    /* border: 1px solid gray; */
+    width: auto;
+    border-radius: 3px;
+    border: 1px solid rgb(212, 202, 202);
     justify-content: center;
     padding: 16px;
-    margin: 16px;
-    gap: 26px;
+    margin: 3px;
+    gap: 68px;
 }
-@media screen and (max-width:768px) {
-    #v-img-logo{
-        padding: auto;
-        margin: auto;
-        gap:18px;
+@media screen and  (max-width:768px) {
+    #img-logo {
+        width: 65px;
+        height: 65px;
+        gap: 120px;
     }
+}
+#img_card{
+    width: 36px;
+    height: 36px;
 }
 
