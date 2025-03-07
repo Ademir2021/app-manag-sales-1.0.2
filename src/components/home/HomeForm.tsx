@@ -20,10 +20,10 @@ export function HomeForm({
             <hr></hr>
             <div id='container-home'>
                 <div id='main-form'>
-                    <h1>Formulário</h1>
-                        <label className="text-center">Preencha o formulário e receba um contato da nossa equipe</label>
+                    <h1>Formulário de inscrição</h1>
+                        <label id="text-center">Preencha com os dados da sua empresa</label>
                     <form id="prospecting-form">
-                        <input
+                        {/* <input
                         id='main-input'
                             placeholder='Nome fantasia'
                             required
@@ -31,8 +31,8 @@ export function HomeForm({
                             name='fantasia'
                             value={children.fantasia || ''}
                             onChange={handleChange}
-                        />
-                        <input
+                        /> */}
+                        {/* <input
                          id='main-input'
                             placeholder='Razão social'
                             required
@@ -40,7 +40,7 @@ export function HomeForm({
                             name='rsocial'
                             value={children.rsocial || ''}
                             onChange={handleChange}
-                        />
+                        /> */}
                         <InputMask
                          id='main-input'
                             mask="99.999.999.9999-99"
@@ -55,7 +55,7 @@ export function HomeForm({
                             value={children.cnpj || ''}
                             onChange={handleChange}
                         />
-                        <input
+                        {/* <input
                          id='main-input'
                             placeholder='Inscrição estadual'
                             required
@@ -63,7 +63,7 @@ export function HomeForm({
                             name='iestadual'
                             value={children.iestadual || ''}
                             onChange={handleChange}
-                        />
+                        /> */}
                         <input
                          id='main-input'
                             placeholder='Telefone'
@@ -82,7 +82,7 @@ export function HomeForm({
                             value={children.email || ''}
                             onChange={handleChange}
                         />
-                        <input
+                        {/* <input
                          id='main-input'
                             placeholder='Endereço'
                             required
@@ -90,8 +90,8 @@ export function HomeForm({
                             name='endereco'
                             value={children.endereco || ''}
                             onChange={handleChange}
-                        />
-                        <input
+                        /> */}
+                        {/* <input
                             id='main-input-number'
                             placeholder='Número'
                             required
@@ -99,8 +99,8 @@ export function HomeForm({
                             name='numero'
                             value={children.numero || ''}
                             onChange={handleChange}
-                        />
-                        <input
+                        /> */}
+                        {/* <input
                          id='main-input'
                             placeholder='Cidade'
                             required
@@ -108,8 +108,8 @@ export function HomeForm({
                             name='cidade'
                             value={children.cidade || ''}
                             onChange={handleChange}
-                        />
-                        <input
+                        /> */}
+                        {/* <input
                          id='main-input-number'
                             placeholder='UF'
                             required
@@ -117,8 +117,8 @@ export function HomeForm({
                             name='uf'
                             value={children.uf || ''}
                             onChange={handleChange}
-                        />
-                        <input
+                        /> */}
+                        {/* <input
                          id='main-input'
                             placeholder='CEP'
                             required
@@ -126,7 +126,7 @@ export function HomeForm({
                             name='cep'
                             value={children.cep || ''}
                             onChange={handleChange}
-                        />
+                        /> */}
                         <div id='msg'>
                             {sendMsg && <dd id='msg-red'>{sendMsg}</dd>}
                         </div>

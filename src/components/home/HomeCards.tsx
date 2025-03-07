@@ -20,7 +20,7 @@ export function HomeCards(props: Props) {
                         <button
                         className="btn btn-primary mb-3"
                         onClick={props.onClick}
-                        >+ Informações.</button>
+                        >Solicitar contato</button>
                 </div>
             </div>
     )
