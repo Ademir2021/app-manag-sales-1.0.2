@@ -21,7 +21,7 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
     ]
 
     const btnSol = <button id='btn-list' onClick={() => !vText ? setVText(true) : setVText(false)}>
-        <b>Soluções</b>
+        <label>Soluções</label>
         <div id='icon-seta'>
             {!vText &&
                 <HomeIcons title='UP' icon={<Icon.CaretUp size={28} />} />
@@ -33,7 +33,7 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
     </button>
 
     const btnTec = <button id='btn-list' onClick={() => !vTec ? setVTec(true) : setVTec(false)}>
-        <b>Tecnologias</b>
+        <label>Tecnologias</label>
         <div id='icon-seta'>
             {!vTec &&
                 <HomeIcons title='UP' icon={<Icon.CaretUp size={28} />} />
