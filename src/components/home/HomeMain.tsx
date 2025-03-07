@@ -116,8 +116,9 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
                     </div>
                 </main>
                 <div id='cards'>
+                    <hr></hr>
                     <a href='#cards-in'><button className='btn btn-primary p-2 mb-3'><b>+ </b>Soluções para sua empresa</button></a>
-                    <p id='cards-in'>A solução que você precisa !!</p>
+                    <p id='cards-in'>A solução que você precisa!</p>
                     <label>O cliente encontra aqui o <b>Produtos de Software</b> com à medida necessária.
                         Utilizamos métodologias ágeis de desenvolvovimento, com isto garantimos entregas rápidas e continua.</label>
 

@@ -18,7 +18,7 @@ export function HomeContact({
 
     return (
         <form id='form'>
-            <h1 id='text-center' >Inscreva-se</h1>
+            <b>Inscreva-se</b>
             <input
             id='main-input'
                 type='text'
