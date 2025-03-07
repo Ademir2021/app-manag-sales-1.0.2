@@ -141,4 +141,13 @@
         width: 96%;
     }
 }
+#v-img-logo{
+    display: flex;
+    /* border: 1px solid gray; */
+    justify-content: center;
+    align-items: center;
+    padding: 28px;
+    margin: 12px;
+    gap: 28px;
+}
 

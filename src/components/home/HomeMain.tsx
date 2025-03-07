@@ -58,19 +58,19 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
         </ul>
     </div>
 
-const textTec = <div id='v-text'>
-<p>Trabalhamos com as melhores tecnologias do mercado.</p>
-<p>Integração continua e qualidade no desenvolviemento.</p>
-<ul>
-    <li>Biblioteca ReactJs, Sistemas SAAS.</li>
-    <li>Framework ReactJs-native, APP Android e IOS.</li>
-    <li>Docker, container e orquestração</li>
-    <li>GitHub, versionamento e compartilhamento.</li>
-    <li>PostgreSQL, banco de dados relacional</li>
-    <li>TypeScript, interface e tipagem.</li>
-    <li>JAVA, desktops e APIs.</li>
-</ul>
-</div>
+    const textTec = <div id='v-text'>
+        <p>Trabalhamos com as melhores tecnologias do mercado.</p>
+        <p>Integração continua e qualidade no desenvolviemento.</p>
+        <ul>
+            <li>Biblioteca ReactJs, Sistemas SAAS.</li>
+            <li>Framework ReactJs-native, APP Android e IOS.</li>
+            <li>Docker, container e orquestração</li>
+            <li>GitHub, versionamento e compartilhamento.</li>
+            <li>PostgreSQL, banco de dados relacional</li>
+            <li>TypeScript, interface e tipagem.</li>
+            <li>JAVA, desktops e APIs.</li>
+        </ul>
+    </div>
 
     return (
         <>
@@ -86,6 +86,22 @@ const textTec = <div id='v-text'>
                         {vText && textSol}
                         {btnTec}
                         {vTec && textTec}
+                        <div id='v-img-logo'>
+                            <img
+                            src='img/logo_acsor.png'
+                            alt='AC-Sor'
+                            />
+                            <img
+                            src='img/logo_evofacil.png'
+                            alt='EvoFácil'
+                            />
+                            <img
+                            src='img/logo_lojavirtual.png'
+                            alt='Loja Online'
+                            style={{borderRadius:'16px'}}
+                            />
+                        </div>
+                            <hr></hr>
                     </div>
                     <div>
                         <HomeContact
@@ -102,7 +118,7 @@ const textTec = <div id='v-text'>
                     <p id='cards-in'>A solução que você precisa !!</p>
                     <label>O cliente encontra aqui o <b>Produtos de Software</b> com à medida necessária.
                         Utilizamos métodologias ágeis de desenvolvovimento, com isto garantimos entregas rápidas e continua.</label>
-                  
+
                     {(cards.map((card: any) => (
                         <HomeCards
                             key={card.id}
