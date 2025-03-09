@@ -106,4 +106,8 @@ code {
   margin-bottom: 6px;
   color: gray;
 }
+hr{
+  border: black solid 1px;
+  width: 99%;
+}
 

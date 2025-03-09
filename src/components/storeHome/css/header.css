@@ -1,20 +1,27 @@
+:root {
+    --main-white-color:#fff;
+    --font-size:18px;
+}
 .header-home{
     display: flex;
     align-items: center;
     justify-content: left;
     padding-bottom: 3px;
-    background-color:rgb(48, 48, 48);
+    background-color:#0c28c4;;
 }
 .header-home-carrinho {
     margin-left: 8px;
+    font-size: var(--font-size);
+    color:var(--main-white-color);
 }
 .header-home-sub-total {
     padding: 9px;
+    color:var(--main-white-color);
 }
 .header-contact{
-    font-size: 18px;
+    font-size: var(--font-size);
     padding: 6px;
-    color:#fff;
+    color:var(--main-white-color);
     text-decoration: none;
 }
 @media screen and (max-width:768px) {
@@ -24,6 +31,6 @@
 }
 #header-frete{
     margin-left: 26px;
-    font-size: 18px;
-    color: gray;
+    font-size: var(--font-size);
+    color:var(--main-white-color);
 }
