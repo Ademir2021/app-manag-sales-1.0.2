@@ -1,48 +1,29 @@
 .header-home{
-    border-radius: 3px 3px 0px 0px;
-    background-color:rgb(48, 48, 48)
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding-bottom: 3px;
+    background-color:rgb(48, 48, 48);
 }
-
 .header-home-carrinho {
-    color:white;
-    padding: 9px;
-    width: 33px;
-    height: 32px;
+    margin-left: 8px;
 }
-.header-home-carrinho:hover{
-    background-color:none;
-}
-
 .header-home-sub-total {
-    /* border: solid 1px rgba(0, 0, 0, 0.455); */
     padding: 9px;
-    color:white;
-    font-size: 14px;
 }
-.header-home-sub-total:hover{
-    background-color:none;
-}
-
-
 .header-contact{
-    font-size: 14px;
+    font-size: 18px;
     padding: 6px;
-    color:white;
+    color:#fff;
     text-decoration: none;
 }
-.header-contact:hover{
-    background-color:none;
-    color: grey;
-}
-
 @media screen and (max-width:768px) {
     .header-contact{
-        font-size: 12px;
+        font-size: 16px;
     }
 }
-
 #header-frete{
-    display: inline;
-    color: green;
-    font-size: 12px;
+    margin-left: 26px;
+    font-size: 18px;
+    color: gray;
 }
