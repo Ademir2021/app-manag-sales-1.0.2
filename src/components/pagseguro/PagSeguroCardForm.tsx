@@ -35,7 +35,7 @@ export function PagSeguroCardForm({
             <div id="container">
                 <form id="main-card">
             <div>
-                <h1 id='text-center'>Cartões aceitosx </h1>
+                <h1 id='text-center'>Cartões aceitos </h1>
                 <img
                 id='img-band-card'
                 src="img/band_cartao_creditos.png"
