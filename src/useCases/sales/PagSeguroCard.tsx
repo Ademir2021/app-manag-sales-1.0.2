@@ -127,14 +127,14 @@ export function PagSeguroCard() {
                 .then(response => {
                     const res: TCardRequest = response.data
                     setPaid(res.charges[0].amount.summary.paid)
-                    if (res.charges) {
-                        if (JSON.stringify(res.charges[0].status)) {
-                            setErr(msgCard)
-                        }
-                    }
-                    if (res.error_messages) {
-                        setErr(msgTaxId)
-                    }
+                    // if (res.charges) {
+                    //     if (JSON.stringify(res.charges[0].status)) {
+                    //         setErr(msgCard)
+                    //     }
+                    // }
+                    // if (res.error_messages) {
+                    //     setErr(msgTaxId)
+                    // }
                 }).catch(error =>
                     setErr(msgErr)
                     // console.log(error)
