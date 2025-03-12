@@ -126,7 +126,7 @@ export function PagSeguroCard() {
             await api.post<TCardRequest>("card", pagSeguroCard)
                 .then(response => {
                     const res: TCardRequest = response.data
-                    if (res.charges) {
+                    if (res.charges || paid == 0) {
                         setPaid(res.charges[0].amount.summary.paid)
                         if (JSON.stringify(res.charges[0].status)) {
                             setErr(msgCard)
