@@ -83,7 +83,7 @@ export function ContasAreceberForm({
         />
     </div>
 
-    const listaContasReceber = <table className='table bg-light mt-1'>
+    const listaContasReceber = <table className="table">
         <thead>
             <tr>
                 <th id="center">ID</th>
