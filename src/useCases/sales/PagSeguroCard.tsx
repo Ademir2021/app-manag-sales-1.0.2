@@ -132,12 +132,9 @@ export function PagSeguroCard() {
                             setErr(msgCard)
                         }
                     }
-
-                    setTimeout(()=>{
-                        if (res.error_messages) {
-                            setErr(msgTaxId)
-                        }
-                    },2000)
+                    if (res.error_messages) {
+                        setErr(msgTaxId)
+                    }
 
                 }).catch(error =>
                     setErr(msgErr)
