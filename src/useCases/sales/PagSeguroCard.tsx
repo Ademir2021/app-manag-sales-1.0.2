@@ -150,7 +150,7 @@ export function PagSeguroCard() {
             clearFieldCard()
         }
         if (paid !== 0 && flagSales === false) {
-            registerSale() // Se paid for maior que 0 gera a nota.
+            registerSale() // Se paid for maior que 0 gera a venda.
             setFlagSales(true)
         }
     }, [encrypted, paid, flagSales])
