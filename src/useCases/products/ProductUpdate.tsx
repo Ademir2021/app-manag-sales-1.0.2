@@ -301,6 +301,7 @@ export function ProductUpdate() {
                             className="btn btn-primary"
                             id='m-2'
                             onClick={() => listUpdate(product)}>Atualizar</button>}
+                            dropdown={dropdown}
                     />
                 )))}
         </>
