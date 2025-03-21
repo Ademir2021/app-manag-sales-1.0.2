@@ -70,6 +70,7 @@ export function ProductsList() {
                         tipo_prod={handleProducts.nameTiposProds(product.fk_tipo_prod, tiposProds)}
                         ncm={product.ncm}
                         update={null}
+                        dropdown=""
                     />
                 )))}
         </>

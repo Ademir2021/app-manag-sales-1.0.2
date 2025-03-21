@@ -237,6 +237,7 @@ export function PersonUpdate() {
                             className="btn btn-primary"
                             id='m-2'
                             onClick={() => listUpdate(per)}>Atualizar</button>}
+                        dropdown={dropdown}
                     />
                 )))}
         </>

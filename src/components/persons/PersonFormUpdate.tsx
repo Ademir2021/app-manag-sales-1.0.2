@@ -135,7 +135,7 @@ export function PersonFormUpdate({
         <div ref={modalRef} className={`${className} modal`}>
             <div id="container">
                 <form id="main">
-                    <strong className="text-center mt-3">Atualização do Cliente</strong>
+                    <strong className="text-center mt-3">Atualizar Cliente</strong>
                     {alert && <label>{alert}</label>}
                     {message && <label>{message}</label>}
                     <input

@@ -69,6 +69,7 @@ export function PersonsList() {
                         filial={per.fk_name_filial}
                         fk_grupo={per.fk_grupo}
                         update={null}
+                        dropdown=""
                     />
                 )))}
         </>

@@ -52,12 +52,12 @@ export function ProductFormUpdate({
                 className='btn btn-primary'
                 id='m-2'
                 onClick={() => (setMenu('geral'))}
-            >Atualizar Produto</button>
+            >Produto</button>
             <button
                 className='btn btn-primary'
                 id='m-2'
                 onClick={() => (setMenu('fiscal'))}
-            >Atualizar Situação fiscal</button>
+            >Situação fiscal</button>
         </div>
     </>
 

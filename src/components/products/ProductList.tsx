@@ -17,7 +17,7 @@ type Props = {
     grupo_fiscal: string | undefined
     tipo_prod: string | undefined
     ncm: string | undefined
-    dropdown?: any;
+    dropdown: string;
 }
 
 export function ProductList(props: Props) {
