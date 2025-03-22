@@ -15,6 +15,7 @@ import "../../App.css"
 
 export function PersonUpdate() {
     const { user: isLogged }: any = useContext(AuthContext)
+    const [flagRegister, setFlagRegister] = useState<boolean>(false)
     const [alert_, setAlert_] = useState<string>('')
     const [persons, setPersons] = useState<TPerson[]>([])
     const [ceps, setCeps] = useState<ICeps[]>([])
@@ -140,6 +141,7 @@ export function PersonUpdate() {
 
     async function handleDelete(e: Event) {
         e.preventDefault()
+        setFlagRegister(true)
         clearFields()
         setAlert_("Insira um novo Cliente !!")
     }
@@ -205,6 +207,7 @@ export function PersonUpdate() {
                 modalRef={modalRef}
                 alert={alert_}
                 message=""
+                flagRegister={flagRegister}
             >
                 {person}
             </PersonFormUpdate>

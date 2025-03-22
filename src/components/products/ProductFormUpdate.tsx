@@ -125,9 +125,9 @@ export function ProductFormUpdate({
         />
         {alert && <div id='msg-red'>{alert}</div>}
         {alert && <div id='msg-red'>{message}</div>}
-        {flagRegister === false ? <button className='btn btn-primary' id='m-2' onClick={handleUpdate}>Atualizar</button> : null}
-        {flagRegister !== false ? <button className='btn btn-primary' id='m-2' onClick={handleSubmit}>Registrar</button> : null}
-        {flagRegister === false ? <button className='btn btn-primary' id='m-2' onClick={handleDelete}>Novo</button> : null}
+        {!flagRegister && <button className='btn btn-primary' id='m-2' onClick={handleUpdate}>Atualizar</button>}
+        {!flagRegister && <button className='btn btn-primary' id='m-2' onClick={handleDelete}>Novo</button>}
+        {flagRegister && <button className='btn btn-primary' id='m-2' onClick={handleSubmit}>Registrar</button>}
         <button className='btn btn-primary' id='m-2' onClick={close}>Sair</button>
 
     </>

@@ -14,6 +14,7 @@ type Props = {
     close?: any
     alert: string
     message: string
+    flagRegister:boolean
 }
 
 export function PersonFormUpdate({
@@ -26,7 +27,8 @@ export function PersonFormUpdate({
     className,
     close,
     alert,
-    message
+    message,
+    flagRegister,
 }: Props) {
 
     const naturalPerson = <>
@@ -136,8 +138,7 @@ export function PersonFormUpdate({
             <div id="container">
                 <form id="main">
                     <strong className="text-center mt-3">Atualizar Cliente</strong>
-                    {alert && <label>{alert}</label>}
-                    {message && <label>{message}</label>}
+                  
                     <input
                         id='main-input'
                         type="hidden"
@@ -248,10 +249,12 @@ export function PersonFormUpdate({
                     />
                     {checkAdminPrivilege() === "2" ? limiteCredito : null}
                     {checkAdminPrivilege() === "2" ? grupo : null}
-                    <button className="btn btn-primary" id='m-2' onClick={handleUpdate} >Atualizar</button>
-                    <button className="btn btn-danger" id='m-2' onClick={close}>Sair</button>
-                    <button className="btn btn-primary" id='m-2' onClick={handleDelete}>Novo</button>
-                    <button className="btn btn-primary" id='m-2' onClick={handleSubmit}>Registrar</button>
+                    {alert && <div id="msg-red">{alert}</div>}
+                    {message && <div id='msg-red'>{message}</div>}
+                    {!flagRegister && <button className="btn btn-primary" id='m-2' onClick={handleUpdate} >Atualizar</button>}
+                    {!flagRegister && <button className="btn btn-primary" id='m-2' onClick={handleDelete}>Novo</button>}
+                    {flagRegister && <button className="btn btn-primary" id='m-2' onClick={handleSubmit}>Registrar</button>}
+                    {<button className="btn btn-primary" id='m-2' onClick={close}>Sair</button>}
                 </form>
 
             </div>
