@@ -40,6 +40,10 @@ export function PagSeguroCardForm({
                 id='img-band-card'
                 src="img/band_cartao_creditos.png"
                 alt="Cartões aceitos"></img>
+                <dd>Aceitamos as principais bandeiras de cartão de crédito para a sua conveniência.</dd>
+                <b>Visa, MasterCard, American Express (AMEX), Elo, Hipercard, Discover, Diners Club.</b>
+                <p>Você tambêm pode usar o seu cartão de debito ou outras opções de pagamento <a href="invoice_sales">on-line</a> disponíveis.</p>
+
             </div>
                     <input
                         type="hidden"
