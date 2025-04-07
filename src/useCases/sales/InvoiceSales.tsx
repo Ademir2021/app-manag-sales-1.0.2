@@ -73,11 +73,11 @@ export function InvoiceSales() {
             }
         }
         setTimeout(() => {
-            if (sale.person.fk_name_pers === 0) {
-                window.location.replace(typePay);
+            if (!sale.person.fk_name_pers) {
+                window.location.replace('form_person');
             }
-        }, 6000)
-    }
+        }, 3000)
+    };
     useEffect(() => {
         getSale()
     }, [persons, sale, tokenMessage, typePay]);
@@ -187,6 +187,7 @@ export function InvoiceSales() {
 
     return (
         <>
+            {/* <p>{JSON.stringify(persons)}</p> */}
             <InvoiceSalesForm
                 token={tokenMessage}
                 backHomeInvoice={<BackHome />}

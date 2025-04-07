@@ -128,6 +128,7 @@ export function PersonForm({
         <div id='container'>
             <form id='main'>
                 <strong className="text-center p-1">Cadastro do Cliente</strong>
+                <a href='/invoice_sales'>Se você já possui cadastro <b>clique aqui.</b></a>
                 <select id='main-input' onChange={(e) => setTpPerson(e.target.value)}>
                     <option>{'Pessoa-Fisica'}</option>
                     <option>{'Pessoa-Juridica'}</option>
@@ -211,7 +212,7 @@ export function PersonForm({
                 className="btn btn-primary mt-3"
                     onClick={handleSubmit}>
                     Registrar</button>
-                <a href='/invoice_sales'>Faturamento <b>clique aqui</b></a>
+    
             </form>
 
         </div>
