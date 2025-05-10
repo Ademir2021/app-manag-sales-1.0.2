@@ -42,7 +42,7 @@ export function InvoiceSalesForm({
           <div id='main'>
             <label><b>Selecione o nome do Cliente</b></label>
             <select id='main-input' onChange={e => idPerson(parseInt(e.target.value))}>
-              <option>Selecione o Cliente</option>
+              <option>Selecionar o nome do comprador</option>
               {persons.map((pers: TPerson) => (
                 <option key={pers.id_person}>{pers.id_person}-{pers.name_pers}</option>
               ))}

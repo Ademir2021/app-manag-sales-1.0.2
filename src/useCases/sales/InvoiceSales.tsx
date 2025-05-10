@@ -76,7 +76,7 @@ export function InvoiceSales() {
             if (!sale.person.fk_name_pers) {
                 window.location.replace('form_person');
             }
-        }, 3000)
+        }, 4000)
     };
     useEffect(() => {
         getSale()

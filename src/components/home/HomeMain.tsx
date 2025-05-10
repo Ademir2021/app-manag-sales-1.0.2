@@ -150,7 +150,7 @@ const HomeMain = ({ children, handleChange, handleSubmit, msg, msgFields }: Prop
                         onClick={() => (window.location.assign("/store"))}
                     >Sistema SAAS Loja On-line</button>
                     <p id='mt18'>APP-Manage-Sale, o melhor Sistema SAAS para Gestão de loja online.</p>
-                    <p>Sistema APP-Manage-Sale, Vesão Web e para Android.</p>
+                    <p>Sistema APP-Manage-Sale, Versão Web e para Android.</p>
                     <img src='img/site-store.png' id='img' alt='Site de compras'></img>
                     <div id='font-bold'>Sistema SAS para Gestão e Vendas On-line.</div>
                 </div>
