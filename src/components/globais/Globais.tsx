@@ -60,15 +60,15 @@ export class Globais {
     // static URL_NOTE = process.env.REACT_APP_URL_NOTE
     // static URL_CENTROINFO = process.env.REACT_APP_URL_CENTROINFO
 
-    static URL = "http://localhost:3001"
-    static API_URL = "http://localhost:3000"
-    static URL_NOTE = 'http://localhost:3000/note'
-    static URL_CENTROINFO = "https://www.centroinfo.com.br"
+    // static URL = "http://localhost:3001"
+    // static API_URL = "http://localhost:3000"
+    // static URL_NOTE = 'http://localhost:3000/note'
+    // static URL_CENTROINFO = "https://www.centroinfo.com.br"
 
-    // static URL='http://centroinfo.com.br'
-    // static API_URL="http://centroinfo.com.br:3000"
-    // static URL_NOTE='http://centroinfo.com.br:3000/note'
-    // static URL_CENTROINFO="http://www.centroinfo.com.br"
+    static URL="https://centroinfo.com.br"
+    static API_URL="https://api.centroinfo.com.br"
+    static URL_NOTE="https://api.centroinfo.com.br/note"
+    static URL_CENTROINFO="https://www.centroinfo.com.br"
    
     // static URL="https://centroinfo.com.br"
     // static API_URL="https://api-centroinfo-614cdab7bd81.herokuapp.com"
