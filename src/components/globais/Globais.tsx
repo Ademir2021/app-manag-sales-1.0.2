@@ -66,8 +66,8 @@ export class Globais {
     // static URL_CENTROINFO = "https://www.centroinfo.com.br"
 
     static URL="https://centroinfo.com.br"
-    static API_URL="https://api.centroinfo.com.br"
-    static URL_NOTE="https://api.centroinfo.com.br/note"
+    static API_URL="http://localhost:3000"
+    static URL_NOTE="http://localhost:3000/note"
     static URL_CENTROINFO="https://www.centroinfo.com.br"
    
     // static URL="https://centroinfo.com.br"
