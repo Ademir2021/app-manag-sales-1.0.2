@@ -23,9 +23,11 @@ export function UserFormLogin({
                 <fieldset className='main-user'>
                     <form className='main-user-login'>
                         <LogoIn/>
+                        <h1 className='text-welcome'>Seja bem vindo de volta{'(a)'}</h1>
                         <span>Entrar na minha conta</span>
                         <label>{alert}</label>
                         <label>{message}</label>
+                        <div className='text-label'>Email</div>
                         <input
                             type="email"
                             name="username"
@@ -33,6 +35,7 @@ export function UserFormLogin({
                             value={children.username || ""}
                             onChange={handleChange}
                         />
+                         <div className='text-label' id='text-label-email'>Senha</div>
                         <input
                             type="password"
                             name="password"

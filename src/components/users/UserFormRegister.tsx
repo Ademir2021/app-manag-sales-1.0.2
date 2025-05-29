@@ -24,9 +24,12 @@ export function UserFormRegister({
             <fieldset className='main-user'>
                 <form className='main-user-login'>
                     <LogoIn/>
-                <span>Cadastre_se</span>
+                 <div className='text-register'>Cadastre-se gratuitamnete para
+                    poder realizar suas compras e poder acompanhar a entrega.</div>
+                <span>Crie sua conta</span>
                 <label>{alert}</label>
                 <label>{message}</label>
+                 <div className='text-label'>Nome</div>
                     <input
                         type="text"
                         name="name"
@@ -34,6 +37,7 @@ export function UserFormRegister({
                         value={children.name || ""}
                         onChange={handleChange}
                         />
+                 <div className='text-label'>Email</div>
                     < input
                         type="email"
                         name="username"
@@ -41,6 +45,7 @@ export function UserFormRegister({
                         value={children.username || ""}
                         onChange={handleChange}
                         />
+                <div className='text-label'>Senha</div>
                     <input
                         type="password"
                         name="password"
@@ -48,7 +53,7 @@ export function UserFormRegister({
                         value={children.password || ""}
                         onChange={handleChange}
                         />
-            
+                <div className='psw-repeat'>Confirmar senha</div>
                     <input
                         type="password"
                         name="psw_repeat"
