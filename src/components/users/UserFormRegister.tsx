@@ -24,11 +24,11 @@ export function UserFormRegister({
             <fieldset className='main-user'>
                 <form className='main-user-login'>
                     <LogoIn/>
-                 <div className='text-register'>Cadastre-se gratuitamnete para
-                    poder realizar suas compras e poder acompanhar a entrega.</div>
-                <span>Crie sua conta</span>
-                <label>{alert}</label>
-                <label>{message}</label>
+                 <div className='text-register'>Cadastre-se para
+                    poder realizar suas compras e poder ter acessos privilegiados.</div>
+                <div className="text-title">Crie sua conta</div>
+                {alert && <label>{alert}</label>}
+                {message && <label>{message}</label>}
                  <div className='text-label'>Nome</div>
                     <input
                         type="text"

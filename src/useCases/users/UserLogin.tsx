@@ -24,9 +24,9 @@ export function UserLogin() {
   }
 
   function valFields(user: TUserLogin) {
-    let msg = ""
-    if (user.username === "") { msg += "Digite um email válido !" };
-    if (user.password === "") { msg += "Digite uma senha válida !" };
+    let msg = "Digite"
+    if (user.username === "") { msg += " um email válido !" };
+    if (user.password === "") { msg += " uma senha válida !" };
     if (msg !== "") {
       setAlert(msg);
       return false;

@@ -24,9 +24,9 @@ export function UserFormLogin({
                     <form className='main-user-login'>
                         <LogoIn/>
                         <h1 className='text-welcome'>Seja bem vindo de volta{'(a)'}</h1>
-                        <span>Entrar na minha conta</span>
-                        <label>{alert}</label>
-                        <label>{message}</label>
+                        <div className='text-title'>Entrar na minha conta</div>
+                        {alert && <label>{alert}</label>}
+                        {message && <label>{message}</label>}
                         <div className='text-label'>Email</div>
                         <input
                             type="email"
