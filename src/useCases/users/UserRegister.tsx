@@ -38,11 +38,11 @@ export function UserRegister() {
 
   function UsersValFields(user:any) {
     let msg = "Digite"
-    if (user.name === "") { msg += " nome completo !\n" };
-    if (user.username === "") { msg += " um email válido !\n" };
-    if (user.password === "") { msg += " sua senha !\n" };
-    if (user.psw_repeat !== user.password) { msg += " Senha digitada está errada !\n" };
-    if (msg !== "") {
+    if (user.name === "") { msg += " nome completo!\n" };
+    if (user.username === "") { msg += " um email válido!\n" };
+    if (user.password === "") { msg += " sua senha!\n" };
+    if (user.psw_repeat !== user.password) { msg += " novamente, senha diferente da digitada!\n" };
+    if (msg !== "Digite") {
       setAlert(msg)
       return false;
     };

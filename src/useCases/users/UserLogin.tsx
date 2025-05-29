@@ -27,7 +27,7 @@ export function UserLogin() {
     let msg = "Digite"
     if (user.username === "") { msg += " um email válido !" };
     if (user.password === "") { msg += " uma senha válida !" };
-    if (msg !== "") {
+    if (msg !== "Digite") {
       setAlert(msg);
       return false;
     };
