@@ -26,7 +26,7 @@ export function ListItensStore({
 
     const list = itens.map((item: TItens) => (
         <div key={item.id}>
-            <label><b>Item: </b>{item.item}</label>
+            <div><b>Item: </b>{item.item}</div>
             <p><b>Descrição: </b>{item.descric}</p>
             <div id="itensStoreCarButton">
                 <button
@@ -43,7 +43,7 @@ export function ListItensStore({
                     id='m-2'
                     onClick={() => { deleteListStore(item) }} >X</button>
             </div>
-            <label><b> Unitário: </b>{currencyFormat(item.valor)}</label>
+            <><b> Unitário: </b>{currencyFormat(item.valor)}</>
             <p><b>Total: </b>{currencyFormat(item.tItem)}</p>
             <hr></hr>
         </div>
@@ -56,21 +56,21 @@ export function ListItensStore({
                 id='itens-store-car'>
                 <div id="main">
                     <form id='main'>
-                        <label>Quantidade de items</label>
+                        <>Items</>
                         <input
                             id="main-input-number"
                             placeholder="Quantidade"
                             value={counter_}
                             disabled
                         />
-                        <label>Total dos items</label>
+                        <>Total</>
                         <input
                             id="main-input-number"
                             placeholder="Total dos Items"
                             value={currencyFormat(subtotal)}
                             disabled
                         />
-                        {itens.length !== 0 && <label id='msg-red'>{messages}</label>}
+                        {itens.length !== 0 && <div id='msg-red'>{messages}</div>}
                     </form>
                     {itens.length > 0 && <button
                         className="btn btn-primary"

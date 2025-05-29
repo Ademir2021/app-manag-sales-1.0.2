@@ -94,7 +94,7 @@ export function PersonForm({
     </>
 
     const limiteCredito = <>
-        <label>Limite de crédito</label>
+        <label>Limite crédito</label>
         <InputMask
              id="main-input-number"
             type="number"
@@ -111,8 +111,8 @@ export function PersonForm({
     </>
 
     const grupo = <>
-        <label>Informe o grupo</label>
-        <label>{"1-Cliente 2-Fornecedor 3-Transportadora 4-Geral"}</label>
+        <dd>{"1-Cliente 2-Fornecedor 3-Transportadora 4-Geral"}</dd>
+        <label>Grupo cliente</label>
         <input
          id="main-input-number"
             type="number"
@@ -186,8 +186,8 @@ export function PersonForm({
                     value={children.bairro_pers || ""}
                     onChange={handleChange}
                 />
+                <label><a href="ceps">Consultar</a></label>
                 <label>CEP</label>
-                <a href="ceps">Consultar cep</a>
                 <InputMask
                  id="main-input"
                     mask={"99.999-999"}
@@ -212,7 +212,6 @@ export function PersonForm({
                 className="btn btn-primary mt-3"
                     onClick={handleSubmit}>
                     Registrar</button>
-    
             </form>
 
         </div>

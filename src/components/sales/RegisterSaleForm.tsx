@@ -43,12 +43,12 @@ export function RegisterSaleForm({
     <>
       <div id="container">
           <div id='main' >
-            <label id='m-2'>PDV - Checkout de Compras</label>
+            <p id='m-2'>PDV - Checkout de Compras</p>
             {alert && <label>{alert}</label>}
             {message &&<label>{message}</label>}
             { item_img && <img src={item_img} alt='Aguardando Item'></img>}
             <p>{item}</p>
-            <label>Valor Unitário</label>
+            <span>Valor Unitário</span>
             <div>
               {currencyFormat(parseFloat(children.valor))}
             </div>
@@ -58,7 +58,7 @@ export function RegisterSaleForm({
                   {product.descric_product}</option>))}
               </select>
             </datalist>
-                <label>Código de Barras/Produto</label>
+                <label>Barras/Produto</label>
             <input
             id='main-input'
               type="search"

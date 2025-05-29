@@ -24,7 +24,7 @@ export function ContactForm({
                     <div id="text-center">
                         <h1>Fale conosco</h1>
                         <dd><b>Telefone</b> {Globais.phone}</dd>
-                        <label>Suporte, Garantia, Frete, Dúvidas ?</label>
+                        <>Suporte, Garantia, Frete, Dúvidas ?</>
                     </div>
                     <label>Nome</label>
                     <input

@@ -46,7 +46,7 @@ export function PagSeguroForm({
                     className='btn btn-primary'
                     onClick={handleBoleto}>Emitir BOLETO
                     </button>
-                    <label>Informe o melhor vencimento para o boleto</label>
+                    <label>Vencim. boleto</label>
                     <input
                     id='main-input-number'
                     type="date"
@@ -59,16 +59,16 @@ export function PagSeguroForm({
                         <strong style={{ fontSize: '10px' }}>{barCodeBoleto}</strong>
                         <label>{"< CÓDIGO DE BARRAS FORMATADO />"}</label>
                         <strong style={{ fontSize: '10px' }}>{barCodeBoletoFormated}</strong></div> :
-                        <label>Aguardando código de barras</label>}
+                        <dd>Aguardando código de barras</dd>}
                     <hr></hr>
                     <button
                     className='btn btn-primary'
                     onClick={handleQrCode}>Gerar QR-CODE
                     </button>
                     {qrcode_img ? <img id='img-qrcode' src={qrcode_img} alt='Aguarde o qrcode'></img> : null}
-                    <label><b>PIX</b> {payPix}</label>
-                    <label id='msg-red'>{error}</label>
-                    <label>{qrCodeGeneratedSuccessfully}</label>
+                    <dd><b>PIX</b> {payPix}</dd>
+                    <dd id='msg-red'>{error}</dd>
+                    <dd>{qrCodeGeneratedSuccessfully}</dd>
                     <hr></hr>
                     {URLNoteSubmit ? <a href={Globais.URL_NOTE + '/' + URLNoteSubmit}>Emitir Nota</a> : null}
                     {URLNoteSubmit ? <a href='/dashboardefault'>Sair</a> : null}
