@@ -52,6 +52,11 @@ export function ListItensStore({
     return (
         <>
             <hr></hr>
+            <div id="text-center">
+            <p>Confira os itens abaixo antes de finalizar sua compra.</p>
+            {/* <p>Você está a um passo de receber seus produtos favoritos. Finalize sua compra agora!</p> */}
+            <p>Seu carrinho está quase pronto! Finalize sua compra e receba seus produtos no conforto de casa.</p>
+            </div>
             <div
                 id='itens-store-car'>
                 <div id="main">

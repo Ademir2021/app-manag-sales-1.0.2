@@ -1,12 +1,12 @@
-
+#input-valor {
+    width: 40%;
+    padding: 8px;
+    border-radius: 3px;
+    margin-top: 3px;
+    margin-left: 3px;
+}
 #center {
     text-align: center;
-}
-#header-contas-receber {
-    background-color: gray;
-    padding: 10px;
-    color: aliceblue;
-   font-size: 12px;
 }
 thead {
     padding: 0px;

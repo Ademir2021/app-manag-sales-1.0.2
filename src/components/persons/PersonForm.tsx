@@ -111,17 +111,17 @@ export function PersonForm({
     </>
 
     const grupo = <>
-        <dd>{"1-Cliente 2-Fornecedor 3-Transportadora 4-Geral"}</dd>
+        <hr/>
+        <>1 Cliente | 2 Fornecedor | 3 Transportadora | 4 Geral</>
         <label>Grupo cliente</label>
         <input
          id="main-input-number"
-            type="number"
-            name="fk_grupo"
-            placeholder='Informe número do grupo'
-            value={children.fk_grupo || ''}
-            onChange={handleChange}
-
-        />
+         type="number"
+         name="fk_grupo"
+         placeholder='Informe número do grupo'
+         value={children.fk_grupo || ''}
+         onChange={handleChange}
+         />
     </>
 
     return (
@@ -213,7 +213,6 @@ export function PersonForm({
                     onClick={handleSubmit}>
                     Registrar</button>
             </form>
-
         </div>
     )
 }

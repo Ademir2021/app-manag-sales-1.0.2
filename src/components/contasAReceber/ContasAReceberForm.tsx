@@ -40,10 +40,7 @@ export function ContasAreceberForm({
     const handleContasAReceber = new HandleFinanceiro()
 
     const headerContasReceber =
-        <div id="header-contas-receber">
-            Contas a receber - Títulos em aberto.
-        </div>
-
+        <dd>Contas a receber em aberto.</dd>
     const sumbit = <div className="mb-1">
         <div>{token}</div>
         <button
@@ -66,7 +63,7 @@ export function ContasAreceberForm({
 
     const inputReceberValor = <div>
         <input
-        id="main-input-number"
+            id="main-input-number"
             min={0}
             max={999}
             type="number"
@@ -158,16 +155,17 @@ export function ContasAreceberForm({
             ))}</tbody>
         </table>
     return (
-        <>
-        <NavBar />
-        <div>
+
+        <div className="container">
+              <NavBar />
             {checkAdminPrivilege() === '2' ? sumbit : null}
+            <hr/>
             {headerContasReceber}
             {<div>{msg}</div>}
-            {checkAdminPrivilege() === '2' ? inputReceberValor : <div>Contas em aberto do Cliente</div>}
-            { contasAReceber.length > 0  ? listaContasReceber: <h1>Cliente sem Título para Pagar !</h1> }
-            { valoresRecebidos.length > 0 ? listaValoresRecebidos: null }
+            {checkAdminPrivilege() === '2' ? inputReceberValor : <div>Contas em aberto do cliente</div>}
+            {contasAReceber.length > 0 ? listaContasReceber : <h1>Cliente sem título para pagar !</h1>}
+            {valoresRecebidos.length > 0 && listaValoresRecebidos}
         </div>
-        </>
+
     )
 }

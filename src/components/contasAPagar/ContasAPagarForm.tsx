@@ -37,9 +37,7 @@ function ContasAPagarForm({
     const handleContasAPagar = new HandleFinanceiro()
 
     const headerContasPagar =
-        <div id="header-contas-receber">
-            Contas a Pagar - Em aberto.
-        </div>
+        <dd>Contas a pagar em aberto.</dd>
 
     const sumbit =
         <div className="mb-1">
@@ -50,12 +48,12 @@ function ContasAPagarForm({
             >Emitir título</button>
             <button
                 className="btn btn-primary"
-                   id="m-2"
+                id="m-2"
                 onClick={submitInserirValor}
             >Pagar</button>
             <button
                 className="btn btn-primary"
-                   id="m-2"
+                id="m-2"
                 onClick={submitfluxoDeCaixa}
             >Fluxo de caixa</button>
             <div id="m-2"><b>Saldo à pagar </b>{currencyFormat(saldo)}</div>
@@ -157,17 +155,18 @@ function ContasAPagarForm({
     </table>
 
     return (
-        <>
-        <NavBar/>
-        <div>
-            {checkAdminPrivilege() == '2' ? sumbit : null}
+
+        <div className="container">
+            <NavBar />
+            {checkAdminPrivilege() == '2' && sumbit}
+            <hr/>
             {headerContasPagar}
-            {<div>{msg}</div>}
-            {checkAdminPrivilege() == '2' ? inputPagarValor : <div>-</div>}
-            {contasAPagar.length > 0 ? listaContasPagar : null}
-            {valoresPagos.length > 0 ? listaValoresPago: null}
+            {msg && <div>{msg}</div>}
+            {checkAdminPrivilege() == '2' && inputPagarValor}
+            {contasAPagar.length > 0 && listaContasPagar}
+            {valoresPagos.length > 0 && listaValoresPago}
         </div>
-        </>
+
     )
 }
 
