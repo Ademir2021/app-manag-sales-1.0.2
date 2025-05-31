@@ -133,8 +133,6 @@ export function PersonForm({
                     <option>{'Pessoa-Fisica'}</option>
                     <option>{'Pessoa-Juridica'}</option>
                 </select>
-                {alert ? <label>{alert}</label> : null}
-                {message ? <label>{message}</label> : null}
                 <label>Nome</label>
                 <input
                 id="main-input"
@@ -206,8 +204,10 @@ export function PersonForm({
                     value={children.fk_name_filial || ""}
                     onChange={handleChange}
                 />
-                {checkAdminPrivilege() === "2" ? limiteCredito : null}
-                {checkAdminPrivilege() === "2" ? grupo : null}
+                {checkAdminPrivilege() === "2" && limiteCredito}
+                {checkAdminPrivilege() === "2" && grupo}
+                {alert && <dd id="msg-red">{alert}</dd>}
+                {message && <dd id="msg-red">{message}</dd>}
                 <button
                 className="btn btn-primary mt-3"
                     onClick={handleSubmit}>

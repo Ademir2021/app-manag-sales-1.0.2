@@ -23,7 +23,7 @@ export function UserFormLogin({
                 <fieldset className='main-user'>
                     <form className='main-user-login'>
                         <LogoIn/>
-                        <h1 className='text-welcome'>Seja bem vindo {'(a)'} de volta</h1>
+                        <h1 className='text-welcome'>Seja bem vindo{'(a)'} de volta</h1>
                         <div className='text-title'>Entrar na minha conta</div>
                         {alert && <label>{alert}</label>}
                         {message && <label>{message}</label>}

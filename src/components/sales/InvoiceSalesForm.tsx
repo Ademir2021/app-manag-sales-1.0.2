@@ -82,7 +82,7 @@ export function InvoiceSalesForm({
               disabled
               onChange={handleChange}
             />
-             {message && <label id='msg-red'>{message}</label>}
+             {message && <dd id='msg-red'>{message}</dd>}
             <button className='btn btn-primary' id='m-2' onClick={handleSubmitCard}>Pagar com Cartão</button>
             <button className='btn btn-primary' id='m-2' onClick={handleSubmit}>Pagar com PIX ou BOLETO</button>
             <button className='btn btn-primary' id='m-2' onClick={handleSubmitCred}>Pagar com Crediário Loja</button>
