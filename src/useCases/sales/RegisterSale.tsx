@@ -3,8 +3,9 @@ import { RegisterSaleForm } from "../../components/sales/RegisterSaleForm";
 import { Itens } from "../../components/sales/Itens";
 import { TProduct, TItens } from "../products/type/TProducts";
 import { currencyFormat } from "../../components/utils/currentFormat/CurrentFormat";
-import { Dashboard } from "../dashboard/Dashboard";
+// import { Dashboard } from "../dashboard/Dashboard";
 import { postList } from "../../services/handleService";
+import { handleLinksDir } from "../../components/utils/backHome/BackHome";
 // import api from "../../services/api/api";
 
 export function RegisterSale() {
@@ -218,7 +219,15 @@ export function RegisterSale() {
 
     return (
         <>
-            <Dashboard />
+        <div className="container">{handleLinksDir(
+            'dashboardefault',
+            'Painel',
+            '##',
+            'Comprar',
+            '##',
+            'Checkout'
+        )}</div>
+            
             <RegisterSaleForm
                 handleChange={handleChange}
                 handleSaveUpdate={handleSaveUpdate}
