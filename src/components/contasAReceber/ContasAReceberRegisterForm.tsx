@@ -20,7 +20,7 @@ export function ContasAReceberRegisterForm({
             {handleLinksDir(
                 'dashboardefault',
                 'Painel',
-                '##',
+                'contas_receber',
                 'Financeiro',
                 '##',
                 'Emitir titulos a receber'

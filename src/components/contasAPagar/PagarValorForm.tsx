@@ -19,7 +19,7 @@ export function PagarValorForm({
                 {handleLinksDir(
                     'dashboardefault',
                     'Painel',
-                    '##',
+                    'contas_pagar',
                     'Financeiro',
                     '##',
                     'Pagar valores'

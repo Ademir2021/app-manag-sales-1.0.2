@@ -18,7 +18,7 @@ export function CaixaMovListComp({
 }: Props) {
 
     const handleContasAReceber = new HandleFinanceiro()
-    
+
           const links = <>
                     {handleLinksDir(
                         'dashboardefault',
@@ -28,6 +28,7 @@ export function CaixaMovListComp({
                         '##',
                         'Caixa movimento'
                     )}
+                    <>{<a href="contas_pagar">Contas a pagar</a>} {'<< Financeiro >>'}  <a href="contas_receber">Contas a receber</a></>
                 </>
 
     const caixaMovList = <table className='table bg-light mt-1'>
@@ -68,7 +69,7 @@ export function CaixaMovListComp({
         <>
          <div className='text-center'>{links}</div>
             <div className="container">
-                <div className="mt-2">Movimento de caixa</div>
+                <div className="mt-2">Caixa movimento</div>
                 {caixaMovList}
             </div>
             </>

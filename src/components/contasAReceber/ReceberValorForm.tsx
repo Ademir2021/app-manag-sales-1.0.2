@@ -21,7 +21,7 @@ export function ReceberValorForm({
             {handleLinksDir(
                 'dashboardefault',
                 'Painel',
-                '##',
+                'contas_receber',
                 'Financeiro',
                 '##',
                 'Receber valores'

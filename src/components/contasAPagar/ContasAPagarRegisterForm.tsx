@@ -23,7 +23,7 @@ export function ContasAPagarRegisterForm({
         {handleLinksDir(
             'dashboardefault',
             'Painel',
-            '##',
+            'contas_pagar',
             'Financeiro',
             '##',
             'Emitir titulos a pagar'
