@@ -24,3 +24,9 @@ export async function handleEnsureAuth() {
         console.log("Err " + err)
     }
 }
+
+export function handleTokenMessage(link:string, tokenMessage:string){
+    const msg =   <dd className="text-center mt-1"><a style={{color:'green'}} href={link}>Atualizar</a></dd>
+    if (tokenMessage === 'expired_token')
+        return msg
+}

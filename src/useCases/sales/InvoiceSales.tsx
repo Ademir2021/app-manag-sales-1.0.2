@@ -8,6 +8,7 @@ import saleJSON from "./sale.json"
 import { TItens } from "../products/type/TProducts";
 import { postAuthHandle, getList } from "../../services/handleService";
 import { AuthContext } from '../../context/auth'
+import { handleTokenMessage } from "../../services/handleEnsureAuth";
 
 export function InvoiceSales() {
     const [ceps, setCeps] = useState<ICeps[]>([])
@@ -189,7 +190,7 @@ export function InvoiceSales() {
         <>
             {/* <p>{JSON.stringify(persons)}</p> */}
             <InvoiceSalesForm
-                token={tokenMessage}
+                token={handleTokenMessage('invoice_sales', tokenMessage)}
                 backHomeInvoice={<BackHome />}
                 handleChange={handleChange}
                 handleSubmitCard={handleSubmitCard}

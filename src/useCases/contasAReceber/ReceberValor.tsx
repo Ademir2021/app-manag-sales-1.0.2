@@ -4,6 +4,7 @@ import { TValsRecebidos } from "./type/TContasAReceber";
 import { TPerson } from "../persons/type/TPerson";
 import { AuthContext } from '../../context/auth'
 import { postAuthHandle, postRegister } from "../../services/handleService";
+import { handleTokenMessage } from "../../services/handleEnsureAuth";
 
 export function ReceberValor() {
     const [IdPerson, setIdPerson] = useState<number>(0)
@@ -53,7 +54,7 @@ export function ReceberValor() {
 
     return (
         <>
-        <p className="text-center p-3">{tokenMessage}</p>
+        {handleTokenMessage('receber_valor', tokenMessage)}
             <ReceberValorForm
                 handlechange={handleChange}
                 handleSubmit={handleSubmit}

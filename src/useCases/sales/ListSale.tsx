@@ -5,6 +5,7 @@ import { InputSearch } from "../../components/inputSearch/InputSearch";
 import { AuthContext } from '../../context/auth'
 import { postAuthHandle } from "../../services/handleService";
 import { TSaleList } from "./type/TSale";
+import { handleTokenMessage } from "../../services/handleEnsureAuth";
 
 export function ListSales() {
   const { user: isLogged }: any = useContext(AuthContext);
@@ -40,7 +41,8 @@ export function ListSales() {
   return (
     <>
       <Dashboard />
-      <div className="text-center"><a href="list_sale">{tokenMessage}</a></div>
+      <h1 className="text-center">Lista de notas por período</h1>
+     {handleTokenMessage('list_sale',  tokenMessage)}
       <InputSearch
         int={created_int}
         end={created_end}

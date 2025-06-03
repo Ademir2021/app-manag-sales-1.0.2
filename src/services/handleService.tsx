@@ -12,14 +12,14 @@ export async function postAuthHandle(route: string, setTokenMessage: any, setHan
         }
         await api.post<[]>(route, isLogged, { headers })
             .then(response => {
-                setTokenMessage("Token Válido!")
+                setTokenMessage("token_valid")
                 const resp: [] = response.data
                 setHandle(resp)
             })
     }
     catch (err) {
         // console.log("error occurred !!" + err)
-        setTokenMessage(" Erro: 401 - Token Expirado ! ")
+        setTokenMessage("expired_token")
         await handleEnsureAuth()
     }
 };

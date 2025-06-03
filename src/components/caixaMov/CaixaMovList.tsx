@@ -1,4 +1,5 @@
 import { TCaixaMov } from "../../useCases/caixaMov/type/TCaixaMov"
+import { handleLinksDir } from "../utils/backHome/BackHome"
 import { HandleFinanceiro } from "../utils/financeiro/HandleFinanceiro"
 
 
@@ -18,6 +19,17 @@ export function CaixaMovListComp({
 
     const handleContasAReceber = new HandleFinanceiro()
     
+          const links = <>
+                    {handleLinksDir(
+                        'dashboardefault',
+                        'Painel',
+                        '##',
+                        'Financeiro',
+                        '##',
+                        'Caixa movimento'
+                    )}
+                </>
+
     const caixaMovList = <table className='table bg-light mt-1'>
             <thead>
                 <tr>
@@ -53,9 +65,12 @@ export function CaixaMovListComp({
             </tbody>
         </table>
     return (
+        <>
+         <div className='text-center'>{links}</div>
             <div className="container">
                 <div className="mt-2">Movimento de caixa</div>
                 {caixaMovList}
             </div>
+            </>
     )
 }

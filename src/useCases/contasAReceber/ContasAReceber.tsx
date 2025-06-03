@@ -8,6 +8,7 @@ import { FormatDate } from "../../components/utils/formatDate"
 import { TSaleList } from "../sales/type/TSale"
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api"
+import { handleTokenMessage } from "../../services/handleEnsureAuth"
 
 function ContasAReceber() {
     const [msg, setMsg] = useState('')
@@ -234,7 +235,7 @@ function ContasAReceber() {
     return (
         <>
             <ContasAreceberForm
-                token={tokenMessage}
+                token={handleTokenMessage('contas_receber', tokenMessage)}
                 contasAReceber={contasAReceber_}
                 valoresRecebidos={valsRecebidos_}
                 receberValor={valor > 0 ? handleSumbit : () => { setMsg('Informe um novo valor') }}

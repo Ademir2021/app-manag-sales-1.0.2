@@ -11,6 +11,7 @@ import { Dashboard } from "../dashboard/Dashboard";
 import { HandleProducts } from "./HandleProduct";
 import "../../App.css"
 import { ProductValFields } from "./valsFields/ValsFields";
+import { handleTokenMessage } from "../../services/handleEnsureAuth";
 
 export function ProductUpdate() {
     const { user: isLogged }: any = useContext(AuthContext);
@@ -171,7 +172,8 @@ export function ProductUpdate() {
     return (
         <>
             <Dashboard />
-            <div className="text-center"><a href="product_update">{tokenMessage}</a></div>
+             <h1 className="text-center">Lista de Produtos</h1>
+               {handleTokenMessage('product_update', tokenMessage)}
             < ProductFormUpdate
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}

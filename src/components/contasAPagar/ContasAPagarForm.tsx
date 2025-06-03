@@ -2,7 +2,7 @@ import { HandleFinanceiro } from "../utils/financeiro/HandleFinanceiro";
 import { TContaAPagar, TValPago } from "../../useCases/contasAPagar/type/TContasAPagar"
 import { currencyFormat } from '../utils/currentFormat/CurrentFormat';
 import { checkAdminPrivilege } from "../utils/checksUserLogged/ChecksUserLogged";
-import { NavBar } from "../navbar/Navbar";
+import { handleLinksDir } from "../utils/backHome/BackHome";
 
 import './css/styles.css'
 
@@ -18,6 +18,7 @@ type Props = {
     submitfluxoDeCaixa: any
     saldo: number
     findNameDespesa: any // (id: number)
+    token:string | any
 }
 
 function ContasAPagarForm({
@@ -31,7 +32,8 @@ function ContasAPagarForm({
     submitInserirValor,
     submitfluxoDeCaixa,
     saldo,
-    findNameDespesa
+    findNameDespesa,
+    token
 }: Props) {
 
     const handleContasAPagar = new HandleFinanceiro()
@@ -57,6 +59,7 @@ function ContasAPagarForm({
                 onClick={submitfluxoDeCaixa}
             >Fluxo de caixa</button>
             <div id="m-2"><b>Saldo à pagar </b>{currencyFormat(saldo)}</div>
+            {token}
         </div>
 
     const inputPagarValor = <div>
@@ -157,7 +160,14 @@ function ContasAPagarForm({
     return (
 
         <div className="container">
-            <NavBar />
+                  {handleLinksDir(
+                            'dashboardefault',
+                            'Painel',
+                            '##',
+                            'Financeiro',
+                            '##',
+                            'Contas a pagar'
+                            )}
             {checkAdminPrivilege() == '2' && sumbit}
             <hr/>
             {headerContasPagar}

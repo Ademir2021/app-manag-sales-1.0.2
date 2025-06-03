@@ -14,7 +14,7 @@ type Props = {
   alert: string
   message: string
   backHomeInvoice: any;
-  token: string
+  token: string | any
   installments: any
   idPerson: any | number
   persons: TPerson[]

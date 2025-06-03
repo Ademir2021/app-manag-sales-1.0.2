@@ -1,3 +1,4 @@
+import { handleLinksDir } from '../utils/backHome/BackHome'
 import './css/styles.css'
 
 type Props = {
@@ -18,6 +19,16 @@ export function ContasAPagarRegisterForm({
     listDespesas
 }: Props) {
 
+    const links = <>
+        {handleLinksDir(
+            'dashboardefault',
+            'Painel',
+            '##',
+            'Financeiro',
+            '##',
+            'Emitir titulos a pagar'
+        )}
+    </> 
     const emitirTitulo = <div className="container-global">
         <div className="main-global">
             <p>Emitir provisão de despesas</p>
@@ -55,6 +66,7 @@ export function ContasAPagarRegisterForm({
 
     return (
         <>
+        <div className='text-center'>{links}</div>
             {emitirTitulo}
         </>
     )

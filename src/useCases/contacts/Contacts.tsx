@@ -30,12 +30,12 @@ export function Contacts() {
     };
 
     function contactValFields(contact: TContact) {
-        let msg = ""
-        if (contact.name === "") { msg += "Digite o nome completo |\n" };
-        if (contact.email === "") { msg += "Digite seu email | \n" };
-        if (contact.phone === "") { msg += "Digite seu telefone |\n" };
-        if (contact.comments === "") { msg += "Digite seu assunto\n" };
-        if (msg !== "") {
+        let msg = "Digite o "
+        if (contact.name === "") { msg += "nome completo!\n" };
+        if (contact.email === "") { msg += "seu email!\n" };
+        if (contact.phone === "") { msg += "seu telefone!\n" };
+        if (contact.comments === "") { msg += "seu assunto!\n" };
+        if (msg !== "Digite o ") {
             setMsg(msg)
             return false;
         };

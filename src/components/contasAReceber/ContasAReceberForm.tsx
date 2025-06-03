@@ -2,7 +2,7 @@ import { HandleFinanceiro } from "../utils/financeiro/HandleFinanceiro";
 import { TContaAreceber, TValsRecebidos } from "../../useCases/contasAReceber/type/TContasAReceber"
 import { currencyFormat } from '../utils/currentFormat/CurrentFormat';
 import { checkAdminPrivilege } from "../utils/checksUserLogged/ChecksUserLogged";
-import { NavBar } from "../navbar/Navbar";
+import { handleLinksDir } from "../utils/backHome/BackHome";
 
 import './css/styles.css'
 import '../../index'
@@ -19,7 +19,7 @@ type Props = {
     submitfluxoDeCaixa: any
     saldo: number
     printValorRecebido: any
-    token: string
+    token: string | any
 }
 
 export function ContasAreceberForm({
@@ -42,23 +42,23 @@ export function ContasAreceberForm({
     const headerContasReceber =
         <dd>Contas a receber em aberto.</dd>
     const sumbit = <div className="mb-1">
-        <div>{token}</div>
         <button
             className="btn btn-primary"
             id='m-2'
             onClick={submitContasAReceberRegister}
-        >Emitir título</button>
+            >Emitir título</button>
         <button
             className="btn btn-primary"
             id='m-2'
             onClick={submitInserirValor}
-        >Inserir valor</button>
+            >Inserir valor</button>
         <button
             className="btn btn-primary"
             id='m-2'
             onClick={submitfluxoDeCaixa}
-        >Fluxo de caixa</button>
+            >Fluxo de caixa</button>
         <div id="m-2"><b>Saldo à receber </b>{currencyFormat(saldo)}</div>
+            <div>{token}</div>
     </div>
 
     const inputReceberValor = <div>
@@ -155,9 +155,15 @@ export function ContasAreceberForm({
             ))}</tbody>
         </table>
     return (
-
         <div className="container">
-              <NavBar />
+            {handleLinksDir(
+                'dashboardefault',
+                'Painel',
+                '##',
+                'Financeiro',
+                '##',
+                'Contas a receber'
+                )}
             {checkAdminPrivilege() === '2' ? sumbit : null}
             <hr/>
             {headerContasReceber}

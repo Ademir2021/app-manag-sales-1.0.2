@@ -7,6 +7,7 @@ import { ICeps, ICities } from "../ceps/type/TCeps";
 import { postAuthHandle, getList } from "../../services/handleService";
 
 import { AuthContext } from '../../context/auth'
+import { handleTokenMessage } from "../../services/handleEnsureAuth";
 
 export function PersonsList() {
     const { user: isLogged }: any = useContext(AuthContext);
@@ -44,7 +45,8 @@ export function PersonsList() {
     return (
         <>
             <Dashboard />
-            <div className="text-center"><a href="person_list">{tokenMessage}</a></div>
+            <h1 className="text-center">Lista de Clientes</h1>
+            {handleTokenMessage('person_list', tokenMessage)}
             {persons.length === 0 ? <p>Carregando...</p> : (
                 persons.map((per: TPerson) => (
                     <PersonList

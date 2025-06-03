@@ -8,6 +8,7 @@ import api from '../../services/api/api'
 import '../../App.css'
 import { Dashboard } from '../dashboard/Dashboard';
 import { postAuthHandle } from '../../services/handleService';
+import { handleTokenMessage } from '../../services/handleEnsureAuth';
 
 type TUpdateUser = {
     id: number;
@@ -68,12 +69,12 @@ export function UserUpdate() {
     };
 
     function UsersValFields(user: any) {
-        let msg = ""
-        if (user.name === "") { msg += "Digite o seu nome completo !\n" };
-        if (user.username === "") { msg += "Digite um email válido !\n" };
-        if (user.password === "") { msg += "Digite sua senha !\n" };
+        let msg = "Digite "
+        if (user.name === "") { msg += "o seu nome completo!\n" };
+        if (user.username === "") { msg += "um email válido!\n" };
+        if (user.password === "") { msg += "sua senha!\n" };
         if (user.psw_repeat !== user.password) { msg += "Senha digitada está errada !\n" };
-        if (msg !== "") {
+        if (msg !== "Digite ") {
             setAlert(msg)
             return false;
         };
@@ -136,7 +137,7 @@ export function UserUpdate() {
     return (
         <>
             <Dashboard />
-            <div className="text-center"><a href="user_update">{tokenMessage}</a></div>
+            {handleTokenMessage('user_update', tokenMessage)}
             <ButtonOnClick
                 onClickHandle={toggleDropdown}
                 text={"Sua conta - Criar/Atualizar/Alterar senha."} />

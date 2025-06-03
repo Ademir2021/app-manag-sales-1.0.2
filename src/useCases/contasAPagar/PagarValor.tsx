@@ -4,6 +4,7 @@ import { PagarValorForm } from "../../components/contasAPagar/PagarValorForm";
 import { TPerson } from "../persons/type/TPerson";
 import { postAuthHandle, postRegister } from "../../services/handleService";
 import { AuthContext } from '../../context/auth'
+import { handleTokenMessage } from "../../services/handleEnsureAuth";
 
 export function PagarValor() {
     const [IdPerson, setIdPerson] = useState<number>(0)
@@ -54,7 +55,7 @@ export function PagarValor() {
 
     return (
         <>
-        <p className="text-center p-3">{tokenMessage}</p>
+       {handleTokenMessage('pagar_valor', tokenMessage)}
             <PagarValorForm
                 handlechange={handleChange}
                 handleSubmit={handleSubmit}

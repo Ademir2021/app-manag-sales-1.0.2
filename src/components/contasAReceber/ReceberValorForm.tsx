@@ -1,3 +1,4 @@
+import { handleLinksDir } from '../utils/backHome/BackHome'
 import './css/styles.css'
 
 type Props = {
@@ -15,6 +16,18 @@ export function ReceberValorForm({
     listPersons,
     msg
 }: Props) {
+
+      const links = <>
+            {handleLinksDir(
+                'dashboardefault',
+                'Painel',
+                '##',
+                'Financeiro',
+                '##',
+                'Receber valores'
+            )}
+        </> 
+
     const receberValor = <div className="container-global">
         <div className="main-global">
             <p>Receber Valores</p>
@@ -44,6 +57,7 @@ export function ReceberValorForm({
     </div>
     return (
         <>
+        <div className='text-center'>{links}</div>
             {receberValor}
         </>
     )

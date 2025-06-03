@@ -1,3 +1,5 @@
+import { handleLinksDir } from "../utils/backHome/BackHome"
+
 type Props = {
     children: any
     handlechange: any
@@ -13,6 +15,16 @@ export function PagarValorForm({
     listPersons,
     msg
 }: Props) {
+          const links = <>
+                {handleLinksDir(
+                    'dashboardefault',
+                    'Painel',
+                    '##',
+                    'Financeiro',
+                    '##',
+                    'Pagar valores'
+                )}
+            </>
     const pagarValor = <div className="container-global">
         <div className="main-global">
             <p>Pagar Valores</p>
@@ -42,6 +54,7 @@ export function PagarValorForm({
     </div>
     return (
         <>
+           <div className='text-center'>{links}</div>
             {pagarValor}
         </>
     )

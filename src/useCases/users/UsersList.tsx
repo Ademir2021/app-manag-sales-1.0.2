@@ -4,6 +4,7 @@ import { FormatDate } from "../../components/utils/formatDate";
 import { Dashboard } from "../dashboard/Dashboard";
 import { AuthContext } from '../../context/auth'
 import { postAuthHandle } from "../../services/handleService";
+import { handleTokenMessage } from "../../services/handleEnsureAuth";
 
 export function UsersList() {
   
@@ -18,7 +19,8 @@ export function UsersList() {
   return (
     <>
      <Dashboard />
-        <div className="text-center"><a href="users_list">{tokenMessage}</a></div>
+     <h1 className="text-center">Lista de Usuários</h1>
+        {handleTokenMessage('users_list',tokenMessage)}
       {users.length === 0 ? <p>Carregando...</p> : (
         users.map((user) => (
           <ListUSers

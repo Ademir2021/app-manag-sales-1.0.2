@@ -5,6 +5,7 @@ import api from "../../services/api/api"
 import { TPerson } from "../persons/type/TPerson";
 import { postAuthHandle, postRegister } from "../../services/handleService";
 import { ContasAPagarRegisterForm } from "../../components/contasAPagar/ContasAPagarRegisterForm";
+import { handleTokenMessage } from "../../services/handleEnsureAuth";
 
 export function ContasAPagarRegister() {
     const [idPerson, setIdPerson] = useState<number>(0)
@@ -89,7 +90,7 @@ export function ContasAPagarRegister() {
 
     return (
         <>
-            <p className="text-center p-3">{tokenMessage}</p>
+        {handleTokenMessage('contas_pagar_register',tokenMessage)}
             <ContasAPagarRegisterForm
                 handleSubmit={handleSubmit}
                 handleChange={handleChange}

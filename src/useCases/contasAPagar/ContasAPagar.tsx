@@ -5,6 +5,7 @@ import { ContasAPagarForm } from "../../components/contasAPagar/ContasAPagarForm
 import { getList, postAuthHandle } from "../../services/handleService"
 import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api"
+import { handleTokenMessage } from "../../services/handleEnsureAuth"
 
 function ContasAPagar() {
     const [msg, setMsg] = useState('')
@@ -185,6 +186,7 @@ function ContasAPagar() {
     }
     return (
         <ContasAPagarForm
+        token={handleTokenMessage('contas_pagar', tokenMessage)}
             contasAPagar={contasAPagar}
             valoresPagos={valsPagos_}
             pagarValor={valor > 0 ? handleSumbit : () => { setMsg('Informe um novo valor') }}

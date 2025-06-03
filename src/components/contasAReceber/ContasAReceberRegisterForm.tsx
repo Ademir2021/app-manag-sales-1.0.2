@@ -1,3 +1,5 @@
+import { handleLinksDir } from "../utils/backHome/BackHome"
+
 type Props = {
     children: any
     handleSubmit: any
@@ -13,6 +15,17 @@ export function ContasAReceberRegisterForm({
     msg,
     listPersons
 }: Props) {
+
+        const links = <>
+            {handleLinksDir(
+                'dashboardefault',
+                'Painel',
+                '##',
+                'Financeiro',
+                '##',
+                'Emitir titulos a receber'
+            )}
+        </> 
 
     const emitirTitulo = <div className="container-global">
         <div className="main-global">
@@ -50,6 +63,7 @@ export function ContasAReceberRegisterForm({
 
     return (
         <>
+        <div className="text-center">{links}</div>
             {emitirTitulo}
         </>
     )

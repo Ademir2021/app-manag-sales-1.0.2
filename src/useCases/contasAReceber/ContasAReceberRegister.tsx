@@ -5,6 +5,7 @@ import { TPerson } from "../persons/type/TPerson";
 import { postAuthHandle, postRegister } from "../../services/handleService";
 
 import { AuthContext } from '../../context/auth'
+import { handleTokenMessage } from "../../services/handleEnsureAuth";
 
 export function ContasAReceberRegister() {
     const [IdPerson, setIdPerson] = useState<number>(0)
@@ -70,7 +71,7 @@ export function ContasAReceberRegister() {
 
     return (
         <>
-            <p className="text-center p-3">{tokenMessage}</p>
+            {handleTokenMessage('contas_receber_register', tokenMessage)}
             <ContasAReceberRegisterForm
                 handleSubmit={handleSubmit}
                 handleChange={handleChange}

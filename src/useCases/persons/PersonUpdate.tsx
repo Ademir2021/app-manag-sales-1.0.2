@@ -12,6 +12,7 @@ import { AuthContext } from '../../context/auth'
 import api from "../../services/api/api"
 
 import "../../App.css"
+import { handleTokenMessage } from "../../services/handleEnsureAuth"
 
 export function PersonUpdate() {
     const { user: isLogged }: any = useContext(AuthContext)
@@ -212,7 +213,8 @@ export function PersonUpdate() {
                 {person}
             </PersonFormUpdate>
             <Dashboard />
-            <div id="text-center"><a href="person_update">{tokenMessage}</a></div>
+               {handleTokenMessage('person_update', tokenMessage)}
+                <h1 className="text-center">Lista de Clientes</h1>
             {persons.length === 0 ? <p>Carregando...</p> : (
                 persons.map((per: TPerson) => (
                     <PersonList
