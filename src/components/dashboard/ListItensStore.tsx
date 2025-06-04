@@ -25,10 +25,10 @@ export function ListItensStore({
 }: Props) {
 
     const list = itens.map((item: TItens) => (
-        <div key={item.id}>
+        <div id='itens-store' key={item.id}>
             <div><b>Item: </b>{item.item}</div>
             <p><b>Descrição: </b>{item.descric}</p>
-            <div id="itensStoreCarButton">
+            <div>
                 <button
                     className="btn btn-primary"
                     id='m-2'
@@ -41,7 +41,7 @@ export function ListItensStore({
                 <button
                     className="btn btn-danger"
                     id='m-2'
-                    onClick={() => { deleteListStore(item) }} >X</button>
+                    onClick={() => { deleteListStore(item) }} >x</button>
             </div>
             <><b> Unitário: </b>{currencyFormat(item.valor)}</>
             <p><b>Total: </b>{currencyFormat(item.tItem)}</p>
@@ -53,9 +53,9 @@ export function ListItensStore({
         <>
             <hr></hr>
             <div id="text-center">
-            <p>Confira os itens abaixo antes de finalizar sua compra.</p>
-            {/* <p>Você está a um passo de receber seus produtos favoritos. Finalize sua compra agora!</p> */}
-            <p>Seu carrinho está quase pronto! Finalize sua compra e receba seus produtos no conforto de casa.</p>
+            <dd>Você está a um passo de receber seus produtos favoritos. Finalize sua compra agora!</dd>
+            <b id='msg-red'>Confira os itens abaixo antes de finalizar sua compra.</b>
+            <dd id="msg-green">Seu carrinho está quase pronto! Finalize sua compra e receba seus produtos no conforto de casa.</dd>
             </div>
             <div
                 id='itens-store-car'>

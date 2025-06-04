@@ -1,29 +1,17 @@
-#container-dashboard
-{
+#container-dashboard {
     justify-content: center;
     background-color: #fff;
 }
-#form-dashboard{
+
+#form-dashboard {
     display: flex;
     flex-direction: column;
-    align-items: left;
-    /* border: solid gray 1px; */
-    width: 100%;
-    height: 100%;
-    padding: 16px;
 }
 
-#form-dashboard
- button{
-    height: 48px;
-    margin: 3px;
+#form-dashboard button {
+    margin: 2px;
 }
 
-#form-dashboard
- label{
-    margin-top:16px;
-    font-size: 12px;
-}
 #itens-store-car {
     display: flex;
     margin: 18px;
@@ -31,6 +19,11 @@
     border-radius: 12px;
     flex-Direction: column;
     align-Items: center;
-    background-color: rgb(224, 224, 233);
-    color:blue;
+    background-color: whitesmoke;
+    /* border: solid 1px grey; */
+    color: blue;
+}
+
+#itens-store {
+    font-size: 12px;
 }

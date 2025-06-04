@@ -29,7 +29,7 @@ export function HeaderDashboard(props: Props) {
                         '##',
                         'Painel de controle',
                     )}
-                    <p>Gerenciar suas compras nunca foi tão fácil.</p>
+                    <b>Gerenciar suas compras nunca foi tão fácil</b>
                     <ul>
                     <li><b>Incluir cadastro</b>{" >> "}<a href='form_person'>Dados do Cliente e endereço</a></li>
                     <li><b>Consultar parcelas</b>{" >> "}<a href='contas_receber'>Suas parcelas em aberto</a></li>
