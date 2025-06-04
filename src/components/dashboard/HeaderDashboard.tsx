@@ -1,3 +1,5 @@
+import { handleLinksDir } from '../utils/backHome/BackHome';
+
 import './css/styles.css'
 
 type Props = {
@@ -13,13 +15,25 @@ export function HeaderDashboard(props: Props) {
             <hr></hr>
             <div id='container-dashboard'>
                 <div id='form-dashboard'>
-                    <strong>Dashboard / Painel de controle</strong>
                     <h1>Sua Conta de acesso</h1>
-                    <p>Gerenciar suas compras nunca foi tão fácil.</p>
-                    <label>{props.privilege == 2 ? 'Nome adminstrador' : 'Nome comprador'}</label>
-                    <dd><b>Olá </b>{props.name}</dd>
-                    <label>{props.privilege == 2 ? 'Email admistrador' : 'Email comprador'}</label>
+                    <b>{props.privilege == 2 ? 'Nome adminstrador ' : 'Nome comprador '}</b>
+                    <dd><b>Olá, </b>{props.name}</dd>
+                    <b>{props.privilege == 2 ? 'Email admistrador ' : 'Email comprador '}</b>
                     <>{props.username}</>
+                    <hr/>
+                    {handleLinksDir(
+                        'store',
+                        'HomeStore',
+                        'pe',
+                        'Carrinho de compras',
+                        '##',
+                        'Painel de controle',
+                    )}
+                    <p>Gerenciar suas compras nunca foi tão fácil.</p>
+                    <ul>
+                    <li><b>Incluir cadastro</b>{" >> "}<a href='form_person'>Dados do Cliente e endereço</a></li>
+                    <li><b>Consultar parcelas</b>{" >> "}<a href='contas_receber'>Suas parcelas em aberto</a></li>
+                    </ul>
                     <button
                         onClick={() => { window.location.replace("sale") }}
                         className="btn btn-primary mt-5"
