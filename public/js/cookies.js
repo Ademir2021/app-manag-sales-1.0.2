@@ -1,4 +1,4 @@
-var purecookieTitle = "Cookies.", purecookieDesc = "Ao usar este site vc aceita automaticamente que usamos cookies.",
+const purecookieTitle = "Cookies.", purecookieDesc = "Ao usar este site vc aceita automaticamente que usamos cookies.",
     purecookieLink = '<a href="cookies"> O que siginifica?</a>',
     purecookieButton = "Entendido"; function pureFadeIn(e, o) {
         var i = document.getElementById(e);

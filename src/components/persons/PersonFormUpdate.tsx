@@ -66,6 +66,7 @@ export function PersonFormUpdate({
     const legalPerson = <>
         <label>Nome Fantasia</label>
         <input
+        id="main-input"
             type="text"
             name="fantasia"
             placeholder="Nome fantasia"
@@ -74,6 +75,7 @@ export function PersonFormUpdate({
         />
         <label>CNPJ</label>
         <InputMask
+            id="main-input"
             type="text"
             name="cnpj"
             placeholder="CNPJ da empresa"
@@ -86,14 +88,15 @@ export function PersonFormUpdate({
             onChange={handleChange}
             disabled
         />
-        <label>Inscrição estadual</label>
+        <label>Inscr. estadual</label>
         <InputMask
+        id="main-input"
             type="text"
             name="inscricao"
             placeholder="Inscrição estadual"
             mask=""
             mask-selectonfocus="true"
-            maxLength={10}
+            maxLength={11}
             autoComplete="off"
             maskChar={null}
             value={children.inscricao || ""}
