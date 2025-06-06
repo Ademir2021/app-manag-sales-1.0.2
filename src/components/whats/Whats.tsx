@@ -6,7 +6,7 @@ export function Whats() {
     <>
       <FloatingWhatsApp
       phoneNumber={'+55988521033'}
-      accountName={'+55 (44) 98852-1033'}
+      accountName={'+5544988521033'}
       statusMessage={'Em breve retornamos sua mensagem, obrigado.'}
       chatMessage={'Olá! 🤝 \nComo podemos ajudar?'}
       placeholder={'Digite aqui sua mensagem ...'}
