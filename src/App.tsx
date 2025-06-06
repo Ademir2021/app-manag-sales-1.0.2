@@ -1,9 +1,10 @@
 import { AppRoutes } from './AppRoutes';
-import { CookieAlert } from './components/home/CookieAlert';
+import { CookiesAlert } from './useCases/home/CookiesAlert';
+
 function App() {
   return (
     <>
-    <CookieAlert />
+  <CookiesAlert />
     <AppRoutes />
     </>
   )
