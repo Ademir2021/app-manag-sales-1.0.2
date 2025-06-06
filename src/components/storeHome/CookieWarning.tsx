@@ -1,6 +1,9 @@
+import { NavBar } from "../navbar/Navbar"
+
 export function CookiesWarnings() {
     return (
             <div className="container">
+                <NavBar/>
                 <hr></hr>
                 <div><strong>O que são cookies ?</strong></div>
                 <span className="cookies-font">
@@ -28,7 +31,7 @@ export function CookiesWarnings() {
                         maioria dos navegadores da internet aceitam <a>cookies;</a> entretanto, os usuários podem configurar
                         seus navegadores para recusar certos tipos de <a>cookies</a> ou <a>cookies</a> específicos.<br></br>
                         <a href={'/'} title="Close"> Sair</a>
-                        <hr></hr>
+                        <br/>
                     </p>
                 </span>
             </div>

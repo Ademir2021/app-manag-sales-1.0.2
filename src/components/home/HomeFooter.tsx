@@ -3,10 +3,12 @@ import { Globais } from '../globais/Globais'
 import './css/cookies.css'
 
 export function HomeFooter() {
+
+
     return (
         <>
             <footer className='text-center' id='bg-white'>
-                <p id="cookies"></p>
+                {/* <p id="cookies"></p> */}
                 <p>
                     <dd>SIGA-NOS</dd>
                     <a target="_blank" href="https://www.facebook.com/profile.php?id=61568577861214&sk=about"><img className="social-icons" src="img/social/facebook.ico" alt='Icon Facebook'></img></a>

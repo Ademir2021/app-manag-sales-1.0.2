@@ -67,3 +67,36 @@
 .cookies-font {
     font-size: 13px;
 }
+
+.cookie-alert {
+    display: flex;
+    font-family: OpenSans, arial, sans-serif;
+    color:#fff;
+    align-items: center;
+    margin: 16px;
+    border-radius: 2px;
+    position: fixed;
+    bottom: 0;
+    left: 3px;
+    width: 90%;
+    background-color: #232323;
+    padding: 12px;
+    text-align: center;
+    z-index: 1000;
+}
+.cookie-text {
+    flex:auto;
+    font-size: 13px;
+}
+.cookie-button {
+    background-color: #000;
+    margin: 16px;
+    padding: 10px 20px;
+    /* border: none; */
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700px;
+}
+.cookie-close{
+    display: none;    
+}

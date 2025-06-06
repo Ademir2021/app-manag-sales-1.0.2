@@ -11,7 +11,7 @@ export function FooterHome() {
 
     return (
             <footer className='text-center'>
-                <p id="cookies"></p>
+                {/* <p id="cookies"></p> */}
                 <div style={{fontSize:'12px', margin:'2px'}}>Baixe nosso App-Store.</div >
                 <a
                 href={linkApp}

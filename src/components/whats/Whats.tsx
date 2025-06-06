@@ -1,15 +1,17 @@
 import { FloatingWhatsApp } from 'react-floating-whatsapp'
 
 export function Whats() {
-  // const avatar: any = <img></img>
+  // const avatar: any = <img ref="ssl_cert"/>
   return (
+    <>
       <FloatingWhatsApp
-      phoneNumber={'+5544988521033'}
-      accountName={'+5544988521033'}
-      statusMessage={'Normalmente responde dentro de 1 hora'}
+      phoneNumber={'+55988521033'}
+      accountName={'+55 (44) 98852-1033'}
+      statusMessage={'Em breve retornamos sua mensagem, obrigado.'}
       chatMessage={'Olá! 🤝 \nComo podemos ajudar?'}
-      placeholder={'Digite uma mensagem..'}
+      placeholder={'Digite aqui sua mensagem ...'}
       // avatar={avatar}
       />
+    </>
   )
 }
