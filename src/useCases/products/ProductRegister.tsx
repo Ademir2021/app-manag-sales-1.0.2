@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { ProductForm } from '../../components/products/ProductForm';
-import { Dashboard } from "../dashboard/Dashboard";
 import { postRegister, getList } from "../../services/handleService";
 import { TProduct, TBrand, TSector, TUnMed, TClasseProd, TGrupoFiscal, TTipoProd, TNcm } from "./type/TProducts"
 import ncmJSON from './NCM.json'
@@ -86,8 +85,8 @@ export function FormProduct() {
 
     return (
         <>
-            <Dashboard />
             <ProductForm
+            flagImagem={product} //inclui o nome da imagem no input
                 handleSubmit={handleSubmit}
                 handleChange={handleChange}
                 alert={alert_}

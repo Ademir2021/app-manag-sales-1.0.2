@@ -1,18 +1,18 @@
 .container-itens {
    display: inline-block;
    vertical-align: top;
-   max-width: 100%;
-   margin: 3px;
+   max-width: 96%;
+   margin: 1px;
    padding: 1px;
    width: 24%;
-   min-width: 194px;
+   min-width: 190px;
 }
 .main-itens {
     display: flex;
     align-items: center;
     /* justify-content: center; */
     flex-direction: column;
-    width: 100%;
+    width: 96%;
     height: auto;
     /* margin-right: 12px; */
     margin-left: 4px;

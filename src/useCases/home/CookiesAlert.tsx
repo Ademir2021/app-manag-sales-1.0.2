@@ -20,12 +20,14 @@ export function CookiesAlert() {
         localStorage.setItem("cookie_status", JSON.stringify(true))
         setCookie()
     }
-
+  
     return (
+        <>
         <CookieAlertComponet
             handleSubmit={handleSubmit}
             cookieStatus={cookieStatus}
         />
+        </>
     )
 
 }
