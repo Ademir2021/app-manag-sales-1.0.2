@@ -127,7 +127,7 @@ export function PersonForm({
     return (
         <div id='container'>
             <form id='main'>
-                <strong className="text-center p-1">Cadastro do Cliente</strong>
+                <b className="text-center p-1">Cadastrar Cliente</b>
                 <a href='/invoice_sales'>Se você já possui cadastro <b>clique aqui.</b></a>
                 <select id='main-input' onChange={(e) => setTpPerson(e.target.value)}>
                     <option>{'Pessoa-Fisica'}</option>

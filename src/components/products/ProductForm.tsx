@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { TProduct } from '../../useCases/products/type/TProducts';
-import { NavBar } from '../navbar/Navbar';
-import '../../index'
 import { UploadImagem } from '../../useCases/products/UploadImage';
+import { NavBar } from '../navbar/Navbar';
+
+import '../../index'
 
 type Props = {
   children: TProduct
@@ -18,7 +19,6 @@ type Props = {
   listTipoProd: any
   listNcm: any;
   msgNcm: string | undefined;
-  flagImagem: any //incluir o nome da mensagem
 }
 
 type IUpdateImagem = {
@@ -41,7 +41,6 @@ export function ProductForm({
   listTipoProd,
   listNcm,
   msgNcm,
-  flagImagem
 }: Props) {
 
 
@@ -50,7 +49,7 @@ export function ProductForm({
   function getUploadImagem() {
     const res: any = localStorage.getItem('update_imagem')
     if (res != null) {
-      const resp:IUpdateImagem[] = JSON.parse(res)
+      const resp: IUpdateImagem[] = JSON.parse(res)
       children.image = resp[0].relativePath.substring(2);
       if (children.image) {
         localStorage.removeItem('update_imagem')
@@ -58,9 +57,9 @@ export function ProductForm({
     }
   }
 
-  useEffect(() => {
+  if (children.image === "") {
     getUploadImagem()
-  }, [flagImagem])
+  }
 
   const nav = <>
     <div>
@@ -145,15 +144,16 @@ export function ProductForm({
 
   return (
     <>
-      {/* <p>{JSON.stringify(imagens)}</p> */}
       <NavBar />
+      <div id='container'>
+        {menu === 'geral' ? <b className='m-3'>Cadastrar Produto</b>:null}
+        {menu === 'fiscal' ? <b className='m-3'>Situação fiscal do Produto</b>:null}
+      </div>
       <div id='container'>
         {nav}
       </div>
       <div id="container">
         <form id="main">
-          {menu === 'geral' ? <span className='m-3'>Cadastrar Produto</span> : null}
-          {menu === 'fiscal' ? <><span className='m-3'>Situação fiscal do Produto</span><br /></> : null}
           {menu === 'fiscal' ? fiscal : null}
           {menu === "geral" ? geral : null}
         </form>

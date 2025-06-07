@@ -1,9 +1,10 @@
 import { useState } from 'react';
-
+import { TProduct } from '../../useCases/products/type/TProducts';
 import '../../index'
+import { UploadImagem } from '../../useCases/products/UploadImage';
 
 type Props = {
-    children?: string | number | readonly string[] | undefined | any;
+    children: TProduct
     handleChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
     handleSubmit?: any;
     handleUpdate?: any;
@@ -22,6 +23,12 @@ type Props = {
     listNcm: any;
     msgNcm: string | undefined;
     flagRegister: boolean
+}
+
+type IUpdateImagem = {
+    path: string
+    relativePath: string
+    preview: string
 }
 
 export function ProductFormUpdate({
@@ -45,7 +52,24 @@ export function ProductFormUpdate({
     msgNcm,
     flagRegister,
 }: Props) {
+
     const [menu, setMenu] = useState("geral")
+
+    function getUploadImagem() {
+        const res: any = localStorage.getItem('update_imagem')
+        if (res != null) {
+            const resp: IUpdateImagem[] = JSON.parse(res)
+            children.image = resp[0].relativePath.substring(2);
+            if (children.image) {
+                localStorage.removeItem('update_imagem')
+            }
+        }
+    }
+
+    if (children.image === "") {
+        getUploadImagem()
+    }
+
     const nav = <>
         <div>
             <button
@@ -123,6 +147,7 @@ export function ProductFormUpdate({
             onChange={handleChange}
             placeholder='Imagem'
         />
+        <UploadImagem />
         {alert && <div id='msg-red'>{alert}</div>}
         {alert && <div id='msg-red'>{message}</div>}
         {!flagRegister && <button className='btn btn-primary' id='m-2' onClick={handleUpdate}>Atualizar</button>}
@@ -143,19 +168,19 @@ export function ProductFormUpdate({
     return (
         <>
             <div ref={modalRef} className={`${className} modal`}>
-    
+                <div id='container'>
+                    {menu === 'geral' ? <b className='m-3'>Atualizar Produto</b> : null}
+                    {menu === 'fiscal' ? <><b className='m-3'>Situação fiscal do Produto</b><br /></> : null}
+                </div>
                 <div id='container'>
                     <div id='m-2'>
-                    {nav}
+                        {nav}
                     </div>
                 </div>
                 <div id="container">
-
                     <form id='main'>
-                        {menu === 'geral' ? <span className='m-3'>Atualizar Produto</span> : null}
-                        {menu === 'fiscal' ? <><span className='m-3'>Situação fiscal do Produto</span><br /></> : null}
-                        {menu === 'fiscal' ? fiscal : null}
                         {menu === "geral" ? geral : null}
+                        {menu === 'fiscal' ? fiscal : null}
                     </form>
                 </div>
             </div>

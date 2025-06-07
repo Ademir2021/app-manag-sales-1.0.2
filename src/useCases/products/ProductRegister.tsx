@@ -86,7 +86,6 @@ export function FormProduct() {
     return (
         <>
             <ProductForm
-            flagImagem={product} //inclui o nome da imagem no input
                 handleSubmit={handleSubmit}
                 handleChange={handleChange}
                 alert={alert_}
